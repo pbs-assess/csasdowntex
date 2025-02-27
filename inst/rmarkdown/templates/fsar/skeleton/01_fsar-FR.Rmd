@@ -94,6 +94,8 @@ Modifications des données : [Facultatif (sinon, ne pas inclure).]
 (ref:caption) (A) Captures et le total admissible des captures, (B) biomasse du stock reproducteur (SSB) par rapport au point de référence limite (LRP ; X) et (proposé) à la référence supérieure du stock (USR ; X), (C) mortalité par pêche (F ; X) à gauche par rapport à la référence de prélèvement (RR) et mortalité naturelle (M), (D) recrutement (nombres).
 
 ```{r base1, fig.cap="(ref:caption)"}
+source("fake-data.R")
+source("plot-timeseries.R")
 in.df <- sim_fsar_data("long")
 
 ## French template
