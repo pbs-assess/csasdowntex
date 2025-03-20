@@ -1,14 +1,13 @@
-# Background
+# BACKGROUND
 
-Optional section.
+<!-- Optional section.
 
-## Note on this section
+This section can be used to help readers understand the nature of the issue to address (e.g., key information on the species, population, or area, or more details on the rationale for providing an answer to the request,). Science Response Reports are intended to be short.
 
-This section can be used when it is considered necessary to add some background information to help the readers understand the nature of the issue to address (e.g., key information on the species, population, or area, or more details on the rationale for providing an answer to the request,).
-Science Response Reports are intended to be short. References to more background information may be added in the Sources of Information section.
+References to more background information may be added in the Sources of Information section.
 
-Some references: [@francis2011, @edwards2013, @swainbenoit2015].
+Some references: [@francis2011, @edwards2013, @swainbenoit2015]. -->
 
-## Description of the fishery
+## Description of the Fishery
 
-Optional section for stock status updates, title may vary. 
+<!-- Optional section for stock status updates, title may vary.  -->

@@ -62,6 +62,8 @@ resdoc_pdf <- function(toc = TRUE,
               "zenburn", "kate", "monochrome",
               "breezedark", "haddock")
 
+  fr <- function() if (french) TRUE else FALSE
+
   if(is.null(highlight)){
     highlight = "monochrome" # nocov
   }
@@ -76,13 +78,9 @@ resdoc_pdf <- function(toc = TRUE,
   }
 
   if (fr()) {
-    file <- system.file("csas-tex",
-                        "res-doc-french.tex",
-                        package = "csasdown")
+    file <- system.file("csas-tex", "res-doc-french.tex", package = "csasdown")
   } else {
-    file <- system.file("csas-tex",
-                        "res-doc.tex",
-                        package = "csasdown")
+    file <- system.file("csas-tex", "res-doc.tex", package = "csasdown")
   }
 
   base <- pdf_book(
@@ -107,9 +105,7 @@ resdoc_pdf <- function(toc = TRUE,
     line_nums_mod = line_nums_mod,
     draft_watermark = draft_watermark,
     lot_lof = lot_lof,
-    which_sty = ifelse(fr(),
-                       "res-doc-french.sty",
-                       "res-doc.sty")
+    which_sty = ifelse(fr(), "res-doc-french.sty", "res-doc.sty")
   )
 
   # Mostly copied from knitr::render_sweave

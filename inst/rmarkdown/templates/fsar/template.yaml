@@ -1,4 +1,4 @@
 name:  FSAR
 description: >
-  Template for creating a DFO FSAR reports using R Markdown using the R
-  bookdown package.
+  Template for creating a DFO FSAR or FSRR reports using R Markdown
+  using the R bookdown package.

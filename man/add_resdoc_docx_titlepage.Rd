@@ -5,7 +5,7 @@
 \title{Add a Res Doc titlepage to a docx file}
 \usage{
 add_resdoc_docx_titlepage(
-  titlepage = "templates/RES2021-eng-titlepage.docx",
+  titlepage = "templates/RES2024-eng-titlepage.docx",
   resdoc = "_book/resdoc-english.docx"
 )
 }
@@ -18,6 +18,6 @@ add_resdoc_docx_titlepage(
 A merged .docx
 }
 \description{
-Add a Res Doc titlepage. Must hand edit \code{templates/RES2021-eng-titlepage.docx}
+Add a Res Doc titlepage. Must hand edit \code{templates/RES2024-eng-titlepage.docx}
 to have your desired title and authors etc.
 }

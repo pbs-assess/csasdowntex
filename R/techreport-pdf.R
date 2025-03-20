@@ -21,23 +21,20 @@ techreport_pdf <- function(latex_engine = "pdflatex",
     highlight = "monochrome" # nocov
   }
 
+  fr <- function() if (french) TRUE else FALSE
+
   if((!highlight %in% themes) && !file.exists(here(highlight))){
     bail("in YAML, ", tag_color("csasdown:techreport_pdf: highlight"),
          "must be one of ",
          csas_color(paste(themes, collapse = ", ")),
          "\nor a filename for a custom latex theme file.",
-         "\nSee pandoc documentation, ",
-         csas_color("--highlight-style argument."))
+         "\nSee pandoc documentation, ", csas_color("--highlight-style argument."))
   }
 
   if (fr()) {
-    file <- system.file("csas-tex",
-                        "tech-report-french.tex",
-                        package = "csasdown") # nocov
+    file <- system.file("csas-tex", "tech-report-french.tex", package = "csasdown") # nocov
   } else {
-    file <- system.file("csas-tex",
-                        "tech-report.tex",
-                        package = "csasdown")
+    file <- system.file("csas-tex", "tech-report.tex", package = "csasdown")
   }
 
   base <- pdf_book(
@@ -50,30 +47,11 @@ techreport_pdf <- function(latex_engine = "pdflatex",
   tmp_hl <- grep("--highlight-style", base$pandoc$args)
   base$pandoc$args <- base$pandoc$args[-c(tmp_hl[1], tmp_hl[1] + 1)]
 
-  cover_file_pdf <- if (fr()) {
-    "tech-report-cover-french.pdf"
-    } else {
-      "tech-report-cover.pdf"
-    }
-  cover_file_docx <- if (fr()) {
-    "tech-report-cover-french.docx"
-  } else {
-    "tech-report-cover.docx"
-  }
-
+  cover_file_pdf <- if (fr()) "tech-report-cover-french.pdf" else "tech-report-cover.pdf"
+  cover_file_docx <- if (fr()) "tech-report-cover-french.docx" else "tech-report-cover.docx"
   if (!file.exists(cover_file_pdf)) {
-    cover_docx <- system.file("rmarkdown",
-                              "templates",
-                              "techreport",
-                              "skeleton",
-                              cover_file_docx,
-                              package = "csasdown")
-    cover_pdf <- system.file("rmarkdown",
-                             "templates",
-                             "techreport",
-                             "skeleton",
-                             cover_file_pdf,
-                             package = "csasdown")
+    cover_docx <- system.file("rmarkdown", "templates", "techreport", "skeleton", cover_file_docx, package = "csasdown")
+    cover_pdf <- system.file("rmarkdown", "templates", "techreport", "skeleton", cover_file_pdf, package = "csasdown")
     alert("Missing the Tech Report cover page. Copying in the files...")
     file.copy(cover_docx, ".", overwrite = FALSE)
     file.copy(cover_pdf, ".", overwrite = FALSE)
@@ -89,13 +67,10 @@ techreport_pdf <- function(latex_engine = "pdflatex",
     line_nums_mod = line_nums_mod,
     lot_lof = lot_lof,
     draft_watermark = draft_watermark,
-    which_sty = ifelse(fr(),
-                       "tech-report-french.sty",
-                       "tech-report.sty")
+    which_sty = ifelse(fr(), "tech-report-french.sty", "tech-report.sty")
   )
 
   base$knitr$opts_chunk$comment <- NA
-
   old_opt <- getOption("bookdown.post.latex")
   options(bookdown.post.latex = function(x) {
     fix_envs(
@@ -104,7 +79,6 @@ techreport_pdf <- function(latex_engine = "pdflatex",
     )
   })
   on.exit(options(bookdown.post.late = old_opt))
-
   base
 }
 

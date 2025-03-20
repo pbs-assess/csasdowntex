@@ -1,25 +1,20 @@
 ---
 report_title: "[Publication Title]"
-short_title: "[Short Publication Title]"
+report_title_short: "[Short Publication Title]"
 report_year: "2024"
 release_month: "January"
 report_number: "XXX"
 meeting_date: "January 25, 2024"
 region: "Region Name"
-phone: "(555) 555-5555"
 email: "email@csa-email.com"
-csa_address: |
-  Center for Science Advice (CSA) \
-  Name of Region \
-  Fisheries and Oceans Canada\
-  Complete mailing address of CSA Office
+csa_address: "CSA Address goes here"
 report_title_french: "Fish stock name"
 inuktitut_citation: "Inuktitut citation here"
 context: |
   [Mandatory. Less than 150 words]
   Here is the context text. 
 output:
- csasdown::fsar_word2
+ csasdown::fsar_word
 link-citations: false
 bibliography: bib/refs.bib
 csl: csl/csas.csl
@@ -40,8 +35,7 @@ knitr::opts_chunk$set(
   fig.width = 7,
   echo = FALSE,
   dev = "png",
-  dpi = 180,
-  ft.align = "left"
+  dpi = 180
 )
 ```
 

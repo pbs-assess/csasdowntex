@@ -5,8 +5,8 @@
 \title{Add front matter to Res Doc docx file}
 \usage{
 add_resdoc_docx_frontmatter(
-  frontmatter = "templates/RES2021-eng-frontmatter.docx",
-  resdoc = "_book/resdoc.docx"
+  frontmatter = "templates/RES2024-eng-frontmatter.docx",
+  resdoc = "_book/resdoc-english.docx"
 )
 }
 \arguments{
@@ -19,5 +19,5 @@ A merged .docx
 }
 \description{
 Add title page and table of contents to a Res Doc. Must hand edit
-\code{templates/RES2021-eng-frontmatter.docx}to have your desired title and authors etc.
+\code{templates/RES2024-eng-frontmatter.docx}to have your desired title and authors etc.
 }

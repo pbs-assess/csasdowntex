@@ -1,6 +1,6 @@
 #' Generate 4-panel figure using simulated fisheries data in ggplot
 #'
-#' @param timeseries the timeseries to plot
+#' @param timeseries the timeseries to plot, an example simulated data can be generated using the script fake-data.R
 #' @param language French or English
 #'
 #' @return A graphics device with the four-panel of figures
@@ -20,7 +20,7 @@ fsar_plot_ggplot <- function(df, language = c("English","French")) {
     geom_line(aes(y = `TAC-MT`), linetype = "dashed", colour = "grey45") +
     scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
     labs(x = "Year", y = "Catch (t)") +
-    theme_csas()
+    csasdown::theme_csas()
 
   # SSB = Spawning stock biomass
   g2 <- ggplot(data = df, aes(x = year)) +
@@ -30,7 +30,7 @@ fsar_plot_ggplot <- function(df, language = c("English","French")) {
     geom_line(aes(y = `SSBusr-MT`), linetype = "dashed", colour = "grey45") +
     scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
     labs(x = "Year", y = "SSB (t)") +
-    theme_csas()
+    csasdown::theme_csas()
 
   # Instantaneous fishing mortality
   g3 <- ggplot(data = df, aes(x = year)) +
@@ -39,7 +39,7 @@ fsar_plot_ggplot <- function(df, language = c("English","French")) {
     geom_line(aes(y = `Flim-1/yr`), linetype = "dashed", colour = "grey45") +
     scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
     labs(x = "Year", y = "Fishing mortality (yr<sup>-1</sup>)") +
-    theme_csas() +
+    csasdown::theme_csas() +
     theme(axis.title.y = ggtext::element_markdown())
 
   g4 <- ggplot(data = df, aes(x = year)) +
@@ -47,7 +47,7 @@ fsar_plot_ggplot <- function(df, language = c("English","French")) {
     geom_ribbon(aes(ymin = `Rlow-E06`, ymax = `Rhigh-E06`), alpha = 0.3) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
     labs(x = "Year", y = "Recruitment (10<sup>6</sup>)") +
-    theme_csas() +
+    csasdown::theme_csas() +
     theme(axis.title.y = ggtext::element_markdown())
 
   cowplot::plot_grid(g1, g2, g3, g4, ncol = 2, labels = "AUTO", align = "hv")
@@ -132,10 +132,16 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
 
   plot(ts.value ~ year, data = tr.df, type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl)
   ## SSB
-  lines(ts.value ~ year, data = tr.df[which(tr.df$ts.name == "SSB-MT"), ], type = "l", lwd = 2)
   ## lower and upper
-  lines(ts.value ~ year, data = tr.df[which(tr.df$ts.name == "SSBlow-MT"), ], type = "l", lty = 2)
-  lines(ts.value ~ year, data = tr.df[which(tr.df$ts.name == "SSBhigh-MT"), ], type = "l", lty = 2)
+  tr.df.low <- tr.df[which(tr.df$ts.name == "SSBlow-MT"), ]
+  tr.df.high <- tr.df[which(tr.df$ts.name == "SSBhigh-MT"), ]
+  ## use grey shading polygons instead of lines
+  polygon(c(tr.df.low$year, rev(tr.df.high$year)), c(tr.df.low$ts.value, rev(tr.df.high$ts.value)), col=grey(0.8), border=grey(0.8))
+
+  lines(ts.value ~ year, data = tr.df[which(tr.df$ts.name == "SSB-MT"), ], type = "l", lwd = 2)
+  #lines(ts.value ~ year, data = tr.df[which(tr.df$ts.name == "SSBlow-MT"), ], type = "l", lty = 2)
+  #lines(ts.value ~ year, data = tr.df[which(tr.df$ts.name == "SSBhigh-MT"), ], type = "l", lty = 2)
+
   ## LRP and USR
   lines(ts.value ~ year, data = tr.df[which(tr.df$ts.name == "SSBlrp-MT"), ], type = "l", lty = 3, lwd = 2, col = "red")
   lines(ts.value ~ year, data = tr.df[which(tr.df$ts.name == "SSBusr-MT"), ], type = "l", lty = 3, lwd = 2, col = "forestgreen")
@@ -143,9 +149,10 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
   legend("topright","(B)", bty = "n", cex=1.25)
   legend("topleft",
          legend.text,
-         lty = c(1, 2, 3, 3),
-         lwd = c(2, 1, 2, 2),
-         col = c("black", "black", "forestgreen", "red"),
+         lty = c(1, -1, 3, 3),
+         lwd = c(2, 0, 2, 2),
+         pch = c(-1,15,-1,-1),
+         col = c("black", grey(0.8), "forestgreen", "red"),
          box.lwd = 0.5
   )
 
@@ -170,9 +177,15 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
   }
 
   idx <- which(in.df$panel.category == "Fishing" & in.df$ts.name == "F-1/yr")
-  plot(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "F-1/yr"), ], type = "l", lwd = 2, axes = FALSE, xlab = "", ylab = "", ylim = yl)
-  lines(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "Flow-1/yr"), ], type = "l", lty = 2)
-  lines(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "Fhigh-1/yr"), ], type = "l", lty = 2)
+  plot(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "F-1/yr"), ], type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl)
+
+  bl.df.low <- bl.df[which(bl.df$ts.name == "Flow-1/yr"), ]
+  bl.df.high <- bl.df[which(bl.df$ts.name == "Fhigh-1/yr"), ]
+  ## use grey shading polygons instead of lines
+  polygon(c(bl.df.low$year, rev(bl.df.high$year)), c(bl.df.low$ts.value, rev(bl.df.high$ts.value)), col=grey(0.8), border=grey(0.8))
+  lines(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "F-1/yr"), ], lwd = 2)
+  # lines(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "Flow-1/yr"), ], type = "l", lty = 2)
+  # lines(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "Fhigh-1/yr"), ], type = "l", lty = 2)
   lines(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "Flim-1/yr"), ], lty = 3, lwd = 2, col = "red")
 
   lines(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "M-1/yr"), ], lty = 1, lwd = 2, col = grey(0.5))
@@ -182,9 +195,10 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
   legend("topright","(C)", bty = "n", cex=1.25)
   legend("topleft",
          legend.text,
-         lty = c(1, 2, 3, 1),
-         lwd = c(2, 1, 2, 2),
-         col = c("black", "black", "red", grey(0.5)),
+         lty = c(1, -1, 3, 1),
+         lwd = c(2, 0, 2, 2),
+         pch = c(-1,15,-1,-1),
+         col = c("black", grey(0.8), "red", grey(0.5)),
          box.lwd = 0.5
   )
 
@@ -210,16 +224,24 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
     y.lab <- "Recrutement"
     legend.text <- c("R-E06", "confiance à 95%")
   }
-  plot(ts.value ~ year, data = br.df[which(br.df$ts.name == "R-E06"), ], type = "l", lwd = 2, axes = FALSE, xlab = "", ylab = "", ylim = yl)
-  lines(ts.value ~ year, data = br.df[which(br.df$ts.name == "Rlow-E06"), ], type = "l", lty = 2)
-  lines(ts.value ~ year, data = br.df[which(br.df$ts.name == "Rhigh-E06"), ], type = "l", lty = 2)
+  plot(ts.value ~ year, data = br.df[which(br.df$ts.name == "R-E06"), ], type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl)
+  # lines(ts.value ~ year, data = br.df[which(br.df$ts.name == "Rlow-E06"), ], type = "l", lty = 2)
+  # lines(ts.value ~ year, data = br.df[which(br.df$ts.name == "Rhigh-E06"), ], type = "l", lty = 2)
+
+  br.df.low <- br.df[which(br.df$ts.name == "Rlow-E06"), ]
+  br.df.high <- br.df[which(br.df$ts.name == "Rhigh-E06"), ]
+  ## use grey shading polygons instead of lines
+  polygon(c(br.df.low$year, rev(br.df.high$year)), c(br.df.low$ts.value, rev(br.df.high$ts.value)), col=grey(0.8), border=grey(0.8))
+  lines(ts.value ~ year, data = br.df[which(br.df$ts.name == "R-E06"), ], lwd = 2)
+
 
   legend("topright","(D)", bty = "n", cex=1.25)
   legend("topleft",
          legend.text,
-         lty = c(1, 2),
-         lwd = c(2, 1),
-         col = c("black", "black"),
+         lty = c(1, -1),
+         lwd = c(2, 0),
+         pch = c(-1,15),
+         col = c("black", grey(0.8)),
          box.lwd = 0.5
   )
 

@@ -31,95 +31,103 @@ update_csasstyle <- function(copy = TRUE,
                              draft_watermark = FALSE,
                              which_sty = "res-doc.sty") {
 
-  if (pandoc_version == "3.1.7") {
-    bail("csasdown does not work with pandoc 3.1.7. Either update pandoc ",
-         "or revert to an older version.")
+  if (pandoc_version == '3.1.7') {
+    bail("csasdown does not work with pandoc 3.1.7. Either update pandoc or revert to an older version.")
   }
 
-  dr_sty <- "csas-style"
-  dr_sty_sys <- system.file(dr_sty, package = "csasdown")
-  fn_sty <- system.file(file.path(dr_sty,
-                                  which_sty),
-                        package = "csasdown")
+  fn <- system.file("csas-style", package = "csasdown")
+  if(!copy && line_nums){
+    bail("You have set ", csas_color("copy"), " to ", csas_color("FALSE"),
+         " and ", csas_color("line_nums"), " to ", csas_color("TRUE"),
+         " in the ", fn_color("index.Rmd"), " YAML header. The permanent ",
+         "style file cannot be modified as needed to include line numbering. ",
+         "Either set ", csas_color("copy"), " to ", csas_color("TRUE"),
+         " or ", csas_color("line_nums"), " to ", csas_color("FALSE"),
+         " to build.")
+  }
+  if(!copy && lot_lof){
+    bail("You have set ", csas_color("copy"), " to ", csas_color("FALSE"),
+         " and ", csas_color("lot_lof"), " to ", csas_color("TRUE"),
+         " in the ", fn_color("index.Rmd"), " YAML header. The permanent ",
+         "style file cannot be modified as needed to include the lists of ",
+         "tables and figures. Either set ",
+         csas_color("copy"), " to ", csas_color("TRUE"), " or ",
+         csas_color("lot_lof"), " to ", csas_color("FALSE"),
+         " to build.")
+  }
+  if(!copy && draft_watermark){
+    bail("You have set ", csas_color("copy"), " to ", csas_color("FALSE"),
+         " and ", csas_color("draft_watermark"), " to ", csas_color("TRUE"),
+         " in the ", fn_color("index.Rmd"), " YAML header. The permanent ",
+         "style file cannot be modified as needed to include the DRAFT ",
+         "watermark. Either set ",
+         csas_color("copy"), " to ", csas_color("TRUE"), " or ",
+         csas_color("draft_watermark"), " to ", csas_color("FALSE"),
+         " to build.")
+  }
 
-  if(copy || !dir.exists("csas-style")){
-    if(fn_sty == ""){
-      bail("You have either set ", csas_color("copy"), " to ",
-           csas_color("true"), " or the `csas-style` directory is missing ",
-           "and the system file needed to copy ")
+  if (copy || !dir.exists("csas-style")) {
+    dir.create("csas-style", showWarnings = FALSE)
+    ignore <- file.copy(fn, ".", overwrite = TRUE, recursive = TRUE)
+    if(line_nums || lot_lof || draft_watermark){
+      csas_style <- readLines(file.path("csas-style", which_sty))
     }
-    dir.create(dr_sty, showWarnings = FALSE)
-
-    copied <- file.copy(dr_sty_sys,
-                        here(),
-                        overwrite = TRUE,
-                        recursive = TRUE)
-    if(!copied){
-      alert("File ", fn_color(fn_sty), ", not copied, `file.copy()` ",
-      "returned ", csas_color("FALSE"), ".")
+    if (line_nums) {
+      if (grepl("res-doc", which_sty)) {
+        frontmatter_loc <- grep("frontmatter\\{", csas_style)
+        beg_of_file <- csas_style[seq(1, (frontmatter_loc - 1))]
+        end_of_file <- csas_style[seq(frontmatter_loc, length(csas_style))]
+        modulo <- paste0("\\modulolinenumbers[", line_nums_mod, "]")
+        csas_style <- c(beg_of_file, "\\linenumbers", modulo, end_of_file)
+        writeLines(csas_style, file.path("csas-style", which_sty))
+      } else {
+        modulo <- paste0("\\modulolinenumbers[", line_nums_mod, "]")
+        csas_style <- c(csas_style, "\\linenumbers", modulo)
+        writeLines(csas_style, file.path("csas-style", which_sty))
+      }
     }
-  }
-
-  if(line_nums || lot_lof || draft_watermark){
-    csas_style <- readLines(fn_sty)
-  }
-  if(line_nums){
-    if(grepl("res-doc", which_sty)){
-      frontmatter_loc <- grep("frontmatter\\{", csas_style)
-      beg_of_file <- csas_style[seq(1, (frontmatter_loc - 1))]
-      end_of_file <- csas_style[seq(frontmatter_loc, length(csas_style))]
-      modulo <- paste0("\\modulolinenumbers[", line_nums_mod, "]")
-      csas_style <- c(beg_of_file, "\\linenumbers", modulo, end_of_file)
+    if (lot_lof) {
+      if (grepl("res-doc", which_sty) | grepl("tech-report", which_sty) | grepl("manu-report", which_sty)) {
+        pagenumbering_loc <- grep("pagenumbering\\{arabic", csas_style)
+        beg_of_file <- csas_style[seq(1, (pagenumbering_loc - 1))]
+        end_of_file <- csas_style[seq(pagenumbering_loc, length(csas_style))]
+        lot <- "\\listoftables"
+        cp <- "\\clearpage"
+        lof <- "\\listoffigures"
+        csas_style <- c(beg_of_file, lot, cp, lof, cp, end_of_file)
+        writeLines(csas_style, file.path("csas-style", which_sty))
+      } else { # nocov start
+        alert(csas_color("lot_lof"), " is only implemented for Res Docs, ",
+              "ManuReports and TechReports.")
+      } # nocov end
+    }
+    if(draft_watermark){
+      last_usepackage_ind <- tail(grep("usepackage", csas_style), 1)
+      beg_of_file <- csas_style[seq(1, last_usepackage_ind)]
+      end_of_file <- csas_style[seq(last_usepackage_ind + 1, length(csas_style))]
+      draft_watermark_include <- "\\usepackage{draftwatermark}"
+      if(last_usepackage_ind == length(csas_style)){
+        csas_style <- c(beg_of_file, draft_watermark_include) # nocov
+      }else{
+        csas_style <- c(beg_of_file, draft_watermark_include, end_of_file)
+      }
       writeLines(csas_style, file.path("csas-style", which_sty))
-    }else{
-      modulo <- paste0("\\modulolinenumbers[", line_nums_mod, "]")
-      csas_style <- c(csas_style, "\\linenumbers", modulo)
+    }
+
+    if (pandoc_version < '3.1.7') {
+      # default is for pandoc > 3.1.8
+      # 3.1.7 has already been checked, requires its own template, and errors
+      csas_style <- readLines(file.path("csas-style", which_sty))
+      pandoc_3.1.8_start <- grep("^% START-PANDOC-3.1.8", csas_style)
+      pandoc_3.1.8_end <- grep("^% END-PANDOC-3.1.8", csas_style)
+      csas_style[seq(pandoc_3.1.8_start, pandoc_3.1.8_end)] <-
+        paste("%", csas_style[seq(pandoc_3.1.8_start, pandoc_3.1.8_end)])
+      pandoc_pre_3.1.7_start <- grep("^% % START-PANDOC-BEFORE-3.1.7", csas_style)
+      pandoc_pre_3.1.7_end <- grep("^% % END-PANDOC-BEFORE-3.1.7" , csas_style)
+      csas_style[seq(pandoc_pre_3.1.7_start, pandoc_pre_3.1.7_end)] <-
+        gsub("^% ", "", csas_style[seq(pandoc_pre_3.1.7_start, pandoc_pre_3.1.7_end)])
       writeLines(csas_style, file.path("csas-style", which_sty))
     }
   }
-  if(lot_lof){
-    if(grepl("res-doc", which_sty) |
-       grepl("tech-report", which_sty) |
-       grepl("manu-report", which_sty)){
-      pagenumbering_loc <- grep("pagenumbering\\{arabic", csas_style)
-      beg_of_file <- csas_style[seq(1, (pagenumbering_loc - 1))]
-      end_of_file <- csas_style[seq(pagenumbering_loc, length(csas_style))]
-      lot <- "\\listoftables"
-      cp <- "\\clearpage"
-      lof <- "\\listoffigures"
-      csas_style <- c(beg_of_file, lot, cp, lof, cp, end_of_file)
-      writeLines(csas_style, file.path("csas-style", which_sty))
-    }else{ # nocov start
-      alert(csas_color("lot_lof"), " is only implemented for Res Docs, ",
-            "ManuReports and TechReports.")
-    } # nocov end
-  }
-  if(draft_watermark){
-    last_usepackage_ind <- tail(grep("usepackage", csas_style), 1)
-    beg_of_file <- csas_style[seq(1, last_usepackage_ind)]
-    end_of_file <- csas_style[seq(last_usepackage_ind + 1, length(csas_style))]
-    draft_watermark_include <- "\\usepackage{draftwatermark}"
-    if(last_usepackage_ind == length(csas_style)){
-      csas_style <- c(beg_of_file, draft_watermark_include) # nocov
-    }else{
-      csas_style <- c(beg_of_file, draft_watermark_include, end_of_file)
-    }
-    writeLines(csas_style, file.path("csas-style", which_sty))
-  }
-
-  # if(pandoc_version < "3.1.7"){
-  #   # default is for pandoc > 3.1.8
-  #   # 3.1.7 has already been checked, requires its own template, and errors
-  #   csas_style <- readLines(fn_sty)
-  #   pandoc_3.1.8_start <- grep("^% START-PANDOC-3.1.8", csas_style)
-  #   pandoc_3.1.8_end <- grep("^% END-PANDOC-3.1.8", csas_style)
-  #   csas_style[seq(pandoc_3.1.8_start, pandoc_3.1.8_end)] <-
-  #     paste("%", csas_style[seq(pandoc_3.1.8_start, pandoc_3.1.8_end)])
-  #   pandoc_pre_3.1.7_start <- grep("^% % START-PANDOC-BEFORE-3.1.7", csas_style)
-  #   pandoc_pre_3.1.7_end <- grep("^% % END-PANDOC-BEFORE-3.1.7" , csas_style)
-  #   csas_style[seq(pandoc_pre_3.1.7_start, pandoc_pre_3.1.7_end)] <-
-  #     gsub("^% ", "", csas_style[seq(pandoc_pre_3.1.7_start, pandoc_pre_3.1.7_end)])
-  #   writeLines(csas_style, fn_sty)
-  # }
-
 }
+

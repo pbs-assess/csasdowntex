@@ -1,10 +1,10 @@
 ---
 title: |
-  "Insert title here; title must be exactly as it appears on the cover page, but in title case (*Latin species name*)"
+  Insert title here; title must be exactly as it appears on the cover page, but in title case (*Latin species name*)
 french_title: |
-  "Insérez le titre ici ; le titre doit être exactement comme il apparaît sur la page de couverture, mais en majuscule (*Nom latin de l'espèce*)."
+  Insérez le titre ici ; le titre doit être exactement comme il apparaît sur la page de couverture, mais en majuscule (*Nom latin de l'espèce*).
 title_short: "Short title"
-year: 2022
+year: 2025
 month: Month
 french_month: Mois
 report_number: 999 # This *must* be numeric! E.g., not `nnn`.
@@ -37,7 +37,7 @@ output:
    # will remain between compilations. If true, your changes will be lost when you compile
    copy_sty: true
    # line_nums is a toggle to show line numbers on the left side of the page. 
-   line_nums: true
+   line_nums: false
    # line_nums_mod represents showing every Nth line if line_nums is true
    line_nums_mod: 1
    # draft_watermark is a toggle to show/not show a DRAFT watermark across every page

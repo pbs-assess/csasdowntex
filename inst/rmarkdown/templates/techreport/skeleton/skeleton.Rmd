@@ -11,6 +11,7 @@ author_list: "Last, F.M. and Smith, A.B."
 region: Pacific Region
 french_region: Région du Pacifique
 isbn: ""
+report_DOI: "##.####/xxxxx" # do not include https://doi.org/
 address: |
   ^1^Pacific Biological Station\
      Fisheries and Oceans Canada, 3190 Hammond Bay Road\

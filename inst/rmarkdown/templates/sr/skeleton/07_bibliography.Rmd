@@ -1,6 +1,8 @@
-# Sources of Information
+# SOURCES OF INFORMATION
 
-<!-- This is an optional section -->
+<!-- Mandatory.
+
+Reference citations must follow the Guide for the Production of Fisheries and Oceans Canada Reports (https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/333125.pdf). Include hyperlinks only if the site is hosted by the Government of Canada or a DOI handle system is used. -->
 
 <div id="refs"></div>
 

@@ -33,18 +33,20 @@ test_that("update_csasstyle() works", {
   # ---------------------------------------------------------------------------
   # Set lot_lof (toggle show List of tables/List of Figures in doc)
   installed_3_1_2 <- pandoc::pandoc_available("3.1.2")
-  if(!installed_3_1_2){
-    pandoc::pandoc_install("3.1.2")
-  }
-  pandoc::pandoc_activate("3.1.2")
-  rmd <- readLines("index.Rmd")
-  ind <- grep("lot_lof:", rmd)
-  rmd[ind] <- "   lot_lof: true"
-  writeLines(rmd, "index.Rmd")
-  csasdown::render()
-  expect_true(file.exists("_book/resdoc-english.pdf"))
-  if(!installed_3_1_2){
-    pandoc::pandoc_uninstall("3.1.2")
+  if (installed_3_1_2) {
+    # if (!installed_3_1_2){
+    # pandoc::pandoc_install("3.1.2")
+    # }
+    # pandoc::pandoc_activate("3.1.2")
+    rmd <- readLines("index.Rmd")
+    ind <- grep("lot_lof:", rmd)
+    rmd[ind] <- "   lot_lof: true"
+    writeLines(rmd, "index.Rmd")
+    csasdown::render()
+    expect_true(file.exists("_book/resdoc-english.pdf"))
+    # if (!installed_3_1_2){
+    # pandoc::pandoc_uninstall("3.1.2")
+    # }
   }
 
   # ---------------------------------------------------------------------------

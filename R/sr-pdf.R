@@ -13,6 +13,8 @@ sr_pdf <- function(latex_engine = "pdflatex",
                                    "--default-image-extension=png"),
                    ...) {
 
+  fr <- function() if (french) TRUE else FALSE
+
   themes <- c("pygments", "tango", "espresso",
               "zenburn", "kate", "monochrome",
               "breezedark", "haddock")
