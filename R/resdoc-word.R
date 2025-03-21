@@ -75,6 +75,9 @@ resdoc_word2 <- function(...) {
                                        ol.style = "ol style",
                                        ul.style = "ul style"
                                      ),
+                                     mapstyles = list(
+                                       "Body Text" = c("Normal", "First Paragraph")
+                                     ),
                                      reference_docx = system.file("csas-docx",
                                                                   file,
                                                                   package = "csasdown")
