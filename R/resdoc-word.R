@@ -67,7 +67,7 @@ resdoc_word2 <- function(...) {
                                        align = "center",
                                        caption = list(
                                          style = "Caption - Figure",
-                                         pre = "Figure", sep = ". ",
+                                         pre = "Figure ", sep = ". ",
                                          fp_text = officer::fp_text_lite(bold = FALSE)
                                        )
                                      ),

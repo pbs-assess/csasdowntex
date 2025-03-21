@@ -42,7 +42,7 @@ fsar_word2 <- function(...) {
                                        style = "Compact", layout = "autofit", width = 1,
                                        caption = list(
                                          style = "Table Caption",
-                                         pre = "Table ", sep = ". ",
+                                         pre = "Table", sep = ". ",
                                          fp_text = officer::fp_text_lite(bold = FALSE)
                                          ),
                                        conditional = list(
