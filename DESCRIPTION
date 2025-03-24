@@ -1,6 +1,6 @@
 Package: csasdown
 Title: Reproducible CSAS Reports with Bookdown
-Version: 0.1.9
+Version: 0.2.0
 Authors@R: 
     c(person(given = c("Sean", "C."),
              family = "Anderson",
@@ -24,11 +24,14 @@ Authors@R:
              comment = "Contributions to TeX .sty files"),
       person(given = "Meghan",
              family = "Burton",
-             role = "ctb",
+             role = "aut",
              comment = "Landscape pages and tables"),
       person(given = c("Paul", "M."),
              family = "Regular",
-             role = "ctb"),
+             role = "aut"),
+      person(given = c("Jillian", "C."),
+             family = "Dunic",
+             role = "aut"),
       person(given = "Chester",
              family = "Ismay",
              role = "ctb",

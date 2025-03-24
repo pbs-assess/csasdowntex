@@ -2,4 +2,4 @@
 
 \clearpage
 
-# REFERENCES {-}
+# REFERENCES CITED {-}

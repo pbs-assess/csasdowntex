@@ -18,11 +18,11 @@ test_that("get_render_type() and set_render_type() throw errors", {
   writeLines(rmd, "index.Rmd")
   rmd <- readLines("index.Rmd")
   ind <- grep("csasdown::resdoc_pdf:", rmd)
-  expect_identical(ind, 51L)
+  expect_identical(ind, 50L)
   csasdown:::set_render_type("index.Rmd", "asis")
   rmd <- readLines("index.Rmd")
   ind <- grep("csasdown::resdoc_pdf:", rmd)
-  expect_identical(ind, 51L)
+  expect_identical(ind, 50L)
 
   # ---------------------------------------------------------------------------
   rmd[ind] <- ""
