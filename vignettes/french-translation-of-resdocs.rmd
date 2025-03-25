@@ -1,5 +1,5 @@
 ---
-title: "Translating Resdocs from Enlish to French"
+title: "Translating csasdown documents from English to French"
 output:
    bookdown::html_document2:
       toc: true
@@ -8,7 +8,7 @@ output:
       pandoc_args: ["--number-offset=0"]
 date: "This document was rendered on `r hake::curr_time_date()`"
 vignette: >
-  %\VignetteIndexEntry{Translating Resdocs from Enlish to French}
+  %\VignetteIndexEntry{Translating csasdown documents from English to French}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -28,7 +28,7 @@ _______________________________________________________________________
 
 ## Introduction
 
-Translating research documents from English to French has been performed in an ad-hoc fashion up tho this point. As it is required, there is now a method to do this built into the `csasdown` package.
+Translating csasdown documents from English to French has been performed in an ad-hoc fashion up to this point. There is now a method to do this built into the `csasdown` package.
 
 Methods used to date include:
 
@@ -38,9 +38,10 @@ Methods used to date include:
 
 There are several problems with these methods:
 
-1. Sending a Word document out for translation poses several problems including cut-and-paste formatting issues and re-generation of all plots in French in some non-standardized way. The author must paste each French plot and/or table into the Word document manually or create a hybrid English text/Frech figures document to send out for translation. This causes a messy repository left in an unknown state, and zero reproducibility for the French version of the documnent.
+1. Sending a Word document out for translation poses several problems including re-generation of all plots and tables in French in some non-standardized way, and quality of the French document not being at the same level as that of the English document. The two documents will not appear the same in formatting and are of two different file types. There is also the possibility that the French terms used on the plots made by the authors are found to be incorrect by the translators.
 
-2. Creating a second directory with an entirely separate document is prone to error when something changes in the document (for example axis limits on a plot or plot type from a histogram to a line plot) and you have to remember to change both the English version and the French version in exactly the same way. This is extremely prone to error and ending up with two documents which are not quite the same. In addition this method has to be repeated from scratch for a new assessment document. 
+2. Creating a second directory with an entirely separate document is prone to error when something changes in the document (for example axis limits on a plot or plot type from a histogram to a line plot, or any other data or model output change) and the authors have to remember to change both the English version and the French version in exactly the same way. This will lead to two documents which are not quite the same because of human error. The question may then be asked, "which document is correct?"
+
 The method presented here and which is built into the ***csasdown*** package ensures that you have one single document which is compile-able in both English and French, with a toggle found in the YAML header.
 
 ## Overview of the method
