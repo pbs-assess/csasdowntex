@@ -1,6 +1,11 @@
 ---
 title: "Translating Resdocs from Enlish to French"
-output: rmarkdown::html_vignette
+output:
+   bookdown::html_document2:
+      toc: true
+      toc_depth: 4
+      number_sections: true
+      pandoc_args: ["--number-offset=0"]
 date: "This document was rendered on `r hake::curr_time_date()`"
 vignette: >
   %\VignetteIndexEntry{Translating Resdocs from Enlish to French}
@@ -19,6 +24,12 @@ knitr::opts_chunk$set(
 library(csasdown)
 ```
 
+_______________________________________________________________________
+
+## Introduction
+
+Translating research documents from English to French has been performed in an ad-hoc fashion up tho this point. As it is required, there is now a method to do this built into the `csasdown` package.
+
 Methods used to date include:
 
 1. Compile the English version as a Microsoft Word document and then send it for translation to official government translation services.
@@ -30,13 +41,17 @@ There are several problems with these methods:
 1. Sending a Word document out for translation poses several problems including cut-and-paste formatting issues and re-generation of all plots in French in some non-standardized way. The author must paste each French plot and/or table into the Word document manually or create a hybrid English text/Frech figures document to send out for translation. This causes a messy repository left in an unknown state, and zero reproducibility for the French version of the documnent.
 
 2. Creating a second directory with an entirely separate document is prone to error when something changes in the document (for example axis limits on a plot or plot type from a histogram to a line plot) and you have to remember to change both the English version and the French version in exactly the same way. This is extremely prone to error and ending up with two documents which are not quite the same. In addition this method has to be repeated from scratch for a new assessment document. 
-The method presented here and which is built into the ***csasdown*** package ensures that you have one single document which is compilable in both English and French, with a toggle found in the YAML header.
+The method presented here and which is built into the ***csasdown*** package ensures that you have one single document which is compile-able in both English and French, with a toggle found in the YAML header.
+
+## Overview of the method
+
+Typically in an Rmarkdown document, you will write paragraphs directly as text in the Rmarkdown source. To have a project which is easily switchable from one language to the other, csasdown will parse certain chunks as paragraph text. This means that to create a bilingual document, you will not write text directly into rmarkdown, but inside knitr code chunks in `cat()` statements. There will be two chunks for each paragraph, one containing the English paragraph and one containing the French paragraph. You do not have to make any modifications to the way you render documents with these special chunks, csasdown will do it automatically.
 
 ## Creating a document from scratch
 
 If you are just starting a Research Document, use the **resdoc-b** draft of csasdown as it contains both English and French chunks already set up to start you off. To do that, run `csasdown::draft(“resdoc-b”)` in an empty directory.
 
-To have a French-compilable document You **MUST** use `cat()` statements inside all knitr chunks (both English and French) in the `*.rmd` files. All English chunks must have a name that ends in -en as in the following example:
+To have a French-compile-able document You ***must*** use `cat()` statements inside all knitr chunks (both English and French) in the `*.rmd` files. All English chunks must have a name that ends in **-en** as in the following example:
 
 ````{verbatim}
 ```{r length-data-en, eval = !fr(), results = 'asis'}
@@ -48,7 +63,7 @@ Paragraphs on length data go here.
 ```
 ````
 
-The corresponding French chunk must have the same root name (**sam-length-data** in this case) but end in **-fr** instead of **-en** as show here:
+The corresponding French chunk must have the same root name (**length-data** in this case) but end in **-fr** instead of **-en** as show here:
 
 ````{verbatim}
 ```{r length-data-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
@@ -60,24 +75,105 @@ Les paragraphes sur les données de longueur se trouvent ici.
 ```
 ````
 
-In the **resdoc-b** example document, the French chunks have a special value inside them. In this example is **<<sam-length-data-en>>**. This is called a mirror chunk reference and just tells knitr to mirror the English chunk text found inside the chunk with the name inside the **<<>>**. The above French chunk with a mirror reference looks like this:
+In the **resdoc-b** example document, the French chunks start with a special value inside them. In this example is **<<length-data-en>>**. This is called a mirror chunk reference and just tells knitr to mirror (place a copy of) the English chunk text found inside the chunk with the name inside the **<<>>** braces. The above French chunk with a mirror reference to its English counterpart looks like this:
 
 ````{verbatim}
 ```{r length-data-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 
-<<sam-length-data-en>>
+<<length-data-en>>
 ```
 ````
 
-Note the knitr chunk option needs_trans is **FALSE** when the mirror chunk reference is present and **TRUE** when the translation is complete and has been pasted by you. It is up to you to change that value to **TRUE** when you have pasted the French translation in.
+Notes:
 
-Once you translate, delete the mirror chunk reference, and place a `cat()` statement inside the French chunk and paste the translated French version of text found in the **sam-length-data-en** chunk into it, so it has the same format as the English chunk. You then change the knitr chunk option **needs_trans** to **FALSE**. If you forget to change **needs_trans** to **FALSE** you will receive a warning during compilation.
+- the knitr chunk option `needs_trans` is only needed in the French chunks and must be `FALSE` until the translation is complete and has been pasted into the chunk. Once you paste the French translation in, you must change `needs_trans` to `TRUE`.
 
-Change `french: false` to `french: true` in the YAML part of **index.rmd** here:
+- the chunks have their `eval` value dependent on the value of the `fr()` function. This function simply returns the value of the R option `french` like this: `getOption("french", default = FALSE)`. For English chunks the value must be set to `eval = !fr()` and for French it must be `eval = fr()`.
+
+Once you translate a paragraph to French, remove any and all contents of the corresponding French chunk if any (such as mirror chunk references), and place a `cat("")` statement inside it, then paste the translated French version of text between the quotes of the `cat("")` statement. Newlines are allowed and required for newlines in the document to appear. Change the knitr chunk option `needs_trans` to `FALSE`. If you forget to change `needs_trans` to `FALSE` you will receive a warning during compilation.
+
+Compile often, as errors can occur due to the translation and it is much easier to fix these as you go, instead of at the end.
+
+## Compile the document in French
+
+Change
+``` yaml
+  french: false
+```
+to
+
+``` yaml
+  french: true
+```
+in the YAML part of **index.rmd** located in the `output` section here:
 
 ``` yaml
 output:
  csasdown::resdoc_pdf:
    french: false
 ```
+Note that `true` and `false` must be lowercase.
 
+To compile, run `csasdown::render()`. This will automatically parse the chunks and create the document in the language specified. Other parts of the document you normally do not worry about such as the such as the crown statement, and author list will be converted to the language specified automatically.
+
+## Figures and tables
+
+Functions creating Figures and Tables must be implemented in both English and French. If you are writing your own functions to do this, it is advised that you use the `csasdown::fr()` inside the functions to determine which language the text on the figure will be in. That way, you will not have to pass a `french` toggle to each of the functions. This makes the code significantly simpler, and easier to debug. It also removes one argument from every function, reducing function devlopment time and the need to document that argument for every function. If you do have to pass a `french` argument to a function, for example for a function in another package, pass the `csasdown::fr()` function like in this example:
+
+````{verbatim}
+```r
+  gfplot::plot_ages(d, french = csasdown::fr())
+```
+````
+
+Do not try to create your own project-wide `french` variable to keep track of whether or not to compile in French, it will just wreak havoc and waste a lot of your time as you try to debug what is going on. If you really want to manually change from English to French or back again, set the `french` option directly in the command line:
+
+```r
+  options(french = FALSE)
+```
+
+or
+
+```r
+  options(french = TRUE)
+```
+
+A reason for changing the language manually is to debug each figure in your R session prior to inclusion in a knitr chunk, to make sure all parts of it are in the correct language. **It is beneficial to make sure the figure can be produced properly in English again after changing to French and making changes as this frequently leads to unexpected errors or problems when going back to English.**
+
+Notes:
+
+- if this option has not been set yet, as in a new R session, the `csasdown::fr()` function will return `FALSE` which means that English os the compilation language by default.
+
+- The `french` option is set by the code to whatever the YAML value has been set to when you compile a document, and will override any value you set manually previously.
+
+It is advised to:
+
+- implement all Figures and Tables as code in chunks rather than using the `include_graphics()` function to include already-prepared figures. It is my experience that trying to recreate some figures in French later, possibly a year or more after the English publication has been accepted, can be very difficult and time-consuming.
+
+- implement all Figures and Tables in both English and French as you go, as opposed to having to re-implement them all later, after submission of the English version of the document
+
+## Required YAML settings
+
+If you used the **resdoc-b** example document as a starting point, all additional French settings were already set up for you. They will have to be modified to match your project. If you are starting with an old project, you will have to add these tags in the YAML code, in the `index.rmd` file.
+
+YAML tags you need to set up for French compilation:
+
+- `french_title` - French translation of the `title` tag
+
+- `french_address` - French translation of the `address` tag. It is the address(es) of the author's workplace(s). Use carets around digits on a new line to create individual addresses. See this example which shows two addresses:
+
+``` yaml
+french_address: |
+  ^1^Station biologique du Pacifique\
+     Pêches et Océans Canada, 3190 Hammond Bay Road\
+     Nanaimo, Colombie-Britannique, V9T 6N7, Canada\
+  \smallskip
+  ^2^Loin, très loin\
+     Une autre galaxie
+```
+
+- `french_month` - French translation of the `month` tag, for example "Mois"
+
+- `french_region` - French translation of the `region` tag, for example "Région du Pacifique"
+
+- `french_abstract` - French translation of the abstract as found in the `abstract` tag
