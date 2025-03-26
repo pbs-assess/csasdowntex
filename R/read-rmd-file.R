@@ -30,12 +30,18 @@ read_rmd_file <- function(fn, src_fn = "unknown"){
   }
 
   # nocov end
-  if(!length(grep("\\.Rmd$", fn))){
-    fn <- paste0(fn, ".Rmd")
-  }
-  if(!file.exists(fn)){
-    bail("File ", fn_color(fn), " does not exist when trying to import from the ",
-         "file ", fn_color(src_fn))
+  if(!length(grep("\\.[rR]md$", fn))){
+    fn_ext1 <- paste0(fn, ".Rmd")
+    if(!file.exists(fn_ext1)){
+      fn_ext2 <- paste0(fn, ".rmd")
+      if(!file.exists(fn_ext2)){
+        bail("Neither file ", fn_color(fn_ext1), " nor ", fn_color(fn_ext2),
+             " exists when trying to import from the file ", fn_color(src_fn))
+      }
+      fn <- fn_ext2
+    }else{
+      fn <- fn_ext1
+    }
   }
   lines <- readLines(fn)
   if(!length(lines)){
