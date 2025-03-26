@@ -40,19 +40,29 @@ There are several problems with these methods:
 
 1. Sending a Word document out for translation poses several problems including re-generation of all plots and tables in French in some non-standardized way, and quality of the French document not being at the same level as that of the English document. The two documents will not appear the same in formatting and are of two different file types. There is also the possibility that the French terms used on the plots made by the authors are found to be incorrect by the translators.
 
-2. Creating a second directory with an entirely separate document is prone to error when something changes in the document (for example axis limits on a plot or plot type from a histogram to a line plot, or any other data or model output change) and the authors have to remember to change both the English version and the French version in exactly the same way. This will lead to two documents which are not quite the same because of human error. The question may then be asked, "which document is correct?"
+2. Creating a second document directory with an entirely separate French document is prone to error when something changes in the document (a plot or table changes) and the authors have to remember to change the code to create that plot/table in both the English version and the French version in exactly the same way. This will lead to two documents which are not quite the same because of human error. The question may then be asked, "which plot/tables from which document are actually correct?"
 
-The method presented here and which is built into the ***csasdown*** package ensures that you have one single document which is compile-able in both English and French, with a toggle found in the YAML header.
+The method presented here and which is built into the ***csasdown*** package ensures that you have one single document which is compile-able in both English and French, with a toggle found in the YAML header. This requires manual cut-and-paste translation using an online translation tool. We recommend using [DeepL](https://www.deepl.com/en/translator), but there are many.
 
 ## Overview of the method
 
-Typically in an Rmarkdown document, you will write paragraphs directly as text in the Rmarkdown source. To have a project which is easily switchable from one language to the other, csasdown will parse certain chunks as paragraph text. This means that to create a bilingual document, you will not write text directly into rmarkdown, but inside knitr code chunks in `cat()` statements. There will be two chunks for each paragraph, one containing the English paragraph and one containing the French paragraph. You do not have to make any modifications to the way you render documents with these special chunks, csasdown will do it automatically.
+Typically in an Rmarkdown document, you will write paragraphs directly as text in the Rmarkdown source. To have a project which is easily switchable from one language to the other, csasdown will parse certain chunks as paragraph text. This means that to create a bilingual document, you will not write text directly into Rmarkdown source, but inside knitr code chunks in `cat()` statements. There will be two chunks for each paragraph, one containing the English paragraph and one containing the French paragraph. You do not have to make any modifications to the way you render documents with these special chunks, **csasdown** will do it automatically when you run the `csasdown::render()` command.
 
-## Creating a document from scratch
+## UTF-8 Encoding setup {#sec:utf8}
 
-If you are just starting a Research Document, use the **resdoc-b** draft of csasdown as it contains both English and French chunks already set up to start you off. To do that, run `csasdown::draft(“resdoc-b”)` in an empty directory.
+Your project ***must*** be set up to use UTF-8 encoding. Often, editors are by default set to save using ASCII only, which does not support international alphabet characters.
 
-To have a French-compile-able document You ***must*** use `cat()` statements inside all knitr chunks (both English and French) in the `*.rmd` files. All English chunks must have a name that ends in **-en** as in the following example:
+To set up Rstudio using UTF-8 mode, see the directions on [this page](https://support.posit.co/hc/en-us/articles/200532197-Character-Encoding-in-the-RStudio-IDE) and click the check box **Set as default encoding for source files**.
+
+You can now paste the French text exactly as it is translated into the source files (**\*.rmd** and **\*.r** files). You do not need to and should not use escape sequences for special French characters. If you are using escape sequences for special French characters (or any other special characters), you will encounter all sorts of errors as you progress.
+
+If you are using an editor other than RStudio, you will need to look up how to make sure all new files you create in your editor are UTF-8 compatible, and ensure that saving over a file already in UTF-8 does not revert it back to ASCII.
+
+## Creating a bilingual project from scratch
+
+If you are creating a document from scratch, and not basing it on an older **csasdown** document, use the **resdoc-b** draft of **csasdown** as it contains both English and French example chunks already set up to start you off. To do that, run `csasdown::draft(“resdoc-b”)` in an empty directory.
+
+To have a French compile-able document You ***must*** use `cat()` statements inside all knitr chunks (both English and French) in the `*.rmd` files. All English chunks must have a name that ends in **-en** as in the following example:
 
 ````{verbatim}
 ```{r length-data-en, eval = !fr(), results = 'asis'}
@@ -64,10 +74,11 @@ Paragraphs on length data go here.
 ```
 ````
 
-The corresponding French chunk must have the same root name (**length-data** in this case) but end in **-fr** instead of **-en** as show here:
+The corresponding French chunk ***must*** have the same root name (**length-data** in this case) but end in **-fr** instead of **-en** as show here:
 
 ````{verbatim}
 ```{r length-data-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
+
 cat(“### Données de longueur
 
 Les paragraphes sur les données de longueur se trouvent ici.
@@ -87,13 +98,34 @@ In the **resdoc-b** example document, the French chunks start with a special val
 
 Notes:
 
-- the knitr chunk option `needs_trans` is only needed in the French chunks and must be `FALSE` until the translation is complete and has been pasted into the chunk. Once you paste the French translation in, you must change `needs_trans` to `TRUE`.
+- your project has to be set up to use UTF-8 encoding. See Section \@ref(sec:utf8)
+
+- the knitr chunk option `needs_trans` is only needed in the French chunks and must be `FALSE` until the translation is complete and has been pasted into the chunk. Once you paste the French translation in, you must change `needs_trans` to `TRUE`. If you put it into an English chunk, the compiler will tell you that it is unnecessary and remove it for you in the intermediate compilation files. To get rid of the warning, remove it manually from the source chunk.
 
 - the chunks have their `eval` value dependent on the value of the `fr()` function. This function simply returns the value of the R option `french` like this: `getOption("french", default = FALSE)`. For English chunks the value must be set to `eval = !fr()` and for French it must be `eval = fr()`.
 
 Once you translate a paragraph to French, remove any and all contents of the corresponding French chunk if any (such as mirror chunk references), and place a `cat("")` statement inside it, then paste the translated French version of text between the quotes of the `cat("")` statement. Newlines are allowed and required for newlines in the document to appear. Change the knitr chunk option `needs_trans` to `FALSE`. If you forget to change `needs_trans` to `FALSE` you will receive a warning during compilation.
 
 Compile often, as errors can occur due to the translation and it is much easier to fix these as you go, instead of at the end.
+
+## Creating a bilingual project from an older csasdown project
+
+To convert an older csasdown project into a bilingual project, you must create two chunks for each paragraph, with the size of a "paragraph" being whatever you are comfortable with. You can make it ten paragraphs if you want, but keep in mind that the translation sites typically have a limit of so many characters you can translate at one time, and may not tell you that it cut off your translation if it meets this limit. **DeepL** for example allows 500 characters maximum to be translated at a time. For this reason it is a good idea to keep the chunk sizes down below 500 characters.
+
+Use the **resdoc-b** document example to create the chunks. A basic example is [here](https://github.com/pbs-assess/csasdown/blob/f2348defb570006e29db00f2812c5f771ac42516/inst/rmarkdown/templates/resdoc-b/skeleton/01-chap1.Rmd#L1-L12).
+
+You must have project-wide unique chunk names, as with any Rmarkdown project. You can come up with a naming convention, or just have the names in a numerical sequence like this:
+
+For the English chunks:
+`chap01-para-1-en`, `chap01-para-2-en`, `chap01-para-3-en`, etc.
+and the French chunks:
+`chap01-para-1-fr`, `chap01-para-2-fr`, `chap01-para-3-fr`, etc.
+
+Once you have made two chunks for a paragraph, cut the English text and paste it into the English chunk, then translate the text and paste that into the French chunk.
+
+Once the French text has been pasted into the French chunk, change the `needs_trans` chunk variable to `FALSE`.
+
+Compile often, as you gradually convert each of the paragraphs. The document can exist with only parts of the text placed into chunks and the rest as raw Rmarkdown, outside of the chunks, so that you can compile as you go, without having to remove all of the original text.
 
 ## Compile the document in French
 
@@ -178,3 +210,63 @@ french_address: |
 - `french_region` - French translation of the `region` tag, for example "Région du Pacifique"
 
 - `french_abstract` - French translation of the abstract as found in the `abstract` tag
+
+## Adding text from another file instead of directly in a chunk
+
+If there is some longer section of text or a hard-coded table or anything else that you want to keep separate and in its own file, you can do that by using the following code inside a chunk:
+
+````{verbatim}
+```{r chap01-para-5-en, eval = !fr(), results = 'asis'}
+
+rmd_file("external-rmd-en")
+```
+````
+
+In this case, a file called **external-rmd-en.rmd** will be read in and the Rmarkdown text inside it will replace the `rmd_file("external_rmd_1")` call.
+
+Notes:
+
+- Inclusion of the *.rmd* or *.Rmd* extensions in the filename is optional. If you leave it off, both will be looked for by the code.
+
+- It appears that there is a function called `rmd_file()` but there is not. That text if read in by a pattern matching algorithm and the filename extracted, then the file will be read in and put directly into the code. This was done as the timing of the insertion of the text had to come before the time when `knitr` runs the code inside the chunks.
+
+- If you intend on creating a French doument, you must create a separate file containing the French translation of the original file. The chunk to read that in looks like the following for this example.
+
+````{verbatim}
+```{r chap01-para-5-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
+
+rmd_file("external-rmd-fr")
+```
+````
+Note the different filename with the *-fr* ending instead of the *-en*.
+
+
+## Error checking
+
+This feature has extensive error checking, with attempts made to encapsulate issues into simple messages with line numbers of occurance, where possible. Some example errors that can occur are:
+
+- Forgetting to change `needs_trans` to `FALSE` after pasting the French translation into a chunk. This error will be caught with the following message, and point to the chunk that caused the error:
+
+> ! ✖ You have set `needs_trans = TRUE` on a chunk with UTF-8 text (likely French text). You most likely forgot to set `needs_trans = FALSE`  in the header after pasting the translated French into the chunk:
+> ````{verbatim}
+> ```{r chap01-para-1-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
+> ```
+> ````
+
+- Forgetting `needs_trans` altogether on a chunk that is labeled as French (has a label ending in **-fr**). The *code modified* tag here means that the intermediary ***Rmd*** file created by knitr was modified so that the compilation will work. The original ***Rmd*** file was not actaully modified:
+
+> ⚠ `needs_trans = TRUE` on line 64 in file 01-chap1.Rmd is missing for this French chunk and has been added automatically:
+> ````{verbatim}
+> ```{r chap01-para-4-fr, eval = fr(), results = 'asis'}  -->
+> ```
+> ```{r chap01-para-4-fr, eval = fr(), results = 'asis', needs_trans = TRUE} (code modified) 
+> ```
+> ````
+
+- Not using the correct chunk name format for French chunks (here the **fr** is left off the end of the chunk name). Note that chunks are determined to be French by a match of `eval = fr()` in the chunk variables list:
+
+> ! ✖ Chunk name on line 64 in file 01-chap1.Rmd is not of correct format for French chunks (because it contains `eval = fr()` ). The name does not match the regular expression which is ^\S+-fr$:
+> ````{verbatim}
+> ```{r chap01-para-4-, eval = fr(), results = 'asis', needs_trans = TRUE}
+> ```
+> ````
