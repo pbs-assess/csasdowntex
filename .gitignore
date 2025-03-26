@@ -12,3 +12,6 @@ vignettes/*.html
 
 .bash_history
 .rstudio
+inst/doc
+/doc/
+/Meta/
