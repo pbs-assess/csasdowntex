@@ -95,7 +95,7 @@ fsar_plot_base(in.df, "English")
 [Optional. Add an additional optional panel of 4 indicators if relevant to developing advice.] 
 [Optional. If the FSAR or FSRR is being used to provide advice for more than one stock, the mandatory panel can be repeated for each stock.]
 
-### Historical and Recent Stock Trajectory and Trends {-}
+### Stock Status and Trends {-}
 [Mandatory. Maximum text length one page. Must be first section in Assessment section.]
 
 [Report trends in relevant indicator(s), one per paragraph, in the following format:]
