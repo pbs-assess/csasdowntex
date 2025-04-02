@@ -1,17 +1,21 @@
 ---
-title: "Translating csasdown documents from English to French"
+title: "Translating *csasdown* documents from English to French"
 output: 
    bookdown::pdf_document2:
       toc: true
       toc_depth: 4
       number_sections: true
-      pandoc_args: ["--number-offset=0"]
-date: "This document was rendered on `r hake::curr_time_date()`"
+      #pandoc_args: ["--number-offset=0", "--top-level-division=section"]
+date: "This document was created on `r hake::curr_time_date()`"
 vignette: >
   %\VignetteIndexEntry{Translating csasdown documents from English to French}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{=latex}
+\setcounter{section}{1}
+```
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -28,25 +32,28 @@ _______________________________________________________________________
 
 ## Introduction
 
-Translating csasdown documents from English to French has been performed in an ad-hoc fashion up to this point. There is now a method to do this built into the `csasdown` package.
+Translating ***csasdown*** documents from English to French has been performed in an ad-hoc fashion up to this point. There is now a method to do this which is built into the ***csasdown*** package.
 
 Methods used to date include:
 
-1. Compile the English version as a Microsoft Word document and then send it for translation to official government translation services.
+1. Send the English version in for translation to government translators. Once it comes back, create a second document directory containing a complete copy of the document source, then modify the English paragraphs to be French based on what is written in the translated document and change the Figures and tables into French versions.
 
-2. Create a second directory containing a complete copy of the document source, then modify the English paragraphs to be French and change the Figures and tables into French versions.
+2. Compile the English version as a Microsoft Word document and then send it for translation to official government translation services. Include French Figures and Tables in this version and submit the translated document as a Microsoft Word document to CSAS for publication.
 
-There are several problems with these methods:
 
-1. Sending a Word document out for translation poses several problems including re-generation of all plots and tables in French in some non-standardized way, and quality of the French document not being at the same level as that of the English document. The two documents will not appear the same in formatting and are of two different file types. There is also the possibility that the French terms used on the plots made by the authors are found to be incorrect by the translators.
+There are several issues with these methods:
 
-2. Creating a second document directory with an entirely separate French document is prone to error when something changes in the document (a plot or table changes) and the authors have to remember to change the code to create that plot/table in both the English version and the French version in exactly the same way. This will lead to two documents which are not quite the same because of human error. The question may then be asked, "which plot/tables from which document are actually correct?"
+1. Creating a second document directory with an entirely separate French document is prone to error when something changes in the document (a plot or table changes). The authors have to remember to change the code to create that plot/table in both the English version and the French version in exactly the same way. This will lead to two documents which are not quite the same because of human error. The question may then be asked, "which plot/tables from which document are actually correct?". Theoretically, one should not create the French document folder until the English one has been finalized, but in reality some changes end up happening after that time has passed.
+
+2. Sending a Word document out for translation poses several problems including re-generation of all plots and tables in French in a non-standardized way, and quality of the French document not being at the same level as that of the English document. The two documents will not appear the same in formatting and are of two different file types. There is also the possibility that the French terms used on the plots made by the authors are found to be incorrect by the translators.
 
 The method presented here and which is built into the ***csasdown*** package ensures that you have one single document which is compile-able in both English and French, with a toggle found in the YAML header. This requires manual cut-and-paste translation using an online translation tool. We recommend using [DeepL](https://www.deepl.com/en/translator), but there are many.
 
 ## Overview of the method
 
-Typically in an Rmarkdown document, you will write paragraphs directly as text in the Rmarkdown source. To have a project which is easily switchable from one language to the other, csasdown will parse certain chunks as paragraph text. This means that to create a bilingual document, you will not write text directly into Rmarkdown source, but inside knitr code chunks in `cat()` statements. There will be two chunks for each paragraph, one containing the English paragraph and one containing the French paragraph. You do not have to make any modifications to the way you render documents with these special chunks, **csasdown** will do it automatically when you run the `csasdown::render()` command.
+In a normal (English-only) Rmarkdown document, you write paragraphs directly as text in the Rmarkdown source files (**\*.Rmd** files). To have document source which can be compiled in either language, there must be knitr chunks containing either English or French paragraphs, which can be toggled on or off using a global variable. There will be two chunks for each paragraph, one for English and one for French. The text itself will be placed within `cat()` function calls in the chunks (Section \@ref(sec:from-scratch)).
+
+To make the document easily switchable from one language to the other, ***csasdown*** will parse the applicable chunks as paragraph text. This means that you will write text inside knitr code chunks within `cat()` function calls. There will be two chunks for each paragraph, one containing the English paragraph and one containing the French paragraph. You do not have to make any modifications to the way you render documents with these special chunks, ***csasdown*** will do it automatically when you run the `csasdown::render()` command.
 
 ## UTF-8 Encoding setup {#sec:utf8}
 
@@ -58,9 +65,9 @@ You can now paste the French text exactly as it is translated into the source fi
 
 If you are using an editor other than RStudio, you will need to look up how to make sure all new files you create in your editor are UTF-8 compatible, and ensure that saving over a file already in UTF-8 does not revert it back to ASCII.
 
-## Creating a bilingual project from scratch
+## Creating a bilingual project from scratch {#sec:from-scratch}
 
-If you are creating a document from scratch, and not basing it on an older **csasdown** document, use the **resdoc-b** draft of **csasdown** as it contains both English and French example chunks already set up to start you off. To do that, run `csasdown::draft(“resdoc-b”)` in an empty directory.
+If you are creating a document from scratch, and not basing it on an older ***csasdown*** document, use the **resdoc-b** draft of ***csasdown*** as it contains both English and French example chunks already set up to start you off. To do that, run `csasdown::draft(“resdoc-b”)` in an empty directory.
 
 To have a French compile-able document You ***must*** use `cat()` statements inside all knitr chunks (both English and French) in the `*.rmd` files. All English chunks must have a name that ends in **-en** as in the following example:
 
@@ -92,7 +99,7 @@ In the **resdoc-b** example document, the French chunks start with a special val
 ````{verbatim}
 ```{r length-data-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 
-<<length-data-en>>
+­<<length-data-en>>
 ```
 ````
 
@@ -132,31 +139,30 @@ The document can exist with only parts of the text placed into chunks and the re
 
 ## Compile the document in French
 
-Change
-``` yaml
-  french: false
-```
-to
-
-``` yaml
-  french: true
-```
-in the YAML part of **index.rmd** located in the `output` section here:
+In the YAML header part of **index.rmd** located in the `output` section, you will find the `french` tag:
 
 ``` yaml
 output:
  csasdown::resdoc_pdf:
    french: false
 ```
-Note that `true` and `false` must be lowercase.
 
-To compile, run `csasdown::render()`. This will automatically parse the chunks and create the document in the language specified. Other parts of the document you normally do not worry about such as the such as the crown statement, and author list will be converted to the language specified automatically.
+Change this from `false` to `true`:
 
-***Compile often*** to avoid a seemingly insurmountable number of errors after cutting and pasting many chunks. Compiling a section once every chunk or two is a good idea.
+``` yaml
+output:
+ csasdown::resdoc_pdf:
+   french: true
+```
+Note that `true` and `false` must be lowercase in YAML tags.
+
+To compile, run `csasdown::render()`. This will automatically parse the chunks and create the document in the language specified. Other parts of the document you normally do not worry about such as the such as the statement from the crown, author list, and citations will be converted to the language specified automatically.
+
+***Compile often*** to avoid a seemingly insurmountable number of errors after cutting and pasting many chunks. Compiling each section or **\*.Rmd** file once every chunk or two is a good idea.
 
 ## Figures and tables
 
-Functions that create Figures or Tables must be implemented in both English and French. If you are writing your own functions to do this, it is advised that you use the `csasdown::fr()` inside the functions to determine which language the text on the figure will be in. That way, you will not have to pass a `french` toggle to each of the functions. This makes the code significantly simpler, and easier to debug. It also removes one argument from every function, reducing function devlopment time and the need to document that argument for every function. If you do have to pass a `french` argument to a function, for example for a function in another package, pass the `csasdown::fr()` function like in this example:
+Functions that create Figures or Tables must be implemented in both English and French. If you are writing your own functions to do this, it is advised that you use the `csasdown::fr()` inside the functions to determine which language the text on the figure will be in. That way, you will not have to pass a `french` toggle to each of the functions. This makes the code significantly simpler, and easier to debug. It also removes one argument from every function, reducing function development time and the need to document that argument for every function. If you do have to pass a `french` argument to a function, for example for a function in another package, pass the `csasdown::fr()` function like in this example:
 
 ````{verbatim}
 ```r
@@ -204,23 +210,25 @@ library(csasdown)
 # Reset the `french` option to English to ensure this plot is in English
 options(french = FALSE)
 
-# Note there is no `french` toggle argument in this function, it is unnecessary
+# Note there is no `french` toggle argument in this function
 plot_example <- function(){
 
-  # Use the fr() function to determine which language to use
+  # Use the `csasdown::fr()` function to determine which language to use
   state_col_nm <- ifelse(fr(),
                          "État",
                          "State")
   state_col <- rlang::sym(state_col_nm)
 
   # You can use the `rosettafish` package for words which are already defined within it.
-  # To determine if a word's translation exists in the `rosettafish` package, simply run the
-  # line below with the word substituted in and it will either give you the translation or
-  # tell you it is not in the database.
-  area_col_nm <- rosettafish::en2fr("Area")
+  # To determine if a word's translation exists in the `rosettafish` package, simply
+  # run the line below with the word substituted in and it will either give you the
+  # translation or tell you it is not in the database.
+  # The csasdown::tr()` function is a wrapper for `rosettafish::en2fr()`
+  area_col_nm <- tr("Area")
   area_col <- rlang::sym(area_col_nm)
 
-  # Rename data frame columns with either English or French terms for display on the plot legend
+  # Rename data frame columns with either English or French terms for display on the
+  # plot legend
   d <- midwest |> 
         rename(!!state_col := "state") |> 
         rename(!!area_col := "area")
@@ -263,17 +271,81 @@ plot_example()
 options(french = FALSE)
 ```
 
-The following are an English and French version of a table
+The following function creates a table in both English and French, using the `csasdown::fr()` function:
 
 ```{r table-example-en}
 
-d <- midwest |> 
-  group_by(state) |> 
-  filter(row_number() == 1) |> 
-  ungroup()
+table_example <- function(){
+  
+  model <- ifelse(fr(),
+                  "Modèle de véhicule",
+                  "Vehicle model")
+  mpg <- ifelse(fr(),
+                "Miles par gallon", # These are the same
+                "Miles per gallon") #  in bath languages
+  cyl <- ifelse(fr(),
+                "Nombre de cylindres",
+                "Number of cylinders")
+  hp <-  ifelse(fr(),
+                "Puissance",
+                "Horsepower")
+  gear <- ifelse(fr(),
+                 "Nombre d'engrenages",
+                 "Number of gears")
+  
+  model_sym <- sym(model)
+  mpg_sym <- sym(mpg)
+  cyl_sym <- sym(cyl)
+  hp_sym <- sym(hp)
+  gear_sym <- sym(gear)
+  
+  d <- mtcars |> 
+    tibble::as_tibble(rownames = model) |> 
+    dplyr::select(1, mpg, cyl, hp, gear) |> 
+    dplyr::rename(!!mpg_sym := mpg,
+                  !!cyl_sym := cyl,
+                  !!hp_sym := hp,
+                  !!gear_sym := gear)
+  
+  # Make the headers bold
+  col_nms <- paste0("\\textbf{", names(d), "}")
 
-kableExtra::kbl(midwest)
+  # Remove all rows except those starting with "Merc"
+  d <- d |> 
+    dplyr::filter(substr(!!model_sym, 1, 4) == "Merc")
+
+  cap <- ifelse(fr(),
+                paste0("Version française d'une table. La source de données ",
+                "est `mtcars` ; les lignes concernant les véhicules Mercedes ",
+                "ne sont incluses que par souci de concision."),
+                paste0("English version of a table. The data source is `mtcars`; ",
+                       "including rows for Mercedes vehicles only for brevity."))
+    
+  csasdown::csas_table(d,
+                       col_names = col_nms,
+                       format = "latex",
+                       font_size = 10,
+                       # For latex format, `bold_header` has to be `FALSE`;
+                       # you have to do it manually using `textbf` tag (see above)
+                       bold_header = FALSE,
+                       escape = FALSE,
+                       booktabs = TRUE,
+                       caption = cap)
+}
+
+table_example()
 ```
+
+```{r table-example-fr}
+
+options(french = TRUE)
+table_example()
+
+# Reset the french option back to English
+options(french = FALSE)
+```
+
+Notice in the French table that decimal points in values are automatically set to the correct marks (periods for English and commas for French). This is done in the internals of `csasdown`.
 
 ## Required YAML settings
 
@@ -337,7 +409,7 @@ This feature has extensive error checking, with attempts made to encapsulate iss
 
 - Forgetting to change `needs_trans` to `FALSE` after pasting the French translation into a chunk. This error will be caught with the following message, and point to the chunk that caused the error:
 
-> ! ✖ You have set `needs_trans = TRUE` on a chunk with UTF-8 text (likely French text). You most likely forgot to set `needs_trans = FALSE`  in the header after pasting the translated French into the chunk:
+> ! X You have set `needs_trans = TRUE` on a chunk with UTF-8 text (likely French text). You most likely forgot to set `needs_trans = FALSE`  in the header after pasting the translated French into the chunk:
 > ````{verbatim}
 > ```{r chap01-para-1-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 > ```
@@ -345,7 +417,7 @@ This feature has extensive error checking, with attempts made to encapsulate iss
 
 - Forgetting `needs_trans` altogether on a chunk that is labeled as French (has a label ending in **-fr**). The *code modified* tag here means that the intermediary ***Rmd*** file created by knitr was modified so that the compilation will work. The original ***Rmd*** file was not actaully modified:
 
-> ⚠ `needs_trans = TRUE` on line 64 in file 01-chap1.Rmd is missing for this French chunk and has been added automatically:
+> `needs_trans = TRUE` on line 64 in file 01-chap1.Rmd is missing for this French chunk and has been added automatically:
 > ````{verbatim}
 > ```{r chap01-para-4-fr, eval = fr(), results = 'asis'}  -->
 > ```
@@ -355,7 +427,7 @@ This feature has extensive error checking, with attempts made to encapsulate iss
 
 - Not using the correct chunk name format for French chunks (here the **fr** is left off the end of the chunk name). Note that chunks are determined to be French by a match of `eval = fr()` in the chunk variables list:
 
-> ! ✖ Chunk name on line 64 in file 01-chap1.Rmd is not of correct format for French chunks (because it contains `eval = fr()` ). The name does not match the regular expression which is ^\S+-fr$:
+> ! Chunk name on line 64 in file 01-chap1.Rmd is not of correct format for French chunks (because it contains `eval = fr()` ). The name does not match the regular expression which is ^\S+-fr$:
 > ````{verbatim}
 > ```{r chap01-para-4-, eval = fr(), results = 'asis', needs_trans = TRUE}
 > ```
