@@ -3,23 +3,43 @@
 
 ### Status {-}
 
+::: {custom-style="List Bullet"}
+
 - [Mandatory bullet(s)] 
+
+:::
 
 ### Trends {-}
 
+::: {custom-style="List Bullet"}
+
 - [Mandatory bullet(s)] 
+
+:::
 
 ### Ecosystem and Climate Change Considerations {-}
 
-- [Mandatory bullet(s)]
-
-### Stock Advice {-}
+::: {custom-style="List Bullet"}
 
 - [Mandatory bullet(s)] 
 
+:::
+
+### Stock Advice {-}
+
+::: {custom-style="List Bullet"}
+
+- [Mandatory bullet(s)] 
+
+:::
+
 ### Other Management Questions [if applicable, otherwise do not include] {-}
 
-- [Other bullets if applicable]
+::: {custom-style="List Bullet"}
+
+- [Mandatory bullet(s)] 
+
+:::
 
 
 ## BASIS FOR ASSESSMENT {-}
@@ -34,12 +54,24 @@
 [Mandatory; select one of the following: Full Assessment, Interim Year Update, or Harvest Decision Rule (HDR) Update. See the Guidance Document for definitions.] 
 
 #### Most Recent Assessment Date {-}
+
+::: {custom-style="List Number"}
+
 1.	Last Full Assessment: [date and reference]
+
 2.	Last Interim Year Update: [date and reference]
 
+:::
+
 #### Assessment Approach {-}
+
+::: {custom-style="List Number"}
+
 1.	Broad category: [Select one of the following: Data-poor (e.g., catch-MSY, very limited data, etc.), index-based (trends in empirical indices only), single stock assessment model, model ensemble, MSE (full or MSE-lite), Wild Salmon Policy Integrated Assessment, multiple approaches, other (specify)]
+
 2.	Specific category: [Select one or as many as apply: No data, Index-based (fishery-dependent indices only), Index-based (including fishery-dependent and fishery-independent indices), Delay difference, Biomass dynamics, Virtual population analysis, Statistical catch-at-length, Statistical catch-at-age, State-Space, Sequential Population Analysis, Surplus Production, Stock-Recruitment Relationship, Potential Biological Removal, Other (please explain)]
+
+:::
 
 [Optional short summary of stock assessment methodology. Include the method of considering ecosystem variables. Include a reference to a Research Document or other publication, and/or footnote to the working paper. Maximum length 100 words.]
 
@@ -50,10 +82,17 @@ Stock overview information: [reference to a Research Document or other publicati
 ### Reference Points {-}
 [Mandatory. A table may be used in lieu of bullets for this section. Refer to the Guidance Document for further instructions.]
 
+::: {custom-style="List Bullet"}
+
 - Limit Reference Point (LRP): 
+
 - Upper Stock Reference (USR):
+
 - Removal Reference (RR): 
+
 - Target (TRP): 
+
+:::
 
 #### Other Stock Reference Points {-}
 [If applicable (otherwise, do not include). A table may be used in lieu of bullets for this section.] 
