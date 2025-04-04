@@ -127,15 +127,16 @@ render_sar <- function(...) {
                '\n\\pagebreak\n')
 
   backmatter <- c('## THIS REPORT IS AVAILABLE FROM THE:{-}\n',
-                  '::: {custom-style="Body Text - Centered"}',
+                  '::: {custom-style="Body Text + Centered"}',
                   x$csa_address,
                   'E-Mail:', x$email, "\\",
                   'Internet address: [www.dfo-mpo.gc.ca/csas-sccs/](www.dfo-mpo.gc.ca/csas-sccs/)\n',
                   'ISSN xxxx-xxxx\\',
-                  'ISBN 978-0-660-xxxxx-x   Cat. No. Fs70-6/2025-nnnE-PDF\\',
-                  '© His Majesty the King in Right of Canada, as represented by the Minister of the Department of Fisheries and Oceans,', x$report_year, "\n",
+                  'ISBN 978-0-660-xxxxx-x&#9;Cat. No. Fs70-6/2025-nnnE-PDF\\',
+                  '© His Majesty the King in Right of Canada, as represented by the Minister of the\\
+                  Department of Fisheries and Oceans,', x$report_year, "\n",
                   'This report is published under the [Open Government Licence - Canada](https://open.canada.ca/en/open-government-licence-canada)\n',
-                  paste0("![](", system.file("graphics", "mobius_loop.svg", package = "csasdown"), ")"),
+                  'MOBIUS', # To be replaced below with image using officer
                   ':::\n',
                   "\nCorrect citation for this publication:\n",
                   '::: {custom-style="citation"}',
@@ -245,6 +246,12 @@ render_sar <- function(...) {
   doc <- officer::headers_replace_text_at_bkm(doc, "report_number", x$report_number)
   doc <- officer::footers_replace_text_at_bkm(doc, "release_month", x$release_month)
   doc <- officer::footers_replace_text_at_bkm(doc, "release_year", x$report_year)
+
+  ## Insert mobius loop image using doc with just the image with the proper style and alt text
+  doc <- officer::cursor_reach(doc, keyword = "MOBIUS") |>
+    officer::body_remove() |>
+    officer::cursor_backward() |>
+    officer::body_add_docx(src = system.file("graphics", "mobius_loop.docx", package = "csasdown"))
 
   print(doc, target = "_book/fsar.docx")
 
