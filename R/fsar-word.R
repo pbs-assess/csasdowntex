@@ -67,6 +67,7 @@ fsar_word2 <- function(...) {
                                      mapstyles = list(
                                        "Body Text" = c("Normal", "First Paragraph")
                                      ),
+                                     pandoc_args = "--no-highlight",
                                      reference_docx = system.file("csas-docx",
                                                                   file,
                                                                   package = "csasdown")
