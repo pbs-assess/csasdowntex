@@ -35,6 +35,7 @@ fsar_word2 <- function(...) {
   ## 2) a border was added to the context style and the table was removed
   ## 3) ordered (ol style) and unordered list (ul style) styles manually added to template
   ## 4) created a Table Caption style since Caption - Table was not being applied. May be a bug (https://github.com/davidgohel/officedown/issues/112).
+  ## 5) Added First Paragraph style to avoid issues with Body Text not being applied to the first paragraph of each section.
   file <- "fsar-template.docx"
   base <- officedown::rdocx_document(...,
                                      base_format = "bookdown::word_document2",
@@ -115,8 +116,8 @@ render_sar <- function(...) {
                           'Additional publications from this meeting will be posted on the [Fisheries and Oceans Canada (DFO) Science Advisory Schedule](http://www.isdm-gdsi.gc.ca/csas-sccs/applications/events-evenements/index-eng.asp) as they become available.')
 
   title_and_context <- c('::: {custom-style="Heading 1"}', x$report_title, ':::\n',
-                         '::: {custom-style="Context-Heading"}', "Context", ':::\n',
-                         '::: {custom-style="Context-text"}', paste0(x$context, extra_context), ':::\n')
+                         '::: {custom-style="Heading 2"}', "Context", ':::\n',
+                         '::: {custom-style="Body Text"}', paste0(x$context, extra_context), ':::\n')
 
   content <- readLines(con = first_content_fn, warn = FALSE)
 
