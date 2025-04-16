@@ -31,14 +31,13 @@ cat_no: "Fs70-6/2021-012E-PDF"
 citation_other_language: "Last, F.M. et Smith, A.B. Title Here (*Latin Species Name*). DFO Secr. can. des avis sci. du MPO. Doc. de rech 2019/nnn. iv + 13 p."
 
 abstract: |
-  Here is the abstract text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  Here is the abstract text. Must not be more than 1/2 page (roughly 400 words).
 
-  Start new paragraphs after a blank line and with 2 spaces indent. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+  Start new paragraphs after a blank line and with 2 spaces indent. Will be posted on CSAS website.
 french_abstract: |
-  Voici le texte du résumé. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  Voici le texte du résumé.
   
-  Commencez les nouveaux paragraphes après une ligne blanche et avec un retrait de 2 espaces. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  Commencez les nouveaux paragraphes après une ligne blanche et avec un retrait de 2 espaces. 
 header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 # `show_continued_text` is a logical which, if `true`, places
 # "Continued on the next page..." and "...Continued from the previous page" or

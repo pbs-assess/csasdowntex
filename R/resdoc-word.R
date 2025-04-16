@@ -12,7 +12,7 @@
 #' template
 #' @export
 resdoc_word <- function(...) {
-  file <- if (fr()) "RES2024-fra-content.docx" else "RES2024-eng-content.docx"
+  file <- if (fr()) "RES2025-fra.DOCX" else "RES2025-eng.DOCX"
   base <- word_document2(...,
                          reference_docx = system.file("csas-docx",
                                                       file,

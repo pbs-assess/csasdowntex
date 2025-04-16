@@ -1,6 +1,8 @@
-# Contributors
+# LIST OF MEETING PARTICIPANTS
 
-Mandatory section and title.
+<!-- Mandatory section.
+
+Include the name of each participant and their affiliation.-->
 
 ```{r, echo=FALSE, include=FALSE}
 contributors <- tibble::tribble(

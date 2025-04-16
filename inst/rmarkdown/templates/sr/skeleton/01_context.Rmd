@@ -1,8 +1,6 @@
-# Context
+# CONTEXT
 
-Mandatory section and title.
-
-## Note on this section
+<!-- Mandatory section and title. -->
 
 <!-- An example of how to include text based on the language. The two chunks below shows how switching the toggle in the YAML header for french allows inclusion/rejection of a paragraph. -->
 
@@ -15,7 +13,7 @@ To create a fully french document, you need a chunk like this one for each parag
 cat("(This is where you place the French translation of the paragraph. Once you do, set needs_trans to FALSE in the chunk header) La section sur le contexte doit donner aux lecteurs une idée claire de la question traitée et de l'historique de la nécessité de ce processus (par exemple, la justification de l'utilisation du processus d'intervention scientifique dans ce cas précis).")
 ```
 
-It should include the formal request/question from the client, the response deadline, as well as a short summary of the conclusion (one or two sentences).
+<!-- It should include the formal request/question from the client, the response deadline, as well as a short summary of the conclusion (one or two sentences).
 
 The rationale for the approach taken to answer the request can be described (e.g., specific scientific questions that were addressed).
 This section could also include information on previous related meetings and advice on which this process is based.
@@ -25,17 +23,16 @@ At the end of this section, the reader will have a clear understanding of the re
 
 If the objective of the process was to comment on a specific report (e.g., Environmental Assessment report produced by a proponent in the context of the Canadian Environmental Assessment Act) then the relevant link to the report that was the subject of the review could be identified in this section.
 
-This section will be posted in HTML format on the CSAS website followed by the link to the full PDF version of the publication.
+This section will be posted in HTML format on the CSAS website followed by the link to the full PDF version of the publication. -->
 
-## Mandatory paragraph
+<!-- Mandatory paragraph -->
+<!--Be sure to use the default text in the French template for the translation as well as the meeting information on the French version of the schedule.
+Edit the following sentence as necessary.* -->
 
-*The meeting date and title must be exactly as they appear on the Fisheries and Oceans Science Advisory Schedule.
-Be sure to use the default text in the French template for the translation as well as the meeting information on the French version of the schedule.
-Edit the following sentence as necessary.*
+This Science Response Report results from the [scope: regional, multi-regional, national] peer review [date] on [meeting title].
+<!-- *The meeting date and title must be exactly as they appear on the Fisheries and Oceans Science Advisory Schedule. -->
 
-This Science Response Report results from the Science Response Process Month Day, Year on the Title of Process Here.
-
-*Add the following sentence if there are other associated publications that will be posted on the schedule.*
+<!-- Add the following sentence if there are other associated publications that will be posted on the schedule. -->
 
 Additional publications from this meeting will be posted on the \href{http://www.isdm-gdsi.gc.ca/csas-sccs/applications/events-evenements/index-eng.asp}{DFO Science Advisory Schedule} as they become available.
 

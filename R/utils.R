@@ -310,7 +310,7 @@ fr <- function(){
 #' @export
 tr <- function(x, ...){
 
-  en2fr(x, translate = fr(), ...)
+  rosettafish::en2fr(x, translate = fr(), ...)
 }
 
 # nocov start
