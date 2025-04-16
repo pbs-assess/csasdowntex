@@ -311,7 +311,7 @@
 \makeatother
 %% Creates a header and footer on the long page sides on landscape pages
 \newcommand{\regionlandWidth}{\widthof{\selectfont\fontsize{11}{13.2}\textbf{\rdRegion{}}}}
-\newcommand{\shorttitlelandWidth}{\widthof{\selectfont\fontsize{11}{13.2}\textbf{Science Response: \rdTitleShort{}}}}
+\newcommand{\shorttitlelandWidth}{\widthof{\selectfont\fontsize{11}{13.2}\textbf{\rdTitleShort{}}}}
 \newcommand{\remainderlandWidth}{9in - \regionlandWidth - \shorttitlelandWidth}
 
 \AddEverypageHook{\ifdim\textwidth=\textheight
@@ -319,7 +319,7 @@
    \begin{textblock*}{11pt}(0.575in,1in+\shorttitlelandWidth+\remainderlandWidth)
 {\rotatebox{90}{\selectfont\fontsize{11}{13.2}\textbf{\rdRegion{}}}}\end{textblock*}
 \begin{textblock}{0.05}(0.0518,0.0909)
-{\rotatebox{90}{\selectfont\fontsize{11}{13.2}\textbf{Science Response: \rdTitleShort{}}}}\end{textblock}
+{\rotatebox{90}{\selectfont\fontsize{11}{13.2}\textbf{\rdTitleShort{}}}}\end{textblock}
 \begin{textblock}{0.05}(0.89,0.5)
 {\rotatebox{90}{\sffamily\selectfont\small\thepage}}\end{textblock}
   \begin{textblock}{0.05}(0.062,0.0909)
@@ -345,7 +345,7 @@
 \newcommand{\regionWidth}{\widthof{\textbf{\rdRegion{}}}}
 \newcommand{\remainderWidth}{\linewidth - \regionWidth - 0.5cm}
 \fancyhead[L]{\parbox[b]{\regionWidth}{\textbf{\rdRegion{}}}}
-\fancyhead[R]{\parbox[b]{\remainderWidth}{\RaggedLeft{\textbf{Science Response: \rdTitleShort{}}}}}
+\fancyhead[R]{\parbox[b]{\remainderWidth}{\RaggedLeft{\textbf{\rdTitleShort{}}}}}
 \fancypagestyle{csapfancy}{
   \fancyfoot[C]{\thepage}
   \renewcommand{\footrulewidth}{0.4pt}
@@ -609,7 +609,7 @@
       \vspace*{2cm}
       \parbox[b]{\regionWidthW}{\textbf{\rdRegion{}}}
       \hfill
-      \parbox[b]{\remainderWidthW}{\RaggedLeft{\textbf{Science Response: \rdTitleShort{}}}}\\
+      \parbox[b]{\remainderWidthW}{\RaggedLeft{\textbf{\rdTitleShort{}}}}\\
       \vspace{-0.3cm}
       \rule{\linewidth}{0.4pt}\\
       \vspace{16.75cm}
@@ -676,7 +676,7 @@ Secr.\ can.\ des avis sci.\ du MPO. R\'{e}p.\ des Sci.\
  {\begin{list}{}{%
   \setlength{\itemindent}{0pt}
   \setlength{\leftmargin}{0pt}
-  \setlength{\parsep}{0pt}
+  \setlength{\parsep}{6pt}
   % turn on hanging indent if param 1 is 1
   \ifodd #1
    \setlength{\leftmargin}{\cslhangindent}
