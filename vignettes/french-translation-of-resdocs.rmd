@@ -383,7 +383,7 @@ french_address: |
      Une autre galaxie
 ```
 
-- `french_month` - French translation of the `month` tag, for example "Mois"
+- `french_month` - French translation of the `month` tag, for example "Décembre"
 
 - `french_region` - French translation of the `region` tag, for example "Région du Pacifique"
 
