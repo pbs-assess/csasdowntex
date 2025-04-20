@@ -5,7 +5,11 @@ output:
       toc: true
       toc_depth: 4
       number_sections: true
+      latex_engine: xelatex
       #pandoc_args: ["--number-offset=0", "--top-level-division=section"]
+header-includes: 
+  - \usepackage{fontspec}
+  - \setmainfont[Ligatures=TeX]{FreeSerif}
 date: "This document was created on `r hake::curr_time_date()`"
 vignette: >
   %\VignetteIndexEntry{Translating csasdown documents from English to French}
@@ -421,11 +425,11 @@ Note the different filename with the `-fr` ending instead of the `-en`.
 
 ## Common Errors and Warnings
 
-There is extensive error checking, with attempts made to encapsulate issues into simple messages with line numbers of occurrence, where possible. Some common errors that occur are:
+There is extensive error checking, with attempts made to encapsulate issues into simple messages with line numbers of occurrence, where possible. Some common errors that occur are (✖ means Error,  ⚠ means Warning):
 
 - forgetting to change `needs_trans` to `FALSE` after pasting the French translation into a chunk. This error will be caught with the following message, and point to the chunk that caused the error:
 
-  > `! X You have set needs_trans = TRUE on a chunk with UTF-8 text (likely French text). You most likely forgot to set needs_trans = FALSE in the header after pasting the translated French into the chunk:`
+  > ✖`You have set needs_trans = TRUE on a chunk with UTF-8 text (likely French text). You most likely forgot to set needs_trans = FALSE in the header after pasting the translated French into the chunk:`
   > ````{verbatim}
   > ```{r chap01-para-1-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
   > Quelques textes en français
@@ -434,7 +438,7 @@ There is extensive error checking, with attempts made to encapsulate issues into
 
 - forgetting `needs_trans` altogether on a chunk that is labeled as French (has a label ending in **-fr**). The *code modified* tag here means that the intermediary ***Rmd*** file created by knitr was modified so that the compilation will work. The original ***Rmd*** file was not actually modified. You will have to add the `needs_trans = TRUE` tag manually to get rid of this warning:
 
-  > `needs_trans = TRUE on line 64 in file 01-chap1.Rmd is missing for this French chunk and has been added automatically:`
+  > ⚠`needs_trans = TRUE on line 64 in file 01-chap1.Rmd is missing for this French chunk and has been added automatically:`
   > ````{verbatim}
   > ```{r chap01-para-4-fr, eval = fr(), results = 'asis'}  -->
   > ```
@@ -444,8 +448,16 @@ There is extensive error checking, with attempts made to encapsulate issues into
 
 - not using the correct chunk name format for French chunks (here the **fr** is left off the end of the chunk name). Note that chunks are determined to be French by a match of `eval = fr()` in the chunk variables list. In the following example the `-fr` has been left off the end of the chunk name `chap01-para-4`:
 
-  > `! Chunk name on line 64 in file 01-chap1.Rmd is not of correct format for French chunks (because it contains eval = fr()). The name does not match the regular expression which is ^\S+-fr$:`
+  > ⚠`Chunk name on line 64 in file 01-chap1.Rmd is not of correct format for French chunks (because it contains eval = fr()). The name does not match the regular expression which is ^\S+-fr$:`
   > ````{verbatim}
   > ```{r chap01-para-4, eval = fr(), results = 'asis', needs_trans = TRUE}
   > ```
+  > ````
+
+- accidentally adding a `needs_trans` option in the chunk variable list for an English chunk:
+
+  > ⚠`needs_trans on line 5 in file 03-chap3.Rmd is not allowed for English chunks and has been removed automatically:`
+  > ````{verbatim}
+  > ```{r chap03-para-1-en, eval = !fr(), results = 'asis', needs_trans = FALSE}  -->
+  > ```{r chap03-para-1-en, eval = !fr(), results = 'asis'} (code modified) 
   > ````
