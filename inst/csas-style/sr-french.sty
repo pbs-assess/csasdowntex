@@ -716,3 +716,16 @@ DFO Can.\ Sci.\ Advis.\ Sec.\ Sci.\ Resp.
 %   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
 %   {\par}
 % % END-PANDOC-BEFORE-3.1.7
+
+%% ------------------------------------------------------------------------------
+%% Allows a box to be drawn around paragraphs with verbatim text (listing)
+%% Used for tagging paragraphs that need translation
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\newsavebox{\userinput}
+%% ------------------------------------------------------------------------------
