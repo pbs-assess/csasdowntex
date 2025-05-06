@@ -39,15 +39,17 @@
 #' @importFrom knitr all_patterns
 catize <- function(str){
 
-  # `pattern` is the official knitr regexp, see $md section,
-  # ..$ inline.code: chr "`r[ #]([^`]+)\\s*`" line here:
+  # `pattern` is close to the official knitr regexp,
+  #  knitr::all_patterns$md$inline.code
+  #
+  # See this page:
   # https://rdrr.io/cran/knitr/man/knit_patterns.html
-  #pattern <- "`r[ #][^`]+\\s*`"
+  #
   # Added lookahead and lookbehind to make sure the r inline code chunk is
   # not surrounded by double backticks. If it is, it is meant to be verbatim
   # in the output document instead of evaluated as code
   pattern <- "(?<!`` )`r[ #][^`]+\\s*`(?! ``.*$)"
-  #knitr::all_patterns$tex$inline.code
+  # knitr::all_patterns$md$inline.code
   txt <- str_split(str, pattern)[[1]]
   code <- str_extract_all(str, pattern)[[1]]
   if(!length(code)){
