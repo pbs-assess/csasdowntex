@@ -7,7 +7,7 @@
 ```{r para-chap01-1-en, eval = !fr(), results = 'asis'}
 cat("The context section must give the readers a clear idea of the issue being addressed and of the history of how the need for this process came about (e.g., the rationale for using the Science Response Process in this specific case).
     
-To create a fully french document, you need a chunk like this one for each paragraph or full section of text.")
+To create a fully french document, you need a chunk like this one for each paragraph or full section of text. (Need at least one reference - @francis2011)")
 ```
 ```{r para-chap01-1-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
 cat("(This is where you place the French translation of the paragraph. Once you do, set needs_trans to FALSE in the chunk header) La section sur le contexte doit donner aux lecteurs une idée claire de la question traitée et de l'historique de la nécessité de ce processus (par exemple, la justification de l'utilisation du processus d'intervention scientifique dans ce cas précis).")
