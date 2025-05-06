@@ -2,7 +2,7 @@
 % Please edit documentation in R/kable-extra-non-exports.R
 \name{pdfTable_new_header_generator}
 \alias{pdfTable_new_header_generator}
-\title{pdfTable_new_header_generator is a \link{kableExtra} non-exported function}
+\title{pdfTable_new_header_generator is a \link[kableExtra:kableExtra-package]{kableExtra::kableExtra} non-exported function}
 \usage{
 pdfTable_new_header_generator(
   header_df,

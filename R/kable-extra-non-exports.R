@@ -1,6 +1,6 @@
 # nocov start
 
-#' input_escape is a [kableExtra] non-exported function
+#' input_escape is a [kableExtra::kableExtra] non-exported function
 #'
 #' @description
 #' Included to pass R CMD check cleanly
@@ -14,7 +14,7 @@ input_escape <- function (x, latex_align){
   x <- linebreak(x, align = latex_align, double_escape = TRUE)
 }
 
-#' escape_latex2 is a [kableExtra] non-exported function
+#' escape_latex2 is a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -32,7 +32,7 @@ escape_latex2 <- function (x){
   x
 }
 
-#' pdfTable_new_header_generator is a [kableExtra] non-exported function
+#' pdfTable_new_header_generator is a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -128,7 +128,7 @@ pdfTable_new_header_generator <- function (header_df,
   return(c(header_text, cline))
 }
 
-#' ez_rep is a [kableExtra] non-exported function
+#' ez_rep is a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -145,7 +145,7 @@ ez_rep <- function (x, n) {
   return(x)
 }
 
-#' latex_color is a [kableExtra] non-exported function
+#' latex_color is a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -164,7 +164,7 @@ latex_color <- function (colors, escape = TRUE) {
   }
 }
 
-#' latex_color_ is a [kableExtra] non-exported function
+#' latex_color_ is a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -184,7 +184,7 @@ latex_color_ <- function (color) {
   }
 }
 
-#' latex_color__ is a [kableExtra] non-exported function
+#' latex_color__ is a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -203,7 +203,7 @@ latex_color__ <- function (color) {
     return(paste0("[HTML]{", color, "}"))
   }
 }
-#' solve_enc s a [kableExtra] non-exported function
+#' solve_enc s a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -223,7 +223,7 @@ solve_enc <- function (x){
   return(out)
 }
 
-#' standardize_header_input s a [kableExtra] non-exported function
+#' standardize_header_input s a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -245,7 +245,7 @@ standardize_header_input <- function (header) {
                     row.names = NULL, stringsAsFactors = F))
 }
 
-#' standardize_header_input s a [kableExtra] non-exported function
+#' standardize_header_input s a [kableExtra::kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description

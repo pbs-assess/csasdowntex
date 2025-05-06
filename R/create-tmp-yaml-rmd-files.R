@@ -35,7 +35,7 @@
 #'
 #' @keywords internal
 #'
-#' @param yaml_fn The [bookdown] YAML file name, by default is "_bookdown.yml"
+#' @param yaml_fn The [bookdown::bookdown] YAML file name, by default is "_bookdown.yml"
 #' @param verbose Logical. If `TRUE`, print messages
 #'
 #' @importFrom purrr walk2

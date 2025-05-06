@@ -10,7 +10,7 @@
 #' @param yaml_fn The YAML file name. The default is '_bookdown.yml' for
 #' @param verbose Logical. If `TRUE`, print messages
 #'
-#' @return The book filename (typically index.Rmd) for [bookdown]
+#' @return The book filename (typically index.Rmd) for [bookdown::bookdown]
 #' @importFrom stringr str_extract_all
 get_index_filename <- function(yaml_fn = "_bookdown.yml",
                                verbose = FALSE){

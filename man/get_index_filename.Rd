@@ -12,7 +12,7 @@ get_index_filename(yaml_fn = "_bookdown.yml", verbose = FALSE)
 \item{verbose}{Logical. If \code{TRUE}, print messages}
 }
 \value{
-The book filename (typically index.Rmd) for \link{bookdown}
+The book filename (typically index.Rmd) for \link[bookdown:bookdown-package]{bookdown::bookdown}
 }
 \description{
 Extract the index filename from the YAML file (usually index.Rmd)
