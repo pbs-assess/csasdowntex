@@ -44,7 +44,7 @@ test_that("csasdown::render generates the PDF of the techreport in French", {
     csasdown::render(suppress_warnings = TRUE)
   )
   expect_true(file.exists(file.path(testing_path, "_book",
-                                    "techreport-french.pdf")))
+    "techreport-french.pdf")))
 })
 
 
