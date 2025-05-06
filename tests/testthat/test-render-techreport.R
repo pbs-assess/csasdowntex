@@ -37,6 +37,13 @@ test_that("csasdown::render generates the .docx of the techreport", {
 
 # ----------------------------------------------------
 # Render the PDF techreport in French
+# test_that("csasdown::render generates the PDF of the techreport in French", {
+#   csasdown::set_french(val = TRUE)
+#   csasdown:::set_render_type(doc_type = "pdf")
+#   csasdown::render(suppress_warnings = TRUE)
+#   expect_true(file.exists(file.path(testing_path, "_book",
+#     "techreport.pdf")))
+# })
 test_that("csasdown::render generates the PDF of the techreport in French", {
   csasdown::set_french(val = TRUE)
   csasdown:::set_render_type(doc_type = "pdf")
@@ -44,7 +51,7 @@ test_that("csasdown::render generates the PDF of the techreport in French", {
     bookdown::render_book("index.Rmd") # TODO csasdown::render() causing TeX error!?
   )
   expect_true(file.exists(file.path(testing_path, "_book",
-    "techreport.pdf")))
+                                    "techreport.pdf")))
 })
 
 
