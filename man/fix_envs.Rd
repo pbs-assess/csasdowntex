@@ -10,7 +10,8 @@ fix_envs(
   prepub = FALSE,
   highlight = "tango",
   include_section_nums = TRUE,
-  fix_ref_section_name = FALSE
+  fix_ref_section_name = FALSE,
+  ...
 )
 }
 \arguments{
