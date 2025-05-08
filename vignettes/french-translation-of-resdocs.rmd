@@ -242,7 +242,7 @@ One reason for changing the language manually is during figure or table developm
 
 **Notes:**
 
-- if this option has not been set yet, as in a new R session, the `csasdown::fr()` function will return `FALSE` which means that English is the compilation language by default. Your functions sill work even if the `french` option has not been set.
+- if this option has not been set yet, as in a new R session, the `csasdown::fr()` function will return `FALSE` which means that English is the compilation language by default. Your functions will still work even if the `french` option has not been set.
 
 - The `french` option is set by the code to whatever the YAML value has been set to when you compile a document, and will override any value you set manually previously.
 
