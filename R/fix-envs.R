@@ -22,7 +22,8 @@ fix_envs <- function(x,
                      prepub = FALSE,
                      highlight = "tango",
                      include_section_nums = TRUE,
-                     fix_ref_section_name = FALSE) {
+                     fix_ref_section_name = FALSE,
+                     ...) {
 
   # fix equations:
   x <- gsub("^\\\\\\[$", "\\\\begin{equation}", x)
@@ -170,27 +171,6 @@ fix_envs <- function(x,
   # is this a true figure with a caption in Pandoc style?
   all_include_graphics <-
     all_include_graphics[grep("\\\\centering", x[all_include_graphics])]
-
-  if (identical(length(fig_labels), length(all_include_graphics))) {
-    for (i in seq_along(all_include_graphics)) {
-      x[all_include_graphics[i]] <-
-        gsub(
-          "(\\\\includegraphics\\[(.*?)\\]\\{(.*?)\\})",
-          paste0("\\\\pdftooltip{\\1}{", "Figure \\\\ref{fig:", fig_labels[i], "}}"),
-          x[all_include_graphics[i]]
-        )
-    }
-  } else {
-    # nocov start
-    alert("The number of detected figure captions did not match the number of ",
-          "detected figures. Reverting to unnumbered alternative text figures.")
-    x <- gsub(
-      "(\\\\includegraphics\\[(.*?)\\]\\{(.*?)\\})",
-      "\\\\pdftooltip{\\1}{Figure}", x
-    )
-    # nocov end
-  }
-  # ----------------------------------------------------------------------
 
   regexs <- c(
     "^\\\\CHAPTER\\*\\{R\\p{L}F\\p{L}RENCES", # English or French
@@ -417,6 +397,9 @@ fix_envs <- function(x,
   # added. This should not affect other parts of the build as it is a simple
   # regular expression replace
   x <- gsub("midrule\\\\ +", "midrule", x)
+
+  # Tag the figures in the PDF and add alternative text ----
+  x <- post_process_add_alt_text(x, ...)
 
   x
 }
