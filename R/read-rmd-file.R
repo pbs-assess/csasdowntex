@@ -43,6 +43,9 @@ read_rmd_file <- function(fn, src_fn = "unknown"){
       fn <- fn_ext1
     }
   }
+  if(!file.exists(fn)){
+    bail("The file '", fn, "' does not exist.")
+  }
   lines <- readLines(fn)
   if(!length(lines)){
     return("")
