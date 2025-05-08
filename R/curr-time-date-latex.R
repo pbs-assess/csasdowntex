@@ -1,5 +1,6 @@
 #' Create a time and date string for the title page of the doc
 #'
+#' @keywords internal
 #' @param testday A test string in the format e.g. "May 02" or "July 1"
 #'
 #' @return A string with the nice date and time in LaTeX form
