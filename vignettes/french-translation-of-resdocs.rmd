@@ -10,7 +10,7 @@ output:
 header-includes: 
   - \usepackage{fontspec}
   - \setmainfont[Ligatures=TeX]{FreeSerif}
-date: "This document was created on `r curr_time_date()`"
+date: "This document was created on `r csasdown:::curr_time_date()`"
 vignette: >
   %\VignetteIndexEntry{Translating csasdown documents from English to French}
   %\VignetteEngine{knitr::rmarkdown}
