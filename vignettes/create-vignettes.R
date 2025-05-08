@@ -10,6 +10,4 @@ file.copy(dir("doc", full.names = TRUE),
           overwrite = TRUE)
 devtools::install(root_dir)
 
-# You may have to run this manually after the script completes. For
-# an unknown reason it doesn't launch the HTML page on the browser
-utils::browseVignettes("csasdown")
+# Go to the csasdown/doc directory and the vignette PDFs are there
