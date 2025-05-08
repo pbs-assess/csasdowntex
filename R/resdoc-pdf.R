@@ -120,7 +120,8 @@ resdoc_pdf <- function(toc = TRUE,
       highlight = highlight,
       include_section_nums = include_section_nums,
       include_abstract = TRUE,
-      fix_ref_section_name = TRUE
+      fix_ref_section_name = TRUE,
+      ...
     )
   })
   on.exit(options(bookdown.post.late = old_opt))
