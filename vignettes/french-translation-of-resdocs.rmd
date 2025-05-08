@@ -441,7 +441,7 @@ In this case, a file called **external-rmd-en.rmd** will be read in and the Rmar
 
 - Inclusion of the *.Rmd* or *.rmd* extensions in the filename is optional. If you leave it off, both will be searched for by the code.
 
-- triple-backtick code chunks are not allowed in the external Rmarkdown files
+- triple-backtick code chunks are not allowed in the external Rmarkdown files.
 
 - If you intend on creating a French document, you must create a secondary file as well containing the French translation of the original file. The chunk to read that in looks like the following for this example. Note the different chunk name and filename with the `-fr` ending instead of the `-en`:
 
