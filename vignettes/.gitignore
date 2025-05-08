@@ -1,0 +1,6 @@
+*.html
+*.R
+*.tex
+*.log
+*.pdf
+!create-vignettes.R

@@ -101,7 +101,7 @@ validate_chunk_headers <- function(rmd_files,
                  " in file ",
                  fn_color(gsub("^tmp-(\\S+)$", "\\1", fn)), " is not of ",
                  "correct format for French chunks (because it contains ",
-                 csas_color("`eval = !fr()`"), " ). The name does not match ",
+                 csas_color("`eval = fr()`"), " ). The name does not match ",
                  "the regular expression which is ",
                  csas_color(fr_chunk_regex), ":\n",
                  csas_color(chunk_head))

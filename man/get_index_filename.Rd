@@ -18,7 +18,7 @@ The book filename (typically index.Rmd) for \link[bookdown:bookdown-package]{boo
 Extract the index filename from the YAML file (usually index.Rmd)
 }
 \details{
-\code{index_file} is the code is the "skeleton.Rmd" file, which is called
+\code{index_file} is the code in the "skeleton.Rmd" file, which is called
 'index.Rmd' by default in a project. It is found in the bookdown YAML file,
 \code{yaml_fn}
 }

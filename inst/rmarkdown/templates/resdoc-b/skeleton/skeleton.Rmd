@@ -29,7 +29,8 @@ region: "Pacific Region"
 french_region: "Région du Pacifique"
 isbn: "978-0-660-38322-4"
 cat_no: "Fs70-6/2021-012E-PDF"
-citation_other_language: "Last, F.M. et Smith, A.B. Title Here (*Latin Species Name*). DFO Secr. can. des avis sci. du MPO. Doc. de rech 2019/nnn. iv + 13 p."
+citation_english: "Last, F.M. and Smith, A.B. 2025. Title Here (Latin Species Name). DFO Can. Sci. Advis. Sec. Res. Doc. 2025/nnn. iv + 13 p."
+citation_other_language: "Last, F.M. et Smith, A.B. 2025. Titre ici (*nom de l'espèce en latin*). DFO Secr. can. des avis sci. du MPO. Doc. de rech 2025/nnn. iv + 13 p."
 
 abstract: |
   Here is the abstract text. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

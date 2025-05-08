@@ -8,5 +8,10 @@ inst/rmarkdown/templates/thesis/skeleton/_book/*
 inst/rmarkdown/templates/thesis/skeleton/_bookdown_files/*
 ~$*.doc*
 
+vignettes/*.html
+
 .bash_history
 .rstudio
+inst/doc
+/doc/
+/Meta/
