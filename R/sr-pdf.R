@@ -68,7 +68,8 @@ sr_pdf <- function(latex_engine = "pdflatex",
       x = x,
       prepub = prepub,
       highlight = highlight,
-      include_abstract = FALSE
+      include_abstract = FALSE,
+      ...
     )
   })
 

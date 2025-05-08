@@ -75,7 +75,8 @@ techreport_pdf <- function(latex_engine = "pdflatex",
   options(bookdown.post.latex = function(x) {
     fix_envs(
       x = x,
-      highlight = highlight
+      highlight = highlight,
+      ...
     )
   })
   on.exit(options(bookdown.post.late = old_opt))
