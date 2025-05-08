@@ -12,13 +12,13 @@ get_index_filename(yaml_fn = "_bookdown.yml", verbose = FALSE)
 \item{verbose}{Logical. If \code{TRUE}, print messages}
 }
 \value{
-The book filename (typically index.Rmd) for \link{bookdown}
+The book filename (typically "index.Rmd") for \link{bookdown}
 }
 \description{
 Extract the index filename from the YAML file (usually index.Rmd)
 }
 \details{
-\code{index_file} is the code is the "skeleton.Rmd" file, which is called
+\code{index_file} is the code in the "skeleton.Rmd" file, which is called
 'index.Rmd' by default in a project. It is found in the bookdown YAML file,
 \code{yaml_fn}
 }
