@@ -153,7 +153,7 @@ fsar_plot_base(in.df, "English")
 
 [Provide values and trends for the stock (as applicable). Use as many indicators as relevant to providing advice for decision-making.]
 
-#### **Current** Status
+#### Current Status
 
 [Mandatory. Indicate stock status relative to its reference point(s) or state status is unknown if there are no reference points.]
 

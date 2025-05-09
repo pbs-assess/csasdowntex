@@ -135,7 +135,7 @@ render_sar <- function(...) {
                   'E-Mail:', x$email, "\\",
                   'Internet address: [www.dfo-mpo.gc.ca/csas-sccs/](www.dfo-mpo.gc.ca/csas-sccs/)\n',
                   'ISSN xxxx-xxxx\\',
-                  'ISBN 978-0-660-xxxxx-x&#9;Cat. No. Fs70-6/2025-nnnE-PDF\\',
+                  paste0('ISBN 978-0-660-xxxxx-x&#9;Cat. No. Fs70-6/', x$report_year, '-nnnE-PDF\\'),
                   '© His Majesty the King in Right of Canada, as represented by the Minister of the\\
                   Department of Fisheries and Oceans,', x$report_year, "\n",
                   'This report is published under the [Open Government Licence - Canada](https://open.canada.ca/en/open-government-licence-canada)\n',

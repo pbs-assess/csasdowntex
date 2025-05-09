@@ -21,12 +21,13 @@ Authors:
   \item Matthew H. Grinnell
   \item Daniel Ricard
   \item Rowan Haigh (Contributions to TeX .sty files)
+  \item Meghan Burton (Landscape pages and tables)
+  \item Paul M. Regular
+  \item Jillian C. Dunic
 }
 
 Other contributors:
 \itemize{
-  \item Meghan Burton (Landscape pages and tables) [contributor]
-  \item Paul M. Regular [contributor]
   \item Chester Ismay (Development of thesisdown) [contributor]
   \item Nick Solomon (Development of thesisdown) [contributor]
   \item Ben Marwick (Development of huskydown) [contributor]
