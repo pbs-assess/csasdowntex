@@ -12,6 +12,7 @@ fsar_word <- function(...) {
   # file <- if (fr()) "RES2021-fra-content.docx" else "RES2021-eng-content.docx"
   file <- "fsar-template.docx"
   base <- word_document2(...,
+                         number_sections = FALSE,
                          reference_docx = system.file("csas-docx",
                                                       file,
                                                       package = "csasdown"
@@ -39,6 +40,7 @@ fsar_word2 <- function(...) {
   file <- "fsar-template.docx"
   base <- officedown::rdocx_document(...,
                                      base_format = "bookdown::word_document2",
+                                     number_sections = FALSE,
                                      tables = list(
                                        style = "Compact", layout = "autofit", width = 1,
                                        caption = list(
