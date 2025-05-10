@@ -16,8 +16,7 @@ test_that("read_rmd_file() works", {
 
   # -----------------------------------------------------------------------------
   expect_error(csasdown:::read_rmd_file("nonexistent-file.Rmd"),
-               paste0("File \\S+ does not exist when trying ",
-                      "to import from the file"))
+               "The file 'nonexistent-file.Rmd' does not exist.")
 
   # -----------------------------------------------------------------------------
   # expect_identical(csasdown:::read_rmd_file("empty-file.Rmd"), "")

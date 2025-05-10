@@ -94,3 +94,4 @@ RoxygenNote: 7.3.2
 SystemRequirements: pandoc (>= 1.18) - http://pandoc.org
 Config/testthat/parallel: true
 Config/testthat/edition: 2
+VignetteBuilder: knitr

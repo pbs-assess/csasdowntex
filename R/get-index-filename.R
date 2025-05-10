@@ -1,7 +1,7 @@
 #' Extract the index filename from the YAML file (usually index.Rmd)
 #'
 #' @details
-#' `index_file` is the code is the "skeleton.Rmd" file, which is called
+#' `index_file` is the code in the "skeleton.Rmd" file, which is called
 #' 'index.Rmd' by default in a project. It is found in the bookdown YAML file,
 #' `yaml_fn`
 #'
@@ -10,7 +10,7 @@
 #' @param yaml_fn The YAML file name. The default is '_bookdown.yml' for
 #' @param verbose Logical. If `TRUE`, print messages
 #'
-#' @return The book filename (typically index.Rmd) for [bookdown]
+#' @return The book filename (typically "index.Rmd") for [bookdown]
 #' @importFrom stringr str_extract_all
 get_index_filename <- function(yaml_fn = "_bookdown.yml",
                                verbose = FALSE){

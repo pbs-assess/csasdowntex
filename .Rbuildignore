@@ -15,3 +15,5 @@
 ^\.github$
 ^data-raw$
 ^docker
+^doc$
+^Meta$
