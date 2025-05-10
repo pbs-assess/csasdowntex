@@ -1,10 +1,10 @@
 ---
 report_title: "[Publication Title]"
 report_title_short: "[Short Publication Title]"
-report_year: "2024"
-release_month: "January"
+report_year: "2025"
+release_month: "May"
 report_number: "XXX"
-meeting_date: "January 25, 2024"
+meeting_date: "May 9, 2025"
 region: "Region Name"
 email: "email@csa-email.com"
 csa_address: "CSA Address goes here"
@@ -17,7 +17,7 @@ context: |
   \
   [See Guidance Document for examples of additional information to provide in the Context section.]
 output:
- csasdown::fsar_word
+ csasdown::fsar_word2
 link-citations: false
 bibliography: bib/refs.bib
 csl: csl/csas.csl
