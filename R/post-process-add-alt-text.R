@@ -27,12 +27,12 @@ post_process_add_alt_text <- function(x,
                                       knitr_figures_dir = NULL,
                                       ...){
 
-  figures_dir <- figures_dir %||% "image-files"
+  figures_dir <- figures_dir %||% "figure"
   accessible_pdf <- accessible_pdf %||% FALSE
-  title_page_image <- title_page_image %||% file.path(figures_dir,
-                                                      "hake-line-drawing.png")
-  title_page_image_width_cm <- title_page_image_width_cm %||% 12
-  knitr_figures_dir <- knitr_figures_dir %||% "knitr-figs"
+  #title_page_image <- title_page_image %||% file.path(figures_dir,
+  #                                                    "hake-line-drawing.png")
+  #title_page_image_width_cm <- title_page_image_width_cm %||% 12
+  knitr_figures_dir <- knitr_figures_dir %||% "knitr-figs-pdf"
 
   if(!accessible_pdf){
     return(x)
@@ -77,7 +77,7 @@ post_process_add_alt_text <- function(x,
   #                             title_page_image,
   #                             "\\}")
   #ind_title_page_fig <- grep(pat_title_page_fig, x)
-browser()
+
   pat_all_figs <- paste0("\\\\includegraphics")
   inds_all_figs <- grep(pat_all_figs, x)
   #inds_all_figs <- inds_all_figs[inds_all_figs != ind_title_page_fig]
@@ -103,8 +103,8 @@ browser()
   mid_pat <- ifelse(substr(knitr_figures_dir,
                            nchar(knitr_figures_dir),
                            nchar(knitr_figures_dir)) == "/",
-                    "(.*?)-fig-[0-9]+\\} *$",
-                    "/(.*?)-fig-[0-9]+\\} *$")
+                    "(.*?)-[0-9]+\\} *$",
+                    "/(.*?)-[0-9]+\\} *$")
   knitr_labels <- gsub(paste0(".*\\{",
                               knitr_figures_dir,
                               mid_pat),
@@ -138,7 +138,7 @@ browser()
   all_fig_labels[knitr_which] <- knitr_labels
   all_fig_labels[file_which] <- file_based_labels
 
-  all_fig_labels <- paste0(all_fig_labels, "-fig")
+  #all_fig_labels <- paste0(all_fig_labels, "-fig")
 
   # Inject the alt text and accompanying accessibility tags
   for(label in seq_along(all_fig_labels)){

@@ -2,8 +2,11 @@
 %%  Science Advisory Secretariat Research Documents.
 \usepackage[english]{babel}
 
-
-
+% Needed for the `\KOMAoptions` calls that are used to change a page from
+% portrait to landscape. See the R function
+% `hake::post_process_landscape_tables()` which is where it is injected into
+% the TEX file
+\usepackage[usegeometry]{typearea}
 
 %% Move the footer position flush to the left margin (default is indented a bit)
 \usepackage[flushmargin, bottom]{footmisc}

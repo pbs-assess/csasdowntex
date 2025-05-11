@@ -51,37 +51,49 @@ header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 show_continued_text: true
 output:
  csasdown::resdoc_pdf:
+   # `lualatex` is required for `accessibile_pdf` to work
+   latex_engine: lualatex
    # If `true`, alternative figure text and figure tags are added for
    # PDF web accessibility compliance
    accessible_pdf: true
+   # This value will be the return value for `fr()` in your code
    french: false
-   # copy_sty is a toggle to copy the style file from the csasdown package every time you compile
-   # the document. If false, any changes you have made to the style file in your project
-   # will remain between compilations. If true, your changes will be lost when you compile
+   # `copy_sty` is a toggle to copy the style file from the csasdown package
+   # every time you compile the document. If false, any changes you have made
+   # to the style file in your project will remain between compilations.
+   # If true, your changes will be lost when you compile
    copy_sty: true
-   # line_nums is a toggle to show line numbers on the left side of the page. 
+   # line_nums is a toggle to show line numbers on the left side of the page.
    line_nums: true
    # line_nums_mod represents showing every Nth line if line_nums is true
    line_nums_mod: 1
-   # lot_lof is a toggle to show/not show the lists of tables and figures at the
-   # beginning of the document
+   # lot_lof is a toggle to show/not show the lists of tables and figures at
+   # the beginning of the document
    lot_lof: false
-   # draft_watermark is a toggle to show/not show a DRAFT watermark across every page
+   # draft_watermark is a toggle to show/not show a DRAFT watermark across
+   # every page
    draft_watermark: false
-   # include_section_nums, if true includes section numbering in the document body,
-   # if false, no numbering in the document budy but the TOC will still show numbering
+   # include_section_nums, if true includes section numbering in the
+   # document body, if false, no numbering in the document budy but the TOC
+   # will still show numbering
    include_section_nums: true
-   # highlight is the theme to use for code output. Must be one of the list given by:
+   # highlight is the theme to use for code output. Must be one of the list
+   # given by:
+   #
    # pandoc --list-highlight-styles
+   #
    # which are:
    # pygments, tango, espresso, zenburn, kate, monochrome, breezedark, haddock
-   # or the name of a custom *.latex file which is most easily made by copying one from 
-   # the csasdown library 'themes' directory, this directory on your machine:
+   # or the name of a custom *.latex file which is most easily made by copying
+   # one from the csasdown library 'themes' directory, this directory on your
+   # machine:
+   #
    # file.path(.libPaths(), "csasdown", "themes")
+   #
    # to your working directory (the one containing index.Rmd)
-   # To change the foreground text color, change the RGB value in the line containing
-   # 'DefineVerbatimEnvironment'
-   # To change background color, change the RGB values in the line containing 'shadecolor'
+   # To change the foreground text color, change the RGB value in the line
+   # containing 'DefineVerbatimEnvironment'. To change background color,
+   # change the RGB values in the line containing 'shadecolor'
    highlight: tango
 # ------------
 # End of options to set

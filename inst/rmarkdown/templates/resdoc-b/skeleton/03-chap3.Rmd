@@ -88,6 +88,8 @@ cat("In the R chunk below, we will load in a picture stored as `uw.png` in our m
 
 (ref:fig-example-fig-fr) Ma légende.
 
+(ref:fig-example-fig-alt) This is the alternative text for this figure and is what will be used in tagging and read by the screen reader
+
 ```{r example-fig, fig.cap = ifelse(fr(), "(ref:fig-example-fig-fr)", "(ref:fig-example-fig-en)")}
 plot(1:10, xlab = en2fr("Index"), ylab = en2fr("Index"))
 ```
