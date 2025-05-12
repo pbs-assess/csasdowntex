@@ -25,8 +25,7 @@
 #' @export
 #'
 #' @examples
-#' library(hake)
-#' k <- extract_chunks(letters, c(2, 10), c(9, 12))
+#' k <- post_process_extract_chunks(letters, c(2, 10), c(9, 12))
 post_process_extract_chunks <- function(x, beg_inds, end_inds){
 
   if(!length(beg_inds)){
@@ -36,6 +35,26 @@ post_process_extract_chunks <- function(x, beg_inds, end_inds){
   if(length(beg_inds) != length(end_inds)){
     stop("`beg_inds` and `end_inds` must be the same length")
   }
+
+  # Check that there are no overlapping chunks
+  if(length(beg_inds) > 1){
+    if(beg_inds[1] > end_inds[1]){
+      bail("In `post_process_extract_chunks()`, The first beginning chunk ",
+           "index is greater than the first end chunk index.\n",
+           "`beg_inds`: ", paste(beg_inds, collapse = " "),
+           "\n`end_inds`: ", paste(end_inds, collapse = " "),
+           "\n")
+    }
+    for(i in 2:length(beg_inds)){
+      if(end_inds[i - 1] >= beg_inds[i]){
+        bail("In `post_process_extract_chunks()`, overlapping chunks have ",
+        "been defined.\n`beg_inds`: ", paste(beg_inds, collapse = " "),
+        "\n`end_inds`: ", paste(end_inds, collapse = " "),
+        "\n")
+      }
+    }
+  }
+
   out <- list()
   out$between <- list()
   out$inbetween <- list()
@@ -54,8 +73,12 @@ post_process_extract_chunks <- function(x, beg_inds, end_inds){
 
   for(i in 1:(length(beg_inds) - 1)){
     out$between[[i]] <- x[beg_inds[i]:end_inds[i]]
-    out$inbetween[[i + !out$first]] <-
-      x[(end_inds[i] + 1):(beg_inds[i + 1] - 1)]
+    if(end_inds[i] + 1 == beg_inds[i + 1]){
+      out$inbetween[[i + as.numeric(!out$first)]] <- ""
+    }else{
+      out$inbetween[[i + as.numeric(!out$first)]] <-
+        x[(end_inds[i] + 1):(beg_inds[i + 1] - 1)]
+    }
   }
   out$between[[length(beg_inds)]] <-
     x[beg_inds[length(beg_inds)]:end_inds[length(beg_inds)]]
