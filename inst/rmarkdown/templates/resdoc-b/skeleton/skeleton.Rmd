@@ -149,7 +149,9 @@ opts_chunk$set(
 ```{r load-libraries, echo = FALSE, cache = FALSE, message = FALSE, results = 'hide', warning = FALSE}
 # add other packages you might need here
 library(dplyr)
+library(here)
 library(ggplot2)
+library(kableExtra)
 library(rosettafish)
 library(csasdown)
 
