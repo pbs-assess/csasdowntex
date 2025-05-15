@@ -6,8 +6,7 @@
 #'
 #' @return The modified Tex code, as a vector
 #' @export
-post_process_landscape_tables <- function(x,
-                                          ...){
+post_process_landscape_tables <- function(x, ...){
 
   # Add fancy landscape page type to landscape pages to remove the sideways
   # headers and footers, and add a page number at the bottom
@@ -18,6 +17,7 @@ post_process_landscape_tables <- function(x,
   }
 
   lst <- post_process_extract_chunks(x, lscape_inds, lscape_inds)
+
   # Replace the begin landscape line with the KOMA options lines
   lst$between <- map2(lst$between, lscape_inds, \(lscape_line, ind){
     # Extract font information
