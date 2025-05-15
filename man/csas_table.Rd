@@ -40,13 +40,13 @@ csas_table(
 \arguments{
 \item{x}{An R object, typically a matrix or data frame.}
 
-\item{format}{As defined by \code{\link[knitr:kable]{knitr::kable()}}.}
+\item{format}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
 
-\item{booktabs}{As defined by \code{\link[knitr:kable]{knitr::kable()}}.}
+\item{booktabs}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
 
-\item{linesep}{As defined by \code{\link[knitr:kable]{knitr::kable()}}.}
+\item{linesep}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
 
-\item{longtable}{As defined by \code{\link[knitr:kable]{knitr::kable()}}.}
+\item{longtable}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
 
 \item{font_size}{Font size in pts. If NULL, document font size is used.}
 
@@ -110,11 +110,11 @@ they are left unformatted by the year detection algorithm. As long as the
 columns are numeric, (\code{is.numeric() == TRUE}), formatting will be applied
 to these columns}
 
-\item{...}{Other arguments passed to \code{\link[knitr:kable]{knitr::kable()}} and
+\item{...}{Other arguments passed to \code{\link[kableExtra:kbl]{kableExtra::kbl()}} and
 kableExtra:::pdfTable_add_header_above()}
 }
 \description{
-This is a custom wrapper for \code{\link[knitr:kable]{knitr::kable()}} with some arguments set so that
+This is a custom wrapper for \code{\link[kableExtra:kbl]{kableExtra::kbl()}} with some arguments set so that
 the tables work with CSAS formatting in both LaTeX and Word documents.
 }
 \examples{

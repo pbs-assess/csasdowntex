@@ -16,34 +16,52 @@
 #' @export
 extract_label_from_figure_filename <- function(fn){
 
-  bd_lines <- readLines(here("doc/_bookdown.yml"))
-  bd_rmd_raw <- grep("\\.rmd", bd_lines, value = TRUE)
+  bd_lines <- readLines(here("_bookdown.yml"))
+  bd_rmd_raw <- grep("\\.[R|r]md", bd_lines, value = TRUE)
+
+  # Remove leading and trailing whitespace
+  bd <- trimws(bd_rmd_raw)
   # Remove commented-out lines (for speed)
-  bd <- gsub("^ *", "", bd_rmd_raw)
   if(length(grep("^#", bd))){
     bd <- bd[-grep("^#", bd)]
   }
-  fns <- gsub(".*([0-9]{3}\\-[a-zA-Z\\-]+\\.rmd).*", "\\1", bd)
-  fns <- here("doc", fns)
+  bd <- bd |>
+    # Remove escaped quotes
+    stringr::str_remove_all('\"') %>%
+    # Remove `rmd_files: [`
+    gsub("^rmd_files: \\[", "", .) %>%
+    # Remove closing `]` and commas
+    gsub("\\]$", "", .) %>%
+    gsub(",$", "", .)
+
+  fns <- here(bd)
 
   k <- map(fns, ~{
     rmd <- readLines(.x)
-    x <- grep(fn, rmd)
-    if(length(x)){
-      chunk_ind <- x
-      repeat{
-        if(length(grep("ref:[0-9a-zA-Z\\-]+", rmd[chunk_ind]))){
-          alt_text_label <- gsub(".* +([0-9a-zA-Z\\-]+)\\-fig.*",
-                                 "\\1",
-                                 rmd[chunk_ind])
-          return(alt_text_label)
-        }
-        chunk_ind <- chunk_ind - 1
-      }
+    inds <- grep(basename(fn), rmd)
+    if(!length(inds)){
+      return(NULL)
     }
+
+    # Find out which chunk the file was found included in
+    j <- map(inds, \(ind){
+      repeat{
+        ind <- ind - 1
+        pat <- "```\\{r +([0-9A-Za-z_-]+).*$"
+        label <- NULL
+        if(length(grep(pat, rmd[ind]))){
+          label <- gsub(pat, "\\1", rmd[ind])
+          return(label)
+        }
+        if(ind == 1){
+          return(NULL)
+        }
+      }
+    })
   })
+
   # Remove all NULLs from the list
   k[sapply(k, is.null)] <- NULL
 
-  k[[1]]
+  unlist(k[[1]])
 }

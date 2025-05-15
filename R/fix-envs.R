@@ -398,6 +398,9 @@ fix_envs <- function(x,
   # regular expression replace
   x <- gsub("midrule\\\\ +", "midrule", x)
 
+  # Inject landscape table code
+  x <- post_process_landscape_tables(x, ...)
+
   # Tag the figures in the PDF and add alternative text ----
   x <- post_process_add_alt_text(x, ...)
 

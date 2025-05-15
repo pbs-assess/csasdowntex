@@ -2,7 +2,7 @@
 % Please edit documentation in R/tables.R
 \name{add_extra_header}
 \alias{add_extra_header}
-\title{Adds an extra header to the top of a \code{\link[=csas_table]{csas_table()}}. Works for longpages.}
+\title{Adds an extra header to the top of a \code{\link[=csas_table]{csas_table()}}. Works for longtables.}
 \usage{
 add_extra_header(
   kable_input,
@@ -57,5 +57,5 @@ add_extra_header(
 See kableExtra:::pdfTable_add_header_above()
 }
 \description{
-Adds an extra header to the top of a \code{\link[=csas_table]{csas_table()}}. Works for longpages.
+Adds an extra header to the top of a \code{\link[=csas_table]{csas_table()}}. Works for longtables.
 }

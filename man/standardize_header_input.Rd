@@ -2,7 +2,7 @@
 % Please edit documentation in R/kable-extra-non-exports.R
 \name{standardize_header_input}
 \alias{standardize_header_input}
-\title{standardize_header_input s a \link{kableExtra} non-exported function}
+\title{standardize_header_input is a \link{kableExtra} non-exported function}
 \usage{
 standardize_header_input(header)
 }

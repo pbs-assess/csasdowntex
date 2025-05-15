@@ -29,15 +29,12 @@ post_process_add_alt_text <- function(x,
 
   figures_dir <- figures_dir %||% "figure"
   accessible_pdf <- accessible_pdf %||% FALSE
-  #title_page_image <- title_page_image %||% file.path(figures_dir,
-  #                                                    "hake-line-drawing.png")
-  #title_page_image_width_cm <- title_page_image_width_cm %||% 12
   knitr_figures_dir <- knitr_figures_dir %||% "knitr-figs-pdf"
 
   if(!accessible_pdf){
     return(x)
   }
-
+browser()
   # Inject the headers needed for the pdfmanagement-testphase package
   x <- c(
     "%",
@@ -52,9 +49,9 @@ post_process_add_alt_text <- function(x,
     "%",
     x)
 
-  # Inject anti-table tagging code to stop errors on captions in longtables
-  # captions in longtables will cause an error if the newest tagpdf
-  # (pdfmanagement-testphase) is used as of 2025 version of the package.)
+  # Inject anti-table tagging code to stop errors on captions in longtables.
+  # Captions in longtables will cause an error if the newest tagpdf
+  # (pdfmanagement-testphase) is used as of 2025 version of the package
   lt_inds <- grep("\\\\begin\\{longtable\\}", x)
   lt_inds <- c(1, lt_inds, length(x))
   y <- NULL
@@ -80,7 +77,7 @@ post_process_add_alt_text <- function(x,
 
   pat_all_figs <- paste0("\\\\includegraphics")
   inds_all_figs <- grep(pat_all_figs, x)
-  #inds_all_figs <- inds_all_figs[inds_all_figs != ind_title_page_fig]
+
   # Remove all lines starting with comment character
   comment_lines <- grep("^%", trimws(x[inds_all_figs]))
   if(length(comment_lines)){
@@ -111,12 +108,13 @@ post_process_add_alt_text <- function(x,
                        "\\1",
                        x[inds_knitr])
 
-  pat_fns <- ".*?([0-9a-zA-Z_-]+)\\}\\s*$"
-  file_fns_labels <- gsub(pat_fns, "\\1", x[inds_file])
+  pat_fns <- "^.*\\{([/0-9a-zA-Z_-]+)}\\s*$"
+  file_fns_labels <- gsub(pat_fns, "\\1", x[inds_file], perl = F)
 
-  file_based_labels <- map_chr(file_fns_labels, ~{
+  file_based_labels <- map(unique(file_fns_labels), ~{
     extract_label_from_figure_filename(.x)
-  })
+  }) |>
+    unlist()
 
   alt_text_knitr <- map_chr(knitr_labels, ~{
     extract_alt_text(.x)

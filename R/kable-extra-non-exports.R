@@ -223,7 +223,7 @@ solve_enc <- function (x){
   return(out)
 }
 
-#' standardize_header_input s a [kableExtra] non-exported function
+#' standardize_header_input is a [kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description
@@ -245,7 +245,7 @@ standardize_header_input <- function (header) {
                     row.names = NULL, stringsAsFactors = F))
 }
 
-#' standardize_header_input s a [kableExtra] non-exported function
+#' standardize_header_input is a [kableExtra] non-exported function
 #'
 #' @keywords internal
 #' @description

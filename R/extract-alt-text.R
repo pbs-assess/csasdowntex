@@ -45,21 +45,23 @@ extract_alt_text <- function(inp_str,
 
   fns <- here(bd)
 
-  alt_str <- paste0(inp_str, "-alt")
+  if(fr()){
+    alt_str <- paste0(inp_str, "-fr-alt")
+  }else{
+    alt_str <- paste0(inp_str, "-en-alt")
+  }
+
   k <- map(fns, ~{
     rmd <- readLines(.x)
     x <- grep(alt_str, rmd)
     if(length(x)){
-      if(!length(x)){
-        return("No alternative text defined for this figure")
-      }
       if(length(x) > 1){
-        stop("Alt. text label `", alt_str, "-alt` defined more than once in ",
+        bail("Alt. text label `", alt_str, "` defined more than once in ",
              "file `", .x, "`")
       }
       # Find all lines that belong in the alt text (there may be newlines
       # in between them in the source rmd file). Assuming that after the
-      # alt t5ext is done, it will be followed by either a blank line or
+      # alt text is done, it will be followed by either a blank line or
       # the start of a chunk (starts with ```), or the end-of-file
       start_ind <- x
       end_ind <- x
@@ -96,6 +98,8 @@ extract_alt_text <- function(inp_str,
 
       # Return a vector of the label and it's text
       alt_text
+    }else{
+      NULL
     }
   })
 
@@ -106,11 +110,11 @@ extract_alt_text <- function(inp_str,
 
   if(!length(k)){
     bail("Error retrieving an alternative text label. ",
-         "You must add a (ref:", inp_str, "-alt) with alternative text to ",
+         "You must add a (ref:", alt_str, ") with alternative text to ",
          "the document code.")
   }
   if(length(k) > 1){
-    bail("Error retrieving your alternative text label ", inp_str, "-alt. ",
+    bail("Error retrieving your alternative text label (ref:", alt_str, "). ",
          "There was more than one found in the code.")
   }
 
@@ -127,11 +131,38 @@ extract_alt_text <- function(inp_str,
   if(backtick_inds[1] == -1){
     backtick_inds <- NULL
   }
+
+  # Check for commas that haven't been escaped. They will cause tagpdf errors
+  # if not fixed. (?<!\\\\) is negative lookbehind which means that if a comma
+  # is not preceded by a double backslash, then replace the comma with \\,
+  # Note that for lookbehinds/lookaheads to work we must use perl = TRUE
+  comma_pat <- "(?<!\\\\)(\\,)"
+
+  grep_length <- length(grep(comma_pat, k, perl = TRUE))
+  if(grep_length){
+    if(grep_length == 1){
+      message <- "There was a comma "
+    }else{
+      message <- paste0("There were ", grep_length, " commas ")
+    }
+    bail(message, "found in the alt text entry for label `",
+         alt_str, "` You must re-write the alternative text without commas. ",
+         "This is a limitation of the tagpdf LaTeX package.\nThe text in ",
+         "question is:\n\n",
+         k, "\n")
+    # Remove the commas - was used when this was a warning (alert) instead, but
+    # the warning does not print to the screen so it is useless.
+    #k <- gsub(comma_pat, "", k, perl = TRUE)
+    # Replace with double-backslash. Note this leaves a backslash in the text
+    # and there's no way around it. I tried more or less backslashes and no dice
+    #k <- gsub(comma_pat, "\\\\\\1", k, perl = TRUE)
+  }
+
   if(!length(backtick_inds)){
     return(k)
   }
   if(length(backtick_inds) %% 2 != 0){
-    stop("There is an odd number of backticks in the text referred ",
+    bail("There is an odd number of backticks in the text referred ",
          "to by label ", inp_str, ". The text is:\n", k)
   }
 
@@ -150,7 +181,8 @@ extract_alt_text <- function(inp_str,
   end_inds <- backtick_inds[seq(2, length(backtick_inds), 2)]
   chunks <- str_sub(k, start_inds, end_inds)
 
-  # Evaluate the R chunks
+  # Evaluate the R chunks. This is needed so that inline R chunks found in
+  # alt text paragraphs are evaluated properly
   chunks <- map_chr(chunks, ~{
     # Remove `r and ` from the code
     x <- gsub("^`r", "", .x)
@@ -158,7 +190,7 @@ extract_alt_text <- function(inp_str,
     x <- gsub(" +", "", x)
     eval(parse(text = x))
   })
-  # Here we have chunks and chunks_non_r. We needd to find out which comes fist,
+  # Here we have chunks and chunks_non_r. We need to find out which comes fist,
   chunk_len <- max(length(chunks), length(chunks_non_r))
   length(chunks) <- chunk_len
   length(chunks_non_r) <- chunk_len

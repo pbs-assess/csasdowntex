@@ -586,7 +586,8 @@ bail <- function(...){
 #' @param ... Arguments that make up the message
 alert <- function(...){
   msg <- paste0(unlist(list(...)), collapse = "")
-  warning(warning_color(paste(symbol$warning, msg)), call. = FALSE)
+  warning(warning_color(paste(symbol$warning, msg)),
+          call. = FALSE)
 }
 
 #' Issue a notification

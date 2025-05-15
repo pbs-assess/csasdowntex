@@ -124,7 +124,7 @@ resdoc_pdf <- function(toc = TRUE,
       ...
     )
   })
-  on.exit(options(bookdown.post.late = old_opt))
+  on.exit(options(bookdown.post.latex = old_opt))
 
   base
 }

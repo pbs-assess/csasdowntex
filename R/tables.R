@@ -1,13 +1,13 @@
 #' Custom table for csasdown
 #'
-#' This is a custom wrapper for [knitr::kable()] with some arguments set so that
+#' This is a custom wrapper for [kableExtra::kbl()] with some arguments set so that
 #' the tables work with CSAS formatting in both LaTeX and Word documents.
 #'
 #' @param x An R object, typically a matrix or data frame.
-#' @param format As defined by [knitr::kable()].
-#' @param booktabs As defined by [knitr::kable()].
-#' @param linesep As defined by [knitr::kable()].
-#' @param longtable As defined by [knitr::kable()].
+#' @param format As defined by [kableExtra::kbl()].
+#' @param booktabs As defined by [kableExtra::kbl()].
+#' @param linesep As defined by [kableExtra::kbl()].
+#' @param longtable As defined by [kableExtra::kbl()].
 #' @param font_size Font size in pts. If NULL, document font size is used.
 #' @param bold_header Make headers bold. Logical
 #' @param repeat_header If landscape, repeat the header on subsequent pages?
@@ -25,7 +25,7 @@
 #' if `format` = "latex"
 #' @param extra_header character vector of extra headers to be placed above
 #' the headers
-#' @param ... Other arguments passed to [knitr::kable()] and
+#' @param ... Other arguments passed to [kableExtra::kbl()] and
 #' kableExtra:::pdfTable_add_header_above()
 #' @param ex_bold See `bold` in kableExtra:::pdfTable_add_header_above()
 #' @param ex_italic See `italic` in kableExtra:::pdfTable_add_header_above()
@@ -49,8 +49,7 @@
 #' columns are numeric, (`is.numeric() == TRUE`), formatting will be applied
 #' to these columns
 #'
-#' @importFrom knitr kable
-#' @importFrom kableExtra row_spec kable_styling landscape linebreak
+#' @importFrom kableExtra kbl row_spec kable_styling landscape linebreak
 #' @importFrom purrr map map2 map_chr map_lgl map_df
 #' @importFrom rlang `%||%`
 #' @examples
@@ -134,28 +133,26 @@ csas_table <- function(x,
       # Only use kableExtra if there are newlines
       col_names <- linebreak(col_names, align = col_names_align)
     }
-    k <- kable(x = x,
-               format = format,
-               booktabs = booktabs,
-               linesep = linesep,
-               longtable = longtable,
-               col.names = col_names,
-               escape = escape,
-               format.args = dec_format,
-               ...
+    k <- kbl(x = x,
+             format = format,
+             booktabs = booktabs,
+             linesep = linesep,
+             longtable = longtable,
+             col.names = col_names,
+             escape = escape,
+             format.args = dec_format,
+             ...
     )
-    suppressWarnings(k <- kable_styling(k, font_size = font_size))
   } else {
-    k <- kable(x = x,
-               format = format,
-               booktabs = booktabs,
-               linesep = linesep,
-               longtable = longtable,
-               escape = escape,
-               format.args = dec_format,
-               ...
+    k <- kbl(x = x,
+             format = format,
+             booktabs = booktabs,
+             linesep = linesep,
+             longtable = longtable,
+             escape = escape,
+             format.args = dec_format,
+             ...
     )
-    suppressWarnings(k <- kable_styling(k, font_size = font_size))
   }
 
   if (bold_header) {
@@ -178,6 +175,7 @@ csas_table <- function(x,
       )
     )
   }
+
   suppressWarnings(k <- kable_styling(k, font_size = font_size))
   if (hold_position) {
     suppressWarnings(k <- kable_styling(k, latex_options = "hold_position"))
@@ -210,11 +208,17 @@ csas_table <- function(x,
   # Insert `Continued on next page ...` and
   # `... Continued from previous page` for latex
   if(!is.logical(show_continued_text)){
-    stop("The `show_continued_text` value is non-logical. If setting in ",
+    alert("The `show_continued_text` value is non-logical. If setting in ",
          "YAML, use `true` or `false`.")
   }
   if(format == "latex" && show_continued_text){
 
+    # Must use attributes like this because if you just use `k` and treat it
+    # like a character vector. the `Encoding()` function will return an
+    # un-editable vector with some 'UTF-8' and some 'unknown' which will break
+    # the `solve_enc()` function later on
+    attr_k <- attributes(k)
+    k_lines <- attr_k$kable_meta$contents
     k_lines <- strsplit(k, "\n")[[1]]
 
     # Add Continued on next page...
@@ -256,7 +260,8 @@ csas_table <- function(x,
     }
     k_lines_pre <- k_lines[1:j]
     k_lines_post <- k_lines[(j + 1):length(k_lines)]
-    if(getOption("french", default = FALSE)){
+
+    if(fr()){
       new_line_latex <- paste0("\\multicolumn{",
                                ncol(x),
                                "}{l}{\\textit{... Suite de la page pr\u00e9c\u00e9dente}} \\\\ \\hline")
@@ -267,15 +272,14 @@ csas_table <- function(x,
     }
     k_lines <- c(k_lines_pre, new_line_latex, k_lines_post)
 
-    k_lines_str <- paste(k_lines, collapse = " ")
-    attributes(k_lines_str) <- attributes(k)
-    k <- k_lines_str
+    attr_k$kable_meta$contents <- k_lines
+    attributes(k) <- attr_k
   }
 
   k
 }
 
-#' Adds an extra header to the top of a [csas_table()]. Works for longpages.
+#' Adds an extra header to the top of a [csas_table()]. Works for longtables.
 #'
 #' @param kable_input An R object, typically a matrix or data frame.
 #' @param header a vector of character strings to use for the extra header names
@@ -360,6 +364,7 @@ add_extra_header <- function(kable_input,
   } else {
     new_header <- new_header_split[1] # nocov
   }
+
   j <- utf8_inp <- solve_enc(kable_input)
   out <- stringr::str_replace_all(
     utf8_inp,

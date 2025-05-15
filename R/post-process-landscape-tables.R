@@ -31,7 +31,7 @@ post_process_landscape_tables <- function(x,
                       adj_line)
       adj_val <- as.numeric(adj_val)
       if(is.na(adj_val)){
-        stop("ADJUST TABLE macro on line ", adj_ind_in_x, " of the ",
+        bail("ADJUST TABLE macro on line ", adj_ind_in_x, " of the ",
              "Tex file is not of the correct format.\nLine with error:\n",
              adj_line, "\n\n",
              "Format:\n",
@@ -44,6 +44,7 @@ post_process_landscape_tables <- function(x,
     fnt_line <- gsub("^\\\\begin\\{landscape\\}\\\\begingroup(.*)$",
                      "\\1",
                      lscape_line)
+
     c("%",
       "% The following code was injected by",
       "% csasdown::post_process_landscape_tables()",
@@ -66,6 +67,10 @@ post_process_landscape_tables <- function(x,
 
   # Replace the \end{landscape] with the KOMA options lines
   # portrait mode
+  # If end{longtable} and end{group} are part of the same line as  the table
+  # itself, extract these out and create new lines for them after the table.
+  # Heavy tex editing
+
   lscape_endgroup_inds <- grep("\\\\endgroup\\{\\}", x)
   lscape_end_inds <- grep("\\\\end\\{landscape\\}", x)
   wch <- which((lscape_endgroup_inds + 1) %in% lscape_end_inds)

@@ -56,6 +56,9 @@ output:
    # If `true`, alternative figure text and figure tags are added for
    # PDF web accessibility compliance
    accessible_pdf: true
+   # The name of the directory containing pre-made figures such as png files
+   # that will be included using `include_graphics()`
+   figures_dir: figure
    # This value will be the return value for `fr()` in your code
    french: false
    # `copy_sty` is a toggle to copy the style file from the csasdown package
@@ -149,4 +152,7 @@ library(dplyr)
 library(ggplot2)
 library(rosettafish)
 library(csasdown)
+
+figures_dir <- here(rmarkdown::metadata$output$`csasdown::resdoc_pdf`$figures_dir)
+accessible_pdf <- rmarkdown::metadata$output$`csasdown::resdoc_pdf`$accessible_pdf
 ```
