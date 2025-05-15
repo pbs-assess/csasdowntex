@@ -32,13 +32,7 @@ rmd_file("parent-child-table-fr")
   Floats are things like tables and figures. -->
 
 ```{r chap03-para-2-en, eval = !fr(), results = 'asis'}
-cat("We can also create a link to the table by doing the following:
-Table \@ref(tab:inher).  If you go back to [Loading and exploring data] and
-look at the `kable` table, we can create a reference to this max delays table
-too: Table \@ref(tab:maxdelays). The addition of the `(\#tab:inher)` option
-to the end of the table caption allows us to then make a reference to
-Table `\@ref(tab:label)`. Note that this reference could appear anywhere
-throughout the document after the table has appeared.")
+cat("We can also create a link reference to the table by doing the following: Table `\@ref(tab:inher)`. Note that this reference can appear anywhere throughout the document as long as a knitr chunk with the label `inher` exists.")
 ```
 ```{r chap03-para-2-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap03-para-2-en>>
@@ -50,8 +44,8 @@ throughout the document after the table has appeared.")
 yrs <- 1:45
 ages <- 1:15
 widelong <- matrix(round(rnorm(length(yrs) * length(ages), 20), 4),
-                        nr = length(yrs),
-                        nc = length(ages),
+                        nrow = length(yrs),
+                        ncol = length(ages),
                    dimnames = list(year = yrs, age = ages))
 widelong_df <- data.frame(cbind(yrs, widelong))
 
@@ -63,7 +57,7 @@ if(fr()){
 # In landscape tables, you can change the font size if the table
 # is too large and overlaps the header and footer lines.
 csasdown::csas_table(widelong_df,
-                     col.names = c(en2fr("Year"), as.character(ages)),
+                     col.names = c(tr("Year"), as.character(ages)),
                      caption = cap,
                      format = "latex",
                      bold_header = FALSE,
@@ -75,15 +69,7 @@ csasdown::csas_table(widelong_df,
 
 ```{r chap03-para-3-en, eval = !fr(), results = 'asis'}
 cat("## FIGURES
-If your report has a lot of figures, _R Markdown_ might behave better for you
-than that other word processor. One perk is that it will automatically number
-the figures accordingly in each chapter. You'll also be able to create a label
-for each figure, add a caption, and then reference the figure in a way similar
-to what we saw with tables earlier.  If you label your figures, you can move
-the figures around and _R Markdown_ will automatically adjust the numbering
-for you.  No need for you to remember!  So that you don't have to get too
-far into LaTeX to do this, a couple R functions have been created for you
-to assist.  You'll see their use below.")
+If your report has a lot of figures, _R Markdown_ might behave better for you than that other word processor. One perk is that it will automatically number the figures accordingly in each chapter. You'll also be able to create a label for each figure, add a caption, and then reference the figure in a way similar to what we saw with tables earlier.  If you label your figures, you can move the figures around and _R Markdown_ will automatically adjust the numbering for you.  No need for you to remember!  So that you don't have to get too far into LaTeX to do this, a couple R functions have been created for you to assist.  You'll see their use below.")
 ```
 ```{r chap03-para-3-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap03-para-3-en>>
@@ -96,11 +82,7 @@ If you need a graphic or tabular material to be part of the text, you can just p
 -->
 
 ```{r chap03-para-4-en, eval = !fr(), results = 'asis'}
-cat("In the R chunk below, we will load in a picture stored as `uw.png` in
-our main directory.  We then give it the caption of 'UW logo', the label
-of 'uwlogo', and specify that this is a figure.  Make note of the
-different R chunk options that are given in the R Markdown file (not shown
-in the knitted document).")
+cat("In the R chunk below, we will load in a picture stored as `uw.png` in our main directory.  We then give it the caption of 'UW logo', the label of 'uwlogo', and specify that this is a figure. Make note of the different R chunk options that are given in the R Markdown file (not shown in the knitted document).")
 ```
 ```{r chap03-para-4-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap03-para-4-en>>
@@ -121,18 +103,10 @@ plot(1:10,
 ```
 
 ```{r chap03-para-5-en, eval = !fr(), results = 'asis'}
-cat("Here is a reference to the figure: Figure \@ref(fig:example-fig).  Note
-the use of the `fig:` code here.  By naming the R chunk that contains the
-figure, we can then reference that figure later as done in the first
-sentence here.  We can also specify the caption for the figure via the R
-chunk option `fig.cap`.")
+cat("Here is a reference to the figure: Figure \@ref(fig:example-fig). Note the use of the `fig:` code here.  By naming the R chunk that contains the figure, we can then reference that figure later as done in the first sentence here.  We can also specify the caption for the figure via the R chunk option `fig.cap`.")
 ```
 ```{r chap03-para-5-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
-cat("Voici une référence à la figure : Figure \@ref(fig:example-fig).  Notez
-l'utilisation du code `fig:` ici.  En nommant le chunk R qui contient la
-figure, nous pouvons ensuite faire référence à cette figure plus tard, comme
-cela est fait dans la première phrase ici.  Nous pouvons également spécifier
-la légende de la figure grâce à l'option `fig.cap` du chunk R.")
+cat("Voici une référence à la figure : Figure \@ref(fig:example-fig). Notez l'utilisation du code `fig:` ici.  En nommant le chunk R qui contient la figure, nous pouvons ensuite faire référence à cette figure plus tard, comme cela est fait dans la première phrase ici.  Nous pouvons également spécifier la légende de la figure grâce à l'option `fig.cap` du chunk R.")
 ```
 
 \clearpage 
@@ -140,12 +114,7 @@ la légende de la figure grâce à l'option `fig.cap` du chunk R.")
 <!-- starts a new page and stops trying to place floats such as tables and figures -->
 
 ```{r chap03-para-6-en, eval = !fr(), results = 'asis'}
-cat("Below we will investigate how to save the output of an R plot and label it
-in a way similar to that done above.  Recall the `flights` dataset from
-Section \@ref(rmd-basics).  (Note that we've shown a different way to reference
-a section here.)  We will next explore a bar graph with the mean flight
-departure delays by airline from Portland for 2014. Note also the use of the
-`scale` parameter which is discussed on the next page.")
+cat("Below we will investigate how to save the output of an R plot and label it in a way similar to that done above.  Recall the `flights` dataset from Section \@ref(rmd-basics). (Note that we've shown a different way to reference a section here.)  We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014. Note also the use of the `scale` parameter which is discussed on the next page.")
 ```
 ```{r chap03-para-6-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap03-para-6-en>>
@@ -187,77 +156,31 @@ A table linking these carrier codes to airline names is available at:
 
 ```{r chap03-para-8-en, eval = !fr(), results = 'asis'}
 cat("## FOOTNOTES AND ENDNOTES
-You might want to footnote something. ^[footnote text] The footnote will be
-in a smaller font and placed appropriately. Endnotes work in much the same
-way.")
+You might want to footnote something. ^[footnote text] The footnote will be in a smaller font and placed appropriately. Endnotes work in much the same way.")
 ```
 ```{r chap03-para-8-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
 cat("## NOTES DE BAS DE PAGE ET NOTES DE FIN DE DOCUMENT
-Vous pourriez vouloir mettre une note de bas de page. ^[texte de la note de bas
-de page] La note de bas de page sera dans une police plus petite et placée de
-manière appropriée. Les notes de fin de page fonctionnent à peu près de la
-même manière.")
+Vous pourriez vouloir mettre une note de bas de page. ^[texte de la note de bas de page] La note de bas de page sera dans une police plus petite et placée de manière appropriée. Les notes de fin de page fonctionnent à peu près de la même manière.")
 ```
 
 ```{r chap03-para-9-en, eval = !fr(), results = 'asis'}
 cat("## BIBLIOGRAPHIES
-Of course you will need to cite things, and you will probably accumulate an
-armful of sources. There are a variety of tools available for creating a
-bibliography database (stored with the .bib extension).  In addition to BibTeX
-suggested below, you may want to consider using the free and easy-to-use tool
-called Zotero. Some Zotero documentation is at
-<http://libguides.reed.edu/citation/zotero>.  In addition, a tutorial is
-available from Middlebury College at
-<http://sites.middlebury.edu/zoteromiddlebury/>.")
+Of course you will need to cite things, and you will probably accumulate an armful of sources. There are a variety of tools available for creating a bibliography database (stored with the .bib extension). In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called Zotero. Some Zotero documentation is at <http://libguides.reed.edu/citation/zotero>. In addition, a tutorial is available from Middlebury College at <http://sites.middlebury.edu/zoteromiddlebury/>.")
 ```
 ```{r chap03-para-9-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
 cat("## BIBLIOGRAPHIES
-Bien sûr, vous aurez besoin de citer des choses, et vous accumulerez
-probablement une foule de sources. Il existe une variété d'outils permettant
-de créer une base de données bibliographique (stockée avec l'extension .bib).
-En plus de BibTeX suggéré ci-dessous, vous pouvez envisager d'utiliser
-l'outil gratuit et facile à utiliser appelé Zotero. Une partie de la
-documentation de Zotero se trouve sur
-<http://libguides.reed.edu/citation/zotero>.  En outre, un tutoriel est
-disponible auprès du Middlebury College à l'adresse <http://sites.middlebury.edu/zoteromiddlebury/>.")
+Bien sûr, vous aurez besoin de citer des choses, et vous accumulerez probablement une foule de sources. Il existe une variété d'outils permettant de créer une base de données bibliographique (stockée avec l'extension .bib). En plus de BibTeX suggéré ci-dessous, vous pouvez envisager d'utiliser l'outil gratuit et facile à utiliser appelé Zotero. Une partie de la documentation de Zotero se trouve sur <http://libguides.reed.edu/citation/zotero>.  En outre, un tutoriel est disponible auprès du Middlebury College à l'adresse <http://sites.middlebury.edu/zoteromiddlebury/>.")
 ```
 
 ```{r chap03-para-10-en, eval = !fr(), results = 'asis'}
-cat("R Markdown uses pandoc (<http://pandoc.org/>) to build its bibliographies.
-One nice caveat of this is that you won't have to do a second compile to
-load in references as standard LaTeX requires. To cite references in your
-report (after creating your bibliography database), place the reference
-name inside square brackets and precede it by the 'at' symbol. For
-example, here's a reference to a book about worrying:  [@francis2011].
-This `francis2011` entry appears in a file called `refs.bib` in the `bib`
-folder. This bibliography database file was created by a program called BibTeX.
-You can call this file something else if you like (look at the YAML header in
-the main .Rmd file) and, by default, is to placed in the `bib` folder. Another
-example: @edwards2013 shows that... And another example:
-[e.g., @francis2011; @edwards2013, @swainbenoit2015] ...")
+cat("R Markdown uses pandoc (<http://pandoc.org/>) to build its bibliographies. One nice caveat of this is that you won't have to do a second compile to load in references as standard LaTeX requires. To cite references in your report (after creating your bibliography database), place the reference name inside square brackets and precede it by the 'at' symbol. For example, here's a reference to a book about worrying:  [@francis2011]. This `francis2011` entry appears in a file called `refs.bib` in the `bib` folder. This bibliography database file was created by a program called BibTeX. You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder. Another example: @edwards2013 shows that... And another example: [e.g., @francis2011; @edwards2013, @swainbenoit2015] ...")
 ```
 ```{r chap03-para-10-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
-cat("R Markdown utilise pandoc (<http://pandoc.org/>) pour construire ses
-bibliographies.  Un des avantages de cette méthode est que vous n'aurez pas à
-effectuer une deuxième compilation pour charger les références, comme l'exige
-LaTeX. Pour citer des références dans votre rapport (après avoir créé votre
-base de données bibliographique), placez le nom de la référence entre crochets
-et faites-le précéder du symbole at.  Par exemple, voici une référence à un
-livre sur l'inquiétude :  [@francis2011].  Cette entrée `francis2011` apparaît
-dans un fichier appelé `refs.bib` dans le dossier `bib`.  Ce fichier de base
-de données bibliographique a été créé par un programme appelé BibTeX.  Vous
-pouvez appeler ce fichier autrement si vous le souhaitez (regardez l'en-tête
-YAML dans le fichier principal .Rmd) et, par défaut, il est placé dans le
-dossier `bib`. Un autre exemple : @edwards2013 montre que... Et un autre
-exemple : [par exemple, @francis2011 ; @edwards2013, @swainbenoit2015] ...")
+cat("R Markdown utilise pandoc (<http://pandoc.org/>) pour construire ses bibliographies.  Un des avantages de cette méthode est que vous n'aurez pas à effectuer une deuxième compilation pour charger les références, comme l'exige LaTeX. Pour citer des références dans votre rapport (après avoir créé votre base de données bibliographique), placez le nom de la référence entre crochets et faites-le précéder du symbole at.  Par exemple, voici une référence à un livre sur l'inquiétude :  [@francis2011].  Cette entrée `francis2011` apparaît dans un fichier appelé `refs.bib` dans le dossier `bib`.  Ce fichier de base de données bibliographique a été créé par un programme appelé BibTeX. Vous pouvez appeler ce fichier autrement si vous le souhaitez (regardez l'en-tête YAML dans le fichier principal .Rmd) et, par défaut, il est placé dans le dossier `bib`. Un autre exemple : @edwards2013 montre que... Et un autre exemple : [par exemple, @francis2011 ; @edwards2013, @swainbenoit2015] ...")
 ```
 
 ```{r chap03-para-11-en, eval = !fr(), results = 'asis'}
-cat("For more information about BibTeX and bibliographies, see (<http://web.reed.edu/cis/help/latex/index.html>). There are three pages on
-this topic:  _bibtex_ (which talks about using BibTeX, at <http://web.reed.edu/cis/help/latex/bibtex.html>), _bibtexstyles_ (about how
-to find and use the bibliography style that best suits your needs, at <http://web.reed.edu/cis/help/latex/bibtexstyles.html>) and _bibman_ (which
-covers how to make and maintain a bibliography by hand, without BibTeX, at <http://web.reed.edu/cis/help/latex/bibman.html>). The last page will not be
-useful unless you have only a few sources.")
+cat("For more information about BibTeX and bibliographies, see (<http://web.reed.edu/cis/help/latex/index.html>). There are three pages on this topic:  _bibtex_ (which talks about using BibTeX, at <http://web.reed.edu/cis/help/latex/bibtex.html>), _bibtexstyles_ (about how to find and use the bibliography style that best suits your needs, at <http://web.reed.edu/cis/help/latex/bibtexstyles.html>) and _bibman_ (which covers how to make and maintain a bibliography by hand, without BibTeX, at <http://web.reed.edu/cis/help/latex/bibman.html>). The last page will not be useful unless you have only a few sources.")
 ```
 ```{r chap03-para-11-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap03-para-11-en>>
@@ -266,39 +189,24 @@ useful unless you have only a few sources.")
 ```{r chap03-para-12-en, eval = !fr(), results = 'asis'}
 cat("**Tips for Bibliographies**
 - The cite key (a citation's label) needs to be unique from the other entries.
-- When you have more than one author or editor, you need to separate each
-author's name by the word 'and' e.g. `Author = {Noble, Sam and Youngberg, Jessica},`.
-- Bibliographies made using BibTeX (whether manually or using a manager) accept
-LaTeX markup, so you can italicize and add symbols as necessary.
-- To force capitalization in an article title or where all lowercase is generally
-used, bracket the capitalized word in curly braces. E.g. `{Pacific Cod}`.
+- When you have more than one author or editor, you need to separate each author's name by the word 'and' e.g. `Author = {Noble, Sam and Youngberg, Jessica},`.
+- Bibliographies made using BibTeX (whether manually or using a manager) accept LaTeX markup, so you can italicize and add symbols as necessary.
+- To force capitalization in an article title or where all lowercase is generally used, bracket the capitalized word in curly braces. E.g. `{Pacific Cod}`.
 
-CSAS style requires the bibliography to be before the appendices and before tables
-and figures if you keep those together at the end of your document.
+CSAS style requires the bibliography to be before the appendices and before tables and figures if you keep those together at the end of your document.
 
-See the next file `04-references.Rmd` which will make the bibliography appear
-wherever that file is listed in `_bookdown.yml`.")
+See the next file `04-references.Rmd` which will make the bibliography appear wherever that file is listed in `_bookdown.yml`.")
 ```
 ```{r chap03-para-12-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
 cat("**Conseils pour les bibliographies**
-- La clé de citation (l'étiquette d'une citation) doit être unique par rapport
-aux autres entrées.
-- Lorsque vous avez plus d'un auteur ou éditeur, vous devez séparer le nom de
-chaque auteur par le mot 'et', par exemple
-`Auteur = {Noble, Sam et Youngberg, Jessica},`.
-- Les bibliographies réalisées à l'aide de BibTeX (que ce soit manuellement
-ou à l'aide d'un gestionnaire) acceptent le balisage LaTeX, vous pouvez donc
-mettre en italique et ajouter des symboles si nécessaire.
-- Pour forcer l'emploi de la majuscule dans un titre d'article ou dans un
-endroit où les minuscules sont généralement utilisées, mettez le mot en
-majuscule entre accolades. Par exemple, `{Pacific Cod}`.
+- La clé de citation (l'étiquette d'une citation) doit être unique par rapport aux autres entrées.
+- Lorsque vous avez plus d'un auteur ou éditeur, vous devez séparer le nom de chaque auteur par le mot 'et', par exemple `Auteur = {Noble, Sam et Youngberg, Jessica},`.
+- Les bibliographies réalisées à l'aide de BibTeX (que ce soit manuellement ou à l'aide d'un gestionnaire) acceptent le balisage LaTeX, vous pouvez donc mettre en italique et ajouter des symboles si nécessaire.
+- Pour forcer l'emploi de la majuscule dans un titre d'article ou dans un endroit où les minuscules sont généralement utilisées, mettez le mot en majuscule entre accolades. Par exemple, `{Pacific Cod}`.
 
-Le style SCCS exige que la bibliographie soit placée avant les annexes et
-avant les tableaux et figures si vous les gardez ensemble à la fin de votre
-document.
+Le style SCCS exige que la bibliographie soit placée avant les annexes et avant les tableaux et figures si vous les gardez ensemble à la fin de votre document.
 
-Voir le fichier suivant `04-references.Rmd` qui fera apparaître la
-bibliographie partout où ce fichier est listé dans `_bookdown.yml`.")
+Voir le fichier suivant `04-references.Rmd` qui fera apparaître la bibliographie partout où ce fichier est listé dans `_bookdown.yml`.")
 ```
 
 \clearpage
