@@ -19,6 +19,8 @@
 #'
 #' @return The modified Tex code, as a vector
 #' @export
+#' @importFrom purrr walk walk2
+#' @importFrom stringr str_sub
 post_process_add_alt_text <- function(x,
                                       accessible_pdf = NULL,
                                       title_page_image = NULL,
@@ -34,7 +36,7 @@ post_process_add_alt_text <- function(x,
   if(!accessible_pdf){
     return(x)
   }
-browser()
+
   # Inject the headers needed for the pdfmanagement-testphase package
   x <- c(
     "%",
