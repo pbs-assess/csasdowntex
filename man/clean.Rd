@@ -17,7 +17,12 @@ clean(
 \item{...}{Optional quoted or unquoted names of chunks that should be
 deleted.The chunk name(s) will be used to delete only the objects
 relating to them from the \code{knitr_figures_dir} and \code{knitr-cache}.as well
-as all the LaTeX and intermediate RMD and MD files}
+as all the LaTeX and intermediate RMD and MD files. For example if there
+is a file called 'example-1.png' in the \code{knitr_figures_dir} you would run
+\code{clean(example)} which will remove all outputs of the 'example' knitr chunk.
+If this argument is not used, All files will be deleted from
+\code{knitr_figures_dir} and \code{knitr_cache_dir}
+\code{knitr_figures_dir} and \code{knitr_cache_dir}}
 
 \item{book}{Logical. If \code{TRUE}, delete the '_book' directory recursively}
 

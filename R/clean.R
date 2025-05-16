@@ -30,6 +30,8 @@ clean <- function(...,
                   knitr_figures_dir = "knitr-figs-pdf",
                   knitr_cache_dir = "knitr-cache-pdf"){
 
+  ops_completed <- FALSE
+
   chunks <- enquos(...)
   if(length(chunks)){
     # Only delete files related to the chunks given
@@ -42,6 +44,7 @@ clean <- function(...,
       if(length(fns)){
         result <- unlink(fns, force = TRUE)
         if(!result){
+          ops_completed <- TRUE
           message("\nDeleted file(s): ", paste(fns, collapse = ", "))
         }
       }
@@ -49,6 +52,7 @@ clean <- function(...,
       if(length(fns)){
         result <- unlink(fns, force = TRUE)
         if(!result){
+          ops_completed <- TRUE
           message("\nDeleted file(s): ", paste(fns, collapse = ", "))
         }
       }
@@ -57,10 +61,12 @@ clean <- function(...,
     # Delete knitr directories recursively (all files)
     if(dir.exists(knitr_figures_dir)){
       unlink(knitr_figures_dir, recursive = TRUE, force = TRUE)
+      ops_completed <- TRUE
       message("\nDeleted the `", knitr_figures_dir, "` directory recursively.")
     }
     if(dir.exists(knitr_cache_dir)){
       unlink(knitr_cache_dir, recursive = TRUE, force = TRUE)
+      ops_completed <- TRUE
       message("\nDeleted the `", knitr_cache_dir, "` directory recursively.")
     }
   }
@@ -106,6 +112,7 @@ clean <- function(...,
     if(length(fns)){
     # Delete files that match above combinations
       unlink(fns, force = TRUE)
+      ops_completed <- TRUE
       message("\nDeleted intermediate LaTeX files:\n",
               paste(fns, collapse = "\n"))
     }
@@ -117,6 +124,7 @@ clean <- function(...,
                               full.names = TRUE)
   if(length(fns_start_tmp)){
     unlink(fns_start_tmp, force = TRUE)
+    ops_completed <- TRUE
     message("\nDeleted temporary build files:\n",
             paste(fns_start_tmp, collapse = "\n"))
   }
@@ -124,9 +132,14 @@ clean <- function(...,
   if(book){
     if(dir.exists(book_dir)){
       unlink(book_dir, recursive = TRUE, force = TRUE)
+      ops_completed <- TRUE
       message("\nDeleted the `", book_dir, "` directory recursively.")
     }
   }
 
-  message("\nDone cleaning the `", curr_dir, "` directory\n")
+  if(ops_completed){
+    message("\nDone cleaning the `", curr_dir, "` directory\n")
+  }else{
+    message("\nDirectory already clean\n")
+  }
 }
