@@ -372,8 +372,26 @@ fix_envs <- function(x,
                    "  \\fi\\fi\\fi}",
                    "\\makeatother")
     x <- c(pre_start, inp_lines, post_start)
-  }
 
+      }
+
+  # Remove old shaded entry if it exists
+  fancyvrb_inds <- grep("usepackage\\{fancyvrb\\}", x)
+  if(length(fancyvrb_inds) > 1){
+    # Remove first occurrence along with all the Shaded inclusions and *Tok
+    # inclusions. They will be added by the highlight code below
+    end_inds <- grep("^% *$", x)
+    if(!length(end_inds)){
+      bail("There is not comment line after the usepackage{fancyvrb} ",
+      "content ends. (Should be about 35 more than where the ",
+      "usepackage{fancyvrb} was matched")
+    }
+    start_ind <- fancyvrb_inds[1]
+    end_ind <- end_inds[1]
+    x_pre <- x[1:(start_ind - 1)]
+    x_post <- x[(end_ind + 1):length(x)]
+    x <- c(x_pre, x_post)
+  }
   # Add the latex chunk for code highlighting
   theme_ind <- grep("^% Add theme here$", x)
   if(length(theme_ind)){
