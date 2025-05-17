@@ -20,7 +20,7 @@
 #'
 #' @return The text found for the label given by `inp_str`
 extract_alt_text <- function(inp_str,
-                             bookdown_fn = here("_bookdown.yml")){
+                             bookdown_fn = "_bookdown.yml"){
 
   if(!file.exists(bookdown_fn)){
     bail("When attempting to extract alt text, file '",
@@ -43,7 +43,7 @@ extract_alt_text <- function(inp_str,
     gsub("\\]$", "", .) %>%
     gsub(",$", "", .)
 
-  fns <- here(bd)
+  fns <- bd
 
   if(fr()){
     alt_str <- paste0(inp_str, "-fr-alt")

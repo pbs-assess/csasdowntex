@@ -5,7 +5,7 @@
 \title{Extract contents of text found in a \code{(ref:variable-alt)} found in any rmd
 file}
 \usage{
-extract_alt_text(inp_str, bookdown_fn = here("_bookdown.yml"))
+extract_alt_text(inp_str, bookdown_fn = "_bookdown.yml")
 }
 \arguments{
 \item{inp_str}{The string to match, in the format \code{(ref:alt-text-label)}}
