@@ -38,7 +38,7 @@
 #' @return Output from [bookdown::pdf_book()], modified by the post-processor
 #' [fix_envs()]
 #' @import bookdown
-#' @importFrom here here
+#' @importFrom here here i_am
 #' @rdname csas_pdf
 #' @export
 resdoc_pdf <- function(toc = TRUE,

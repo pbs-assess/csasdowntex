@@ -44,16 +44,16 @@ extract_alt_text <- function(inp_str,
     gsub(",$", "", .)
 
   fns <- bd
-
   if(fr()){
     alt_str <- paste0(inp_str, "-fr-alt")
   }else{
     alt_str <- paste0(inp_str, "-en-alt")
   }
+  alt_str_ref <- paste0("^ *\\(ref:", alt_str, "\\)")
 
   k <- map(fns, ~{
     rmd <- readLines(.x)
-    x <- grep(alt_str, rmd)
+    x <- grep(alt_str_ref, rmd)
     if(length(x)){
       if(length(x) > 1){
         bail("Alt. text label `", alt_str, "` defined more than once in ",

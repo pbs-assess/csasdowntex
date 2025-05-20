@@ -102,15 +102,15 @@ post_process_add_alt_text <- function(x,
   mid_pat <- ifelse(substr(knitr_figures_dir,
                            nchar(knitr_figures_dir),
                            nchar(knitr_figures_dir)) == "/",
-                    "(.*?)-[0-9]+\\} *$",
-                    "/(.*?)-[0-9]+\\} *$")
+                    "(.*?)-[0-9]+\\}.*$",
+                    "/(.*?)-[0-9]+\\}.*$")
   knitr_labels <- gsub(paste0(".*\\{",
                               knitr_figures_dir,
                               mid_pat),
                        "\\1",
                        x[inds_knitr])
 
-  pat_fns <- "^.*\\{([/0-9a-zA-Z_-]+)}\\s*$"
+  pat_fns <- "^.*\\{([/0-9a-zA-Z_-]+)}.*$"
   file_fns_labels <- gsub(pat_fns, "\\1", x[inds_file], perl = F)
 
   file_based_labels <- map(unique(file_fns_labels), ~{
