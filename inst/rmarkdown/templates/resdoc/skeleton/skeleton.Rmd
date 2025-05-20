@@ -147,10 +147,11 @@ opts_chunk$set(
 # add other packages here:
 library(dplyr)
 library(here)
-library(readr)
-library(tibble)
+library(ggplot2)
+library(kableExtra)
+library(rosettafish)
 library(csasdown)
 
 figures_dir <- here(rmarkdown::metadata$output$`csasdown::resdoc_pdf`$figures_dir)
-
+accessible_pdf <- rmarkdown::metadata$output$`csasdown::resdoc_pdf`$accessible_pdf
 ```
