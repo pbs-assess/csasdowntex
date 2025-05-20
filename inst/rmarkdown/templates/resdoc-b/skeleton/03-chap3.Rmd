@@ -5,17 +5,17 @@ flights <- read.csv("data/flights.csv")
 ```{r chap03-para-1-en, eval = !fr(), results = 'asis'}
 cat("# TABLES, GRAPHICS, REFERENCES, AND LABELS {#ref-labels}
 ## TABLES
-By far the easiest way to present tables in your report is to store the contents of the table in a CSV or Excel file, then read that file in to your R Markdown document as a data frame. Then you can style the table with the `kable` function, or functions in the [kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html) pacakge. We recommend using `csasdown::csas_table()`, which simply passes some necessary arguments to `knitr::kable()` so that the tables will render correctly for CSAS.
+By far the easiest way to present tables in your report is to store the contents of the table in a CSV or Excel file, then read that file in to your R Markdown document as a data frame. Then you can style the table with the `kableExtra::kbl()` function, and other functions in the [kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html) package. We recommend using `csasdown::csas_table()`, which simply passes some necessary arguments to `kableExtra::kbl()` so that the tables will render correctly for CSAS.
 
-In addition to the tables that can be automatically generated from a data frame in R that you saw in [R Markdown Basics] using the `kable` function, you can also create tables using pandoc. (More information is available at <http://pandoc.org/README.html#tables>.)  This might be useful if you don't have values specifically stored in R, but you'd like to display them in table form.  Below is an example.  Pay careful attention to the alignment in the table and hyphens to create the rows and columns. Generally we don't recommend this approach of typing the table directly into your R Markdown document.")
+In addition to the tables that can be automatically generated from a data frame in R that you saw in [R Markdown Basics] using the `kableExtra::kbl` function, you can also create tables using pandoc. (More information is available at <https://pandoc.org/MANUAL.html#tables>.) This might be useful if you don't have values specifically stored in R, but you'd like to display them in table form. Below is an example. Pay careful attention to the alignment in the table and hyphens to create the rows and columns. Generally we don't recommend this approach of typing the table directly into your R Markdown document.")
 ```
 ```{r chap03-para-1-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
-cat("# TABLEAUX, GRAPHIQUES, RÉFÉRENCES ET ÉTIQUETTES {#ref-labels}
+cat("
+# TABLEAUX, GRAPHIQUES, RÉFÉRENCES ET ÉTIQUETTES {#ref-labels}
+## TABLES
+La façon la plus simple de présenter des tableaux dans votre rapport est de stocker le contenu du tableau dans un fichier CSV ou Excel, puis de lire ce fichier dans votre document R Markdown comme un cadre de données. Vous pouvez ensuite styliser le tableau avec la fonction `kableExtra::kbl()` et d'autres fonctions du package [kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html). Nous recommandons d'utiliser `csasdown::csas_table()`, qui passe simplement quelques arguments nécessaires à `kableExtra::kbl()` pour que les tableaux soient rendus correctement pour CSAS.
 
-## TABLEAUX
-La façon la plus simple de présenter des tableaux dans votre rapport est de stocker le contenu du tableau dans un fichier CSV ou Excel, puis de lire ce fichier dans votre document R Markdown comme un cadre de données. Vous pouvez ensuite styliser le tableau avec la fonction `kable` ou les fonctions du paquet [kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html). Nous recommandons d'utiliser `csasdown::csas_table()`, qui passe simplement quelques arguments nécessaires à `knitr::kable()` afin que les tableaux soient rendus correctement pour le SCCS.
-
-En plus des tables qui peuvent être générées automatiquement à partir d'un cadre de données dans R que vous avez vu dans [R Markdown Basics] en utilisant la fonction `kable`, vous pouvez également créer des tables en utilisant pandoc. (Plus d'informations sont disponibles sur <http://pandoc.org/README.html#tables>.) Cela peut être utile si vous n'avez pas de valeurs spécifiquement stockées dans R, mais que vous souhaitez les afficher sous forme de tableau.  Vous trouverez ci-dessous un exemple.  Faites bien attention à l'alignement dans le tableau et aux tirets pour créer les lignes et les colonnes. En général, nous ne recommandons pas cette approche consistant à taper le tableau directement dans votre document R Markdown.")
+En plus des tableaux qui peuvent être générés automatiquement à partir d'un cadre de données dans R que vous avez vu dans [R Markdown Basics] en utilisant la fonction `kableExtra::kbl`, vous pouvez également créer des tableaux en utilisant pandoc. (Plus d'informations sont disponibles à <https://pandoc.org/MANUAL.html#tables>.) Cela peut être utile si vous n'avez pas de valeurs spécifiquement stockées dans R, mais que vous souhaitez les afficher sous forme de tableau.Voici un exemple. Faites attention à l'alignement dans le tableau et aux traits d'union pour créer les lignes et les colonnes. En général, nous ne recommandons pas cette approche qui consiste à taper le tableau directement dans votre document R Markdown.")
 ```
 
 ```{r chap03-static-table-header-en, eval = !fr(), results = 'asis'}
@@ -103,10 +103,10 @@ plot(1:10,
 ```
 
 ```{r chap03-para-5-en, eval = !fr(), results = 'asis'}
-cat("Here is a reference to the figure: Figure \@ref(fig:example-fig). Note the use of the `fig:` code here.  By naming the R chunk that contains the figure, we can then reference that figure later as done in the first sentence here.  We can also specify the caption for the figure via the R chunk option `fig.cap`.")
+cat("Here is a reference to the figure: Figure \@ref(fig:example-fig). Note the use of the `fig:` code here. By naming the R chunk that contains the figure, we can then reference that figure later as done in the first sentence here. We can also specify the caption for the figure via the R chunk option `fig.cap`.")
 ```
 ```{r chap03-para-5-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
-cat("Voici une référence à la figure : Figure \@ref(fig:example-fig). Notez l'utilisation du code `fig:` ici.  En nommant le chunk R qui contient la figure, nous pouvons ensuite faire référence à cette figure plus tard, comme cela est fait dans la première phrase ici.  Nous pouvons également spécifier la légende de la figure grâce à l'option `fig.cap` du chunk R.")
+cat("Voici une référence à la figure : Figure \@ref(fig:example-fig). Notez l'utilisation du code `fig:` ici. En nommant le chunk R qui contient la figure, nous pouvons ensuite faire référence à cette figure plus tard, comme cela est fait dans la première phrase ici.  Nous pouvons également spécifier la légende de la figure grâce à l'option `fig.cap` du chunk R.")
 ```
 
 \clearpage 
@@ -114,7 +114,7 @@ cat("Voici une référence à la figure : Figure \@ref(fig:example-fig). Notez l
 <!-- starts a new page and stops trying to place floats such as tables and figures -->
 
 ```{r chap03-para-6-en, eval = !fr(), results = 'asis'}
-cat("Below we will investigate how to save the output of an R plot and label it in a way similar to that done above.  Recall the `flights` dataset from Section \@ref(rmd-basics). (Note that we've shown a different way to reference a section here.)  We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014. Note also the use of the `scale` parameter which is discussed on the next page.")
+cat("Below we will investigate how to save the output of an R plot and label it in a way similar to that done above. Recall the `flights` dataset from Section \@ref(sec:rmd-basics). (Note that we've shown a different way to reference a section here.) We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014. Note also the use of the `scale` parameter which is discussed on the next page.")
 ```
 ```{r chap03-para-6-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap03-para-6-en>>
