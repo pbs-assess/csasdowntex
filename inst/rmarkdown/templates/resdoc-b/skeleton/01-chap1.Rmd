@@ -172,7 +172,7 @@ If a chunk does not contain the entry `eval = fr()` or `eval = !fr()`, it is ass
 
 (ref:plot-cars-fr) Exemple de graphique pour l'ensemble de données « voitures ».
 
-(ref:plot-cars-en-alt) This is the English alternative text for this figure and is what will be used in tagging and read by the screen reader.
+(ref:plot-cars-en-alt) This is the English alternative text for this figure and is what will be used in tagging and read by the screen reader. You can include inline R code in this alt text - for example the current day of the week is `r lubridate::today() |> strftime(format = "%A")`.
 
 (ref:plot-cars-fr-alt) Il s'agit du texte alternatif en français pour cette figure; qui sera utilisé dans le balisage et lu par le lecteur d'écran.
 

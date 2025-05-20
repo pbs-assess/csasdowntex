@@ -1,10 +1,3 @@
-<!-- The following code should appear at the beginning of the first appendix.
-After that, all subsequent sections will be turned into appendices. -->
-
-`r if(knitr:::is_latex_output()) '\\Appendices'`
-
-`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
-
 ```{r appendix01-para-1-en, eval = !fr(), results = 'asis'}
 cat("# THE FIRST APPENDIX {#app:a}
 The appendices here are simple examples showing how to set up sections, subsections, and sub-subsections withing the appendices. References are also shown here, but can be placed anywhere in the document.

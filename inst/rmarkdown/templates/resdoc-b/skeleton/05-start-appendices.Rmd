@@ -1,0 +1,10 @@
+<!--
+This file is required to make all that follow it appendices. By having this
+separate, you can comment out any appendices you wish and the others will
+still build properly.
+-->
+
+`r if(knitr:::is_latex_output()) '\\Appendices'`
+
+`r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
+

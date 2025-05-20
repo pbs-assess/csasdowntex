@@ -132,13 +132,16 @@ extract_alt_text <- function(inp_str,
     backtick_inds <- NULL
   }
 
+  # Remove inline R code chunks prior to checking for commas in alt text
+  # so that commas in the function calls do not match
+  tmp <- gsub("`r.*`", "", k)
   # Check for commas that haven't been escaped. They will cause tagpdf errors
   # if not fixed. (?<!\\\\) is negative lookbehind which means that if a comma
   # is not preceded by a double backslash, then replace the comma with \\,
   # Note that for lookbehinds/lookaheads to work we must use perl = TRUE
   comma_pat <- "(?<!\\\\)(\\,)"
 
-  grep_length <- length(grep(comma_pat, k, perl = TRUE))
+  grep_length <- length(grep(comma_pat, tmp, perl = TRUE))
   if(grep_length){
     if(grep_length == 1){
       message <- "There was a comma "

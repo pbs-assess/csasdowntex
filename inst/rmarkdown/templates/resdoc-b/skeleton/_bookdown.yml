@@ -4,5 +4,6 @@ rmd_files: ["index.Rmd",
             "02-chap2.Rmd",
             "03-chap3.Rmd",
             "04-references.Rmd",
-            "05-appendix.Rmd"]
+            "05-start-appendices.Rmd",
+            "06-appendix1.Rmd"]
 delete_merged_file: true
