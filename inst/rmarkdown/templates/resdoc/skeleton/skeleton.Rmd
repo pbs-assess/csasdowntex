@@ -100,7 +100,7 @@ output:
 knit: (function(input, ...) csasdown::render())
 link-citations: true
 bibliography: bib/refs.bib
-# Any extra LaTeX code for the header:
+# Any extra \LaTeX\ code for the header:
 # header-includes:
 # - \usepackage{tikz}
 ---
@@ -146,6 +146,7 @@ opts_chunk$set(
 ```{r load-libraries, echo = FALSE, cache = FALSE, message = FALSE, results = 'hide', warning = FALSE}
 # add other packages here:
 library(dplyr)
+library(here)
 library(readr)
 library(tibble)
 library(csasdown)

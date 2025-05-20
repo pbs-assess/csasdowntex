@@ -1,4 +1,5 @@
 ```{r include_packages_2, include = FALSE}
+
 flights <- read.csv("data/flights.csv")
 ```
 
@@ -6,9 +7,9 @@ flights <- read.csv("data/flights.csv")
 
 ## TABLES
 
-By far the easiest way to present tables in your report is to store the contents of the table in a CSV or Excel file, then read that file in to your R Markdown document as a data frame. Then you can style the table with the `kable` function, or functions in the [kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html) pacakge. We recommend using `csasdown::csas_table()`, which simply passes some necessary arguments to `knitr::kable()` so that the tables will render correctly for CSAS.
+By far the easiest way to present tables in your report is to store the contents of the table in a CSV or Excel file, then read that file in to your R Markdown document as a data frame. Then you can style the table with the `kableExtra::kbl()` function, and other functions in the [kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html) package. We recommend using `csasdown::csas_table()`, which simply passes some necessary arguments to `kableExtra::kbl()` so that the tables will render correctly for CSAS.
 
-In addition to the tables that can be automatically generated from a data frame in R that you saw in [R Markdown Basics] using the `kable` function, you can also create tables using pandoc. (More information is available at <http://pandoc.org/README.html#tables>.)  This might be useful if you don't have values specifically stored in R, but you'd like to display them in table form.  Below is an example.  Pay careful attention to the alignment in the table and hyphens to create the rows and columns. Generally we don't recommend this approach of typing the table directly into your R Markdown document.
+In addition to the tables that can be automatically generated from a data frame in R that you saw in [R Markdown Basics] using the `kableExtra::kbl` function, you can also create tables using pandoc. (More information is available at <https://pandoc.org/MANUAL.html#tables>.)  This might be useful if you don't have values specifically stored in R, but you'd like to display them in table form.  Below is an example.  Pay careful attention to the alignment in the table and hyphens to create the rows and columns. Generally we don't recommend this approach of typing the table directly into your R Markdown document.
 
 ----------------------------------------------------------------------------------
   Factors                    Correlation between Parents & Child      Inherited
@@ -30,19 +31,22 @@ Table: (\#tab:inher) Correlation of Inheritance Factors for Parents and Child
 <!-- clearpage ends the page, and also dumps out all floats.
   Floats are things like tables and figures. -->
 
-We can also create a link to the table by doing the following: Table \@ref(tab:inher).  If you go back to [Loading and exploring data] and look at the `kable` table, we can create a reference to this max delays table too: Table \@ref(tab:maxdelays). The addition of the `(\#tab:inher)` option to the end of the table caption allows us to then make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared.  
+We can also create a link to the table by doing the following: Table \@ref(tab:inher). If you go back to [Loading and exploring data] and look at the `kable` table, we can create a reference to this max delays table too: Table \@ref(tab:maxdelays). The addition of the `(\#tab:inher)` option to the end of the table caption allows us to then make a reference to Table `\@ref(tab:label)`. Note that this reference could appear anywhere throughout the document after the table has appeared.
 
 \clearpage
 
-\begin{landscapepage}
 ```{r widelong, results = "asis"}
+
 yrs <- 1:45
 ages <- 1:15
-widelong <- matrix(round(rnorm(length(yrs) * length(ages), 20), 4),
-                        nr = length(yrs),
-                        nc = length(ages),
-                   dimnames = list(year = yrs, age = ages))
-widelong_df <- data.frame(cbind(yrs, widelong))
+
+widelong_df <- rnorm(length(yrs) * length(ages), 20) |> 
+  round(4) |> 
+  matrix(nrow = length(yrs),
+         ncol = length(ages),
+         dimnames = list(year = yrs, age = ages)) %>%
+  cbind(yrs, .) |> 
+  data.frame()
 
 # In landscape tables, you can change the font size if the table
 # is too large and overlaps the header and footer lines.
@@ -51,36 +55,47 @@ csasdown::csas_table(widelong_df,
                      caption = "A long and wide landscape table",
                      format = "latex",
                      bold_header = FALSE,
-                     font_size = 8)
+                     font_size = 8) |> 
+  landscape()
 ```
-\end{landscapepage}
+
 \clearpage
 
 ## FIGURES
 
-If your report has a lot of figures, _R Markdown_ might behave better for you than that other word processor. One perk is that it will automatically number the figures accordingly in each chapter. You'll also be able to create a label for each figure, add a caption, and then reference the figure in a way similar to what we saw with tables earlier.  If you label your figures, you can move the figures around and _R Markdown_ will automatically adjust the numbering for you.  No need for you to remember!  So that you don't have to get too far into LaTeX to do this, a couple R functions have been created for you to assist.  You'll see their use below.
+If your report has a lot of figures, _R Markdown_ might behave better for you than that other word processor. One perk is that it will automatically number the figures accordingly in each chapter. You'll also be able to create a label for each figure, add a caption, and then reference the figure in a way similar to what we saw with tables earlier. If you label your figures, you can move the figures around and _R Markdown_ will automatically adjust the numbering for you. No need for you to remember! So that you don't have to get too far into \LaTeX\ to do this, a couple R functions have been created for you to assist. You'll see their use below.
 
 <!--
-One thing that may be annoying is the way _R Markdown_ handles "floats" like tables and figures (it's really \LaTeX's fault). \LaTeX\ will try to find the best place to put your object based on the text around it and until you're really, truly done writing you should just leave it where it lies. There are some optional arguments specified in the options parameter of the `label` function.  If you need to shift your figure around, it might be good to look here on tweaking the options argument:  <https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions>
+One thing that may be annoying is the way _R Markdown_ handles "floats" like tables and figures (it's really \LaTeX's fault). \LaTeX\ will try to find the best place to put your object based on the text around it and until you're really, truly done writing you should just leave it where it lies. There are some optional arguments specified in the options parameter of the `label` function.  If you need to shift your figure around, it might be good to look here on tweaking the options argument:  <https://en.wikibooks.org/wiki/\LaTeX/Floats,_Figures_and_Captions>
 
 If you need a graphic or tabular material to be part of the text, you can just put it inline. If you need it to appear in the list of figures or tables, it should be placed in a code chunk.
 -->
 
-In the R chunk below, we will load in a picture stored as `uw.png` in our main directory.  We then give it the caption of "UW logo", the label of "uwlogo", and specify that this is a figure.  Make note of the different R chunk options that are given in the R Markdown file (not shown in the knitted document).
+(ref:example-fig-en) Example plot for the 'cars' dataset.
 
-```{r example-fig, fig.cap="My caption"}
+(ref:example-fig-en-alt) This is the English alternative text for this figure and is what will be used in tagging and read by the screen reader.
+
+```{r example-fig, fig.cap = "(ref:example-fig-en)"}
+
 plot(1:10)
 ```
 
-Here is a reference to the figure: Figure \@ref(fig:example-fig).  Note the use of the `fig:` code here.  By naming the R chunk that contains the figure, we can then reference that figure later as done in the first sentence here.  We can also specify the caption for the figure via the R chunk option `fig.cap`.
+Here is a reference to the figure: Figure \@ref(fig:example-fig).  Note the use of the `fig:` code here.  By naming the R chunk that contains the figure, we can then reference that figure later as done in the first sentence here. We can also specify the caption for the figure via the R chunk option `fig.cap`. Note that there are two reference lines above the knitr chunk with the names `ref:example-fig-en` and `ref:example-fig-en-alt`, and that `fig.cap` is set to use what is written in the `ref:example-fig-en` reference. This syntax allows for a nicer view of the caption, especially longer captions and allows for the use of embedded inline R chunks inside the text. The editor will also show this text with Markup syntax highlighting, which is not available inside the knitr chunk options brackets.
+
+The alt text reference, `ref:example-fig-en-alt`, can also contain inline R code in the format `` `r # R code here` ``. The alt text **cannot contain commas** due to limitations of the `tagpdf` \LaTeX\ package.
 
 \clearpage 
 
 <!-- starts a new page and stops trying to place floats such as tables and figures -->
 
-Below we will investigate how to save the output of an R plot and label it in a way similar to that done above.  Recall the `flights` dataset from Section \@ref(rmd-basics).  (Note that we've shown a different way to reference a section here.)  We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014.  Note also the use of the `scale` parameter which is discussed on the next page.
+Below we will investigate how to save the output of an R plot and label it in a way similar to that done above. Recall the `flights` dataset from Section \@ref(sec:rmd-basics). (Note that we've shown a different way to reference a section here.)  We will next explore a bar graph with the mean flight departure delays by airline from Portland for 2014. Note also the use of the `scale` parameter which is discussed on the next page.
 
-```{r delaysboxplot, warnings=FALSE, messages=FALSE, fig.cap="Mean Delays by Airline", fig.width=6}
+(ref:delaysboxplot-en) Mean Delays by Airline.
+
+(ref:delaysboxplot-en-alt) This plot shows that American Airlines has the most delays and Hawaiian Airlines leaves early on average.
+
+```{r delaysboxplot, warnings = FALSE, messages = FALSE, fig.cap = "(ref:delaysboxplot-en)", fig.width = 6}
+
 flights |> group_by(carrier) |>
   summarize(mean_dep_delay = mean(dep_delay)) |>
   ggplot(aes(x = carrier, y = mean_dep_delay)) +
@@ -99,9 +114,9 @@ You might want to footnote something. ^[footnote text] The footnote will be in a
 
 ## BIBLIOGRAPHIES
 
-Of course you will need to cite things, and you will probably accumulate an armful of sources. There are a variety of tools available for creating a bibliography database (stored with the .bib extension).  In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called Zotero. Some Zotero documentation is at <http://libguides.reed.edu/citation/zotero>.  In addition, a tutorial is available from Middlebury College at <http://sites.middlebury.edu/zoteromiddlebury/>.
+Of course you will need to cite things, and you will probably accumulate an armful of sources. There are a variety of tools available for creating a bibliography database (stored with the .bib extension).  In addition to BibTeX suggested below, you may want to consider using the free and easy-to-use tool called Zotero. Some Zotero documentation is at <http://libguides.reed.edu/citation/zotero>. In addition, a tutorial is available from Middlebury College at <http://sites.middlebury.edu/zoteromiddlebury/>.
 
-R Markdown uses pandoc (<http://pandoc.org/>) to build its bibliographies.  One nice caveat of this is that you won't have to do a second compile to load in references as standard LaTeX requires. To cite references in your report (after creating your bibliography database), place the reference name inside square brackets and precede it by the "at" symbol.  For example, here's a reference to a book about worrying:  [@francis2011].  This `francis2011` entry appears in a file called `refs.bib` in the `bib` folder.  This bibliography database file was created by a program called BibTeX.  You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder. Another example: @edwards2013 shows that... And another example: [e.g., @francis2011; @edwards2013, @swainbenoit2015] ...
+R Markdown uses pandoc (<http://pandoc.org/>) to build its bibliographies. One nice caveat of this is that you won't have to do a second compile to load in references as standard \LaTeX\ requires. To cite references in your report (after creating your bibliography database), place the reference name inside square brackets and precede it by the "at" symbol.  For example, here's a reference to a book about worrying: [@francis2011]. This `francis2011` entry appears in a file called `refs.bib` in the `bib` folder. This bibliography database file was created by a program called BibTeX. You can call this file something else if you like (look at the YAML header in the main .Rmd file) and, by default, is to placed in the `bib` folder. Another example: @edwards2013 shows that... And another example: [e.g., @francis2011; @edwards2013, @swainbenoit2015] ...
 
 For more information about BibTeX and bibliographies, see (<http://web.reed.edu/cis/help/latex/index.html>). There are three pages on this topic:  _bibtex_ (which talks about using BibTeX, at <http://web.reed.edu/cis/help/latex/bibtex.html>), _bibtexstyles_ (about how to find and use the bibliography style that best suits your needs, at <http://web.reed.edu/cis/help/latex/bibtexstyles.html>) and _bibman_ (which covers how to make and maintain a bibliography by hand, without BibTeX, at <http://web.reed.edu/cis/help/latex/bibman.html>). The last page will not be useful unless you have only a few sources.
 
@@ -109,7 +124,7 @@ For more information about BibTeX and bibliographies, see (<http://web.reed.edu/
 
 - The cite key (a citation's label) needs to be unique from the other entries.
 - When you have more than one author or editor, you need to separate each author's name by the word "and" e.g. `Author = {Noble, Sam and Youngberg, Jessica},`.
-- Bibliographies made using BibTeX (whether manually or using a manager) accept LaTeX markup, so you can italicize and add symbols as necessary.
+- Bibliographies made using BibTeX (whether manually or using a manager) accept \LaTeX\ markup, so you can italicize and add symbols as necessary.
 - To force capitalization in an article title or where all lowercase is generally used, bracket the capitalized word in curly braces. E.g. `{Pacific Cod}`.
 
 CSAS style requires the bibliography to be before the appendices and before tables and figures if you keep those together at the end of your document.
