@@ -12,6 +12,7 @@
 #' the file `.here` exists in the hake repository root directory.
 #'
 #' @return Nothing
+#' @export
 goback <- function(){
 
   curr_dir <- getwd()
