@@ -160,6 +160,10 @@ If you want to modify the format, you can do so by modifying the regular express
 See the documentation for the function `validate_chunk_headers()` for more information.")
 ```
 
+```{r chap01-para-9-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
+cat("The text for this chunk is too complex to allow for mirror chunk copy to be used.")
+```
+
 ```{r chap01-para-10-en, eval = !fr(), results = 'asis'}
 cat("
 ## Plot and Table chunks (Non-text chunks)
@@ -168,7 +172,7 @@ If a chunk does not contain the entry `eval = fr()` or `eval = !fr()`, it is ass
 ```
 
 ```{r chap01-para-10-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
-<<chap01-para-9-en>>
+<<chap01-para-10-en>>
 ```
 
 (ref:plot-cars-en) Example plot for the 'cars' dataset.
@@ -202,12 +206,4 @@ In Figure \@ref(fig:plot-cars) the X and Y labels are the only things needed to 
 
 ```{r chap01-para-11-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-11-en>>
-```
-
-```{r chap01-para-12-en, eval = !fr(), results = 'asis'}
-cat("")
-```
-
-```{r chap01-para-12-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
-<<chap01-para-10-en>>
 ```
