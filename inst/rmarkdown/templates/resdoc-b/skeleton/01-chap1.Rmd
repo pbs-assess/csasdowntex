@@ -1,57 +1,68 @@
 ```{r chap01-para-1-en, eval = !fr(), results = 'asis'}
 cat("# INTRODUCTION
-Welcome to the R Markdown **bilingual** research document template. This example can be loaded into your working directory with `csasdown::draft('resdoc-b')` and rendered into a PDF with `csasdown::render_resdoc()`. This document assumes you have gone through the **resdoc** example document, and leaves out some of the introductory text found there.
+Welcome to the R Markdown **bilingual** research document template. This example can be loaded into your working directory with `csasdown::draft('resdoc-b')` and rendered into a PDF with `csasdown::render()`. This document assumes you have gone through the **resdoc** example document, and leaves out some of the introductory text found there.
 
-The difference between this document and the one produced with the `csasdown::draft('resdoc')` example is that this one makes use of a new preprocessor and a knitr hook to more easily produce a bilingual document. The preprocessor includes an enhanced custom version of Rmarkdown which produces PDF output exactly as written in the Rmarkdown code. Standard Rmarkdown has multiple methods of including newlines, with less than ideal results in most cases. This enhanced version provides *What You See Is What You Get*, known as *WYSIWYG* in computing lexicon. This means that newlines will appear in the output document *exactly* as you wrote them in the Rmarkdown code. This reduces a lot of trial-and-error or writing-and-compiling when trying to organize your text.")
+The difference between this document and the one produced with the `csasdown::draft('resdoc')` example is that this one makes use of a new preprocessor and a knitr hook to more easily produce a bilingual document. The preprocessor includes an enhanced custom version of Rmarkdown which produces PDF output exactly as written in the Rmarkdown code. Standard Rmarkdown has multiple methods of including newlines, with less than ideal results in most cases. This enhanced version provides *What You See Is What You Get*, known as *WYSIWYG* in computing lexicon. This means that newlines will appear in the output document *exactly* as you wrote them in the Rmarkdown code. This reduces a lot of trial-and-error or writing-and-compiling when trying to organize your text.
+
+The knitr hook simplifies document translation for the author. When building in French, it draws a box around paragraphs contained in chunks which still need to be translated in the output PDF document. It also labels the box with a 'Needs translation' tag in red and the chunk label in blue so you can find the chunk code easily and translate it. \
+When ready, build this document in French to see how the bilingual features work. To do that, change the `french:` YAML tag in the *index.Rmd* file to `true`.")
 ```
+
 ```{r chap01-para-1-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
 cat("# INTRODUCTION
-Bienvenue au modèle de document de recherche R Markdown **bilingue**. Cet exemple peut être chargé dans votre répertoire de travail avec `csasdown::draft('resdoc-b')` et rendu en PDF avec `csasdown::render_resdoc()`. Ce document suppose que vous avez parcouru le document d'exemple **resdoc**, et laisse de côté une partie du texte d'introduction qui s'y trouve.
+Bienvenue au modèle de document de recherche R Markdown **bilingue**. Cet exemple peut être chargé dans votre répertoire de travail avec `csasdown::draft('resdoc-b')` et rendu en PDF avec `csasdown::render()`. Ce document suppose que vous avez parcouru le document d'exemple **resdoc**, et laisse de côté une partie du texte d'introduction qui s'y trouve.
 
-La différence entre ce document et celui produit avec l'exemple `csasdown::draft('resdoc')` est que celui-ci utilise un nouveau préprocesseur et un hook knitr pour produire plus facilement un document bilingue. Le préprocesseur comprend une version personnalisée améliorée de Rmarkdown qui produit une sortie PDF exactement comme écrit dans le code Rmarkdown. La version standard de Rmarkdown dispose de plusieurs méthodes pour inclure les nouvelles lignes, avec des résultats moins qu'idéaux dans la plupart des cas. Cette version améliorée fournit *What You See Is What You Get*, connu sous le nom de *WYSIWYG* dans le lexique informatique. Cela signifie que les nouvelles lignes apparaîtront dans le document de sortie *exactement* comme vous les avez écrites dans le code Rmarkdown. Cela réduit les essais et les erreurs ou l'écriture et la compilation lorsque vous essayez d'organiser votre texte.")
+La différence entre ce document et celui produit avec l'exemple `csasdown::draft('resdoc')` est que celui-ci utilise un nouveau préprocesseur et un hook knitr pour produire plus facilement un document bilingue. Le préprocesseur comprend une version personnalisée améliorée de Rmarkdown qui produit une sortie PDF exactement comme écrit dans le code Rmarkdown. La version standard de Rmarkdown dispose de plusieurs méthodes pour inclure les nouvelles lignes, avec des résultats moins qu'idéaux dans la plupart des cas. Cette version améliorée fournit *What You See Is What You Get*, connu sous le nom de *WYSIWYG* dans le lexique informatique. Cela signifie que les nouvelles lignes apparaîtront dans le document de sortie *exactement* comme vous les avez écrites dans le code Rmarkdown. Cela réduit les essais et les erreurs ou l'écriture et la compilation lorsque vous essayez d'organiser votre texte.
+
+Le crochet knitr simplifie la traduction des documents pour l'auteur. Lors de la construction en français, il dessine un cadre autour des paragraphes contenus dans les chunks qui doivent encore être traduits dans le document PDF de sortie. Il étiquette également la boîte avec une balise 'Needs translation' en rouge et l'étiquette du chunk en bleu afin que vous puissiez trouver facilement le code du chunk et le traduire.")
 ```
+
 ```{r chap01-para-2-en, eval = !fr(), results = 'asis'}
 cat("# Compilation details {#compilation}
 ## English and French code chunks
-The first thing you will notice is that the RMarkdown code is found inside `cat()` function calls in this version. That is needed so that the Rmarkdown code can be placed inside knitr code chunks. A hidden knitr *hook* will then easily switch chunks on or off depending on which language you are compiling the document for.
-    
-Each paragraph or section of text is located in its own unique chunk, with an *-en* ending. Each chunk also has a French chunk with the same name but having an *-fr* ending instead of *-en*. For example, this chunk is *chap01-para-2-en* and its French counterpart is *chap01-para-2-fr*.
+The first thing you will notice is that the RMarkdown code is found inside `cat()` function calls in this version. That is needed so that the English and French text can be toggled on or off with a variable depending on which version you want to compile.
 
-Before translation, which typically happens at the very end of writing and after review meetings, the French chunks should hold **mirror code** to its English counterpart chunk, and have its **needs_trans** chunk option equal to **TRUE**. After translation, the mirror code line should be replaced with a `cat()` call holding the translated text and the **needs_trans** chunk option must be set to **FALSE**. If you forget to change the **needs_trans** chunk option to **FALSE** you will get UTF-8 errors for that chunk.
+Each paragraph or section of English text is located in its own unique chunk, with an *-en* ending. Each chunk also has a corresponding French chunk with the same name but having an *-fr* ending instead of *-en*. For example, the chunk containing this text is **chap01-para-2-en** and its French counterpart is **chap01-para-2-fr**.
 
-Mirror code is just a single line of code that looks like this: `<<chap01-para-2-en>>`. The chunk name is inside the double-angle-brackets and points to the English counterpart chunk. Look in the source to this document (*01-chap1.Rmd*) to see how the French chunk containing `<<chap01-para-2-en>>` is set up.")
+Before translation, which typically happens at the very end of writing and after review meetings, the French chunks should hold **mirror code** (defined below) to its English counterpart chunk, and have its **needs_trans** chunk option set equal to **TRUE**. After translation, the mirror code line should be replaced with a `cat()` call holding the translated text and the **needs_trans** chunk option must be set to **FALSE**. If you forget to change the **needs_trans** chunk option to **FALSE** after pasting the translated text, `csasdown` will detect it and you will get a useful error message for that chunk.
+
+**Mirror code** is just a single line of code that looks like this: `<<chap01-para-2-en>>`. The chunk name is inside the double-angle-brackets and points to the English counterpart chunk. During the build, the processor will simply copy and paste the contents of the named chunk in place of the mirror code. Look in the source to this document (*01-chap1.Rmd*) to see how the French chunk containing `<<chap01-para-2-en>>` is set up.")
 ```
+
 ```{r chap01-para-2-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-2-en>>
 ```
+
 ```{r chap01-para-3-en, eval = !fr(), results = 'asis'}
 cat("## Rendering the document {#rendering}
-To render this document, run this code: `csasdown::render()`. This will produce a PDF. To see what the output of the preprocessor looks like (what bookdown actually uses to create the document) compile the document like this: `csasdown::render(keep_files = TRUE)`. This will leave modified files behind, all of which start with *tmp-* and correspond to the files you have included in your project.
+To render this document, run this code: `csasdown::render()`. This will produce a PDF. To view all the steps that are happening during the build process, run `csasdown::render(verbose = TRUE)`. To see what the output of the preprocessor looks like, i.e. the final files that bookdown actually uses to create the document, run `csasdown::render(keep_files = TRUE)`. This will leave modified files behind, all of which start with *tmp-* and correspond to the files you have included in your project.
 
 Some details of the code that are complex and likely not important to you are located in these files. For example the French knitr hook code is located near the end of *tmp-index.Rmd*.
 
-The Rmarkdown code that is produced by the preprocessor can be seen in the temporary files. For example, in *tmp-01-chap01.Rmd*, you can see how your newlines are actually coded to make them *WYSIWYG*- compliant.
+The Rmarkdown code that is produced by the preprocessor can be seen in the temporary files. For example, in *tmp-01-chap01.Rmd*, you can see how your *WYSIWYG* newlines are actually translated to make them Markdown compliant. These are the files that are actually used by bookdown for compilation.
 
-Sometimes it is useful to look at these files, since they are the ones actually used by bookdown for compilation, although you shouldn't need to on a regular basis.
-
-If you want to manually modify the temporary files and render the document from those for debugging reasons, run this:
+If you want to manually modify the temporary files and render the document from those for debugging reasons, run the following. Note that this is advanced and you shouldn't need to do this to create a document.
 
 `bookdown::render_book('tmp-index.Rmd', config_file = 'tmp_bookdown.yml')`
 
-Many preprocessor error messages are in relation to the temporary files and state line numbers in those files, so it won't be long before you want to keep those files around. **Make sure to make your edits in the original files and not the temporary ones as the temporary ones are overwritten every time you re-render the document!**
+Many preprocessor error messages are in relation to the temporary files and state line numbers in those files, so it won't be long before you want to keep those files around to check the line numbers given in error messages. **Make sure to make your edits in the original *.Rmd* files and not the temporary ones as the temporary ones are overwritten every time you re-render the document.**
 
 ")
 ```
+
 ```{r chap01-para-3-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-3-en>>
 ```
+
 ```{r chap01-para-4-en, eval = !fr(), results = 'asis'}
 cat("## External RMarkdown files
-It may be nicer to write your RMarkdown inside an actual RMarkdown file instead of a `cat()` call so your editor or IDE can apply its syntax highlighting, making your code easier to follow while writing it.
+It may be nicer for you to write your RMarkdown inside an actual RMarkdown file instead of a `cat()` call so your editor or IDE can apply its syntax highlighting, making your code easier to follow while writing it. You may aslo want to stick with official R Markdown syntax, and not use the modified R Markdown `csasdown` uses to simplify newlines. In that case you can import regular R Markdown files.
 
-RMarkdown files can be imported using the syntax found in the chunk **chap01-para-5-en**. It is simply replacing the entire `cat()` call with `rmd_file('external_file')` where *external_file* is the name of your Rmarkdown file with or without the *.Rmd* extension.
+RMarkdown files can be imported using the syntax found in the chunk **chap01-para-5-en**. It is simply replacing the entire `cat()` call with `rmd_file('external_file')` where *external_file* is the name of your Rmarkdown file with or without the *.Rmd* or *.rmd* extension.
 
-Note that triple-backtick code chunks are not allowed in the external RMarkdown files.
+Any R Markdown code may appear in the imported file, except:
+ - triple-backtick code chunks
+ - recursive imports are not allowed. You cannot import another file from within the imported file.
 
 Unlimited comments can be placed in chunks with mirror code lines and in these *rmd_files()* chunks, but no other code can be included.
 
@@ -59,6 +70,7 @@ The following list and table were injected from two files called *external_rmd_1
 
 ")
 ```
+
 ```{r chap01-para-4-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 # Comments can be placed here
 # More comments can be placed here
@@ -76,91 +88,82 @@ rmd_file("external_rmd_1")
 # More comments can be placed here
 # More comments can be placed here
 ```
+
 ```{r chap01-para-5-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-5-en>>
 ```
+
 ```{r chap01-para-6-en, eval = !fr(), results = 'asis'}
 rmd_file("parent-child-table-en")
 ```
+
 ```{r chap01-para-6-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
 rmd_file("parent-child-table-fr")
 ```
+
 ```{r chap01-para-7-en, eval = !fr(), results = 'asis'}
 cat("## Inline R code inside `cat()` calls
 Inline R code can be used in just the same way as in regular RMarkdown.
-
-For example we can find the name of a random car in the `mtcars` dataset using the code:
-
-`` `r sample(rownames(mtcars), 1)` ``
-
-which results in:
-
-`r sample(rownames(mtcars), 1)`
-
-or get the date and time this document was built:
-
-`` `r format(Sys.time(), '%A, %B %d, %Y %H:%M:%S')` ``
-
-which results in:
-
-`r format(Sys.time(), '%A, %B %d, %Y %H:%M:%S')`.
-
-If you want to see exactly how this is done, use the `keep_files` argument when rendering:
-
-`csasdown::render(keep_files = TRUE)`.
-
+To put a blank line between lines inside a *cat()* call, you must leave no blank line in the code, but place a space and a slash at the end of the line you want a blank line after. See the code in this chunk (*chap01-para-7-en*) for the following lines' examples: \
+To find the name of a random car in the `mtcars` dataset using the code: \
+`` `r sample(rownames(mtcars), 1)` `` \
+which results in (this time): \
+`r sample(rownames(mtcars), 1)` \
+or get the date and time this document was built: \
+`` `r format(Sys.time(), '%A, %B %d, %Y %H:%M:%S')` `` \
+which results in: \
+`r format(Sys.time(), '%A, %B %d, %Y %H:%M:%S')`. \
+If you want to see exactly how this is done, use the `keep_files` argument when rendering: \
+`csasdown::render(keep_files = TRUE)`. \
 If you look at *tmp-01-chap1.Rmd* you'll see that in this chunk (*chap01-para-7-en*) the text inside `cat()` has been modified to insert the R code into the string to hold the output as seen above. For further explanation, see Section \@ref(rendering).")
 ```
+
 ```{r chap01-para-7-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-7-en>>
 ```
+
 ```{r chap01-para-8-en, eval = !fr(), results = 'asis'}
 cat("# Document layout
 ## English and French are both included
 The example documents have several new YAML entries for French items. Look in the YAML section at the beginning of *index.Rmd*. The new entries are:
 
+- french_abstract
+- french_title
 - french_month
 - french_region
 - french_address
-- french_title
-- french_abstract
 
 To check if you are missing any YAML entries, run `csasdown::check_yaml()`. It will also be run automatically when you run `csasdown::render()` and you will get an error message if you are missing any.
 ")
 ```
+
 ```{r chap01-para-8-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-8-en>>
 ```
+
 ```{r chap01-para-9-en, eval = !fr(), results = 'asis'}
 cat("# Common issues
-## Errors about chunk names and headers
-Chunk names are expected by default to be in the format *xx-xx-xx-en* for English chunks and *xx-xx-xx-fr* for French chunks. The way it is determined which lanuage the chunk is, is from the chunk header value `eval = fr()` or `eval = !fr()`. For example, a chunk that you want compiled in English should have a header that looks like this:
+Most errors you will get will come from issues related to the knitr chunk names and header variables. 
+## Chunk names and headers for text chunks
+Chunk names are expected to contain only alphanumeric characters and dashes. Underscores must not be used. An example chunk header format is *some-chunk-name-1-en* for an English chunk and *some-chunk-name-1-fr* for its corresponding French chunk. The determination of which language the chunk is written in comes from the chunk variable `eval = fr()` or `eval = !fr()`. For example, a chunk that you want to be included in the English version should have a header that looks like this: \
+`` ```{r some-chunk-name-1-en, eval = !fr(), results = 'asis'} `` \
+Note that the chunk name is *some-chunk-name-1-en* which ends in *-en* and there is an entry of `eval = !fr()` which tells *csasdown* to compile this chunk when English is selected in the YAML header in *index.Rmd*.
 
-`` ```{r chunk-001-en, eval = !fr(), results = 'asis'} ``
+Chunks that are going to be in French need another header entry, *needs_trans*. This is short for 'Needs Translation' and is explained in detail in Section \@ref(compilation). As an example, a chunk that you want compiled in French but it has not been translated yet should have a chunk header that looks like this: \
+`` ```{r some-chunk-name-1-fr, eval = fr(), results = 'asis', needs_trans = TRUE} `` \
+Only French chunks use the *needs_trans* chunk variable. Note that the chunk name is *some-chunk-name-1-fr* which ends in *-fr* and there is an entry of `eval = fr()` which tells it to compile this chunk when French is selected in the YAML header in *index.Rmd*.
 
-Note that the chunk name is *chunk-001-en* which ends in *-en* and there is an entry of `eval = !fr()` which tells it to compile this chunk when English is selected in the YAML header in *index.Rmd*. This is a correctly formatted chunk header.
-
-Chunks that are going to be in French need another header entry, *needs_trans*. This is explained in detail in Section \@ref(compilation). For example, a chunk that you want compiled in French but it has not been translated yet should have a header that looks like this:
-
-`` ```{r chunk-001-fr, eval = fr(), results = 'asis', needs_trans = TRUE} ``
-
-Note that the chunk name is *chunk-001-fr* which ends in *-fr* and there is an entry of `eval = fr()` which tells it to compile this chunk when French is selected in the YAML header in *index.Rmd*. There is also an entry `needs_trans = TRUE`. `needs_trans` is required for French chunks.
-
-If you want to remove the constraint of having chunk names with these formats you can by running `render()` like this:
-
-`render(en_chunk_regex = NULL, fr_chunk_regex = NULL)`
-
-If you want to modify the format, you can do so by modifying the regular expressions. Let's say you want the *en-* and *fr-* to be at the start of the chunk name instead of the end. To do that you would run `render()` this way:
-
-`render(en_chunk_regex = '^en-\\S+$', fr_chunk_regex = '^fr-\\S+$')`
-
+If you want to remove the constraint of having chunk names with these formats you can by running `render()` like this: \
+`render(en_chunk_regex = NULL, fr_chunk_regex = NULL)` \
+If you want to modify the format, you can do so by modifying the regular expressions. Let's say you want the *en-* and *fr-* to be at the start of the chunk name instead of the end. To do that you would run `render()` this way: \
+`render(en_chunk_regex = '^en-\\S+$', fr_chunk_regex = '^fr-\\S+$')` \
 See the documentation for the function `validate_chunk_headers()` for more information.")
 ```
 
 ```{r chap01-para-10-en, eval = !fr(), results = 'asis'}
 cat("
-## Plot and Table chunks (Non-English and non-French chunks)
-If a chunk does not contain the entry `eval = fr()` or `eval = !fr()`, it is assumed to be neutral and used for a plot or table from R. The plot or table code must use `fr()` to create the appropriate version because `fr()` is globally defined. Do not pass translation arguments in your function! For example a simple plot function could look like this:
+## Plot and Table chunks (Non-text chunks)
+If a chunk does not contain the entry `eval = fr()` or `eval = !fr()`, it is assumed to be neutral and used for a plot or table from R. The plot or table function code must use `fr()` internally to create the appropriate version because `fr()` is globally defined. Do not pass translation arguments in your custom function, it will just create a headache for you. For example a simple plot function could look like this:
 ")
 ```
 
@@ -196,6 +199,7 @@ cat("
 In Figure \@ref(fig:plot-cars) the X and Y labels are the only things needed to be translated into French. In more complex figures and tables, groups, legends, and table column headers have to be translated in the function code. The **gfplot** and **iscamutils** packages already have most if not all functions converted to use this method.
 ")
 ```
+
 ```{r chap01-para-11-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-11-en>>
 ```
@@ -203,6 +207,7 @@ In Figure \@ref(fig:plot-cars) the X and Y labels are the only things needed to 
 ```{r chap01-para-12-en, eval = !fr(), results = 'asis'}
 cat("")
 ```
+
 ```{r chap01-para-12-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-10-en>>
 ```

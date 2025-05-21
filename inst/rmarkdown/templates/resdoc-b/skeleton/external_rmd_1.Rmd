@@ -1,11 +1,11 @@
-Here is an example of a list written in the external file:
-1. Item 1
-1. Item 2
-1. Item 3
-   a. Item 3a
-      i. Item 3ai
-   b. Item 3b
-1. Item 4
+Here is an example of a list written in the external file (with inline R code examples):
+1. Item `r sin(pi / 2)`
+1. Item `r 1 + 1`
+1. Item `r 1 + 2`
+   a. Item `r paste0(sqrt(9), "a")`
+      i. Item `r paste0(3, "a", "i")`
+   b. Item `r paste0(3, "b")`
+1. Item `r 2^2`
 
 And another type:
 
@@ -15,3 +15,5 @@ And another type:
 - Item 3
    - Item 3a
 - Item 4
+
+\
