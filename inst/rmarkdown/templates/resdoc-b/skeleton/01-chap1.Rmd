@@ -67,7 +67,6 @@ Any R Markdown code may appear in the imported file, except:
 Unlimited comments can be placed in chunks with mirror code lines and in these *rmd_files()* chunks, but no other code can be included.
 
 The following list and table were injected from two files called *external_rmd_1.Rmd* and *parent-child-table-en.Rmd*.
-
 ")
 ```
 
@@ -199,8 +198,7 @@ plot_ex()
 ```
 
 ```{r chap01-para-11-en, eval = !fr(), results = 'asis'}
-cat("
-In Figure \@ref(fig:plot-cars) the X and Y labels are the only things needed to be translated into French. In more complex figures and tables, groups, legends, and table column headers have to be translated in the function code. The **gfplot** and **iscamutils** packages already have most if not all functions converted to use this method.
+cat("In Figure \@ref(fig:plot-cars) the X and Y labels are the only things needed to be translated into French. In more complex figures and tables, groups, legends, and table column headers have to be translated in the function code. The **gfplot** and **iscamutils** packages already have most if not all functions converted to use this method.
 ")
 ```
 
