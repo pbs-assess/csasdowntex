@@ -93,7 +93,7 @@ inject_bilingual_code <- function(fn = get_index_filename(
     '    if (before){',
     '      paste0("\\\\',
     '   \\\\begin{lrbox}{\\\\userinput}',
-    '   \\\\begin{minipage}{\\\\dimexpr\\\\linewidth-2\\\\fboxsep-2\\\\fboxrule}',
+    '   \\\\begin{minipage}{\\\\textwidth}',
     '   \\\\textcolor{red}{\\\\textbf{Needs translation - \\\\textcolor{blue}{knitr chunk: ", options$label, "}}}',
     '   \\\\begin{lstlisting}',
     '  ")',
