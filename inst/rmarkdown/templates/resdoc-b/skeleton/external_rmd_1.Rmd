@@ -15,5 +15,3 @@ And another type:
 - Item 3
    - Item 3a
 - Item 4
-
-\
