@@ -23,7 +23,7 @@
 #' Addition of `chunk_ind` and `pre_num` allow exact line numbers to be
 #' quoted in messages for the original files.
 #'
-#' @importFrom dplyr summarize group_by mutate
+#' @importFrom dplyr summarize enquos group_by mutate
 #' @importFrom knitr all_patterns
 #' @importFrom purrr map_dbl pwalk
 remove_comments_from_chunks <- function(rmd_files,
