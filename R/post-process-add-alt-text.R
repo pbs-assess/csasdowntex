@@ -110,8 +110,11 @@ post_process_add_alt_text <- function(x,
                        "\\1",
                        x[inds_knitr])
 
+  # Remove "recycle" image if it exists from list of images to tag
+  fns_for_tagging <- x[inds_file]
+  fns_for_tagging <- fns_for_tagging[!grepl("recycle", x[inds_file])]
   pat_fns <- "^.*\\{([/0-9a-zA-Z_-]+)}.*$"
-  file_fns_labels <- gsub(pat_fns, "\\1", x[inds_file], perl = F)
+  file_fns_labels <- gsub(pat_fns, "\\1", fns_for_tagging, perl = F)
 
   file_based_labels <- map(unique(file_fns_labels), ~{
     extract_label_from_figure_filename(.x)
