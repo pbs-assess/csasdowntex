@@ -97,6 +97,8 @@ post_process_add_alt_text <- function(x,
   })
   inds_knitr <- inds_all_figs[is_knitr]
   inds_file <- inds_all_figs[!is_knitr]
+  # Remove "recycle" image if it exists from list of file images to tag
+  inds_file <- inds_file[!grepl("recycle", x[inds_file])]
 
   # Get chunk names for the knitr-based figures
   mid_pat <- ifelse(substr(knitr_figures_dir,
@@ -112,7 +114,6 @@ post_process_add_alt_text <- function(x,
 
   # Remove "recycle" image if it exists from list of images to tag
   fns_for_tagging <- x[inds_file]
-  fns_for_tagging <- fns_for_tagging[!grepl("recycle", x[inds_file])]
   pat_fns <- "^.*\\{([/0-9a-zA-Z_-]+)}.*$"
   file_fns_labels <- gsub(pat_fns, "\\1", fns_for_tagging, perl = F)
 
