@@ -10,13 +10,18 @@
 #' output by [read_bookdown_file()]
 #' @param figures_dir The name of the directory in which premade figures
 #' (typically png files) are kept
+#' @param ignore_copy_errors If `TRUE` ignore errors from copying the required
+#' input files and directories and continue to the testing directory anyway
+#' @param ... Catch arguments meant for other functions
 #'
 #' @return A list of two vectors, `src_fns` which are the source filenames
 #' as absolute filenames (full path) and `dest_fns` which are the destination
 #' filenames as relative filenames
 gotest_doc_get_src_dest_filenames <- function(doc_dir = NULL,
                                               bookdown_lst = NULL,
-                                              figures_dir = NULL){
+                                              figures_dir = NULL,
+                                              ignore_copy_errors = FALSE,
+                                              ...){
 
   if(is.null(bookdown_lst)){
     bail("`bookdown_lst` cannot be `NULL`")
@@ -56,12 +61,17 @@ gotest_doc_get_src_dest_filenames <- function(doc_dir = NULL,
            main_figs_fns)
 
   fns_exists <- file.exists(fns)
+  if(ignore_copy_errors){
+    fns <- fns[fns_exists]
+    fns_exists <- file.exists(fns)
+  }
   if(!all(fns_exists)){
     bail("One or more files that are required to be copied for testing ",
          "do not exist in the directories provided. The file(s) that do ",
          "not exists are:\n\n",
          paste(fns[!fns_exists], collapse = "\n"),
-         "\n\nCheck the `gotest()` function")
+         "\n\nCheck the `gotest()` function or use the `ignore_copy_errors` ",
+         "argument.")
   }
 
   # Source filenames are absolute and destination filenames are relative

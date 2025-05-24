@@ -17,14 +17,19 @@
 #' (typically png files) are kept
 #' @param knitr_figures_dir The name of the directory in which knitr saves
 #' its copies of the figures it creates from knitr chunks
+#' @param ignore_copy_errors If `TRUE` ignore errors from copying the required
+#' input files and directories and continue to the testing directory anyway
+#' @param ... Catch arguments meant for other functions
 #'
 #' @return Nothing, but the global variable `goback_dr` is set for the
 #' function [goback()] to use to return to the original directory
 #' @export
-gotest <- function(doc_dir = NULL,
+gotest <- function(doc_dir = getwd(),
                    config_fn = "_bookdown.yml",
                    figures_dir = NULL,
-                   knitr_figures_dir = NULL){
+                   knitr_figures_dir = NULL,
+                   ignore_copy_errors = FALSE,
+                   ...){
 
   if(is.null(doc_dir)){
     pre_path <- here()
@@ -42,7 +47,7 @@ gotest <- function(doc_dir = NULL,
     bail("The `bookdown` config file `", config_fn, "` does not exist")
   }
   if(!dir.exists(figures_dir)){
-    bail("The figures directory `", figures_dir, "` does not exist")
+    alert("The figures directory `", figures_dir, "` does not exist")
   }
   if(!dir.exists(knitr_figures_dir)){
     bail("The knitr figures directory `", knitr_figures_dir, "` does not exist")
@@ -75,9 +80,11 @@ gotest <- function(doc_dir = NULL,
     bail("The `bookdown` index file `", index_fn, "` does not exist")
   }
 
-  fns_lst <- gotest_doc_get_src_dest_filenames(pre_path,
-                                               bookdown_lst,
-                                               figures_dir)
+  fns_lst <- gotest_doc_get_src_dest_filenames(doc_dir = pre_path,
+                                               bookdown_lst =bookdown_lst,
+                                               figures_dir = figures_dir,
+                                               ignore_copy_errors = ignore_copy_errors,
+                                               ...)
 
   src_fns <- fns_lst$src_fns
   dest_fns <- fns_lst$dest_fns
@@ -101,6 +108,7 @@ gotest <- function(doc_dir = NULL,
 
   dest_fns <- file.path(basename(pre_path),
                         dest_fns)
+
   map2(src_fns, dest_fns, ~{
     file.copy(.x, .y, overwrite = TRUE, copy.mode = TRUE)
   })
