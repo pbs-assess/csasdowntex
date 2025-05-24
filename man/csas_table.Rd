@@ -7,9 +7,7 @@
 csas_table(
   x,
   format = "pandoc",
-  booktabs = TRUE,
-  linesep = "",
-  longtable = TRUE,
+  caption = "",
   font_size = NULL,
   bold_header = TRUE,
   repeat_header = TRUE,
@@ -42,11 +40,7 @@ csas_table(
 
 \item{format}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
 
-\item{booktabs}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
-
-\item{linesep}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
-
-\item{longtable}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
+\item{caption}{Caption for table}
 
 \item{font_size}{Font size in pts. If NULL, document font size is used.}
 
@@ -54,11 +48,11 @@ csas_table(
 
 \item{repeat_header}{If landscape, repeat the header on subsequent pages?}
 
-\item{col_names}{Names for the columns to show on table.}
+\item{col_names}{Names for the columns to show on table}
 
-\item{col_names_align}{As defined in \code{\link[kableExtra:linebreak]{kableExtra::linebreak()}}.}
+\item{col_names_align}{As defined in \code{\link[kableExtra:linebreak]{kableExtra::linebreak()}}}
 
-\item{escape}{As defined by \code{\link[kableExtra:kable_styling]{kableExtra::kable_styling()}}.}
+\item{escape}{As defined by \code{\link[kableExtra:kable_styling]{kableExtra::kable_styling()}}}
 
 \item{hold_position}{force the table placement to be where the code is
 called (don't let latex position the table where it wants)}

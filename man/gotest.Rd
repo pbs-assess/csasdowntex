@@ -6,10 +6,12 @@
 version of the document files for testing}
 \usage{
 gotest(
-  doc_dir = NULL,
+  doc_dir = getwd(),
   config_fn = "_bookdown.yml",
   figures_dir = NULL,
-  knitr_figures_dir = NULL
+  knitr_figures_dir = NULL,
+  ignore_copy_errors = FALSE,
+  ...
 )
 }
 \arguments{
@@ -24,6 +26,11 @@ of the project root directory, then supply the name of that directory here}
 
 \item{knitr_figures_dir}{The name of the directory in which knitr saves
 its copies of the figures it creates from knitr chunks}
+
+\item{ignore_copy_errors}{If \code{TRUE} ignore errors from copying the required
+input files and directories and continue to the testing directory anyway}
+
+\item{...}{Catch arguments meant for other functions}
 }
 \value{
 Nothing, but the global variable \code{goback_dr} is set for the

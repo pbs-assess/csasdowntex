@@ -8,7 +8,9 @@ for the document testing}
 gotest_doc_get_src_dest_filenames(
   doc_dir = NULL,
   bookdown_lst = NULL,
-  figures_dir = NULL
+  figures_dir = NULL,
+  ignore_copy_errors = FALSE,
+  ...
 )
 }
 \arguments{
@@ -21,6 +23,11 @@ output by \code{\link[=read_bookdown_file]{read_bookdown_file()}}}
 
 \item{figures_dir}{The name of the directory in which premade figures
 (typically png files) are kept}
+
+\item{ignore_copy_errors}{If \code{TRUE} ignore errors from copying the required
+input files and directories and continue to the testing directory anyway}
+
+\item{...}{Catch arguments meant for other functions}
 }
 \value{
 A list of two vectors, \code{src_fns} which are the source filenames
