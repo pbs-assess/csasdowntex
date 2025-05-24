@@ -92,9 +92,20 @@ extract_alt_text <- function(inp_str,
       }
       # Glue all the text lines together
       alt_text <- paste(rmd[start_ind:end_ind], collapse = " ")
+
       # Remove the label
       ref_regex <- paste0("\\(ref:", alt_str, "\\) *")
       alt_text <- gsub(ref_regex, "", alt_text)
+
+      # Check for percent signs and replace with the word percent. Alt text
+      # cannot have percent signs in un-escaped and the escape character shows
+      # up in the output text and will be read by a reader so we remove percent
+      # signs (if any) and all preceding backslashes and spaces (if any)
+      alt_text <- gsub("[\\]* *%",
+                       ifelse(fr(),
+                              " pour cent",
+                              " percent"),
+                       alt_text)
 
       # Return a vector of the label and it's text
       alt_text
