@@ -5,15 +5,13 @@
 #'
 #' @param x An R object, typically a matrix or data frame.
 #' @param format As defined by [kableExtra::kbl()].
-#' @param booktabs As defined by [kableExtra::kbl()].
-#' @param linesep As defined by [kableExtra::kbl()].
-#' @param longtable As defined by [kableExtra::kbl()].
+#' @param caption Caption for table
 #' @param font_size Font size in pts. If NULL, document font size is used.
 #' @param bold_header Make headers bold. Logical
 #' @param repeat_header If landscape, repeat the header on subsequent pages?
-#' @param col_names Names for the columns to show on table.
-#' @param col_names_align As defined in [kableExtra::linebreak()].
-#' @param escape As defined by [kableExtra::kable_styling()].
+#' @param col_names Names for the columns to show on table
+#' @param col_names_align As defined in [kableExtra::linebreak()]
+#' @param escape As defined by [kableExtra::kable_styling()]
 #' @param hold_position force the table placement to be where the code is
 #' called (don't let latex position the table where it wants)
 #' @param show_continued_text Logical. If `TRUE`, show the
@@ -57,9 +55,7 @@
 #' @export
 csas_table <- function(x,
                        format = "pandoc",
-                       booktabs = TRUE,
-                       linesep = "",
-                       longtable = TRUE,
+                       caption = "",
                        font_size = NULL,
                        bold_header = TRUE,
                        repeat_header = TRUE,
@@ -112,6 +108,18 @@ csas_table <- function(x,
          csas_color(paste(cols_to_format[!names_exist], collapse = ", ")))
   }
 
+  # Make sure percentage signs in caption are preceded with backslashes
+  caption <- gsub("[\\]* *%",
+                  ifelse(fr(),
+                         " \\\\%",
+                         "\\\\%"),
+                  caption)
+  # Make sure underscores in caption are preceded with backslashes
+  caption <- gsub("[\\]*_",
+                  "\\\\_",
+                  caption)
+
+
   year_col_names <- unique(c(year_cols(x), cols_no_format))
   year_col_names <- setdiff(year_col_names, cols_to_format)
 
@@ -133,37 +141,33 @@ csas_table <- function(x,
       # Only use kableExtra if there are newlines
       col_names <- linebreak(col_names, align = col_names_align)
     }
+    if (bold_header && format == "latex") {
+      browser()
+      col_names <- paste0("\\textbf{", col_names, "}")
+    }
     k <- kbl(x = x,
              format = format,
-             booktabs = booktabs,
-             linesep = linesep,
-             longtable = longtable,
              col.names = col_names,
              escape = escape,
              format.args = dec_format,
+             caption = caption,
              ...
     )
   } else {
+    if (bold_header && format == "latex") {
+      names(x) <- paste0("\\textbf{", names(x), "}")
+    }
     k <- kbl(x = x,
              format = format,
-             booktabs = booktabs,
-             linesep = linesep,
-             longtable = longtable,
              escape = escape,
              format.args = dec_format,
+             caption = caption,
              ...
     )
   }
 
-  if (bold_header) {
-    if(format == "latex"){
-      alert("Bold headers not supported for the ",
-            csas_color("latex"), " format.\n",
-            "You must bold them manually by pasting latex macros around ",
-            " them and passing using the `col.names` argument.")
-    }else{
-      suppressWarnings(k <- row_spec(k, 0, bold = TRUE))
-    }
+  if (bold_header && format != "latex"){
+    k <- row_spec(k, 0, bold = TRUE)
   }
   if (repeat_header) {
     suppressWarnings(
@@ -235,7 +239,7 @@ csas_table <- function(x,
     }
     k_lines_pre <- k_lines[1:j]
     k_lines_post <- k_lines[(j + 1):length(k_lines)]
-    if(getOption("french", default = FALSE)){
+    if(fr()){
       new_line_latex <- paste0("\\hline \\multicolumn{",
                                ncol(x),
                                "}{l}{\\textit{Suite \u00e0 la page suivante ...}}")
@@ -262,13 +266,15 @@ csas_table <- function(x,
     k_lines_post <- k_lines[(j + 1):length(k_lines)]
 
     if(fr()){
-      new_line_latex <- paste0("\\multicolumn{",
-                               ncol(x),
-                               "}{l}{\\textit{... Suite de la page pr\u00e9c\u00e9dente}} \\\\ \\hline")
+      new_line_latex <-
+        paste0("\\multicolumn{",
+               ncol(x),
+               "}{l}{\\textit{... Suite de la page pr\u00e9c\u00e9dente}} \\\\ \\hline")
     }else{
-      new_line_latex <- paste0("\\multicolumn{",
-                               ncol(x),
-                               "}{l}{\\textit{... Continued from previous page}} \\\\ \\hline")
+      new_line_latex <-
+        paste0("\\multicolumn{",
+               ncol(x),
+               "}{l}{\\textit{... Continued from previous page}} \\\\ \\hline")
     }
     k_lines <- c(k_lines_pre, new_line_latex, k_lines_post)
 
