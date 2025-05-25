@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - main
+      - tagging
       - dev
   pull_request:
     branches:
       - main
+      - tagging
       - dev
 
 name: R-CMD-check
