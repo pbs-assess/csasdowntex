@@ -95,6 +95,8 @@ escape_latex_symbols <- function(str){
       })
       chunk
     })
+  }else{
+    return(str)
   }
 
   str_out <- str
