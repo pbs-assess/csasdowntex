@@ -35,7 +35,7 @@
 #' enclosed with double-quotes and copy/pasted into a [cat()]
 #' or [paste()] command
 #'
-#' @importFrom stringr str_split str_extract_all
+#' @importFrom stringr str_split str_extract_all str_replace
 #' @importFrom knitr all_patterns
 catize <- function(str){
 
