@@ -119,6 +119,7 @@ csas_table <- function(x,
                   "\\\\_",
                   caption)
 
+  caption <- escape_latex_symbols(caption)
 
   year_col_names <- unique(c(year_cols(x), cols_no_format))
   year_col_names <- setdiff(year_col_names, cols_to_format)
