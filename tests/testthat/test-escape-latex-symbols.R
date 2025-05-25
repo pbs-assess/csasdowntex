@@ -14,7 +14,6 @@ str_vec <- c(
   "Testing $ddot{\\Digamma}/bar{omicron}$",
   "Testing $\\\\\\ddot{\\Digamma}/bar{\\\\omicron}$",
   "Testing $breve{E}$, and $varphi^2+sin{theta}$"
-
 )
 
 test_that("csasdown::escape_latex_symbols() function works", {
@@ -38,6 +37,5 @@ test_that("csasdown::escape_latex_symbols() function works", {
   expect_equal(i[13], "Testing $\\ddot{\\Digamma}/\\bar{\\omicron}$")
   expect_equal(i[14], "Testing $\\ddot{\\Digamma}/\\bar{\\omicron}$")
   expect_equal(i[15], "Testing $\\breve{\\E}$, and $\\varphi^2+\\sin{\\theta}$")
-  # expect_equal(i[], "")
 
 })

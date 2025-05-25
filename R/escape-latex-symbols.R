@@ -1,9 +1,15 @@
-#' Search in a string for LaTeX symbols and ensure they have two backslashes before them
+#' Search in a string for all LaTeX symbols and ensure they have two backslashes before them
+#'
+#' @details
+#' Will work on an arbitrarily complex string containing instances of LaTeX
+#' math mode signified by $<expr>$ where <expr> is a math expression containing
+#' one or more symbols. The symbols are not fully covered but a subset as
+#' found in this function in the local variable `gr`.
 #'
 #' @param s A string
 #'
 #' @returns The original string `str` but with two backslashes preceding all
-#' LaTeX symbols found in the symbols list in the function (`gr`)
+#' LaTeX symbols found in the symbols list found in the local variable `gr`
 #'
 #' @export
 escape_latex_symbols <- function(str){
@@ -11,10 +17,6 @@ escape_latex_symbols <- function(str){
   # Following list is from several places but official source is the
   # "Comprehensive LaTeX Symbol List" found here:
   # http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf
-  #
-  # The following is from:
-  # https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
-  # except for hat which was added separately
   gr <- c(# Greek letters
           "alpha", "A", "beta", "B", "gamma", "Gamma", "delta", "Delta",
           "epsilon", "varepsilon", "E", "zeta", "Z", "eta", "H", "theta",
@@ -23,7 +25,7 @@ escape_latex_symbols <- function(str){
           "pi", "Pi", "rho", "varrho", "P", "sigma", "Sigma", "tau", "T",
           "upsilon", "Upsilon", "phi", "varphi", "chi", "X", "psi", "Psi",
           "omega", "Omega",
-          # Over lines etc from CLSL page 136
+          # Over lines etc.
           "acute", "bar", "breve", "check", "dot", "ddot", "dddot", "ddddot",
           "grave", "hat", "mathring", "middlebar", "middleslash",  "overline",
           "strokethrough", "tilde", "vec",
@@ -42,8 +44,7 @@ escape_latex_symbols <- function(str){
           # Binary operations and relations
           "times", "cdot", "div", "cap", "cup", "leq", "geq", "in", "perp",
           "subset", "simeq", "wedge", "vee", "Box", "boxtimes",
-          # Relation operators from
-          # https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
+          # Relation operators
           "nless", "ngtr", "leqslant", "geqslant", "nleq", "ngeq", "nleqslant",
           "ngeqslant", "prec", "succ", "nprec", "nsucc", "preceq", "succeq",
           "npreceq", "nsucceq", "ll", "gg", "lll", "ggg", "subset", "supset",
@@ -53,19 +54,18 @@ escape_latex_symbols <- function(str){
           "simeq", "sim", "propto", "neq", "ne", "parallel", "nparallel",
           "asymp", "bowtie", "vdash", "dashv", "in", "ni", "smile", "frown",
           "models", "notin", "mid",
-          # Binary operators from
-          # https://oeis.org/wiki/List_of_LaTeX_mathematical_symbols
+          # Binary operators
           "pm", "mp", "times", "ast", "dagger", "ddagger", "uplus", "sqcap",
           "sqcup", "diamond", "bigtriangleup", "bigtriangledown", "trinagleleft",
           "trinagleright", "bigcirc", "bullet", "wr", "oplus", "ominus",
           "otimes", "oslash", "odot", "circ", "setminus", "amalg",
-          # Logic operators from above
+          # Logic operators
           "lor", "land", "implies", "Longrightarrow", "Longleftarrow", "top",
           "bot",
           # Geometry
           "angle", "overrightarrow", "measuredangle", "ncong", "nsim",
           #"not\\perp # weird syntax, ignore for now
-          # Delimiters from above
+          # Delimiters
           "lceil", "ulcorner", "rceil", "urcorner", "lfloor", "llcorner",
           "backslash", "langle", "rangle", "rfloor", "lrcorner",
           # Other

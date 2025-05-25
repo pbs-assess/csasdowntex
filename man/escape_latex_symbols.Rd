@@ -2,7 +2,7 @@
 % Please edit documentation in R/escape-latex-symbols.R
 \name{escape_latex_symbols}
 \alias{escape_latex_symbols}
-\title{Search in a string for LaTeX symbols and ensure they have two backslashes before them}
+\title{Search in a string for all LaTeX symbols and ensure they have two backslashes before them}
 \usage{
 escape_latex_symbols(str)
 }
@@ -11,8 +11,14 @@ escape_latex_symbols(str)
 }
 \value{
 The original string \code{str} but with two backslashes preceding all
-LaTeX symbols found in the symbols list in the function (\code{gr})
+LaTeX symbols found in the symbols list found in the local variable \code{gr}
 }
 \description{
-Search in a string for LaTeX symbols and ensure they have two backslashes before them
+Search in a string for all LaTeX symbols and ensure they have two backslashes before them
+}
+\details{
+Will work on an arbitrarily complex string containing instances of LaTeX
+math mode signified by $\if{html}{\out{<expr>}}$ where \if{html}{\out{<expr>}} is a math expression containing
+one or more symbols. The symbols are not fully covered but a subset as
+found in this function in the local variable \code{gr}.
 }
