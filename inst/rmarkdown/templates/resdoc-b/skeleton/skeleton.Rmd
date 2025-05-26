@@ -152,6 +152,7 @@ library(dplyr)
 library(here)
 library(ggplot2)
 library(kableExtra)
+library(readr)
 library(rosettafish)
 library(csasdown)
 
