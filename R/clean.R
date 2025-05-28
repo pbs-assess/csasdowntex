@@ -45,7 +45,9 @@ clean <- function(...,
         result <- unlink(fns, force = TRUE)
         if(!result){
           ops_completed <- TRUE
-          message("\nDeleted file(s): ", paste(fns, collapse = ", "))
+          check_notify("\nDeleted file(s): ",
+                       message_color(paste(fns, collapse = ", ")),
+                       "\n")
         }
       }
       fns <- grep(nm, cache, value = TRUE)
@@ -53,7 +55,9 @@ clean <- function(...,
         result <- unlink(fns, force = TRUE)
         if(!result){
           ops_completed <- TRUE
-          message("\nDeleted file(s): ", paste(fns, collapse = ", "))
+          check_notify("\nDeleted file(s): ",
+                       message_color(paste(fns, collapse = ", ")),
+                       "\n")
         }
       }
     })
@@ -62,12 +66,16 @@ clean <- function(...,
     if(dir.exists(knitr_figures_dir)){
       unlink(knitr_figures_dir, recursive = TRUE, force = TRUE)
       ops_completed <- TRUE
-      message("\nDeleted the `", knitr_figures_dir, "` directory recursively.")
+      check_notify("\nDeleted the ",
+                   message_color(knitr_figures_dir),
+                   " directory recursively.\n")
     }
     if(dir.exists(knitr_cache_dir)){
       unlink(knitr_cache_dir, recursive = TRUE, force = TRUE)
       ops_completed <- TRUE
-      message("\nDeleted the `", knitr_cache_dir, "` directory recursively.")
+      check_notify("\nDeleted the ",
+                   message_color(knitr_cache_dir),
+                   " directory recursively.\n")
     }
   }
 
@@ -113,8 +121,9 @@ clean <- function(...,
     # Delete files that match above combinations
       unlink(fns, force = TRUE)
       ops_completed <- TRUE
-      message("\nDeleted intermediate LaTeX files:\n",
-              paste(fns, collapse = "\n"))
+      check_notify("\nDeleted intermediate LaTeX files:\n",
+                   message_color(paste(fns, collapse = "\n")),
+                   "\n")
     }
   }
 
@@ -125,21 +134,26 @@ clean <- function(...,
   if(length(fns_start_tmp)){
     unlink(fns_start_tmp, force = TRUE)
     ops_completed <- TRUE
-    message("\nDeleted temporary build files:\n",
-            paste(fns_start_tmp, collapse = "\n"))
+    check_notify("\nDeleted temporary build files:\n",
+                 message_color(paste(fns_start_tmp, collapse = "\n")),
+                 "\n")
   }
 
   if(book){
     if(dir.exists(book_dir)){
       unlink(book_dir, recursive = TRUE, force = TRUE)
       ops_completed <- TRUE
-      message("\nDeleted the `", book_dir, "` directory recursively.")
+      check_notify("Deleted the ",
+                   message_color(book_dir),
+                   " directory recursively.\n")
     }
   }
 
   if(ops_completed){
-    message("\nDone cleaning the `", curr_dir, "` directory\n")
+    check_notify("Done cleaning the ",
+                 message_color(curr_dir),
+                 " directory.\n")
   }else{
-    message("\nDirectory already clean\n")
+    check_notify("Directory ", message_color(curr_dir), " is already clean.\n")
   }
 }
