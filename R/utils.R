@@ -261,6 +261,11 @@ is_rmd_table_line <- function(lines_lst){
 #' @return A vector of column names, or NULL if no year columns were found
 year_cols <- function(df, year_range = 1800:4000){
 
+  if("matrix" %in% class(df)){
+    df <- df |>
+      as.data.frame()
+  }
+
   col_is_year <- map2(df, names(df), ~{
     if(is.numeric(.x)){
       # Check that all values are in the year range and that they are integers
