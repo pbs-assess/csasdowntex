@@ -32,6 +32,8 @@ clean <- function(...,
 
   ops_completed <- FALSE
 
+  cat("\n")
+
   chunks <- enquos(...)
   if(length(chunks)){
     # Only delete files related to the chunks given
@@ -45,7 +47,7 @@ clean <- function(...,
         result <- unlink(fns, force = TRUE)
         if(!result){
           ops_completed <- TRUE
-          check_notify("\nDeleted file(s): ",
+          check_notify("Deleted file(s): ",
                        message_color(paste(fns, collapse = ", ")),
                        "\n")
         }
@@ -55,7 +57,7 @@ clean <- function(...,
         result <- unlink(fns, force = TRUE)
         if(!result){
           ops_completed <- TRUE
-          check_notify("\nDeleted file(s): ",
+          check_notify("Deleted file(s): ",
                        message_color(paste(fns, collapse = ", ")),
                        "\n")
         }
@@ -66,14 +68,14 @@ clean <- function(...,
     if(dir.exists(knitr_figures_dir)){
       unlink(knitr_figures_dir, recursive = TRUE, force = TRUE)
       ops_completed <- TRUE
-      check_notify("\nDeleted the ",
+      check_notify("Deleted the ",
                    message_color(knitr_figures_dir),
                    " directory recursively.\n")
     }
     if(dir.exists(knitr_cache_dir)){
       unlink(knitr_cache_dir, recursive = TRUE, force = TRUE)
       ops_completed <- TRUE
-      check_notify("\nDeleted the ",
+      check_notify("Deleted the ",
                    message_color(knitr_cache_dir),
                    " directory recursively.\n")
     }
