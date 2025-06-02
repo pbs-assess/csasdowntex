@@ -42,7 +42,7 @@ gotest_doc_get_src_dest_filenames <- function(doc_dir = NULL,
 
   # Set up to copy all Rmd files over to the tmp directory
   fns_rmd <- dir(doc_dir)
-  fns_rmd <- grep(".*\\.[R|r]md$", fns_rmd, value = TRUE)
+  fns_rmd <- grep(".*\\.[R|r](md)?$", fns_rmd, value = TRUE)
   # If test.Rmd or test.rmd exist in the main project, do not copy over
   ind_test_rmd <- grep("^test\\.[R|r]md$", fns_rmd)
   if(length(ind_test_rmd)){

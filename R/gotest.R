@@ -46,10 +46,10 @@ gotest <- function(doc_dir = getwd(),
   if(!file.exists(config_fn)){
     bail("The `bookdown` config file `", config_fn, "` does not exist")
   }
-  if(!dir.exists(figures_dir)){
+  if(!ignore_copy_errors && !dir.exists(figures_dir)){
     alert("The figures directory `", figures_dir, "` does not exist")
   }
-  if(!dir.exists(knitr_figures_dir)){
+  if(!ignore_copy_errors && !dir.exists(knitr_figures_dir)){
     bail("The knitr figures directory `", knitr_figures_dir, "` does not exist")
   }
 
