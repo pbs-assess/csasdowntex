@@ -114,10 +114,26 @@ csas_table <- function(x,
                          " \\\\%",
                          "\\\\%"),
                   caption)
-  # Make sure underscores in caption are preceded with backslashes
-  caption <- gsub("[\\]*_",
-                  "\\\\_",
-                  caption)
+
+  # Make sure underscores in caption are preceded with backslashes. We have
+  # to check for embedded inline verbatim code chunks which are delimited
+  # by quadruple backticks, and not change their contents. To do this, split
+  # the caption up by quad-backticks and then only apply the replacement
+  # pattern (add backslashes to underscores if necessary) to the odd items
+  # in the split list. Glue the list back together with quad-backticks
+  cap_split <- str_split(caption, pattern = "````")
+  if(length(cap_split)){
+    cap_split <- cap_split[[1]]
+    if(!length(cap_split) %% 2){
+      # There cannot be an odd number of ```` delimiters in the caption
+      bail("There are an odd number of ```` delimiters present in the ",
+           "following table caption:\n\n", caption)
+    }
+    cap_split[seq(1, length(cap_split), by = 2)] <- gsub("[\\]*_",
+                                         "\\\\_",
+                                         cap_split[seq(1, length(cap_split), by = 2)])
+    caption <- paste(cap_split, collapse = "````")
+  }
 
   caption <- escape_latex_symbols(caption)
 
@@ -143,7 +159,6 @@ csas_table <- function(x,
       col_names <- linebreak(col_names, align = col_names_align)
     }
     if (bold_header && format == "latex") {
-      browser()
       col_names <- paste0("\\textbf{", col_names, "}")
     }
     k <- kbl(x = x,
@@ -152,6 +167,7 @@ csas_table <- function(x,
              escape = escape,
              format.args = dec_format,
              caption = caption,
+             longtable = TRUE,
              ...
     )
   } else {
@@ -163,6 +179,7 @@ csas_table <- function(x,
              escape = escape,
              format.args = dec_format,
              caption = caption,
+             longtable = TRUE,
              ...
     )
   }
@@ -206,8 +223,7 @@ csas_table <- function(x,
       ex_angle,
       ex_escape,
       ex_line,
-      ex_line_sep
-    )
+      ex_line_sep)
   }
 
   # Insert `Continued on next page ...` and
@@ -234,10 +250,12 @@ csas_table <- function(x,
             " text to table")
       return(k)
     }
+
     if(!length(j)){
       attributes(k_lines) <- attributes(k)
       return(k_lines)
     }
+
     k_lines_pre <- k_lines[1:j]
     k_lines_post <- k_lines[(j + 1):length(k_lines)]
     if(fr()){
@@ -286,114 +304,3 @@ csas_table <- function(x,
   k
 }
 
-#' Adds an extra header to the top of a [csas_table()]. Works for longtables.
-#'
-#' @param kable_input An R object, typically a matrix or data frame.
-#' @param header a vector of character strings to use for the extra header names
-#' @param bold See kableExtra:::pdfTable_add_header_above()
-#' @param italic See kableExtra:::pdfTable_add_header_above()
-#' @param monospace See kableExtra:::pdfTable_add_header_above()
-#' @param underline See kableExtra:::pdfTable_add_header_above()
-#' @param strikeout See kableExtra:::pdfTable_add_header_above()
-#' @param align See kableExtra:::pdfTable_add_header_above()
-#' @param color See kableExtra:::pdfTable_add_header_above()
-#' @param background See kableExtra:::pdfTable_add_header_above()
-#' @param font_size See kableExtra:::pdfTable_add_header_above()
-#' @param angle See kableExtra:::pdfTable_add_header_above()
-#' @param escape See kableExtra:::pdfTable_add_header_above()
-#' @param line See kableExtra:::pdfTable_add_header_above()
-#' @param line_sep See kableExtra:::pdfTable_add_header_above()
-#'
-#' @importFrom kableExtra magic_mirror
-#' @return See kableExtra:::pdfTable_add_header_above()
-add_extra_header <- function(kable_input,
-                             header = NULL,
-                             bold = FALSE,
-                             italic = FALSE,
-                             monospace = FALSE,
-                             underline = FALSE,
-                             strikeout = FALSE,
-                             align = c("c", "l", "r"),
-                             color = NULL,
-                             background,
-                             font_size,
-                             angle,
-                             escape,
-                             line = TRUE,
-                             line_sep = 3) {
-
-  tryCatch({align <- match.arg(align)
-  }, error = function(e){
-    bail(csas_color("align"), " must be one of ",
-         csas_color("c"), ", ", csas_color("l"), ", or ",
-         csas_color("r"), ".\n",
-         "You tried: ", csas_color(align))
-  })
-
-  table_info <- magic_mirror(kable_input)
-  header <- standardize_header_input(header)
-  if (length(table_info$colnames) != nrow(header)) {
-    # nocov start
-    bail("The number of extra headers supplied is not the same as the ",
-         "number of columns in the table")
-    # nocov end
-  }
-  if (escape) {
-    header$header <- input_escape(header$header, align)
-  }
-
-  hline_type <- switch(table_info$booktabs + 1,
-    "\\\\hline",
-    "\\\\toprule"
-  )
-  new_header_split <-
-    pdfTable_new_header_generator(header,
-      table_info$booktabs,
-      bold,
-      italic,
-      monospace,
-      underline,
-      strikeout,
-      align,
-      color,
-      background,
-      font_size,
-      angle,
-      line_sep,
-      border_left = FALSE,
-      border_right = FALSE
-    )
-  if (line) {
-    new_header <- paste0(
-      new_header_split[1], "\n",
-      new_header_split[2]
-    )
-  } else {
-    new_header <- new_header_split[1] # nocov
-  }
-
-  j <- utf8_inp <- solve_enc(kable_input)
-  out <- stringr::str_replace_all(
-    utf8_inp,
-    hline_type,
-    paste0(hline_type, "\n", new_header)
-  )
-  out <- structure(out,
-    format = "latex",
-    class = "knitr_kable"
-  )
-
-  if (is.null(table_info$new_header_row)) {
-    table_info$new_header_row <- new_header_split[1]
-    table_info$header_df <- list(header)
-  } else {
-    # nocov start
-    table_info$new_header_row <- c(
-      table_info$new_header_row,
-      new_header_split[1])
-    table_info$header_df[[length(table_info$header_df) + 1]] <- header
-    # nocov end
-  }
-  attr(out, "kable_meta") <- table_info
-  out
-}
