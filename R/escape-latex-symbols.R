@@ -4,12 +4,14 @@
 #' Will work on an arbitrarily complex string containing instances of LaTeX
 #' math mode signified by $<expr>$ where <expr> is a math expression containing
 #' one or more symbols. The symbols are not fully covered but a subset as
-#' found in this function in the local variable `gr`.
+#' found in this function in the local variable `gr`. In addition, ensures that
+#' all instances of underscores do not have any backslashes in front of them
 #'
-#' @param s A string
+#' @param str A string
 #'
 #' @returns The original string `str` but with two backslashes preceding all
-#' LaTeX symbols found in the symbols list found in the local variable `gr`
+#' LaTeX symbols found in the symbols list found in the local variable `gr` and
+#' all underscores not having backslashes preceding them
 #'
 #' @export
 escape_latex_symbols <- function(str){
@@ -85,13 +87,14 @@ escape_latex_symbols <- function(str){
   if(length(math_chunks)){
     math_chunks_fixed <- map(math_chunks, \(chunk){
       walk(gr, \(symbol){
-        # if(symbol == "zeta" || symbol == "eta")
-        #   browser()
-        chunk <<- gsub(paste0("(?<![\\\\|a-zA-Z0-9])(", symbol, ")(?![a-zA-Z0-9])"),
+        chunk <<- gsub(paste0("(?<![\\\\|a-zA-Z0-9])(",
+                              symbol,
+                              ")(?![a-zA-Z0-9])"),
              "\\\\\\1",
              chunk,
              perl = TRUE)
-        #message(chunk, "\n", symbol, "\n\n")
+        # Remove backslashes preceding underscores
+        chunk <<- gsub("([\\]+_)", "_", chunk)
       })
       chunk
     })

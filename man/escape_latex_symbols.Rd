@@ -7,11 +7,12 @@
 escape_latex_symbols(str)
 }
 \arguments{
-\item{s}{A string}
+\item{str}{A string}
 }
 \value{
 The original string \code{str} but with two backslashes preceding all
-LaTeX symbols found in the symbols list found in the local variable \code{gr}
+LaTeX symbols found in the symbols list found in the local variable \code{gr} and
+all underscores not having backslashes preceding them
 }
 \description{
 Search in a string for all LaTeX symbols and ensure they have two backslashes before them
@@ -20,5 +21,6 @@ Search in a string for all LaTeX symbols and ensure they have two backslashes be
 Will work on an arbitrarily complex string containing instances of LaTeX
 math mode signified by $\if{html}{\out{<expr>}}$ where \if{html}{\out{<expr>}} is a math expression containing
 one or more symbols. The symbols are not fully covered but a subset as
-found in this function in the local variable \code{gr}.
+found in this function in the local variable \code{gr}. In addition, ensures that
+all instances of underscores do not have any backslashes in front of them
 }
