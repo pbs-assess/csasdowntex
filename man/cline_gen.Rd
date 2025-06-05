@@ -2,7 +2,7 @@
 % Please edit documentation in R/kable-extra-non-exports.R
 \name{cline_gen}
 \alias{cline_gen}
-\title{standardize_header_input s a \link{kableExtra} non-exported function}
+\title{standardize_header_input s a \link[kableExtra:kableExtra-package]{kableExtra::kableExtra} non-exported function}
 \usage{
 cline_gen(header_df, booktabs, line_sep)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/kable-extra-non-exports.R
 \name{ez_rep}
 \alias{ez_rep}
-\title{ez_rep is a \link{kableExtra} non-exported function}
+\title{ez_rep is a \link[kableExtra:kableExtra-package]{kableExtra::kableExtra} non-exported function}
 \usage{
 ez_rep(x, n)
 }

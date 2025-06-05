@@ -2,7 +2,7 @@
 % Please edit documentation in R/kable-extra-non-exports.R
 \name{input_escape}
 \alias{input_escape}
-\title{input_escape is a \link{kableExtra} non-exported function}
+\title{input_escape is a \link[kableExtra:kableExtra-package]{kableExtra::kableExtra} non-exported function}
 \usage{
 input_escape(x, latex_align)
 }

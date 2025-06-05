@@ -9,7 +9,7 @@ YAML file}
 create_tmp_yaml_rmd_files(yaml_fn = "_bookdown.yml", verbose = FALSE)
 }
 \arguments{
-\item{yaml_fn}{The \link{bookdown} YAML file name, by default is "_bookdown.yml"}
+\item{yaml_fn}{The \link[bookdown:bookdown-package]{bookdown::bookdown} YAML file name, by default is "_bookdown.yml"}
 
 \item{verbose}{Logical. If \code{TRUE}, print messages}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/kable-extra-non-exports.R
 \name{latex_color_}
 \alias{latex_color_}
-\title{latex_color_ is a \link{kableExtra} non-exported function}
+\title{latex_color_ is a \link[kableExtra:kableExtra-package]{kableExtra::kableExtra} non-exported function}
 \usage{
 latex_color_(color)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/kable-extra-non-exports.R
 \name{escape_latex2}
 \alias{escape_latex2}
-\title{escape_latex2 is a \link{kableExtra} non-exported function}
+\title{escape_latex2 is a \link[kableExtra:kableExtra-package]{kableExtra::kableExtra} non-exported function}
 \usage{
 escape_latex2(x)
 }
