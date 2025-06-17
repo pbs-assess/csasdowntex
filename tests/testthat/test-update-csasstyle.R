@@ -6,7 +6,7 @@ test_that("update_csasstyle() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(csasdown::draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc-b", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
   ))
