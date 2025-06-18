@@ -354,10 +354,15 @@ fix_envs <- function(x,
     x <- gsub("\\\\vadjust pre", "", x)
   }
   # Enable reference linking to subsections of appendices
-  # if (!pandoc_curr_ver_is_before()) {
-  #   stop("csasdown currently only works with pandoc < 3.1.7. Please revert to an older pandoc version.", call. = FALSE)
-  # }
   x <- add_appendix_subsection_refs(x)
+
+  # Create hyperlinks for appendix references, and insert the correct letter
+  # in the link text
+  x <- add_appendix_hyperlinks(x)
+
+  # Insert phantom section for REFERENCES CITED so that the TOC link
+  # works correctly
+  x <- add_references_phantom(x)
 
   if(!include_section_nums){
     document_start_ind <- grep("^\\\\documentclass", x)

@@ -190,6 +190,20 @@ add_appendix_subsection_refs <- function(x){
                               toupper(LETTERS[app_ind]),
                               "}"),
                        "\\refstepcounter{chapter}")
+    # The first element in the `app` vector is a starredchapter.
+    # To make linking work in lualatex, we must add a hypertarget to link to
+    # for referenced using a hyperlink. This must come directly after the
+    # starredchapter line. The reference is extracted from the label found on
+    # starredchapter line
+    star_chap_line <- app[1]
+    the_rest <- app[2:length(app)]
+
+    lab <- gsub("^.*label\\{(.*)}.*$", "\\1", star_chap_line)
+    hyper_target_line <- paste0("\\hypertarget{", lab, "}{}")
+    app <- c(star_chap_line,
+             hyper_target_line,
+             the_rest)
+
     app <- c(counter_lines, app)
 
     app
