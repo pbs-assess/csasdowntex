@@ -8,6 +8,10 @@
 #' each appendix/section/subsection/subsubsection are 'newcounter' and
 #' 'refstepcounter'`.
 #'
+#' This is another item that failed when we changed to lualatex. Also see
+#' [add_references_phantom()] and [fix_table_refs()] which were required
+#' to fix issues with lualatex.
+#'
 #' @keywords internal
 #'
 #' @param x The LaTeX code as a vector of character strings, one for each line

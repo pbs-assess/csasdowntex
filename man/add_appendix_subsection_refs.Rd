@@ -20,5 +20,9 @@ referencing of the appendices throughout the document. References are
 injected into the LaTeX code in \code{x}. The LaTeX macros injected prior to
 each appendix/section/subsection/subsubsection are 'newcounter' and
 'refstepcounter'`.
+
+This is another item that failed when we changed to lualatex. Also see
+\code{\link[=add_references_phantom]{add_references_phantom()}} and \code{\link[=fix_table_refs]{fix_table_refs()}} which were required
+to fix issues with lualatex.
 }
 \keyword{internal}

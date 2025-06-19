@@ -1,6 +1,11 @@
 #' Add phantomsection latex macro after the references declaration so that
 #' the TOC link for it works correctly
 #'
+#' @details
+#' This is another item that failed when we changed to lualatex. Also see
+#' [add_appendix_subsection_refs()] and [fix_table_refs()] which were required
+#' to fix issues with lualatex.
+#'
 #' @param x The LaTeX code as a vector of character strings, one for each line
 #'
 #' @return The modified LaTeX code as a vector of character strings, one for

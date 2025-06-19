@@ -20,3 +20,16 @@ Change appendix refs to hyperlinks and match the references with their
 actual appendix letter, adding it into the text so that it appears
 normally in the document text
 }
+\details{
+With lualatex, starred chapters (appendices) cannot be linked to. It is
+surprising that pdflatex allows this since it is in the latex spec to NOT
+allow for it. This function uses a hack that inserts hypertargets and
+hyperlinks for appendix references. The letters shown in the text are not
+known at compile time so a data frame of letters and starred chapter labels
+(key-value pair) is created and is in the order in which the appendices
+are included in the document. The letter is extracted from this data frame
+and inserted in the hyperlink for the appendix as the text portion to show
+in the document. This should always work out correctly assuming appendices
+are called A-Z inclusive. If there are more than 26 appendices this will
+have to be rewritten in another way.
+}
