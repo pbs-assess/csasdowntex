@@ -364,6 +364,12 @@ fix_envs <- function(x,
   # works correctly
   x <- add_references_phantom(x)
 
+  # Fix table references (links). They do not work as advertised using
+  # lualatex so we have to do some code hacking to make them work by
+  # artificially subtracting 1 and then adding 1 again to the table counter
+  # using refstepcounter to make the tables reference-able
+  x <- fix_table_refs(x)
+
   if(!include_section_nums){
     document_start_ind <- grep("^\\\\documentclass", x)
     pre_start <- x[1:document_start_ind]
