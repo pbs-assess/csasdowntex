@@ -40,7 +40,8 @@ suppressed}
 
 \item{verbose}{Logical. If \code{TRUE}, print messages}
 
-\item{...}{Additional arguments passed to \code{\link[bookdown:render_book]{bookdown::render_book()}}}
+\item{...}{Additional arguments passed to \code{\link[bookdown:render_book]{bookdown::render_book()}} and
+\code{\link[=preprocess_chunks]{preprocess_chunks()}}}
 }
 \value{
 Nothing

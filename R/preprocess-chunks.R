@@ -11,6 +11,7 @@
 #' `chunk_header` (chr)  `chunk_ind` (int), `pre_num` (dbl), `post_num` (dbl),
 #' and `rmd_num` (dbl). See `return` values for [inject_rmd_files()] and
 #' @param verbose Logical. If `TRUE`, print messages
+#' @param ... Absorb arguments intended for other functions
 #'
 #' @importFrom purrr map2_chr
 #'
@@ -18,7 +19,8 @@
 preprocess_chunks <- function(fns,
                               yaml_fn = "_bookdown.yml",
                               line_offsets = NULL,
-                              verbose = FALSE){
+                              verbose = FALSE,
+                              ...){
 
   if(verbose){
     notify("Running preprocessor on knitr chunks ...")
@@ -179,7 +181,7 @@ preprocess_chunks <- function(fns,
           chunk_has_eq <- TRUE
 
           eqs <- map2(start_eq, end_eq, ~{text_chunk[seq(.x, .y)]})
-          # Make sure the first equation does not have a quote preceeding it
+          # Make sure the first equation does not have a quote preceding it
           # on the begin equation label on its first line. If it does, remove it
           eqs[[1]][1] <-
             gsub("(\\s*'|\")",

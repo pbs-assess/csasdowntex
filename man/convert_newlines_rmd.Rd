@@ -4,7 +4,7 @@
 \alias{convert_newlines_rmd}
 \title{Remove all the constraints in Rmd involving newlines}
 \usage{
-convert_newlines_rmd(chunk, strip_blank_lines = TRUE)
+convert_newlines_rmd(chunk, strip_blank_lines = FALSE, ...)
 }
 \arguments{
 \item{chunk}{A vector of strings, one line of Rmarkdown per element}
@@ -12,6 +12,8 @@ convert_newlines_rmd(chunk, strip_blank_lines = TRUE)
 \item{strip_blank_lines}{Strip all lines composed of whitespace.
 Rstudio automatically indents several spaces to the start of lines when you
 press 'Enter' and it is common to ignore those when editing}
+
+\item{...}{Absorb arguments intended for other functions}
 }
 \value{
 A modified vector of strings

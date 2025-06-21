@@ -52,7 +52,8 @@
 #' [bookdown::render_book()] from within this function will have warnings
 #' suppressed
 #' @param verbose Logical. If `TRUE`, print messages
-#' @param ... Additional arguments passed to [bookdown::render_book()]
+#' @param ... Additional arguments passed to [bookdown::render_book()] and
+#' [preprocess_chunks()]
 #'
 #' @return Nothing
 #' @importFrom purrr prepend imap_chr imap
@@ -153,7 +154,8 @@ render <- function(yaml_fn = "_bookdown.yml",
     preprocess_chunks(fn_process,
                       yaml_fn,
                       line_offsets = offsets,
-                      verbose)
+                      verbose,
+                      ...)
   }
 
   # Inject some more complex code into the temporary version of index.Rmd

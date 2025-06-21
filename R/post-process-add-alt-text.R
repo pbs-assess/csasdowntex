@@ -106,6 +106,7 @@ post_process_add_alt_text <- function(x,
                            nchar(knitr_figures_dir)) == "/",
                     "(.*?)-[0-9]+\\}.*$",
                     "/(.*?)-[0-9]+\\}.*$")
+
   knitr_labels <- gsub(paste0(".*\\{",
                               knitr_figures_dir,
                               mid_pat),

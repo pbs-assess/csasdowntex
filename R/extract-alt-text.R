@@ -118,7 +118,6 @@ extract_alt_text <- function(inp_str,
   if(length(k)){
     k[sapply(k, is.null)] <- NULL
   }
-
   if(!length(k)){
     bail("Error retrieving an alternative text label. ",
          "You must add a (ref:", alt_str, ") with alternative text to ",

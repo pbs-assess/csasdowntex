@@ -8,7 +8,8 @@ preprocess_chunks(
   fns,
   yaml_fn = "_bookdown.yml",
   line_offsets = NULL,
-  verbose = FALSE
+  verbose = FALSE,
+  ...
 )
 }
 \arguments{
@@ -24,6 +25,8 @@ correct line numbers for the original files. Has columns \code{fn} (chr),
 and \code{rmd_num} (dbl). See \code{return} values for \code{\link[=inject_rmd_files]{inject_rmd_files()}} and}
 
 \item{verbose}{Logical. If \code{TRUE}, print messages}
+
+\item{...}{Absorb arguments intended for other functions}
 }
 \value{
 Nothing

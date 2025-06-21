@@ -5,7 +5,7 @@
 \title{Extract chunk label for the knitr chunk containing includegraphics and a
 filename}
 \usage{
-extract_label_from_figure_filename(fn)
+extract_label_from_figure_filename(fn, bd_fn = here("doc/_bookdown.yml"))
 }
 \arguments{
 \item{fn}{The figure file name to match (no extension)}

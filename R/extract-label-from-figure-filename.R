@@ -14,10 +14,17 @@
 #' @return The chunk label found for the chunk which includes the figure
 #' file `fn`
 #' @export
-extract_label_from_figure_filename <- function(fn){
+extract_label_from_figure_filename <- function(fn,
+                                               bd_fn = here("doc/_bookdown.yml")){
 
-  bd_lines <- readLines(here("_bookdown.yml"))
+  if(!file.exists(bd_fn)){
+    bail("File `", bd_fn, "` does not exist, in `extract_label_from_figure_filename()`")
+  }
+
+  bd_lines <- readLines(bd_fn)
   bd_rmd_raw <- grep("\\.[R|r]md", bd_lines, value = TRUE)
+
+  source_dir <- dirname(bd_fn)
 
   # Remove leading and trailing whitespace
   bd <- trimws(bd_rmd_raw)
@@ -34,17 +41,22 @@ extract_label_from_figure_filename <- function(fn){
     gsub("\\]$", "", .) %>%
     gsub(",$", "", .)
 
-  fns <- here(bd)
+  fns <- here(source_dir, bd)
 
   k <- map(fns, ~{
+
     rmd <- readLines(.x)
     inds <- grep(basename(fn), rmd)
     if(!length(inds)){
       return(NULL)
     }
+    # Make sure that inds represents actual includegraphics calls. If this step
+    # is omitted, then chunk labels and other text with the same name as the
+    # file base will be matched and a bug will occur
+    inds <- inds[grepl("include_graphics", rmd[inds])]
 
     # Find out which chunk the file was found included in
-    j <- map(inds, \(ind){
+    j <- map_chr(inds, \(ind){
       repeat{
         ind <- ind - 1
         pat <- "```\\{r +([0-9A-Za-z_-]+).*$"
@@ -58,10 +70,8 @@ extract_label_from_figure_filename <- function(fn){
         }
       }
     })
+    j
   })
 
-  # Remove all NULLs from the list
-  k[sapply(k, is.null)] <- NULL
-
-  unlist(k[[1]])
+  unlist(k)
 }

@@ -19,10 +19,12 @@
 #' @param strip_blank_lines Strip all lines composed of whitespace.
 #' Rstudio automatically indents several spaces to the start of lines when you
 #' press 'Enter' and it is common to ignore those when editing
+#' @param ... Absorb arguments intended for other functions
 #'
 #' @return A modified vector of strings
 convert_newlines_rmd <- function(chunk,
-                                 strip_blank_lines = TRUE){
+                                 strip_blank_lines = FALSE,
+                                 ...){
 
   if(is.null(chunk)){
     return(NULL)
@@ -57,5 +59,4 @@ convert_newlines_rmd <- function(chunk,
   c(new_chunk,
     ret_lst[[1]],
     convert_newlines_rmd(ret_lst[[2]]))
-
 }
