@@ -69,6 +69,7 @@ Imports:
     purrr,
     rlang,
     rmarkdown,
+    rosettafish,
     stringr,
     tibble,
     tinytex (>= 0.39),
@@ -81,7 +82,6 @@ Suggests:
     magick,
     pandoc,
     readr,
-    rosettafish,
     testthat,
     tidyr
 Remotes:

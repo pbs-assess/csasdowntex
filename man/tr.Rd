@@ -2,22 +2,39 @@
 % Please edit documentation in R/utils.R
 \name{tr}
 \alias{tr}
-\title{Translate from English to French}
+\title{Translate from English to French or vice-versa}
 \usage{
-tr(x, ...)
+tr(vector_of_terms)
 }
 \arguments{
-\item{x}{A character vector to translate}
-
-\item{...}{Arguments to pass to \code{\link[rosettafish:trans]{rosettafish::en2fr()}}}
+\item{vector_of_terms}{A vector of terms to translate based on the
+return value of \code{fr()}}
 }
 \value{
-The possibly translated character vector
+The possibly translated character vector (see \strong{Details} above)
 }
 \description{
-Translate from English to French
+Translate from English to French or vice-versa
 }
 \details{
-If \code{fr()} returns \code{TRUE}, the translation will happen,
-If \code{fr()} returns \code{FALSE}, no translation will happen
+If \code{fr()} is \code{TRUE} and \code{x} is English (is in the translation database)
+then it will be translated to French
+If \code{fr()} is \code{TRUE} and \code{x} is French (is not in the translation database)
+then it will not be translated and will be returned as it was received
+
+If \code{fr()} is \code{FALSE} and \code{x} is French (is in the translation database)
+then it will be translated to English
+If \code{fr()} is \code{TRUE} and \code{x} is English (is not in the translation database)
+then it will not be translated and will be returned as it was received
+
+Reasoning for this function: This was needed for switching back and forth
+from building an English document and a French one. Some things such as
+Gear names can simply be wrapped in \code{tr()} and will be translated properly
+no matter the document language. This greatly simplifies code.
+
+CAVEAT: If you attempt to translate a word and it is legitimately not
+found in the translation database, this function will simply return
+the word you supplied, be it French or English, without warning. It is up
+to you to test that the words are found in the translation database for
+both English and French.
 }

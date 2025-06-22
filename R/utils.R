@@ -302,20 +302,54 @@ fr <- function(){
   getOption("french", default = FALSE)
 }
 
-#' Translate from English to French
+#' Translate from English to French or vice-versa
 #'
 #' @details
-#' If `fr()` returns `TRUE`, the translation will happen,
-#' If `fr()` returns `FALSE`, no translation will happen
+#' If `fr()` is `TRUE` and `x` is English (is in the translation database)
+#' then it will be translated to French
+#' If `fr()` is `TRUE` and `x` is French (is not in the translation database)
+#' then it will not be translated and will be returned as it was received
 #'
-#' @param x A character vector to translate
-#' @param ... Arguments to pass to [rosettafish::en2fr()]
+#' If `fr()` is `FALSE` and `x` is French (is in the translation database)
+#' then it will be translated to English
+#' If `fr()` is `TRUE` and `x` is English (is not in the translation database)
+#' then it will not be translated and will be returned as it was received
 #'
-#' @return The possibly translated character vector
+#' Reasoning for this function: This was needed for switching back and forth
+#' from building an English document and a French one. Some things such as
+#' Gear names can simply be wrapped in `tr()` and will be translated properly
+#' no matter the document language. This greatly simplifies code.
+#'
+#' CAVEAT: If you attempt to translate a word and it is legitimately not
+#' found in the translation database, this function will simply return
+#' the word you supplied, be it French or English, without warning. It is up
+#' to you to test that the words are found in the translation database for
+#' both English and French.
+#'
+#' @param vector_of_terms A vector of terms to translate based on the
+#' return value of `fr()`
+#'
+#' @return The possibly translated character vector (see **Details** above)
+#' @importFrom rosettafish en2fr fr2en
 #' @export
-tr <- function(x, ...){
+tr <- function(vector_of_terms){
 
-  rosettafish::en2fr(x, translate = fr(), ...)
+  vector_of_terms |>
+    map_chr(\(term){
+      tryCatch({
+        return(trans(term,
+                     from = ifelse(fr(),
+                                   "english",
+                                   "french"),
+                     to =  ifelse(fr(),
+                                  "french",
+                                  "english")))
+      }, error = \(e){
+        # If the term is not in the database, we assume it is already in the
+        # target language, so we just return it as-is
+        return(term)
+      })
+    })
 }
 
 # nocov start
