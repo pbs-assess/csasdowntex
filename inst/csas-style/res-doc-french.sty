@@ -529,7 +529,14 @@ breaklines=true
 %% Make sure maindoc.rnw is saved in utf8 encoding.
 %% In emacs you can change the coding with Ctrl-x Ctrl-m f
 \usepackage[utf8]{inputenc}
+% fontspec is required for certain French characters when you use Lualatex
+% and pdflatex requires fontenc instead
+\usepackage{ifluatex}
+\ifluatex
+\usepackage{fontspec}
+\else
 \usepackage[T1]{fontenc}
+\fi
 
 %% The \sum command creates encoding errors in the final PDF so it is replaced
 %%  globally here with Sigma. The * in DeclareMathOperator* makes the limits
