@@ -158,14 +158,15 @@ extract_alt_text <- function(inp_str,
     }else{
       message <- paste0("There were ", grep_length, " commas ")
     }
-    bail(message, "found in the alt text entry for label `",
+    alert(message, "found in the alt text entry for label `",
          alt_str, "` You must re-write the alternative text without commas. ",
-         "This is a limitation of the tagpdf LaTeX package.\nThe text in ",
+         "This is a limitation of the tagpdf LaTeX package.\nFor nowe, the ",
+         "comma was removed so the compilation could continue.\n The text in ",
          "question is:\n\n",
          k, "\n")
     # Remove the commas - was used when this was a warning (alert) instead, but
     # the warning does not print to the screen so it is useless.
-    #k <- gsub(comma_pat, "", k, perl = TRUE)
+    k <- gsub(comma_pat, "", k, perl = TRUE)
     # Replace with double-backslash. Note this leaves a backslash in the text
     # and there's no way around it. I tried more or less backslashes and no dice
     #k <- gsub(comma_pat, "\\\\\\1", k, perl = TRUE)
