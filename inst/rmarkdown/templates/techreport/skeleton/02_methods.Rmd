@@ -19,17 +19,21 @@ and render as usual. You can switch back and forth at any time to see the change
 
 Here is a simple figure plotted in a `knitr` code chunk. Look at the code (`02_methods.Rmd`) to see how all figure and table captions should be written to permit easy migration to French.
 
-(ref:testfig) Test figure with a caption will be numbered automatically.
+(ref:fig-testfig-en) Test figure with a caption will be numbered automatically.
 
-(ref:testfig-french) French caption would go here once you've had it translated.
+(ref:fig-testfig-french) French caption would go here once you've had it translated.
 
-```{r testfig, fig.pos="H", fig.cap = ifelse(fr(), "(ref:testfig-french)", "(ref:testfig)")}
+(ref:fig-testfig-en-alt) Testing the alternative test
+
+(ref:fig-testfig-fr-alt) Test de l'alternative
+
+```{r fig-testfig, fig.pos="H", fig.cap = ifelse(fr(), "(ref:figf-testfig-fr)", "(ref:fig-testfig-en)")}
 plot(cars)
 ```
 
 Here are two ways to make the same example data frame and simple `csas_table()` calls for each: 
 
-```{r testtab, echo=TRUE}
+```{r testtab, echo = TRUE}
 d <- structure(list(
   Year = c("2018", "2019", "2020"), 
   `Value 1` = c(1.12, 2.32, 3.67), 
@@ -97,6 +101,7 @@ read_csv(file.path("data", "multirow.csv")) |>
              escape = FALSE,
              font_size = 11,
              bold_header = FALSE,
+             show_continued_text = FALSE,
              caption = ifelse(fr(),
                               "French goes here",
                               "Goals and performance metrics")) |>

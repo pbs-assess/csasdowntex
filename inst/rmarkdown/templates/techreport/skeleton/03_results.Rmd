@@ -4,11 +4,15 @@ You can add new knitr code chunks with figure and tables in any section. csasdow
 
 Here's another plot for fun:
 
-(ref:batman) Batman!
+(ref:fig-batman-en) Batman!
 
-(ref:batman-french) Homme chauve-souris!
+(ref:fig-batman-french) Batman! - Homme chauve-souris!
 
-```{r batman, fig.cap=ifelse(fr(), "(ref:batman-french)", "(ref:batman)")}
+(ref:fig-batman-en-alt) Test alternative text for Batman
+
+(ref:fig-batman-fr-alt) Tester le texte alternatif pour Batman
+
+```{r fig-batman, fig.cap=ifelse(fr(), "(ref:fig-batman-fr)", "(ref:fig-batman-en)")}
 #' Call the Batman
 #'
 #' https://charlotte-ngs.github.io/BatmanPlot/BatmanPlotPost.html

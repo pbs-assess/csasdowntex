@@ -13,15 +13,20 @@ Appendices can be in one file, or if they are larger than a couple of pages you 
 
 Figures and tables will now be prepended with the appendix letter:
 
-(ref:test1) English version of the test1 figure caption
+(ref:fig-test1-en) English version of the test1 figure caption
 
-(ref:test1-french) French goes here
+(ref:fig-test1-fr) French goes here
 
-```{r test1, fig.cap=ifelse(fr(), "(ref:test1-french)", "(ref:test1)")}
+(ref:fig-test1-en-alt) Test alternative text for this figure
+
+(ref:fig-test1-fr-alt) Tester le texte alternatif pour cette figure
+
+```{r fig-test1, fig.cap = ifelse(fr(), "(ref:fig-test1-fr)", "(ref:fig-test1-en)")}
 plot(1)
 ```
 
-```{r test2, results='asis'}
+```{r test2, results = 'asis'}
+
 csasdown::csas_table(data.frame(x = c("a", "a", "b"),
                                 y = c(1, 2, 3)),
                      caption = ifelse(fr(),
@@ -52,11 +57,15 @@ The label `#app:` in the appendix section headers tell `csasdown` to start a new
 
 To illustrate the new labeling of appendices, here are a table and figure:
 
-(ref:test1b) English version of the test1b figure caption
+(ref:fig-test1b-en) English version of the test1b figure caption
 
-(ref:test1b-french) French goes here
+(ref:fig-test1b-fr) French goes here
 
-```{r test1b, fig.cap=ifelse(fr(), "(ref:test1b-french)", "(ref:test1b)")}
+(ref:fig-test1b-en-alt) Alternative text for Figure 1b
+
+(ref:fig-test1b-fr-alt) Texte alternatif pour la figure 1b
+
+```{r fig-test1b, fig.cap = ifelse(fr(), "(ref:fig-test1b-fr)", "(ref:fig-test1b-en)")}
 plot(1)
 ```
 

@@ -43,7 +43,7 @@ output:
  csasdown::techreport_pdf:
    # If `true`, alternative figure text and figure tags are added for
    # PDF web accessibility compliance
-   accessible_pdf: true
+   accessible_pdf: false
    french: false
    # copy_sty is a toggle to copy the style file from the csasdown package every time you compile
    # the document. If false, any changes you have made to the style file in your project
