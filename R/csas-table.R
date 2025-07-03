@@ -288,7 +288,7 @@ csas_table <- function(x,
       new_line_latex <-
         paste0("\\multicolumn{",
                ncol(x),
-               "}{l}{\\textit{... Suite de la page pr\u00e9c\u00e9dente}} \\\\ \\hline")
+               "}{l}{\\textit{... Suite de la page précédente}} \\\\ \\hline")
     }else{
       new_line_latex <-
         paste0("\\multicolumn{",
