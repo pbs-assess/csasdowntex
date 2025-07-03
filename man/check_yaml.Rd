@@ -5,6 +5,7 @@
 \title{Check to make sure \code{index.Rmd} contains all current YAML options}
 \usage{
 check_yaml(
+  index_fn = "index.Rmd",
   type = c("resdoc", "resdoc_pdf", "resdoc_word", "sr", "sr_pdf", "sr_word",
     "manureport", "manureport_pdf", "manureport_word", "techreport", "techreport_pdf",
     "techreport_word", "fsar_word"),
@@ -13,6 +14,8 @@ check_yaml(
 )
 }
 \arguments{
+\item{index_fn}{Filename foir the index RMD file}
+
 \item{type}{Type of document}
 
 \item{tag_exceptions}{A vector of YAML tag names that if missing, will not
