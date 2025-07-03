@@ -85,7 +85,7 @@ render <- function(yaml_fn = "_bookdown.yml",
   pdf_or_word <- `if`(doc_format == "pdf", "PDF", "Word")
 
   # Make sure all YAML entries are present in `index.Rmd`
-  check_yaml(render_type, verbose = verbose)
+  check_yaml(index_fn, render_type, verbose = verbose)
 
   # Find out what language is set to and set the option 'french' here
   # so that it works on the first compilation in a workspace

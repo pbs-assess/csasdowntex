@@ -6,6 +6,7 @@
 #' version built into the currently installed version of csasdown and issue
 #' am error message telling you what doesn't match if needed.
 #'
+#' @param index_fn Filename foir the index RMD file
 #' @param type Type of document
 #' @param tag_exceptions A vector of YAML tag names that if missing, will not
 #' cause an error
@@ -13,7 +14,8 @@
 #'
 #' @importFrom rmarkdown yaml_front_matter
 #' @export
-check_yaml <- function(type = c("resdoc", "resdoc_pdf", "resdoc_word",
+check_yaml <- function(index_fn = "index.Rmd",
+                       type = c("resdoc", "resdoc_pdf", "resdoc_word",
                                 "sr", "sr_pdf", "sr_word",
                                 "manureport", "manureport_pdf",
                                 "manureport_word",
@@ -21,6 +23,10 @@ check_yaml <- function(type = c("resdoc", "resdoc_pdf", "resdoc_word",
                                 "techreport_word", "fsar_word"),
                        tag_exceptions = c("show_continued_text"),
                        verbose = FALSE) {
+
+  if(!file.exists(index_fn)){
+    bail("The file `", index_fn, "` does not exist")
+  }
 
   tryCatch({type <- match.arg(type)
   }, error = function(e){
@@ -58,15 +64,15 @@ check_yaml <- function(type = c("resdoc", "resdoc_pdf", "resdoc_word",
                 package = "csasdown"
     )
   ))
-  x_index <- names(yaml_front_matter("index.Rmd"))
+  x_index <- names(yaml_front_matter(index_fn))
   .diff <- setdiff(x_skeleton, x_index)
   .diff <- .diff[!.diff %in% tag_exceptions]
   if (length(.diff) > 0L) {
-    bail("Your ", fn_color("index.Rmd"), " file is missing the YAML ",
+    bail("Your ", fn_color(index_fn), " file is missing the YAML ",
          "tag(s):\n\n", tag_color(paste(.diff, collapse = "\n")))
   } else {
     if(verbose){
-      check_notify("Your ", fn_color("index.Rmd"), " file contains all ",
+      check_notify("Your ", fn_color(index_fn), " file contains all ",
                    "necessary YAML options\n")
     }
   }
