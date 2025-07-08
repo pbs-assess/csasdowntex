@@ -330,7 +330,7 @@ fr <- function(){
 #' return value of `fr()`
 #'
 #' @return The possibly translated character vector (see **Details** above)
-#' @importFrom rosettafish en2fr fr2en
+#' @importFrom rosettafish en2fr fr2en trans
 #' @export
 tr <- function(vector_of_terms){
 
