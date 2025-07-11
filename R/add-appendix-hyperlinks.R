@@ -38,7 +38,7 @@ add_appendix_hyperlinks <- \(x){
   # order found in the document. This should always be correct, but there is
   # no internal link so if you see a written appendix letter that does not
   # match where it takes you, this is probably to blame.
-  labels_df <- enframe(labels, name = NULL) |>
+  labels_df <- tibble::enframe(labels, name = NULL) |>
     mutate(letter = LETTERS[1:length(labels)]) |>
     rename(label = value) |>
     select(letter, label)
