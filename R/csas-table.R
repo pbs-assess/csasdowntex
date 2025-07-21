@@ -108,34 +108,36 @@ csas_table <- function(x,
          csas_color(paste(cols_to_format[!names_exist], collapse = ", ")))
   }
 
-  # Make sure percentage signs in caption are preceded with backslashes
-  caption <- gsub("[\\]* *%",
-                  ifelse(fr(),
-                         " \\\\%",
-                         "\\\\%"),
-                  caption)
+  if(!is.null(caption)){
+    # Make sure percentage signs in caption are preceded with backslashes
+    caption <- gsub("[\\]* *%",
+                    ifelse(fr(),
+                           " \\\\%",
+                           "\\\\%"),
+                    caption)
 
-  # Make sure underscores in caption are preceded with backslashes. We have
-  # to check for embedded inline verbatim code chunks which are delimited
-  # by quadruple backticks, and not change their contents. To do this, split
-  # the caption up by quad-backticks and then only apply the replacement
-  # pattern (add backslashes to underscores if necessary) to the odd items
-  # in the split list. Glue the list back together with quad-backticks
-  cap_split <- str_split(caption, pattern = "````")
-  if(length(cap_split)){
-    cap_split <- cap_split[[1]]
-    if(!length(cap_split) %% 2){
-      # There cannot be an odd number of ```` delimiters in the caption
-      bail("There are an odd number of ```` delimiters present in the ",
-           "following table caption:\n\n", caption)
+    # Make sure underscores in caption are preceded with backslashes. We have
+    # to check for embedded inline verbatim code chunks which are delimited
+    # by quadruple backticks, and not change their contents. To do this, split
+    # the caption up by quad-backticks and then only apply the replacement
+    # pattern (add backslashes to underscores if necessary) to the odd items
+    # in the split list. Glue the list back together with quad-backticks
+    cap_split <- str_split(caption, pattern = "````")
+    if(length(cap_split)){
+      cap_split <- cap_split[[1]]
+      if(!length(cap_split) %% 2){
+        # There cannot be an odd number of ```` delimiters in the caption
+        bail("There are an odd number of ```` delimiters present in the ",
+             "following table caption:\n\n", caption)
+      }
+      cap_split[seq(1, length(cap_split), by = 2)] <- gsub("[\\]*_",
+                                                           "\\\\_",
+                                                           cap_split[seq(1, length(cap_split), by = 2)])
+      caption <- paste(cap_split, collapse = "````")
     }
-    cap_split[seq(1, length(cap_split), by = 2)] <- gsub("[\\]*_",
-                                         "\\\\_",
-                                         cap_split[seq(1, length(cap_split), by = 2)])
-    caption <- paste(cap_split, collapse = "````")
-  }
 
-  caption <- escape_latex_symbols(caption)
+    caption <- escape_latex_symbols(caption)
+  }
 
   year_col_names <- unique(c(year_cols(x), cols_no_format))
   year_col_names <- setdiff(year_col_names, cols_to_format)
@@ -150,6 +152,7 @@ csas_table <- function(x,
       .x <- as.character(.x)
     })
   }
+
   if (!is.null(col_names)) {
     # Check for newlines in column headers and convert to proper latex linebreaks
     # See 'Insert linebreak in table' section in the following
@@ -161,6 +164,7 @@ csas_table <- function(x,
     if (bold_header && format == "latex") {
       col_names <- paste0("\\textbf{", col_names, "}")
     }
+
     k <- kbl(x = x,
              format = format,
              col.names = col_names,
