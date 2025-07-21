@@ -1,5 +1,10 @@
 %% sr.sty - Unofficial LaTeX style file for Canadian
 %%  Science Response Documents.
+\usepackage[english]{babel}
+% fontspec is required for certain French characters when you use Lualatex
+% and pdflatex requires fontenc instead
+\usepackage{fontspec}
+\setmainfont{Arial}
 
 %% See res-doc.sty for more information on contents of this file
 \usepackage{tabularx}
@@ -159,9 +164,6 @@
 %% These two commands are required to use Arial for the document.
 % \renewcommand{\rmdefault}{phv}
 % \renewcommand{\sfdefault}{phv}
-
-\usepackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
 
 %% Useful shortcuts for equations
 \newcommand{\eb}{\begin{eqnarray}}
@@ -486,12 +488,6 @@
 
 % Sections without numbers
 \setcounter{secnumdepth}{0}
-
-%% Allows the french abstract to be pasted in with special characters intact
-%% Make sure maindoc.rnw is saved in utf8 encoding.
-%% In emacs you can change the coding with Ctrl-x Ctrl-m f
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
 
 %% The \sum command creates encoding errors in the final PDF so it is replaced
 %%  globally here with Sigma. The * in DeclareMathOperator* makes the limits
