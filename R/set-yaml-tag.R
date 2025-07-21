@@ -12,7 +12,7 @@
 #' any newline characters, they will be added by the function
 #' @param fn The name of the YAML file, typically 'index.Rmd' for bookdown
 #'
-#' @importFrom tibble tibble
+#' @importFrom tibble enframe tibble
 #' @importFrom purrr map2 map2_lgl
 #' @return Nothing
 set_yaml_tag <- function(tag = NULL, val = NULL, fn = "index.Rmd"){
