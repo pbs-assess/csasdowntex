@@ -1,15 +1,6 @@
 ---
 title: "Translating *csasdown* documents from English to French"
-output: 
-   bookdown::pdf_document2:
-      toc: true
-      toc_depth: 4
-      number_sections: true
-      latex_engine: xelatex
-      #pandoc_args: ["--number-offset=0", "--top-level-division=section"]
-header-includes: 
-  - \usepackage{fontspec}
-  - \setmainfont[Ligatures=TeX]{FreeSerif}
+output: rmarkdown::html_vignette
 date: "This document was created on `r csasdown:::curr_time_date()`"
 vignette: >
   %\VignetteIndexEntry{Translating csasdown documents from English to French}
