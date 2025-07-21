@@ -30,8 +30,6 @@ cat_no: "Cat-Number-Here"
 show_continued_text: true
 output:
  csasdown::sr_pdf:
-   # `lualatex` is required for `accessibile_pdf` to work
-   latex_engine: lualatex
    # If `true`, alternative figure text and figure tags are added for
    # PDF web accessibility compliance
    accessible_pdf: false

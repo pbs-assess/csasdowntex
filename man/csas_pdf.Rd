@@ -9,7 +9,6 @@
 \title{Creates an R Markdown PDF with CSAS formatting}
 \usage{
 manureport_pdf(
-  latex_engine = "pdflatex",
   copy_sty = TRUE,
   line_nums = FALSE,
   line_nums_mod = 1,
@@ -26,7 +25,6 @@ resdoc_pdf(
   toc = TRUE,
   toc_depth = 3,
   highlight = "tango",
-  latex_engine = "pdflatex",
   prepub = FALSE,
   copy_sty = TRUE,
   line_nums = FALSE,
@@ -41,7 +39,6 @@ resdoc_pdf(
 )
 
 sr_pdf(
-  latex_engine = "pdflatex",
   prepub = FALSE,
   copy_sty = TRUE,
   line_nums = FALSE,
@@ -55,7 +52,6 @@ sr_pdf(
 )
 
 techreport_pdf(
-  latex_engine = "pdflatex",
   copy_sty = TRUE,
   line_nums = FALSE,
   line_nums_mod = 1,
@@ -69,8 +65,6 @@ techreport_pdf(
 )
 }
 \arguments{
-\item{latex_engine}{LaTeX engine to render with. 'pdflatex' or 'xelatex'}
-
 \item{copy_sty}{Logical. If \code{TRUE}, the '.sty' files will be copied from
 the local library location for every render. If \code{FALSE}, the current '.sty'
 file will be kept and any edits you have done to it will remain}

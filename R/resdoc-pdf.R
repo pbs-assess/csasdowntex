@@ -16,7 +16,6 @@
 #'  file.path(.libPaths(), "csasdown", "themes")
 #'  Pass `NULL` to prevent syntax highlighting (uses 'monochrome' theme) for
 #'  slightly different text format but no highlighting
-#' @param latex_engine LaTeX engine to render with. 'pdflatex' or 'xelatex'
 #' @param prepub Logical. If `TRUE`, this is a pre-publication version.
 #' Currently only implemented for SR
 #' @param include_section_nums Logical. If `TRUE`, include the section and
@@ -44,7 +43,6 @@
 resdoc_pdf <- function(toc = TRUE,
                        toc_depth = 3,
                        highlight = "tango",
-                       latex_engine = "pdflatex",
                        prepub = FALSE,
                        copy_sty = TRUE,
                        line_nums = FALSE,
@@ -89,7 +87,7 @@ resdoc_pdf <- function(toc = TRUE,
     toc_depth = toc_depth,
     keep_tex = TRUE,
     pandoc_args = pandoc_args,
-    latex_engine = latex_engine,
+    latex_engine = "lualatex",
     ...
   )
   tmp_hl <- grep("--highlight-style", base$pandoc$args)

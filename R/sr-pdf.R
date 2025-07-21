@@ -1,7 +1,6 @@
 #' @rdname csas_pdf
 #' @export
-sr_pdf <- function(latex_engine = "pdflatex",
-                   prepub = FALSE,
+sr_pdf <- function(prepub = FALSE,
                    copy_sty = TRUE,
                    line_nums = FALSE,
                    line_nums_mod = 1,
@@ -42,7 +41,7 @@ sr_pdf <- function(latex_engine = "pdflatex",
     template = file,
     keep_tex = TRUE,
     pandoc_args = pandoc_args,
-    latex_engine = latex_engine,
+    latex_engine = "lualatex",
     ...
   )
   tmp_hl <- grep("--highlight-style", base$pandoc$args)
