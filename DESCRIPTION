@@ -1,6 +1,6 @@
 Package: csasdown
 Title: Reproducible CSAS Reports with Bookdown
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     c(person(given = c("Sean", "C."),
              family = "Anderson",
@@ -90,7 +90,7 @@ ByteCompile: true
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.2.9000
 SystemRequirements: pandoc (>= 1.18) - http://pandoc.org
 Config/testthat/parallel: true
 Config/testthat/edition: 2

@@ -2,7 +2,7 @@
 % Please edit documentation in R/kable-extra-non-exports.R
 \name{solve_enc}
 \alias{solve_enc}
-\title{solve_enc s a \link{kableExtra} non-exported function}
+\title{solve_enc s a \link[kableExtra:kableExtra-package]{kableExtra::kableExtra} non-exported function}
 \usage{
 solve_enc(x)
 }
