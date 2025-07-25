@@ -1,5 +1,13 @@
 # csasdown
 
+# csasdown 0.2.2
+
+* Add `config_file` argument to `render_sar()`. #293
+
+# csasdown 0.2.1
+
+* Fix DOI in tech reports #288
+
 # csasdown 0.2.0
 
 * Compatibility with 2025 Res Doc and SR templates.
