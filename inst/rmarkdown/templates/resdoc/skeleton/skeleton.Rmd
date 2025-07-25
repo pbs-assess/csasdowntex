@@ -100,7 +100,7 @@ if (is_latex_output()) {
 }
 fig_asp <- 0.618
 fig_width <- 9
-fig_out_width <- "6in"
+fig_out_width <- if (is_latex_output()) "6in" else NULL
 fig_dpi <- 180
 fig_align <- "center"
 fig_pos <- "htb"
