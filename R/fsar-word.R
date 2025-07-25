@@ -106,11 +106,11 @@ render_sar <- function(config_file = "_bookdown.yml", ...) {
   cat("\n")
 
   # Create the temporary YAML and Rmd files and store their names
-  tmp_yaml_rmd_fns <- csasdown:::create_tmp_yaml_rmd_files("_bookdown.yml", verbose = TRUE)
+  tmp_yaml_rmd_fns <- create_tmp_yaml_rmd_files("_bookdown.yml", verbose = TRUE)
   tmp_yaml_fn <- tmp_yaml_rmd_fns[[1]]
   tmp_rmd_fns <- tmp_yaml_rmd_fns[[2]]
   on.exit(unlink(unlist(tmp_yaml_rmd_fns), force = TRUE))
-  first_content_fn <- head(tmp_rmd_fns[!grepl("index", tmp_rmd_fns)], 1)
+  first_content_fn <- utils::head(tmp_rmd_fns[!grepl("index", tmp_rmd_fns)], 1)
 
   notify("Pre-processing Rmd files.")
 
