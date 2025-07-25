@@ -17,7 +17,7 @@ context: |
   \
   [See Guidance Document for examples of additional information to provide in the Context section.]
 output:
- csasdown::fsar_word2
+  csasdown::fsar_word2
 link-citations: false
 bibliography: bib/refs.bib
 csl: csl/csas.csl
