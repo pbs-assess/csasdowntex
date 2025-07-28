@@ -75,6 +75,14 @@ render <- function(yaml_fn = "_bookdown.yml",
   tmp_rmd_fns <- tmp_yaml_rmd_fns[[2]]
   on.exit(unlink(unlist(tmp_yaml_rmd_fns), force = TRUE))
 
+  # simple check to try to save people from using render for an FSAR:
+  yaml_contents <- readLines(tmp_yaml_fn)
+  if (grepl("fsar", yaml_contents[1])) {
+    msg <- c("It looks like you used the `render()` function on an FSAR.",
+      "Use `render_fsar()` instead.")
+    cli::cli_abort(msg)
+  }
+
   index_fn <- get_index_filename(tmp_yaml_fn, verbose)
   set_render_type(index_fn, "asis")
   # Get the render type (resdoc_pdf, sr_word, etc)

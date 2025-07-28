@@ -2,6 +2,12 @@
 
 # csasdown 0.2.2
 
+* Add new implementation of FSAR by @PaulRegular. #287
+
+* Alias render_fsar() to render_sar().
+
+* Check if using render() on an FSAR by accident.
+
 * Add `config_file` argument to `render_sar()`. #293
 
 # csasdown 0.2.1

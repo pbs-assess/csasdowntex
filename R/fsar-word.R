@@ -67,12 +67,14 @@ fsar_word <- function(...) {
 }
 
 
-#' Render a SAR
+#' Render a SAR/FSAR
 #'
+#' @param config_file YAML configuration file.
 #' @param ... Arguments to pass to [bookdown::render_book()].
 #'
 #' @export
-render_sar <- function(...) {
+#' @aliases render_fsar
+render_sar <- function(config_file = "_bookdown.yml", ...) {
 
   cat("\n")
 
@@ -89,7 +91,7 @@ render_sar <- function(...) {
   cat("\n")
 
   # Create the temporary YAML and Rmd files and store their names
-  tmp_yaml_rmd_fns <- create_tmp_yaml_rmd_files("_bookdown.yml", verbose = TRUE)
+  tmp_yaml_rmd_fns <- create_tmp_yaml_rmd_files(yaml_fn = config_file, verbose = TRUE)
   tmp_yaml_fn <- tmp_yaml_rmd_fns[[1]]
   tmp_rmd_fns <- tmp_yaml_rmd_fns[[2]]
   on.exit(unlink(unlist(tmp_yaml_rmd_fns), force = TRUE))
@@ -219,3 +221,5 @@ render_sar <- function(...) {
 
   invisible()
 }
+
+render_fsar <- render_sar
