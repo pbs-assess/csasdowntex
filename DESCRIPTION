@@ -69,6 +69,7 @@ Imports:
     purrr,
     rlang,
     rmarkdown,
+    scales,
     stringr,
     tibble,
     tinytex (>= 0.39),
