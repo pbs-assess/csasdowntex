@@ -5,6 +5,7 @@
 \alias{fsar_word}
 \alias{manureport_word}
 \alias{resdoc_word}
+\alias{resdoc_word2}
 \alias{sr_word}
 \alias{techreport_word}
 \title{Creates an Microsoft Word CSAS-formatted document}
@@ -15,12 +16,14 @@ manureport_word(...)
 
 resdoc_word(...)
 
+resdoc_word2(...)
+
 sr_word(...)
 
 techreport_word(...)
 }
 \arguments{
-\item{...}{Other arguments to \code{\link[bookdown:html_document2]{bookdown::word_document2()}}}
+\item{...}{Other arguments to \code{\link[bookdown:html_document2]{bookdown::word_document2()}} or, in the case of \code{resdoc_word2}, \code{\link[officedown:rdocx_document]{officedown::rdocx_document()}}}
 }
 \value{
 A Word Document in the \code{.docx} format based on the FSAR template.
@@ -35,4 +38,9 @@ to specify the creation of an FSAR word document.
 This is a function called in output in the YAML of the \code{index.Rmd} file
 to specify the creation of a Microsoft Word version of the Research
 Document or Science Response.
+}
+\details{
+Functions with the suffix 2 utilize the officedown package for its additional
+flexibility for Word documents. However, its behaviour may not be consistent
+with bookdown.
 }

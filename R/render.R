@@ -164,12 +164,20 @@ render <- function(yaml_fn = "_bookdown.yml",
     notify("Knitting Rmd files and running Pandoc to build the document ...")
   }
 
+  ## Drop title and abstract from rendering of content
+  if (render_type == "resdoc_word" | render_type == "resdoc_word2") {
+    output_options <- list(pandoc_args = c("--metadata=title:", "--metadata=abstract:"))
+  } else {
+    output_options <- NULL
+  }
+
   if(suppress_warnings){
     suppressMessages(
       suppressWarnings(
         render_book(index_fn,
                     config_file = tmp_yaml_fn,
                     envir = parent.frame(n = 2L),
+                    output_options = output_options,
                     ...)
       )
     )
@@ -178,6 +186,7 @@ render <- function(yaml_fn = "_bookdown.yml",
       render_book(index_fn,
                   config_file = tmp_yaml_fn,
                   envir = parent.frame(n = 2L),
+                  output_options = output_options,
                   ...)
     )
   }
@@ -195,6 +204,15 @@ render <- function(yaml_fn = "_bookdown.yml",
            fn_color(fn))
       # nocov end
     }
+  }
+
+  if (render_type == "resdoc_word2") {
+    ## officedown outputs to the root, not the _book folder like bookdown
+    book_filename <- paste0(get_book_filename(yaml_fn), ".docx")
+    file.rename(book_filename, file.path("_book", book_filename))
+  }
+  if (render_type == "resdoc_word" | render_type == "resdoc_word2") {
+    add_resdoc_word_frontmatter(index_fn, yaml_fn = yaml_fn, verbose = verbose, keep_files = keep_files)
   }
 
   # Rename the output files to include 'english' or 'french' so that
@@ -218,5 +236,8 @@ render <- function(yaml_fn = "_bookdown.yml",
   }
 
   check_notify("Render completed")
+  if ((render_type == "resdoc_word" | render_type == "resdoc_word2") && verbose) {
+    notify("Frontmatter was added to your ", csas_color(csas_render_type), " using rmarkdown and the officer package.") # may not be needed
+  }
   invisible()
 }

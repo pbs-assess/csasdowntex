@@ -74,6 +74,7 @@ Imports:
     tinytex (>= 0.39),
     utils
 Suggests:
+    officedown,
     covr,
     cowplot,
     ggtext,

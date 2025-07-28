@@ -1,20 +1,23 @@
 ---
 report_title: "[Publication Title]"
 report_title_short: "[Short Publication Title]"
-report_year: "2024"
-release_month: "January"
+report_year: "2025"
+release_month: "May"
 report_number: "XXX"
-meeting_date: "January 25, 2024"
+meeting_date: "May 9, 2025"
 region: "Region Name"
 email: "email@csa-email.com"
 csa_address: "CSA Address goes here"
 report_title_french: "Fish stock name"
 inuktitut_citation: "Inuktitut citation here"
 context: |
-  [Mandatory. Less than 150 words]
-  Here is the context text. 
+  [Mandatory. Maximum length 150 words. Include only information about the request for advice, including the meeting objectives and the date of the peer-review meeting.] [Include link to IFMP/rebuilding/management plan(s)]\
+  \
+  This Science Advisory Report is from the [scope, ex. regional, multi-regional, national] peer review of [meeting date and title (e.g., regional peer review of January 25,&nbsp;2011 on the Assessment of Quebec Inshore Waters Softshell Clam)The meeting process, date and title **MUST BE EXACTLY** as they appear for the meeting on the Science Advisory Schedule]. [Include link to IFMP/rebuilding plan] Additional publications from this meeting will be posted on the [Fisheries and Oceans Canada (DFO) Science Advisory Schedule](http://www.isdm-gdsi.gc.ca/csas-sccs/applications/events-evenements/index-eng.asp) as they become available.\
+  \
+  [See Guidance Document for examples of additional information to provide in the Context section.]
 output:
- csasdown::fsar_word
+  csasdown::fsar_word
 link-citations: false
 bibliography: bib/refs.bib
 csl: csl/csas.csl

@@ -4,10 +4,10 @@ test_that("FSAR builds", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(csasdown::draft(
-    system.file("rmarkdown", "templates", "fsar", package = "csasdown"),
+    "fsar",
     create_dir = FALSE,
     edit = FALSE
   ))
-  csasdown::render_sar()
+  suppressWarnings(csasdown::render_sar())
   expect_true(file.exists("_book/fsar.docx"))
 })
