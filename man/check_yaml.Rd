@@ -7,7 +7,7 @@
 check_yaml(
   type = c("resdoc", "resdoc_pdf", "resdoc_word", "resdoc_word2", "sr", "sr_pdf",
     "sr_word", "manureport", "manureport_pdf", "manureport_word", "techreport",
-    "techreport_pdf", "techreport_word", "fsar_word", "fsar_word2"),
+    "techreport_pdf", "techreport_word", "fsar_word"),
   tag_exceptions = c("show_continued_text"),
   verbose = FALSE
 )

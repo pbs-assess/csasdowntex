@@ -4,27 +4,11 @@
 #' This is a function called in output in the YAML of the `index.Rmd` file
 #' to specify the creation of an FSAR word document.
 #'
-#' @param ... Other arguments to [bookdown::word_document2()]
+#' @param ... Other arguments to [officedown::rdocx_document()]
 #' @rdname csas_docx
 #' @return A Word Document in the `.docx` format based on the FSAR template.
 #' @export
 fsar_word <- function(...) {
-  # file <- if (fr()) "RES2021-fra-content.docx" else "RES2021-eng-content.docx"
-  file <- "fsar-template.docx"
-  base <- word_document2(...,
-                         number_sections = FALSE,
-                         reference_docx = system.file("csas-docx",
-                                                      file,
-                                                      package = "csasdown"
-                         )
-  )
-  base$knitr$opts_chunk$comment <- NA
-  base
-}
-
-#' @rdname csas_docx
-#' @export
-fsar_word2 <- function(...) {
   if (!requireNamespace("officedown", quietly = TRUE)) {
     stop(
       "Package \"officedown\" must be installed to use this function.",
@@ -137,7 +121,7 @@ render_sar <- function(config_file = "_bookdown.yml", ...) {
                   'Internet address: [www.dfo-mpo.gc.ca/csas-sccs/](www.dfo-mpo.gc.ca/csas-sccs/)\n',
                   'ISSN xxxx-xxxx\\',
                   paste0('ISBN 978-0-660-xxxxx-x&#9;Cat. No. Fs70-6/', x$report_year, '-nnnE-PDF\\'),
-                  '© His Majesty the King in Right of Canada, as represented by the Minister of the\\
+                  '\u00a9 His Majesty the King in Right of Canada, as represented by the Minister of the\\
                   Department of Fisheries and Oceans,', x$report_year, "\n",
                   'This report is published under the [Open Government Licence - Canada](https://open.canada.ca/en/open-government-licence-canada)\n',
                   'MOBIUS', # To be replaced below with image using officer
@@ -146,7 +130,7 @@ render_sar <- function(config_file = "_bookdown.yml", ...) {
                   '::: {custom-style="citation"}',
                   paste0("DFO. ", x$report_year, ". ", x$report_title, ". DFO Can. Sci. Advis. Sec. Sci. Advis. Rep. ", x$report_year, "/", x$report_number, ". iv + xx p."),
                   ':::',
-                  "\n*Aussi disponible en français:*\n",
+                  "\n*Aussi disponible en fran\u00e7ais:*\n",
                   '::: {custom-style="citation"}',
                   paste0("*MPO. ", x$report_year, ". ", x$report_title_french, ". Secr. can. des avis sci. du MPO. Avis sci. ", x$report_year, "/", x$report_number, ". iv + xx p.*"),
                   ':::',

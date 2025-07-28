@@ -130,7 +130,7 @@ add_resdoc_word_frontmatter <- function(index_fn, yaml_fn = "_bookdown.yml", ver
           '::: {custom-style="citation"}',
           paste0(x$author_list, ". ", x$year, ". ", x$title, ". DFO Can. Sci. Advis. Sec. Res. Doc. ", x$year, "/", x$report_number, ". iv + xx p."),
           ':::',
-          "\n**Aussi disponible en français:**\n",
+          "\n**Aussi disponible en fran\u00e7ais:**\n",
           '::: {custom-style="citation"}',
           paste0(x$author_list, ". ", x$year, ". ", x$french_title, ". Secr. can. de consult. sci. du MPO. Doc. de rech. ", x$year, "/", x$report_number, ". iv + xx p."),
           ':::')

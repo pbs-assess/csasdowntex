@@ -3,7 +3,6 @@
 %   R/resdoc-word.R, R/sr-word.R, R/techreport-word.R
 \name{fsar_word}
 \alias{fsar_word}
-\alias{fsar_word2}
 \alias{manureport_word}
 \alias{resdoc_word}
 \alias{resdoc_word2}
@@ -12,8 +11,6 @@
 \title{Creates an Microsoft Word CSAS-formatted document}
 \usage{
 fsar_word(...)
-
-fsar_word2(...)
 
 manureport_word(...)
 
