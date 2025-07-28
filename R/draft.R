@@ -3,7 +3,7 @@
 #' Create a draft of an R Markdown CSAS document
 #'
 #' @param type The type of document to draft. Must be one of `resdoc`,
-#' `resdoc-b`, `sr`, `techreport`, or `manureport`
+#' `resdoc-b`, `sr`, `techreport`, `manureport`, or `fsar`
 #' @param directory The directory to place the draft document files.
 #' Is the current directory by default
 #' @param fn Bookdown starting file, `index.Rmd` by default
@@ -31,6 +31,7 @@
 #' csasdown::draft("sr")
 #' csasdown::draft("techreport")
 #' csasdown::draft("manureport")
+#' csasdown::draft("fsar")
 #' }
 #' @export
 draft <- function(type = c("resdoc", "resdoc-b", "sr", "techreport", "manureport", "fsar"),
@@ -51,7 +52,8 @@ draft <- function(type = c("resdoc", "resdoc-b", "sr", "techreport", "manureport
       alert(csas_color("type"), " must be one of ",
             csas_color("resdoc"), ", ", csas_color("resdoc-b"), ", ",
             csas_color("sr"), ", ",
-            csas_color("techreport"), ", or ", csas_color("manureport"))
+            csas_color("techreport"), ", ",
+            csas_color("manureport"), ", or", csas_color("fsar"))
     }
     package <- "csasdown"
   }else{

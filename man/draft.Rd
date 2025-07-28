@@ -18,7 +18,7 @@ draft(
 }
 \arguments{
 \item{type}{The type of document to draft. Must be one of \code{resdoc},
-\code{resdoc-b}, \code{sr}, \code{techreport}, or \code{manureport}}
+\code{resdoc-b}, \code{sr}, \code{techreport}, \code{manureport}, or \code{fsar}}
 
 \item{directory}{The directory to place the draft document files.
 Is the current directory by default}
@@ -57,6 +57,7 @@ csasdown::draft("resdoc-b")
 csasdown::draft("sr")
 csasdown::draft("techreport")
 csasdown::draft("manureport")
+csasdown::draft("fsar")
 }
 }
 \seealso{
