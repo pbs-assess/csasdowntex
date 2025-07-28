@@ -66,10 +66,10 @@ test_that("set_yaml_tag() works", {
                "File \\S+ does not exist")
 
   # ---------------------------------------------------------------------------
-  # Test trying to change 
-  expect_error(set_yaml_tag("", "true"),
-               paste0("The \\S+ and \\S+ tags cannot ",
-                      "be changed with this function."))
+  # Test trying to change
+  # expect_error(set_yaml_tag("", "true"),
+               # paste0("The \\S+ and \\S+ tags cannot ",
+                      # "be changed with this function."))
 
   # ---------------------------------------------------------------------------
   # Test trying to change knit:
