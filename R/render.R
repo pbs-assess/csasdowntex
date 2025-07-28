@@ -90,7 +90,7 @@ render <- function(yaml_fn = "_bookdown.yml",
   # It sets `options(french)` to the value in the file
   set_language_option(index_fn, verbose)
 
-  set_citations(index_fn, verbose)
+  set_citations(index_fn, render_type, verbose)
 
   # Set up the console Render message
   csas_render_type <- gsub("(.*)_\\S+$", "\\1", render_type)

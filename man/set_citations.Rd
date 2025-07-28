@@ -8,12 +8,16 @@ language based on the value of \code{fr()}}
 set_citations(
   fn = get_index_filename(system.file("rmarkdown", "templates", "resdoc", "skeleton",
     "_bookdown.yml", package = "csasdown")),
+  render_type = NULL,
   verbose = FALSE
 )
 }
 \arguments{
 \item{fn}{The bookdown index filename, typically index.Rmd. This file
 must have a YAML option called 'french' set to either 'true' or 'false'}
+
+\item{render_type}{The render type (e.g., "resdoc_pdf", "resdoc-b_pdf").
+If NULL, citation checking is skipped for non-bilingual documents.}
 
 \item{verbose}{Logical. If \code{TRUE}, print messages}
 }
