@@ -164,36 +164,11 @@ render_sar <- function(config_file = "_bookdown.yml", ...) {
     " ...\n\n"
   )
 
-  # if (verbose) {
   notify("Knitting Rmd files and running Pandoc to build the document ...")
-  # }
 
-  # if (suppress_warnings) {
-  #   suppressMessages(
-  #     suppressWarnings(
-  #       render_book(index_fn,
-  #         config_file = tmp_yaml_fn,
-  #         ...
-  #       )
-  #     )
-  #   )
-  # } else {
-    # suppressMessages(
-      render_book("index.Rmd",
-        config_file = config_file,
-        ...
-      )
-    # )
-  # }
-  # if (verbose) {
-  # fn <- file.path(
-  #   "_book",
-  #   paste0(
-  #     gsub("^(\\S+)_\\S+$", "\\1", render_type),
-  #     ".",
-  #     ifelse(doc_format == "pdf", "pdf", "docx")
-  #   )
-  # )
+  render_book("index.Rmd",
+              config_file = tmp_yaml_fn,
+              ...)
 
   ## officedown outputs to the root, not the _book folder like bookdown
   if (file.exists("fsar.docx")) {
