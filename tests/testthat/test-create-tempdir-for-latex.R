@@ -1,41 +1,41 @@
-test_that("csasdown::create_tempdir_for_latex() works", {
+test_that("create_tempdir_for_latex() works", {
 
   testing_path <- file.path(tempdir(), "sr-latex-test-1")
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "sr", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
   ))
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown::create_tempdir_for_latex("badtype",
+  expect_error(create_tempdir_for_latex("badtype",
                                                   "b",
                                                   root_dir = getwd()),
                "must be one of")
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown::create_tempdir_for_latex("sr",
+  expect_error(create_tempdir_for_latex("sr",
                                                   "x",
                                                   root_dir = getwd()),
                "must be one of")
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown::create_tempdir_for_latex("sr",
+  expect_error(create_tempdir_for_latex("sr",
                                                   "b",
                                                   root_dir = getwd()),
                "sr.tex does not exist in the '_book' directory")
 
   # ---------------------------------------------------------------------------
   # Render the SR
-  csasdown::set_french(val = FALSE)
-  csasdown:::set_render_type(doc_type = "pdf")
-  suppressWarnings(csasdown::render())
+  set_french(val = FALSE)
+  set_render_type(doc_type = "pdf")
+  suppressWarnings(render())
   unlink("_book/sr-english.tex")
   # Try for case where copying from the '_book' directory
-  expect_error(csasdown::create_tempdir_for_latex("sr",
+  expect_error(create_tempdir_for_latex("sr",
                                         "b",
                                         tmp_dir = file.path(testing_path,
                                                             "test"),
@@ -47,18 +47,18 @@ test_that("csasdown::create_tempdir_for_latex() works", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "sr", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
   ))
   # Render the SR
-  csasdown::set_french(val = FALSE)
-  csasdown:::set_render_type(doc_type = "pdf")
-  suppressWarnings(csasdown::render())
+  set_french(val = FALSE)
+  set_render_type(doc_type = "pdf")
+  suppressWarnings(render())
 
   # Try for case where copying from the '_book' directory
-  tmp_dir <- csasdown::create_tempdir_for_latex("sr",
+  tmp_dir <- create_tempdir_for_latex("sr",
                                       "b",
                                       tmp_dir = file.path(testing_path,
                                                           "test"),
@@ -85,19 +85,19 @@ test_that("csasdown::create_tempdir_for_latex() works", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "sr", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
   ))
 
   # Render the SR
-  csasdown::set_french(val = FALSE)
-  csasdown:::set_render_type(doc_type = "pdf")
-  suppressWarnings(csasdown::render())
+  set_french(val = FALSE)
+  set_render_type(doc_type = "pdf")
+  suppressWarnings(render())
 
   file.copy(file.path("_book", "sr-english.tex"), "sr-english.tex")
-  tmp_dir <- csasdown::create_tempdir_for_latex("sr",
+  tmp_dir <- create_tempdir_for_latex("sr",
                                       "r",
                                       tmp_dir = file.path(testing_path,
                                                           "test"),

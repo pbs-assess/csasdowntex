@@ -5,26 +5,26 @@ test_that("update_csasstyle() works", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
   ))
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown:::update_csasstyle(copy = FALSE, line_nums = TRUE),
+  expect_error(update_csasstyle(copy = FALSE, line_nums = TRUE),
                paste0("YAML header. The permanent style file cannot be ",
                       "modified as needed to include line numbering"))
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown:::update_csasstyle(copy = FALSE, line_nums = FALSE,
+  expect_error(update_csasstyle(copy = FALSE, line_nums = FALSE,
                                            lot_lof = TRUE),
                paste0("YAML header. The permanent style file cannot be ",
                       "modified as needed to include the lists of tables ",
                       "and figures"))
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown:::update_csasstyle(copy = FALSE,
+  expect_error(update_csasstyle(copy = FALSE,
                                            line_nums = FALSE,
                                            draft_watermark = TRUE),
                paste0("YAML header. The permanent style file cannot be ",
@@ -42,7 +42,7 @@ test_that("update_csasstyle() works", {
     ind <- grep("lot_lof:", rmd)
     rmd[ind] <- "   lot_lof: true"
     writeLines(rmd, "index.Rmd")
-    csasdown::render()
+    render()
     expect_true(file.exists("_book/resdoc-english.pdf"))
     # if (!installed_3_1_2){
     # pandoc::pandoc_uninstall("3.1.2")
@@ -59,7 +59,7 @@ test_that("update_csasstyle() works", {
   ind <- grep("draft_watermark:", rmd)
   rmd[ind] <- "   draft_watermark: true"
   writeLines(rmd, "index.Rmd")
-  csasdown::render()
+  render()
   expect_true(file.exists("_book/resdoc-english.pdf"))
 
   setwd(wd)

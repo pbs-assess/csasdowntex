@@ -1,42 +1,42 @@
-test_that("csasdown:::is_rmd_dashed_line() works", {
+test_that("is_rmd_dashed_line() works", {
 
-  k <- csasdown:::is_rmd_dashed_line(NULL)
+  k <- is_rmd_dashed_line(NULL)
   expect_identical(k, NULL)
   # ---------------------------------------------------------------------------
 
-  k <- csasdown:::is_rmd_dashed_line("")
+  k <- is_rmd_dashed_line("")
   expect_false(k)
   # ---------------------------------------------------------------------------
 
-  k <- csasdown:::is_rmd_dashed_line("Text")
+  k <- is_rmd_dashed_line("Text")
   expect_false(k)
   # ---------------------------------------------------------------------------
 
-  k <- csasdown:::is_rmd_dashed_line(" ")
+  k <- is_rmd_dashed_line(" ")
   expect_false(k)
   # ---------------------------------------------------------------------------
 
-  k <- csasdown:::is_rmd_dashed_line("-")
+  k <- is_rmd_dashed_line("-")
   expect_true(k)
   # ---------------------------------------------------------------------------
 
-  k <- csasdown:::is_rmd_dashed_line("--------------------------------------------------")
+  k <- is_rmd_dashed_line("--------------------------------------------------")
   expect_true(k)
   # ---------------------------------------------------------------------------
 
-  k <- csasdown:::is_rmd_dashed_line("----- -----  -----   -----   -- ---- ---")
+  k <- is_rmd_dashed_line("----- -----  -----   -----   -- ---- ---")
   expect_true(k)
   # ---------------------------------------------------------------------------
 
-  k <- csasdown:::is_rmd_dashed_line("   ----- -----  -----   -----   -- ---- ---  ")
+  k <- is_rmd_dashed_line("   ----- -----  -----   -----   -- ---- ---  ")
   expect_true(k)
   # ---------------------------------------------------------------------------
 
-  k <- csasdown:::is_rmd_dashed_line(c("-  ", "     ----       ", "            --", "__"))
+  k <- is_rmd_dashed_line(c("-  ", "     ----       ", "            --", "__"))
   expect_identical(k, c(TRUE, TRUE, TRUE, FALSE))
   # ---------------------------------------------------------------------------
 
-  expect_error(k <- csasdown:::is_rmd_dashed_line(c("-  ", NA, "            --", "__")))
+  expect_error(k <- is_rmd_dashed_line(c("-  ", NA, "            --", "__")))
   # ---------------------------------------------------------------------------
 
 })

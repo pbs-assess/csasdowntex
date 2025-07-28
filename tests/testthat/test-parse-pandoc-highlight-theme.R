@@ -15,7 +15,7 @@ test_that("parse_pandoc_highlight_theme() works", {
 
   json <- json_lst[all_themes == "tango"]
   back_json <- json[[1]]
-  j <- csasdown:::parse_pandoc_highlight_theme(json)
+  j <- parse_pandoc_highlight_theme(json)
   expect_true(all(lengths(purrr::map(j[[3]], ~{as.logical(grep("text-color", .x))}))))
   expect_identical(names(j), c("text-color", "background-color", "sections-list"))
   expect_identical(class(j), "list")
@@ -67,7 +67,7 @@ test_that("parse_pandoc_highlight_theme() works", {
   # Remove all text-color and background-color items
   json <- gsub("text-color", "", json)
   json <- gsub("background-color", "", json)
-  j <- csasdown:::parse_pandoc_highlight_theme(json)
+  j <- parse_pandoc_highlight_theme(json)
   expect_false(any(lengths(purrr::map(j[[3]], ~{as.logical(grep("text-color", .x))}))))
   expect_true(is.na(j[[1]]))
   expect_true(is.na(j[[2]]))

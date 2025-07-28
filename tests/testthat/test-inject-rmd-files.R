@@ -20,7 +20,7 @@ test_that("inject_rmd_files() works", {
             file.path(testing_path, "backticks-dont-match.Rmd"))
   setwd(testing_path)
 
-  csasdown:::inject_rmd_files("injected-into.Rmd")
+  inject_rmd_files("injected-into.Rmd")
   actual <- readLines("injected-into.Rmd")
   expect_identical(actual,
                    c("```{r chunk-1-en, eval = !fr(), results = 'asis'}",
@@ -36,13 +36,13 @@ test_that("inject_rmd_files() works", {
   mess <- paste0("Triple-backticks found in file 'injected-triple-backticks' ",
                  "on line(s) 4, 6")
   expect_error(expect_message(
-    csasdown:::inject_rmd_files("injected-into-2.Rmd"),
+    inject_rmd_files("injected-into-2.Rmd"),
     mess),
     paste0("Triple- or Quadruple-backtick code chunks are not allowed in ",
            "external RMD files which have been injected using"))
 
   # ---------------------------------------------------------------------------
-  csasdown:::inject_rmd_files("injected-into-multiple.Rmd")
+  inject_rmd_files("injected-into-multiple.Rmd")
   actual <- readLines("injected-into-multiple.Rmd")
   expected <- c("```{r chunk-1-en, eval = !fr(), results = 'asis'}",
                 "cat(\"First chunk\")",
@@ -72,16 +72,16 @@ test_that("inject_rmd_files() works", {
   expect_identical(actual, expected)
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown:::inject_rmd_files("backticks-dont-match.Rmd"),
+  expect_error(inject_rmd_files("backticks-dont-match.Rmd"),
                "The number of knitr starting code chunk header lines does not")
 
   # ---------------------------------------------------------------------------
-  expect_message(csasdown:::inject_rmd_files("injected-into-verbose.Rmd",
+  expect_message(inject_rmd_files("injected-into-verbose.Rmd",
                                              verbose = TRUE),
                "Injecting")
 
   # ---------------------------------------------------------------------------
-  expect_message(csasdown:::inject_rmd_files("injected-into-verbose.Rmd",
+  expect_message(inject_rmd_files("injected-into-verbose.Rmd",
                                              verbose = TRUE),
                  "There were no")
 

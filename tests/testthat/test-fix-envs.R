@@ -7,7 +7,7 @@ test_that("fix_envs() works", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "sr", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
@@ -19,7 +19,7 @@ test_that("fix_envs() works", {
   en_region_ind <- grep("^\\s*region:", rmd)
   rmd[en_region_ind] <- paste0("region: ", fr_region)
   writeLines(rmd, "index.Rmd")
-  csasdown::render(suppress_warnings = TRUE)
+  render(suppress_warnings = TRUE)
   expect_true(file.exists("_book/sr-english.pdf"))
   expect_true(file.exists("_book/sr-english.tex"))
   tex <- readLines("_book/sr-english.tex")
@@ -33,7 +33,7 @@ test_that("fix_envs() works", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
@@ -46,7 +46,7 @@ test_that("fix_envs() works", {
   rmd_after <- rmd[(french_abs_ind - 1):length(rmd)]
   rmd <- c(rmd_prev, "abstract:", rmd_after)
   writeLines(rmd, "index.Rmd")
-  csasdown::render(suppress_warnings = TRUE)
+  render(suppress_warnings = TRUE)
   expect_true(file.exists("_book/resdoc-english.pdf"))
   expect_true(file.exists("_book/resdoc-english.tex"))
 
@@ -62,7 +62,7 @@ test_that("fix_envs() works", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "sr", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
@@ -72,7 +72,7 @@ test_that("fix_envs() works", {
   prepub_ind <- grep("prepub", rmd)
   rmd[prepub_ind] <- "   prepub: true"
   writeLines(rmd, "index.Rmd")
-  csasdown::render(suppress_warnings = TRUE)
+  render(suppress_warnings = TRUE)
   expect_true(file.exists("_book/sr-english.pdf"))
   expect_true(file.exists("_book/sr-english.tex"))
 
@@ -82,7 +82,7 @@ test_that("fix_envs() works", {
   # unlink(testing_path, recursive = TRUE, force = TRUE)
   # dir.create(testing_path, showWarnings = FALSE)
   # setwd(testing_path)
-  # suppressMessages(csasdown::draft(
+  # suppressMessages(draft(
   #   system.file("rmarkdown", "templates", "sr", package = "csasdown"),
   #   create_dir = FALSE,
   #   edit = FALSE
@@ -92,8 +92,8 @@ test_that("fix_envs() works", {
   # prepub_ind <- grep("prepub", rmd)
   # rmd[prepub_ind] <- "   prepub: true"
   # writeLines(rmd, "index.Rmd")
-  # csasdown:::set_french(val = TRUE)
-  # csasdown::render() # FIXME!??
+  # set_french(val = TRUE)
+  # render() # FIXME!??
   # # Error in `ans[ypos] <- rep(yes, length.out = len)[ypos]`:
   # # ifelse(fr(), meta$french_title, meta$title)
   # expect_true(file.exists("_book/sr-french.pdf"))
@@ -105,7 +105,7 @@ test_that("fix_envs() works", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
@@ -115,7 +115,7 @@ test_that("fix_envs() works", {
   ind <- grep("include_section_nums:", rmd)
   rmd[ind] <- "   include_section_nums: false"
   writeLines(rmd, "index.Rmd")
-  csasdown::render(suppress_warnings = TRUE)
+  render(suppress_warnings = TRUE)
   expect_true(file.exists("_book/resdoc-english.pdf"))
   expect_true(file.exists("_book/resdoc-english.tex"))
 
@@ -125,15 +125,15 @@ test_that("fix_envs() works", {
   # unlink(testing_path, recursive = TRUE, force = TRUE)
   # dir.create(testing_path, showWarnings = FALSE)
   # setwd(testing_path)
-  # suppressMessages(csasdown::draft(
+  # suppressMessages(draft(
   #   system.file("rmarkdown", "templates", "sr", package = "csasdown"),
   #   create_dir = FALSE,
   #   edit = FALSE
   # ))
   #
-  # csasdown:::set_french(val = TRUE)
-  # csasdown:::set_yaml_tag("prepub", "true")
-  # csasdown::render() # FIXME!?
+  # set_french(val = TRUE)
+  # set_yaml_tag("prepub", "true")
+  # render() # FIXME!?
   # expect_true(file.exists("_book/sr-french.pdf"))
   # expect_true(file.exists("_book/sr-french.tex"))
 

@@ -2,56 +2,56 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
 
   # ---------------------------------------------------------------------------
   chunk <- NULL
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_null(tmp[[1]])
   expect_null(tmp[[2]])
 
   # ---------------------------------------------------------------------------
   chunk <- "----"
-  expect_error(tmp <- csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(tmp <- conv_type_1_table_lines(chunk))
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "", "-----")
-  expect_error(tmp <- csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(tmp <- conv_type_1_table_lines(chunk))
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----")
-  expect_error(csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(conv_type_1_table_lines(chunk))
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "xyz", "-----")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("-----", "asd", "-----", "xyz", "-----"))
   expect_null(tmp[[2]])
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "xyz", "-----", "", "", "")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("-----", "asd", "-----", "xyz", "-----"))
   expect_identical(tmp[[2]], c("", "", ""))
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "xyz", "-----", "", "",
              "Table: This is a table caption")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("-----", "asd", "-----", "xyz", "-----",
                                "Table: This is a table caption"))
   expect_null(tmp[[2]])
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "xyz", "", "", "" ,"-----")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("-----", "asd", "-----", "xyz", "-----"))
   expect_null(tmp[[2]])
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "", "", "", "xyz", "", "", "" ,"-----")
-  expect_error(tmp <- csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(tmp <- conv_type_1_table_lines(chunk))
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "xyz", "-----", "abc", "", "efg", "-----", "", "",
              "Non-caption text")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("-----", "xyz", "-----", "abc", "", "efg",
                                "-----"))
   expect_identical(tmp[[2]], c("", "", "Non-caption text"))
@@ -59,12 +59,12 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "", "", "", "xyz", "", "", "" ,"-----",
              "Table: (\\#tab:text) Test label")
-  expect_error(tmp <- csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(tmp <- conv_type_1_table_lines(chunk))
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "xyz", "-----", "", "",
              "No caption text", "", "Table: (\\#tab:text) Test label ")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("-----", "asd", "-----", "xyz", "-----"))
   expect_identical(tmp[[2]], c("", "", "No caption text", "",
                                "Table: (\\#tab:text) Test label "))
@@ -72,12 +72,12 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "", "", "", "xyz", "", "", "" ,"-----",
              "Table: (\\#tab:text) Test label.", "Two lines.")
-  expect_error(tmp <- csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(tmp <- conv_type_1_table_lines(chunk))
 
   # ---------------------------------------------------------------------------
   chunk <- c("-----", "asd", "-----", "xyz", "-----", "", "Table:",
              "- 2nd line ", "         - third line", "", "")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("-----","asd", "-----", "xyz", "-----",
                                "Table:", "- 2nd line ", ""))
   expect_identical(tmp[[2]], c("         - third line", "", ""))
@@ -91,7 +91,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "----------- -----------",
              "", "", "", "", "", "",
              "Table: (\\#tab:text) Test label.", "Two lines.")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -114,7 +114,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "----------- -----------",
              "", "", "", "", "", "",
              "Table: (\\#tab:text) Test label.", "", "", "Two lines.")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -134,7 +134,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              " hgnhhnhnf    oiuoiuo  ",
              "", "", "", "",
              "----------- -----------")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -154,7 +154,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -174,7 +174,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "", "", "", "Table: Caption")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -195,7 +195,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "", "", "", "Table: Caption", "1. Item 1")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -216,7 +216,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "Table: Caption", "1. Item 1")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -237,7 +237,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "Table: Caption", "", "", "1. Item 1")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -258,7 +258,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "Table: Caption", "", "", "", "", "", "1. Item 1")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -279,7 +279,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "Table: Caption", "", "", "", "", "", "1. Item 1")
-  expect_error(csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(conv_type_1_table_lines(chunk))
 
   # ---------------------------------------------------------------------------
   chunk <- c("----------- -----------",
@@ -291,7 +291,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "Table: Caption", "", "", "", "", "", "1. Item 1")
-  tmp <- csasdown:::conv_type_1_table_lines(chunk)
+  tmp <- conv_type_1_table_lines(chunk)
   expect_identical(tmp[[1]], c("----------- -----------",
                                " fgdfgdgfd    assadsd  ",
                                "----------- -----------",
@@ -312,7 +312,7 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "Table: Caption", "", "", "", "", "", "1. Item 1")
-  expect_error(csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(conv_type_1_table_lines(chunk))
 
   # ---------------------------------------------------------------------------
   chunk <- c("----------- -----------",
@@ -324,5 +324,5 @@ test_that("Conversion of type 1 table lines in Rmd works correctly", {
              "", "", "", "",
              "----------- -----------",
              "Table: Caption", "", "", "", "", "", "1. Item 1")
-  expect_error(csasdown:::conv_type_1_table_lines(chunk))
+  expect_error(conv_type_1_table_lines(chunk))
 })

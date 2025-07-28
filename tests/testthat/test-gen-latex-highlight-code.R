@@ -18,12 +18,12 @@ test_that("gen_latex_highlight_code() works", {
   json_lst <- purrr::map(json_fns, ~{readLines(.x)})
   latex_lst <- purrr::map(latex_fns, ~{readLines(.x)})
 
-  new_latex_lst <- csasdown:::gen_latex_highlight_code(json_lst)
+  new_latex_lst <- gen_latex_highlight_code(json_lst)
 
-  expect_error(csasdown:::gen_latex_highlight_code(NULL),
+  expect_error(gen_latex_highlight_code(NULL),
                "cannot be")
 
-  expect_error(csasdown:::gen_latex_highlight_code(""),
+  expect_error(gen_latex_highlight_code(""),
                "element 1 does not start with an open curly brace")
 
   expect_identical(latex_lst, new_latex_lst)

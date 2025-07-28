@@ -1,20 +1,20 @@
 test_that("Conversion of header lines in Rmd works correctly", {
 
   chunk <- NULL
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_null(tmp[[1]])
   expect_null(tmp[[2]])
   # ---------------------------------------------------------------------------
 
   chunk <- "# Header 1"
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], "# Header 1")
   expect_null(tmp[[2]])
   # ---------------------------------------------------------------------------
 
   chunk <- c("# Header 1", "## Subheader 1", "## Subheader 2",
              "### Subsubheader 1")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c(chunk, ""))
   expect_null(tmp[[2]])
   # ---------------------------------------------------------------------------
@@ -22,7 +22,7 @@ test_that("Conversion of header lines in Rmd works correctly", {
   chunk <- c("# Header 1", "", "",
              "## Subheader 1", "", "",
              "## Subheader 2", "### Subsubheader 1")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# Header 1", "## Subheader 1",
                                "## Subheader 2", "### Subsubheader 1", ""))
   expect_null(tmp[[2]])
@@ -32,7 +32,7 @@ test_that("Conversion of header lines in Rmd works correctly", {
              "## Subheader 1",
              "## Subheader 2",
              "### Subsubheader 1", "", "")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# Header 1", "## Subheader 1",
                                "## Subheader 2", "### Subsubheader 1", ""))
   expect_identical(tmp[[2]], c("", ""))
@@ -41,19 +41,19 @@ test_that("Conversion of header lines in Rmd works correctly", {
   chunk <- c("", "", "# Header 1", "", "",
              "## Subheader 1",
              "## Subheader 2", "### Subsubheader 1", "", "")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_null(tmp[[1]])
   expect_identical(tmp[[2]], chunk)
   # ---------------------------------------------------------------------------
 
   chunk <- c("# H1", "")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", ""))
   expect_identical(tmp[[2]], "")
   # ---------------------------------------------------------------------------
 
   chunk <- c("# H1", "", "", "", "", "Normal text", "", "", "", "", "", "# H2")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", ""))
   expect_identical(tmp[[2]], c("", "", "", "", "Normal text", "", "", "", "",
                                "", "# H2"))
@@ -62,7 +62,7 @@ test_that("Conversion of header lines in Rmd works correctly", {
   chunk <- c("# H1",
              "# H2",
              "# H3")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", "# H2", "# H3", ""))
   expect_null(tmp[[2]])
   # ---------------------------------------------------------------------------
@@ -70,7 +70,7 @@ test_that("Conversion of header lines in Rmd works correctly", {
   chunk <- c("# H1", "",
              "# H2",
              "# H3")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", "# H2", "# H3", ""))
   expect_null(tmp[[2]])
   # ---------------------------------------------------------------------------
@@ -78,7 +78,7 @@ test_that("Conversion of header lines in Rmd works correctly", {
   chunk <- c("# H1",
              "# H2", "",
              "# H3")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", "# H2", "# H3", ""))
   expect_null(tmp[[2]])
   # ---------------------------------------------------------------------------
@@ -86,7 +86,7 @@ test_that("Conversion of header lines in Rmd works correctly", {
   chunk <- c("# H1", "",
              "# H2", "",
              "# H3")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", "# H2", "# H3", ""))
   expect_null(tmp[[2]])
   # ---------------------------------------------------------------------------
@@ -94,7 +94,7 @@ test_that("Conversion of header lines in Rmd works correctly", {
   chunk <- c("# H1", "",
              "# H2", "",
              "# H3", "")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", "# H2", "# H3", ""))
   expect_identical(tmp[[2]], "")
   # ---------------------------------------------------------------------------
@@ -102,13 +102,13 @@ test_that("Conversion of header lines in Rmd works correctly", {
   chunk <- c("# H1",
              "# H2",
              "# H3", "")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", "# H2", "# H3", ""))
   expect_identical(tmp[[2]], "")
   # ---------------------------------------------------------------------------
 
   chunk <- c("# H1", "-----", "a", "-----", "b", "-----")
-  tmp <- csasdown:::conv_header_lines(chunk)
+  tmp <- conv_header_lines(chunk)
   expect_identical(tmp[[1]], c("# H1", ""))
   expect_identical(tmp[[2]], c("-----", "a", "-----", "b", "-----"))
   # ---------------------------------------------------------------------------

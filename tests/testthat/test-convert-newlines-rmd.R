@@ -1,8 +1,8 @@
-test_that("csasdown:::convert_newlines_rmd works", {
+test_that("convert_newlines_rmd works", {
 
   str <- c("")
   str_mod <- c("", "\\n", "")
-  ret <- csasdown:::convert_newlines_rmd(str)
+  ret <- convert_newlines_rmd(str)
   expect_identical(ret, str_mod)
 
   str <- c("Hello world",
@@ -13,7 +13,7 @@ test_that("csasdown:::convert_newlines_rmd works", {
                "\\n",
                "",
                "Welcome!")
-  ret <- csasdown:::convert_newlines_rmd(str)
+  ret <- convert_newlines_rmd(str)
   expect_identical(ret, str_mod)
 
   # ---------------------------------------------------------------------------
@@ -44,7 +44,7 @@ test_that("csasdown:::convert_newlines_rmd works", {
                "\\n",
                "",
                "#Section header 2")
-  ret <- csasdown:::convert_newlines_rmd(str)
+  ret <- convert_newlines_rmd(str)
   expect_identical(ret, str_mod)
 
   # ---------------------------------------------------------------------------
@@ -61,7 +61,7 @@ test_that("csasdown:::convert_newlines_rmd works", {
                "Lorem ipsum dolor sit amet",
                "\\n",
                "")
-  ret <- csasdown:::convert_newlines_rmd(str)
+  ret <- convert_newlines_rmd(str)
   expect_identical(ret, str_mod)
 
   # ---------------------------------------------------------------------------
@@ -79,7 +79,7 @@ test_that("csasdown:::convert_newlines_rmd works", {
                "\\n",
                "",
                "yy")
-  ret <- csasdown:::convert_newlines_rmd(str)
+  ret <- convert_newlines_rmd(str)
   expect_identical(ret, str_mod)
 
   # ---------------------------------------------------------------------------
@@ -109,7 +109,7 @@ test_that("csasdown:::convert_newlines_rmd works", {
                "\\n",
                "",
                "End of list")
-  ret <- csasdown:::convert_newlines_rmd(str)
+  ret <- convert_newlines_rmd(str)
   expect_identical(ret, str_mod)
 
   # ---------------------------------------------------------------------------
@@ -168,7 +168,7 @@ test_that("csasdown:::convert_newlines_rmd works", {
                "------------------------- ----------------------------------------- --------------",
                "   Table: Correlation of Inheritance Factors for Parents and Child")
 
-  ret <- csasdown:::convert_newlines_rmd(str)
+  ret <- convert_newlines_rmd(str)
   expect_identical(ret, str_mod)
 
   # ---------------------------------------------------------------------------
@@ -206,7 +206,7 @@ test_that("csasdown:::convert_newlines_rmd works", {
                "  y",
                "-----",
                "Table: 2nd Caption")
-  ret <- csasdown:::convert_newlines_rmd(str)
+  ret <- convert_newlines_rmd(str)
   expect_identical(ret, str_mod)
 
 })

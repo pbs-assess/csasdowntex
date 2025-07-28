@@ -14,7 +14,7 @@ test_that("Removing all comments from knitr chunks works", {
              "# Test comment 3",
              "```")
   writeLines(chunk, fn)
-  ret <- csasdown:::remove_comments_from_chunks(fn)
+  ret <- remove_comments_from_chunks(fn)
   actual <- readLines(fn)
   expected <- c("```{r chap01-para-6-en, eval = !fr(), results = 'asis'}",
                 "cat('Be careful with your spacing in _Markdown_ documents.",
@@ -39,7 +39,7 @@ test_that("Removing all comments from knitr chunks works", {
              "BBBBBBBBBB",
              "")
   writeLines(chunk, fn)
-  ret <- csasdown:::remove_comments_from_chunks(fn)
+  ret <- remove_comments_from_chunks(fn)
   actual <- readLines(fn)
   expected <- c("```{r chap01-para-6-en, eval = !fr(), results = 'asis'}",
                 "cat('Be careful with your spacing in _Markdown_ documents.",
@@ -69,7 +69,7 @@ test_that("Removing all comments from knitr chunks works", {
              "# Test comment 3",
              "```")
   writeLines(chunk, fn)
-  ret <- csasdown:::remove_comments_from_chunks(fn)
+  ret <- remove_comments_from_chunks(fn)
   actual <- readLines(fn)
   expected <- c("# AAAAAAAAAA",
                 "",
@@ -103,7 +103,7 @@ test_that("Removing all comments from knitr chunks works", {
              "BBBBBBBBBB",
              "")
   writeLines(chunk, fn)
-  ret <- csasdown:::remove_comments_from_chunks(fn)
+  ret <- remove_comments_from_chunks(fn)
   actual <- readLines(fn)
   expected <- c("# AAAAAAAAAA",
            "",
@@ -144,7 +144,7 @@ test_that("Removing all comments from knitr chunks works", {
              "# Test comment 3",
              "```")
   writeLines(chunk, fn)
-  ret <- csasdown:::remove_comments_from_chunks(fn)
+  ret <- remove_comments_from_chunks(fn)
   actual <- readLines(fn)
   expected <- c("```{r chap01-para-6-en, eval = !fr(), results = 'asis'}",
                 "cat('Be careful with your spacing in _Markdown_ documents.",
@@ -188,7 +188,7 @@ test_that("Removing all comments from knitr chunks works", {
              "# Test comment 3",
              "```")
   writeLines(chunk, fn)
-  ret <- csasdown:::remove_comments_from_chunks(fn)
+  ret <- remove_comments_from_chunks(fn)
   actual <- readLines(fn)
   expected <- c("# AAAAAAAAAA",
            "",
@@ -240,7 +240,7 @@ test_that("Removing all comments from knitr chunks works", {
              "CCCCCCCCCC",
              "")
   writeLines(chunk, fn)
-  ret <- csasdown:::remove_comments_from_chunks(fn)
+  ret <- remove_comments_from_chunks(fn)
   actual <- readLines(fn)
   expected <- c("# AAAAAAAAAA",
            "",
@@ -288,7 +288,7 @@ test_that("Removing all comments from knitr chunks works", {
              "# Test comment 3",
              "```")
   writeLines(chunk, fn)
-  ret <- csasdown:::remove_comments_from_chunks(fn)
+  ret <- remove_comments_from_chunks(fn)
   actual <- readLines(fn)
   expected <- c("```{r chap01-para-6-en, eval = !fr(), results = 'asis'}",
                 "cat('Be careful with your spacing in _Markdown_ documents.",
@@ -327,7 +327,7 @@ test_that("Removing all comments from knitr chunks works", {
              "",
              "# Test comment 3")
   writeLines(chunk, fn)
-  expect_error(csasdown:::remove_comments_from_chunks(fn),
+  expect_error(remove_comments_from_chunks(fn),
                paste0("The number of knitr starting code chunk header ",
                       "lines does not equal the number of ending code chunk ",
                       "lines (triple backtick-lines)"),
@@ -356,7 +356,7 @@ test_that("Removing all comments from knitr chunks works", {
              "# Test comment 3",
              "```")
   writeLines(chunk, fn)
-  expect_error(csasdown:::remove_comments_from_chunks(fn),
+  expect_error(remove_comments_from_chunks(fn),
                paste0("inside each code chunk:"))
 
   # ---------------------------------------------------------------------------
@@ -370,7 +370,7 @@ test_that("Removing all comments from knitr chunks works", {
              "cat('More text!')",
              "```")
   writeLines(chunk, fn)
-  expect_message(csasdown:::remove_comments_from_chunks(fn, verbose = TRUE),
+  expect_message(remove_comments_from_chunks(fn, verbose = TRUE),
                paste0("There were no comments in chunks found to remove"))
 
 })

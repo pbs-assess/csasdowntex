@@ -6,15 +6,15 @@ str4 <- "`r 1`"
 str5 <- "complex `r map(x, ~{.x / (.x ^ 2) })` r code example from directory: `r here()`."
 str6 <- "`r code_1``r code_2`"
 
-test_that("csasdown:::catize() function works", {
-  i0 <- csasdown:::catize(str0)
-  i1 <- csasdown:::catize(str1)
-  i2 <- csasdown:::catize(str2)
-  i3 <- csasdown:::catize(str3)
-  i4 <- csasdown:::catize(str4)
-  i5 <- csasdown:::catize(str5)
-  i6 <- csasdown:::catize(str6)
-  i7 <- csasdown:::catize("")
+test_that("catize() function works", {
+  i0 <- catize(str0)
+  i1 <- catize(str1)
+  i2 <- catize(str2)
+  i3 <- catize(str3)
+  i4 <- catize(str4)
+  i5 <- catize(str5)
+  i6 <- catize(str6)
+  i7 <- catize("")
 
   expect_equal(i0, str0)
   expect_equal(as.character(i1), "\", 1 + 1, \" Test with r code first only")

@@ -5,22 +5,22 @@ test_that("run_pdflatex() works", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
     create_dir = FALSE,
     edit = FALSE
   ))
 
-  csasdown::render()
+  render()
 
   # -----------------------------------------------------------------------------
-  expect_error(csasdown::run_pdflatex(),
+  expect_error(run_pdflatex(),
                paste0("The file \\S+ exists. Delete it ",
                       "before running this function."))
 
   # -----------------------------------------------------------------------------
   unlink("_book/*.pdf", force = TRUE)
 
-  suppressWarnings(csasdown::run_pdflatex(extra_pdflatex = 2))
+  suppressWarnings(run_pdflatex(extra_pdflatex = 2))
   setwd(wd)
 })

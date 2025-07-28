@@ -4,14 +4,14 @@ test_that("cat parser works", {
   # Not starting with cat
   strs <- c("'This is an example",
             "of not starting with cat()")
-  expect_error(csasdown:::parse_cat_text(strs),
+  expect_error(parse_cat_text(strs),
                "The first line of \\S+ must start with")
 
   # -----------------------------------------------------------------------------
   # Wrong quote type
   strs <- c("cat(`'This is an example",
             "of not starting with cat()`)")
-  expect_error(csasdown:::parse_cat_text(strs),
+  expect_error(parse_cat_text(strs),
                paste0("Quote type not allowed for \\S+ text. You must use ",
                       "either single or double quotes. You used `"))
 
@@ -19,7 +19,7 @@ test_that("cat parser works", {
   # `verbose`
   strs <- c("cat('This is an example",
             "of not starting with cat()')")
-  x <- csasdown:::capture_log(csasdown:::parse_cat_text(strs, verbose = TRUE))
+  x <- capture_log(parse_cat_text(strs, verbose = TRUE))
   j <- x(1)
   j <- j$logs
   mess <- purrr::map_chr(j, ~{.x$message})
@@ -30,14 +30,14 @@ test_that("cat parser works", {
   # -----------------------------------------------------------------------------
   # `verbose` error
   strs <- c("cat('This is an )')")
-  x <- csasdown:::capture_log(csasdown:::parse_cat_text(strs, verbose = TRUE))
+  x <- capture_log(parse_cat_text(strs, verbose = TRUE))
   j <- x(1)
   j <- j$logs
   w <- purrr::map_chr(j, ~{.x$message})
   expect_match(w[1], "Pushed '\\(' from \\S+ to stack. Stack size is now 1")
   expect_match(w[2], "No matching '\\(' for this '\\)' on line  1, char 13")
 
-  x <- csasdown:::capture_log(csasdown:::parse_cat_text(strs, verbose = TRUE))
+  x <- capture_log(parse_cat_text(strs, verbose = TRUE))
   j <- x(1)
   j <- j$logs
   mess <- purrr::map_chr(j, ~{.x$message})
@@ -55,7 +55,7 @@ test_that("cat parser works", {
   strs_mod <- c("'This is an example",
                 "of matching cat parens",
                 "'")
-  out <- csasdown:::parse_cat_text(strs)
+  out <- parse_cat_text(strs)
   expect_identical(out, strs_mod)
 
   # -----------------------------------------------------------------------------
@@ -66,7 +66,7 @@ test_that("cat parser works", {
   strs_mod <- c('"This is an example',
                 'of matching cat parens',
                 '"')
-  out <- csasdown:::parse_cat_text(strs)
+  out <- parse_cat_text(strs)
   expect_identical(out, strs_mod)
 
   # -----------------------------------------------------------------------------
@@ -77,7 +77,7 @@ test_that("cat parser works", {
   strs_mod <- c('"This is (an) example',
                 'of matching (cat) parens()',
                 '"')
-  out <- csasdown:::parse_cat_text(strs)
+  out <- parse_cat_text(strs)
   expect_identical(out, strs_mod)
 
   # -----------------------------------------------------------------------------
@@ -88,7 +88,7 @@ test_that("cat parser works", {
   strs_mod <- c('"This is an example',
                 'of matching cat(((()))) parens()',
                 '()()"')
-  out <- csasdown:::parse_cat_text(strs)
+  out <- parse_cat_text(strs)
   expect_identical(out, strs_mod)
 
   # -----------------------------------------------------------------------------
@@ -96,56 +96,56 @@ test_that("cat parser works", {
   strs <- c('cat("This is an example',
             'of matching cat parens',
             '") extra')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
   # -----------------------------------------------------------------------------
   # Incorrect paren matching
   strs <- c('cat("This is an )example',
             'of matching cat parens',
             '")')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
   # -----------------------------------------------------------------------------
   # Incorrect paren matching
   strs <- c('cat("(This is an example',
             'of matching cat parens',
             '")')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
   # -----------------------------------------------------------------------------
   # Incorrect paren matching
   strs <- c('cat("(This( is an example',
             'of matching cat))) parens',
             '")')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
   # -----------------------------------------------------------------------------
   # Incorrect paren matching
   strs <- c('cat("This is an example',
             'of ((())))matching cat parens',
             '")')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
   # -----------------------------------------------------------------------------
   # Incorrect paren matching
   strs <- c('cat("This is an example',
             'of matching cat parens',
             ')")')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
   # -----------------------------------------------------------------------------
   # Incorrect paren matching
   strs <- c('cat("(This is an example',
             'of (matching( cat) parens)))',
             '")')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
   # -----------------------------------------------------------------------------
   # Incorrect paren matching
   strs <- c('cat("(This) is an example',
             'of matching (cat) (parens',
             '")')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
   # -----------------------------------------------------------------------------
   # Longer than needed text, multiple lines (ok)
@@ -156,13 +156,13 @@ test_that("cat parser works", {
   strs_mod <- c('"This is an example',
                 'of longer than needed text',
                 '"')
-  expect_identical(csasdown:::parse_cat_text(strs), strs_mod)
+  expect_identical(parse_cat_text(strs), strs_mod)
 
   # -----------------------------------------------------------------------------
   # Longer than needed text, same lines
   strs <- c('cat("This is an example',
             'of longer than needed text',
             '") to find the correct text')
-  expect_error(csasdown:::parse_cat_text(strs))
+  expect_error(parse_cat_text(strs))
 
 })

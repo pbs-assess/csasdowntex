@@ -3,11 +3,11 @@ test_that("FSAR builds", {
   unlink(testing_path, recursive = TRUE, force = TRUE)
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
-  suppressMessages(csasdown::draft(
+  suppressMessages(draft(
     "fsar",
     create_dir = FALSE,
     edit = FALSE
   ))
-  suppressWarnings(csasdown::render_sar())
+  suppressWarnings(render_sar())
   expect_true(file.exists("_book/fsar.docx"))
 })

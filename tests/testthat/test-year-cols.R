@@ -7,15 +7,15 @@ df3 <- data.frame(a = 2001:2050, b = seq(1000, 1001, length.out = 50), c = 1901:
 # 2 year columns, additional column with large serial numbers
 df4 <- data.frame(a = 2001:2050, b = seq(1000, 1001, length.out = 50), c = 1901:1950, d = 40001:40050)
 
-if(csasdown:::fr()){
+if(fr()){
   options(french = FALSE)
 }
 
 test_that("year_col() function works", {
-  i <- csasdown:::year_cols(df1)
-  j <- csasdown:::year_cols(df2)
-  k <- csasdown:::year_cols(df3)
-  l <- csasdown:::year_cols(df4)
+  i <- year_cols(df1)
+  j <- year_cols(df2)
+  k <- year_cols(df3)
+  l <- year_cols(df4)
   expect_equal(i, NULL)
   expect_equal(j, "a")
   expect_equal(k, c("a", "c"))
@@ -23,21 +23,21 @@ test_that("year_col() function works", {
 })
 
 test_that("Non-existent columns requested in cols_no_format for csas_table()", {
-  expect_error(x <- csasdown::csas_table(df1,
+  expect_error(x <- csas_table(df1,
                                          format = "latex",
                                          cols_no_format = c("x", "y"),
                                          bold_header = FALSE))
 })
 
 test_that("Non-existent columns requested in cols_to_format for csas_table()", {
-  expect_error(x <- csasdown::csas_table(df1,
+  expect_error(x <- csas_table(df1,
                                          format = "latex",
                                          cols_to_format = "x",
                                          bold_header = FALSE))
 })
 
 test_that("csas_table() detects 0 year columns correctly", {
-  x <- csasdown::csas_table(df1, format = "latex", bold_header = FALSE)
+  x <- csas_table(df1, format = "latex", bold_header = FALSE)
   expect_true(length(grep("1,000.000", x)) == 1)
   expect_true(!length(grep("1000.000", x)))
   expect_true(length(grep("1,001.000", x)) == 1)
@@ -45,7 +45,7 @@ test_that("csas_table() detects 0 year columns correctly", {
 })
 
 test_that("csas_table() detects 1 year column correctly", {
-  x <- csasdown::csas_table(df2, format = "latex", bold_header = FALSE)
+  x <- csas_table(df2, format = "latex", bold_header = FALSE)
   expect_true(length(grep("2001", x)) == 1)
   expect_true(!length(grep("2,001", x)))
   expect_true(length(grep("2050", x)) == 1)
@@ -58,7 +58,7 @@ test_that("csas_table() detects 1 year column correctly", {
 })
 
 test_that("csas_table() detects 2 year columns correctly", {
-  x <- csasdown::csas_table(df3, format = "latex", bold_header = FALSE)
+  x <- csas_table(df3, format = "latex", bold_header = FALSE)
   expect_true(length(grep("1901", x)) == 1)
   expect_true(!length(grep("1,901", x)))
   expect_true(length(grep("1950", x)) == 1)
@@ -76,7 +76,7 @@ test_that("csas_table() detects 2 year columns correctly", {
 })
 
 test_that("csas_table() detects 2 year columns correctly and makes exception of formatting for column supplied", {
-  x <- csasdown::csas_table(df3, format = "latex", cols_no_format = "a", bold_header = FALSE)
+  x <- csas_table(df3, format = "latex", cols_no_format = "a", bold_header = FALSE)
   expect_true(length(grep("1901", x)) == 1)
   expect_true(!length(grep("1,901", x)))
   expect_true(length(grep("1950", x)) == 1)
@@ -95,7 +95,7 @@ test_that("csas_table() detects 2 year columns correctly and makes exception of 
 
 test_that(paste0("csas_table() detects 2 year columns correctly and ignores ",
                  "one out of range (formats it correctly)"), {
-  x <- csasdown::csas_table(df4, format = "latex", bold_header = FALSE)
+  x <- csas_table(df4, format = "latex", bold_header = FALSE)
   expect_true(length(grep("1901", x)) == 1)
   expect_true(!length(grep("1,901", x)))
   expect_true(length(grep("1950", x)) == 1)
@@ -119,7 +119,7 @@ test_that(paste0("csas_table() detects 2 year columns correctly and ignores ",
 
 test_that(paste0("csas_table() detects 2 year columns correctly makes exception ",
                  "of formatting for column supplied which is out of range for year"), {
-  x <- csasdown::csas_table(df4, format = "latex", cols_no_format = "d", bold_header = FALSE)
+  x <- csas_table(df4, format = "latex", cols_no_format = "d", bold_header = FALSE)
   expect_true(length(grep("1901", x)) == 1)
   expect_true(!length(grep("1,901", x)))
   expect_true(length(grep("1950", x)) == 1)
@@ -143,7 +143,7 @@ test_that(paste0("csas_table() detects 2 year columns correctly makes exception 
 
 test_that(paste0("csas_table() detects 2 year columns correctly includes ",
                  "formatting for column(s) supplied in cols_to_format"), {
-                   x <- csasdown::csas_table(df4, format = "latex",
+                   x <- csas_table(df4, format = "latex",
                                              cols_no_format = "d",
                                              cols_to_format = "d",
                                              bold_header = FALSE)
@@ -170,7 +170,7 @@ test_that(paste0("csas_table() detects 2 year columns correctly includes ",
 
 test_that(paste0("csas_table() detects 2 year columns correctly includes ",
                  "formatting for column(s) supplied in cols_to_format, changes one of the year columns"), {
-                   x <- csasdown::csas_table(df4, format = "latex",
+                   x <- csas_table(df4, format = "latex",
                                              cols_to_format = "a",
                                              bold_header = FALSE)
                    expect_true(length(grep("1901", x)) == 1)
@@ -196,7 +196,7 @@ test_that(paste0("csas_table() detects 2 year columns correctly includes ",
 
 test_that(paste0("csas_table() detects 2 year columns correctly includes ",
                  "formatting for column(s) supplied in cols_to_format, changes two of the year columns"), {
-                   x <- csasdown::csas_table(df4, format = "latex",
+                   x <- csas_table(df4, format = "latex",
                                              cols_to_format = c("a", "c"),
                                              bold_header = FALSE)
                    expect_true(length(grep("1,901", x)) == 1)
@@ -223,7 +223,7 @@ test_that(paste0("csas_table() detects 2 year columns correctly includes ",
 test_that(paste0("csas_table() detects 2 year columns correctly includes ",
                  "formatting for column(s) supplied in both cols_no_format and ",
                  "cols_to_format, changes all columns"), {
-                   x <- csasdown::csas_table(df4,
+                   x <- csas_table(df4,
                                              format = "latex",
                                              bold_header = FALSE,
                                              cols_no_format = "d",

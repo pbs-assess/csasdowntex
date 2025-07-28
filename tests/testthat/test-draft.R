@@ -5,14 +5,14 @@ test_that("draft() works", {
   setwd(testing_path)
 
   # ---------------------------------------------------------------------------
-  expect_message(csasdown::draft("sr",
+  expect_message(draft("sr",
                   verbose = TRUE,
                   testing = TRUE,
                   testing_affirm = TRUE),
   paste0("Created a new RStudio project file"))
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown::draft("resdoc-b",
+  expect_error(draft("resdoc-b",
                                verbose = TRUE,
                                testing = TRUE,
                                testing_affirm = FALSE),
@@ -20,7 +20,7 @@ test_that("draft() works", {
 
   # ---------------------------------------------------------------------------
   # Bad directory
-  expect_error(csasdown::draft("resdoc-b",
+  expect_error(draft("resdoc-b",
                                directory = "baddir",
                                verbose = TRUE,
                                testing = TRUE,
@@ -28,7 +28,7 @@ test_that("draft() works", {
     paste0("does not exist so the csasdown project cannot be created there"))
 
 
-  expect_error(csasdown:::create_rstudio_project_file(directory = "baddir",
+  expect_error(create_rstudio_project_file(directory = "baddir",
                                                       verbose = TRUE),
                paste0("does not exist so an RStudio project file cannot ",
                       "be created there"))
@@ -39,7 +39,7 @@ test_that("draft() works", {
   unlink("make-report-here", recursive = TRUE, force = TRUE)
   file.create("do-not-delete.txt")
   dir.create("make-report-here", showWarnings = FALSE)
-  csasdown::draft(type = "resdoc", directory = "make-report-here", verbose = TRUE)
+  draft(type = "resdoc", directory = "make-report-here", verbose = TRUE)
   expect_true(file.exists("make-report-here/_bookdown.yml"))
   expect_true(file.exists("make-report-here/make-report-here.Rproj"))
   expect_true(file.exists("do-not-delete.txt"))
