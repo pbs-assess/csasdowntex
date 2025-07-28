@@ -69,11 +69,10 @@ fsar_word <- function(...) {
 
 #' Render a SAR
 #'
-#' @param config_file Path to the yml configuration file.
 #' @param ... Arguments to pass to [bookdown::render_book()].
 #'
 #' @export
-render_sar <- function(config_file = "_bookdown.yml", ...) {
+render_sar <- function(...) {
 
   cat("\n")
 

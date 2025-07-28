@@ -4,11 +4,9 @@
 \alias{render_sar}
 \title{Render a SAR}
 \usage{
-render_sar(config_file = "_bookdown.yml", ...)
+render_sar(...)
 }
 \arguments{
-\item{config_file}{Path to the yml configuration file.}
-
 \item{...}{Arguments to pass to \code{\link[bookdown:render_book]{bookdown::render_book()}}.}
 }
 \description{
