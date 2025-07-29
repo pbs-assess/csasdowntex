@@ -4,7 +4,9 @@
 #' the tables work with CSAS formatting in both LaTeX and Word documents.
 #'
 #' @param x An R object, typically a matrix or data frame.
-#' @param format As defined by [kableExtra::kbl()].
+#' @param format As defined by [kableExtra::kbl()]
+#' @param booktabs As defined by [kableExtra::kbl()]
+#' @param linesep As defined by [kableExtra::kbl()]
 #' @param caption Caption for table
 #' @param font_size Font size in pts. If NULL, document font size is used.
 #' @param bold_header Make headers bold. Logical
@@ -55,13 +57,15 @@
 #' @export
 csas_table <- function(x,
                        format = "pandoc",
+                       booktabs = TRUE,
+                       linesep = "",
                        caption = "",
-                       font_size = NULL,
+                       escape = FALSE,
                        bold_header = TRUE,
+                       font_size = NULL,
                        repeat_header = TRUE,
                        col_names = NULL,
                        col_names_align = "c",
-                       escape = FALSE,
                        hold_position = TRUE,
                        show_continued_text =
                          rmarkdown::metadata$show_continued_text %||% TRUE,
@@ -167,6 +171,8 @@ csas_table <- function(x,
 
     k <- kbl(x = x,
              format = format,
+             booktabs = booktabs,
+             linesep = linesep,
              col.names = col_names,
              escape = escape,
              format.args = dec_format,
@@ -180,6 +186,8 @@ csas_table <- function(x,
     }
     k <- kbl(x = x,
              format = format,
+             booktabs = booktabs,
+             linesep = linesep,
              escape = escape,
              format.args = dec_format,
              caption = caption,

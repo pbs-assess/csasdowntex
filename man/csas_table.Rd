@@ -7,13 +7,15 @@
 csas_table(
   x,
   format = "pandoc",
+  booktabs = TRUE,
+  linesep = "",
   caption = "",
-  font_size = NULL,
+  escape = FALSE,
   bold_header = TRUE,
+  font_size = NULL,
   repeat_header = TRUE,
   col_names = NULL,
   col_names_align = "c",
-  escape = FALSE,
   hold_position = TRUE,
   show_continued_text = rmarkdown::metadata$show_continued_text \%||\% TRUE,
   extra_header = NULL,
@@ -38,21 +40,25 @@ csas_table(
 \arguments{
 \item{x}{An R object, typically a matrix or data frame.}
 
-\item{format}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}.}
+\item{format}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}}
+
+\item{booktabs}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}}
+
+\item{linesep}{As defined by \code{\link[kableExtra:kbl]{kableExtra::kbl()}}}
 
 \item{caption}{Caption for table}
 
-\item{font_size}{Font size in pts. If NULL, document font size is used.}
+\item{escape}{As defined by \code{\link[kableExtra:kable_styling]{kableExtra::kable_styling()}}}
 
 \item{bold_header}{Make headers bold. Logical}
+
+\item{font_size}{Font size in pts. If NULL, document font size is used.}
 
 \item{repeat_header}{If landscape, repeat the header on subsequent pages?}
 
 \item{col_names}{Names for the columns to show on table}
 
 \item{col_names_align}{As defined in \code{\link[kableExtra:linebreak]{kableExtra::linebreak()}}}
-
-\item{escape}{As defined by \code{\link[kableExtra:kable_styling]{kableExtra::kable_styling()}}}
 
 \item{hold_position}{force the table placement to be where the code is
 called (don't let latex position the table where it wants)}
