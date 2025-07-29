@@ -10,18 +10,18 @@ test_that("render generates the .docx of the FSAR with fsar_word", {
     edit = FALSE
   ))
   expect_error(render(), "render_fsar()")
-  suppressWarnings(render_sar())
+  render_sar()
   expect_true(file.exists(file.path(testing_path, "_book", "fsar.docx")))
   file.remove(file.path(testing_path, "_book", "fsar.docx"))
 
-  suppressWarnings(render_fsar())
+  render_fsar()
   expect_true(file.exists(file.path(testing_path, "_book", "fsar.docx")))
   file.remove(file.path(testing_path, "_book", "fsar.docx"))
 
   # custom yaml file:
   file.rename("_bookdown.yml", "_my_test_yml.yml")
   expect_error(suppressWarnings(render_sar()), regexp = "YAML")
-  suppressWarnings(render_sar(config_file = "_my_test_yml.yml"))
+  render_sar(config_file = "_my_test_yml.yml")
   expect_true(file.exists(file.path(testing_path, "_book", "fsar.docx")))
 })
 
