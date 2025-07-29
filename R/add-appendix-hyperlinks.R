@@ -19,6 +19,7 @@
 #'
 #' @return The modified LaTeX code as a vector of character strings, one for
 #' each line
+#' @importFrom tibble enframe
 add_appendix_hyperlinks <- \(x){
 
   app_ref_inds <- grep("ref.*app:", x)
@@ -38,7 +39,7 @@ add_appendix_hyperlinks <- \(x){
   # order found in the document. This should always be correct, but there is
   # no internal link so if you see a written appendix letter that does not
   # match where it takes you, this is probably to blame.
-  labels_df <- tibble::enframe(labels, name = NULL) |>
+  labels_df <- enframe(labels, name = NULL) |>
     mutate(letter = LETTERS[1:length(labels)]) |>
     rename(label = value) |>
     select(letter, label)
