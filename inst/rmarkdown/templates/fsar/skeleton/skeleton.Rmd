@@ -49,4 +49,36 @@ library(ggplot2)
 
 library(rosettafish)
 library(csasdown)
+library(flextable) # recommended package for adding tables
 ```
+
+
+```{r fig-settings, eval = FALSE}
+# Optional: specify custom ggplot settings. If using, set eval to TRUE
+theme_set(theme_bw())
+theme_update(axis.text = element_text(size = 10),
+             legend.text = element_text(size = 10),
+             axis.title = element_text(size = 10),
+             strip.text = element_text(size = 10),
+             plot.margin = margin(t = 0.1, b = 0.1, l = 0.1, r = 0.1, "cm"),
+             legend.position = c(1, 1),
+             legend.justification = c(1, 1),
+             legend.background = element_blank(),
+             legend.title = element_blank(),
+             panel.grid = element_blank())
+```
+
+
+```{r tab-settings}
+# recommended table settings to match CSAS table style and accesability standards
+set_flextable_defaults(
+  font.size = 10,
+  padding.left = 3, 
+  padding.right = 3, 
+  padding.top = 1, 
+  padding.bottom = 1,
+  na_str = "-",
+  theme_fun = "theme_box"
+)
+```
+
