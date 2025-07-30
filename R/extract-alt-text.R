@@ -255,7 +255,7 @@ extract_alt_text <- function(inp_str,
         # Assumes that the author has put {#app:<letter>} into the source code
         pattern <- ".*(\\{#app:[a-z]\\}) *$"
         # This will match both English and French appendix header lines.
-        # We use the French ones as guides
+        # We use the French ones as guides if they exist
         app_headers <- grep(pattern, appendix_lines, perl = TRUE, value = TRUE)
         if(!length(app_headers)){
           bail("Could not find any tags on the appendix headers of the ",
@@ -264,10 +264,10 @@ extract_alt_text <- function(inp_str,
                "to work. Here is an example line for an Appendix header:\n",
                "# Ecosystem considerations {#app:d}")
         }
-        # Remove all but the last occurrence of app:<letter> if there are more
+        # Remove all but the first occurrence of app:<letter> if there are more
         # than one
         doubles <- gsub(pattern, "\\1", app_headers)
-        app_headers <- app_headers[duplicated(doubles)]
+        app_headers <- app_headers[!duplicated(doubles)]
         app_header_patterns <- gsub("\\{", "\\\\{", app_headers)
         app_header_patterns <- gsub("\\}", "\\\\}", app_header_patterns)
         app_header_patterns <- gsub("\\(", "\\\\(", app_header_patterns)
