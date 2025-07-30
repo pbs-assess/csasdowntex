@@ -251,9 +251,7 @@ extract_alt_text <- function(inp_str,
       is_appendix_fig <- fig_chunk_inds[the_fig_ind] > appendix_ind
       # Which appendix is it in?
       if(is_appendix_fig){
-        # Search for all heading 1 lines following the appendix declaration
         appendix_lines <- rmd[appendix_ind:length(rmd)]
-        #pattern <- "(?<![#])# +(?![#])"
         # Assumes that the author has put {#app:<letter>} into the source code
         pattern <- ".*(\\{#app:[a-z]\\}) *$"
         # This will match both English and French appendix header lines.
