@@ -28,6 +28,9 @@ uncommented rmd files in the current build.
 Preceding spaces are ignored.
 \item Extracts all the text found for the label given by \code{inp_str}, and
 returns the description found for it (the actual alternative text)
+\item If no name is found, the code will figure out what the figure number
+is (including preceding appendix letters) and set that as the alternative
+text
 }
 
 Originally implemented in the \code{hake} package but copied here for simplicity
