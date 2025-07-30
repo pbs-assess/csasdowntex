@@ -84,7 +84,8 @@ Suggests:
     readr,
     rosettafish,
     testthat,
-    tidyr
+    tidyr,
+    flextable
 Remotes:
     pbs-assess/rosettafish
 ByteCompile: true
