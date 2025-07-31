@@ -128,15 +128,15 @@ Data changes: [Optional (otherwise, do not include).]
 
 [Standard figure, if applicable, comes first -- example shown. All figures and tables should be referenced in the text. Refer to the Guidance Document for exceptions, options and further instructions.]
 
-(ref:caption) (A -- upper left panel) Catch and Total Allowable Catch, (B -- upper right panel) Spawning Stock Biomass (SSB) in relation to the Limit Reference Point (LRP; X) and (proposed) Upper Stock Reference (USR; X), (C -- bottom left panel) Fishing Mortality (F; X) on the left in relation to the Removal Reference (RR) and Natural Mortality (M), (D- bottom right panel) Recruitment (numbers).
+```{r trends-fig, fig.cap = "(A -- upper left panel) Catch and Total Allowable Catch, (B -- upper right panel) Spawning Stock Biomass (SSB) in relation to the Limit Reference Point (LRP; X) and (proposed) Upper Stock Reference (USR; X), (C -- bottom left panel) Fishing Mortality (F; X) on the left in relation to the Removal Reference (RR) and Natural Mortality (M), (D- bottom right panel) Recruitment (numbers)."}
 
-```{r base1, fig.cap="(ref:caption)"}
 source("fake-data.R")
 source("plot-timeseries.R")
 in.df <- sim_fsar_data("long")
 
 ## English template
 fsar_plot_base(in.df, "English")
+
 ```
 
 [Optional. Add an additional optional panel of 4 indicators if relevant to developing advice.]
@@ -147,7 +147,34 @@ fsar_plot_base(in.df, "English")
 
 [Mandatory. Maximum section length one page. Must be first section in Assessment section. If needed, this section can be duplicated for each stock or subunit, although it may be preferable to maintain one section in which all stocks and subunits are described.]
 
-[Provide information on stock status and all the key indicators for the stock(s) relevant to decision-making, over timescales relevant to the stock. Tables can be used if helpful for decision-making. Cite mandatory and optional figures and tables in the text as needed. Report trends in relevant indicator(s), one per paragraph, in the following format:]
+[Provide information on stock status and all the key indicators for the stock(s) relevant to decision-making, over timescales relevant to the stock. Tables can be used if helpful for decision-making, for example:.] 
+
+```{r trends-tab, tab.cap = "SSB, recruitment, and fishing mortality estimates over the last five years. Lower and upper 95% confidence intervals indicated in parentheses."}
+
+in.df <- sim_fsar_data("wide") |> 
+  filter(year > (max(year) - 5))
+
+print_est_with_ci <- function(est, low, high, digits = 0) {
+  paste0(formatC(est, big.mark = ",", format = "f", digits = digits), " (",
+         formatC(low, big.mark = ",", format = "f", digits = digits), ", ",
+         formatC(high, big.mark = ",", format = "f", digits = digits), ")")
+}
+
+recent.trends <- tibble::tibble(
+  Year = formatC(in.df$year, big.mark = ""),
+  `SSB (t)` = print_est_with_ci(in.df$`SSB-MT`, in.df$`SSBlow-MT`, in.df$`SSBhigh-MT`),
+  `Recruits (millions)` = print_est_with_ci(in.df$`R-E06`, in.df$`Rlow-E06`, in.df$`Rhigh-E06`),
+  `F` = print_est_with_ci(in.df$`F-1/yr`, in.df$`Flow-1/yr`, in.df$`Fhigh-1/yr`, digits = 2)
+)
+
+flextable(recent.trends) |> 
+  set_table_properties(layout = "autofit", width = 1)
+
+```
+
+[Cite mandatory and optional figures and tables in the text as needed (e.g., Figure \@ref(fig:trends-fig), Table \@ref(tab:trends-tab)).] 
+
+[Report trends in relevant indicator(s), one per paragraph, in the following format:]
 
 #### **[Indicator 1]** [specify name, e.g., Abundance] 
 
