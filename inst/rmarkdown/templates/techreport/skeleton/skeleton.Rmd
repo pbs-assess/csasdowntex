@@ -38,7 +38,7 @@ french_abstract: |
 # both be absent from all tables. If it is missing or any other value than
 # `false`, it will be assumed to be `true`
 citation_french: ""
-show_continued_text: true
+show_continued_text: false
 output:
  csasdown::techreport_pdf:
    # If `true`, alternative figure text and figure tags are added for

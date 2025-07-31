@@ -5,6 +5,13 @@
     pdfauthor={\trAuthsLong{}},%
   }%
 }
+
+% Needed for the `\KOMAoptions` calls that are used to change a page from
+% portrait to landscape. See the R function
+% `hake::post_process_landscape_tables()` which is where it is injected into
+% the TEX file
+\usepackage[usegeometry]{typearea}
+
 %%%%% Load packages %%%%%
 \RequirePackage{fancyhdr}  % Make nice headers
 \RequirePackage{graphicx}  % Import figures

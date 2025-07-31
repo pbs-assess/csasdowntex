@@ -132,7 +132,6 @@ On the following pages we have an example of a long and wide table which is in l
 
 <!-- clearpage ends the page, and also dumps out all floats.
 Floats are things like tables and figures. -->
-\begin{landscapepage}
 ```{r widelong, results = "asis"}
 yrs <- 1:45
 ages <- 1:15
@@ -147,9 +146,9 @@ csasdown::csas_table(widelong_df,
   caption = "A long and wide table",
   format = "latex",
   bold_header = FALSE,
-  font_size = 8)
+  font_size = 8) |> 
+  landscape()
 ```
-\end{landscapepage}
 \clearpage
 
 It is often useful to group certain rows of a table that share the same information. This can be achieved using the `kableExtra::collapse_rows` and `kableExtra::group_rows` and `kableExtra::pack_rows`.
