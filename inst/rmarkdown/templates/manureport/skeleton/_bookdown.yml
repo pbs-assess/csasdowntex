@@ -4,6 +4,7 @@ rmd_files: ["index.Rmd",
             "02_methods.Rmd",
             "03_results.Rmd",
             "04_discussion.Rmd",
-            "05_appendix.Rmd",
-            "06_bibliography.Rmd"]
+            "05_start_appendices.Rmd",
+            "06_appendix.Rmd",
+            "07_bibliography.Rmd"]
 delete_merged_file: true

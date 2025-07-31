@@ -247,6 +247,7 @@ extract_alt_text <- function(inp_str,
     # Check if in an appendix and if so, which one
     is_appendix_fig <- FALSE
     appendix_ind <- grep("Appendix \\{-\\}", rmd)
+
     if(length(appendix_ind) == 1){
       is_appendix_fig <- fig_chunk_inds[the_fig_ind] > appendix_ind
       # Which appendix is it in?
@@ -272,7 +273,13 @@ extract_alt_text <- function(inp_str,
         app_header_patterns <- gsub("\\}", "\\\\}", app_header_patterns)
         app_header_patterns <- gsub("\\(", "\\\\(", app_header_patterns)
         app_header_patterns <- gsub("\\)", "\\\\)", app_header_patterns)
-        app_header_inds <- map_dbl(app_header_patterns, ~{grep(.x, rmd)})
+        # Ignore header lines when surrounded by backticks - they are being
+        # written verbatim in the doc - see the manuscript example
+        app_header_patterns <- paste0(app_header_patterns, "(?!\\`)")
+
+        app_header_inds <- map_dbl(app_header_patterns, ~{grep(.x,
+                                                               rmd,
+                                                               perl = TRUE)})
 
         # Find out which appendix the figure is in
         which_app <- max(which(fig_chunk_inds[the_fig_ind] > app_header_inds))

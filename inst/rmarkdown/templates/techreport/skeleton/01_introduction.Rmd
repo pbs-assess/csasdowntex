@@ -47,11 +47,11 @@ Here is an example equation with the code used to generate it. Note that `csasdo
   \label{eq:test}
 \end{equation}
 
-A reference can be included anywhere in the text, to refer to a section or appendix. For the first appendix in this document, the code looks like this: `\@ref(app:first-appendix)`. Adding that code inline will create a clickable link in the output file: See Appendix \@ref(app:first-appendix).
+A reference can be included anywhere in the text, to refer to a section or appendix. For the first appendix in this document, the code looks like this: `\@ref(app:a)`. Adding that code inline will create a clickable link in the output file: See Appendix \@ref(app:a).
 
 The code inside the parentheses comes from the tag after the header for the section. For the appendix, the whole header line looks like:
 
-`# THE FIRST APPENDIX {#app:first-appendix}`
+`# THE FIRST APPENDIX {#app:a}`
 
 Everything in the curly braces except for the hash sign is the tag you use to reference a section.
 
