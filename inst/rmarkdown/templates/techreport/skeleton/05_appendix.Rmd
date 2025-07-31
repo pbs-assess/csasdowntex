@@ -7,7 +7,7 @@ After that, all subsequent sections will be turned into appendices. -->
 
 \clearpage
 
-# THE FIRST APPENDIX {#app:first-appendix}
+# THE FIRST APPENDIX {#app:a}
 
 Appendices can be in one file, or if they are larger than a couple of pages you should add a new file for each new appendix. In the first appendix, you **must** include two special lines of code at the top to tell `csasdown` that you are now numbering sections as appendices. Look in `05_appendices.Rmd` to see these. The last line of your last appendix **must** be another special line of code which tells `csasdown` to end the appendices sections. In this document it can be found at the end of `05_appendices.Rmd`.
 
@@ -49,11 +49,11 @@ See Table \@ref(tab:test2) for the example appendix table.
 
 \clearpage
 
-# THE SECOND APPENDIX, FOR FUN {#app:second-appendix}
+# THE SECOND APPENDIX, FOR FUN {#app:b}
 
 The label `#app:` in the appendix section headers tell `csasdown` to start a new appendix, and the next letter in the alphabet will be used for the appendix, and prepended to figure and table names. For example, this appendix's whole section header looks like:
 
-`# THE SECOND APPENDIX, FOR FUN {#app:second-appendix}`
+`# THE SECOND APPENDIX, FOR FUN {#app:b}`
 
 To illustrate the new labeling of appendices, here are a table and figure:
 
