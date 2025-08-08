@@ -1,7 +1,8 @@
 ---
 title: |
   "Title Here (*Latin Species Name*)"
-french_title: Titre ici (*Nom latin de l'espèce*)
+french_title: |
+  "Titre ici (*Nom latin de l'espèce*)"
 year: 2022
 report_number: nnn
 author: |
