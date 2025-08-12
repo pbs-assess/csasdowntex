@@ -19,9 +19,11 @@
 resdoc_word <- function(...) {
   file <- if (fr()) "RES2025-fra.DOCX" else "RES2025-eng.DOCX"
   base <- word_document2(...,
-                         reference_docx = system.file("csas-docx",
-                                                      file,
-                                                      package = "csasdown"))
+    reference_docx = system.file("csas-docx",
+      file,
+      package = "csasdown"
+    )
+  )
 
   # Mostly copied from knitr::render_sweave
   base$knitr$opts_chunk$comment <- NA
@@ -49,39 +51,39 @@ resdoc_word2 <- function(...) {
   # file <- if (fr()) "RES2021-fra-content.docx" else "RES2021-eng-content.docx"
   file <- "resdoc-content.docx"
   base <- officedown::rdocx_document(...,
-                                     base_format = "bookdown::word_document2",
-                                     tables = list(
-                                       style = "Compact", layout = "autofit", width = 1,
-                                       caption = list(
-                                         style = "Table Caption",
-                                         pre = "Table", sep = ". ",
-                                         fp_text = officer::fp_text_lite(bold = FALSE)
-                                         ),
-                                       conditional = list(
-                                         first_row = TRUE, first_column = FALSE, last_row = FALSE,
-                                         last_column = FALSE, no_hband = FALSE, no_vband = TRUE
-                                       )
-                                     ),
-                                     plots = list(
-                                       style = "Figure",
-                                       align = "center",
-                                       caption = list(
-                                         style = "Caption - Figure",
-                                         pre = "Figure ", sep = ". ",
-                                         fp_text = officer::fp_text_lite(bold = FALSE)
-                                       )
-                                     ),
-                                     lists = list(
-                                       ol.style = "ol style",
-                                       ul.style = "ul style"
-                                     ),
-                                     mapstyles = list(
-                                       "Body Text" = c("Normal", "First Paragraph")
-                                     ),
-                                     reference_docx = system.file("csas-docx",
-                                                                  file,
-                                                                  package = "csasdown")
-
+    base_format = "bookdown::word_document2",
+    tables = list(
+      style = "Compact", layout = "autofit", width = 1,
+      caption = list(
+        style = "Table Caption",
+        pre = "Table", sep = ". ",
+        fp_text = officer::fp_text_lite(bold = FALSE)
+      ),
+      conditional = list(
+        first_row = TRUE, first_column = FALSE, last_row = FALSE,
+        last_column = FALSE, no_hband = FALSE, no_vband = TRUE
+      )
+    ),
+    plots = list(
+      style = "Figure",
+      align = "center",
+      caption = list(
+        style = "Caption - Figure",
+        pre = "Figure ", sep = ". ",
+        fp_text = officer::fp_text_lite(bold = FALSE)
+      )
+    ),
+    lists = list(
+      ol.style = "ol style",
+      ul.style = "ul style"
+    ),
+    mapstyles = list(
+      "Body Text" = c("Normal", "First Paragraph")
+    ),
+    reference_docx = system.file("csas-docx",
+      file,
+      package = "csasdown"
+    )
   )
 
   # Mostly copied from knitr::render_sweave
@@ -104,7 +106,6 @@ resdoc_word2 <- function(...) {
 #'
 #' @return A merged .docx
 add_resdoc_word_frontmatter <- function(index_fn, yaml_fn = "_bookdown.yml", verbose = FALSE, keep_files = FALSE) {
-
   if (verbose) notify("Adding frontmatter to the ", csas_color("Research Document"), " using the officer package...")
 
   x <- rmarkdown::yaml_front_matter(index_fn)
@@ -118,31 +119,41 @@ add_resdoc_word_frontmatter <- function(index_fn, yaml_fn = "_bookdown.yml", ver
   ## to one frontmatter document. Applying this approach rather than using officer
   ## text replacement since it is not set-up to interpret markdown syntax.
 
-  md <- c('::: {custom-style="Cover: Document title"}', x$title, ':::',
-          '::: {custom-style="Cover: Author"}', x$author, ':::',
-          '::: {custom-style="Cover: Address"}', x$address, ':::')
+  md <- c(
+    '::: {custom-style="Cover: Document title"}', x$title, ":::",
+    '::: {custom-style="Cover: Author"}', x$author, ":::",
+    '::: {custom-style="Cover: Address"}', x$address, ":::"
+  )
   writeLines(md, "tmp-titlepage.md")
-  rmarkdown::pandoc_convert("tmp-titlepage.md", to = "docx",
-                            output = "tmp-titlepage.docx",
-                            options = paste0("--reference-doc=", reference_fn))
+  rmarkdown::pandoc_convert("tmp-titlepage.md",
+    to = "docx",
+    output = "tmp-titlepage.docx",
+    options = paste0("--reference-doc=", reference_fn)
+  )
 
-  md <- c("\n**Correct citation for this publication:**\n",
-          '::: {custom-style="citation"}',
-          paste0(x$author_list, ". ", x$year, ". ", x$title, ". DFO Can. Sci. Advis. Sec. Res. Doc. ", x$year, "/", x$report_number, ". iv + xx p."),
-          ':::',
-          "\n**Aussi disponible en fran\u00e7ais:**\n",
-          '::: {custom-style="citation"}',
-          paste0(x$author_list, ". ", x$year, ". ", x$french_title, ". Secr. can. de consult. sci. du MPO. Doc. de rech. ", x$year, "/", x$report_number, ". iv + xx p."),
-          ':::')
+  md <- c(
+    "\n**Correct citation for this publication:**\n",
+    '::: {custom-style="citation"}',
+    paste0(x$author_list, ". ", x$year, ". ", x$title, ". DFO Can. Sci. Advis. Sec. Res. Doc. ", x$year, "/", x$report_number, ". iv + xx p."),
+    ":::",
+    "\n**Aussi disponible en fran\u00e7ais:**\n",
+    '::: {custom-style="citation"}',
+    paste0(x$author_list, ". ", x$year, ". ", x$french_title, ". Secr. can. de consult. sci. du MPO. Doc. de rech. ", x$year, "/", x$report_number, ". iv + xx p."),
+    ":::"
+  )
   writeLines(md, "tmp-citation.md")
-  rmarkdown::pandoc_convert("tmp-citation.md", to = "docx",
-                            output = "tmp-citation.docx",
-                            options = paste0("--reference-doc=", reference_fn))
+  rmarkdown::pandoc_convert("tmp-citation.md",
+    to = "docx",
+    output = "tmp-citation.docx",
+    options = paste0("--reference-doc=", reference_fn)
+  )
 
   writeLines(x$abstract, "tmp-abstract.md")
-  rmarkdown::pandoc_convert("tmp-abstract.md", to = "docx",
-                            output = "tmp-abstract.docx",
-                            options = paste0("--reference-doc=", reference_fn))
+  rmarkdown::pandoc_convert("tmp-abstract.md",
+    to = "docx",
+    output = "tmp-abstract.docx",
+    options = paste0("--reference-doc=", reference_fn)
+  )
 
   ## Drop returns left from empty title and abstract entries
   book_filename <- paste0("_book/", get_book_filename(yaml_fn), ".docx")
@@ -179,12 +190,13 @@ add_resdoc_word_frontmatter <- function(index_fn, yaml_fn = "_bookdown.yml", ver
   print(doc, target = book_filename)
 
   if (!keep_files) {
-    unlink(c("tmp-titlepage.md", "tmp-titlepage.docx",
-             "tmp-citation.md", "tmp-citation.docx",
-             "tmp-abstract.md", "tmp-abstract.docx",
-             "tmp-frontmatter.docx", "tmp-content.docx"))
+    unlink(c(
+      "tmp-titlepage.md", "tmp-titlepage.docx",
+      "tmp-citation.md", "tmp-citation.docx",
+      "tmp-abstract.md", "tmp-abstract.docx",
+      "tmp-frontmatter.docx", "tmp-content.docx"
+    ))
   }
 
   invisible()
-
 }
