@@ -44,11 +44,6 @@ resdoc_word2 <- function(...) {
   ## reference docx. May be a bug (https://github.com/davidgohel/officedown/issues/112).
   ## Created another reference docx with "Table Caption" as a style (default name)
   ## and it worked. Revert to standard reference docx if issue is resolved.
-  ##
-  ## 2024-10-21: Copied ordered (ol style) and unordered list (ul style) styles made
-  ##             for the fsar-template.docx into resdoc-content.docx
-  ##
-  # file <- if (fr()) "RES2021-fra-content.docx" else "RES2021-eng-content.docx"
   file <- "resdoc-content.docx"
   base <- officedown::rdocx_document(...,
     base_format = "bookdown::word_document2",
@@ -56,7 +51,7 @@ resdoc_word2 <- function(...) {
       style = "Compact", layout = "autofit", width = 1,
       caption = list(
         style = "Table Caption",
-        pre = "Table", sep = ". ",
+        pre = "Table", sep = ".",
         fp_text = officer::fp_text_lite(bold = FALSE)
       ),
       conditional = list(
