@@ -38,7 +38,7 @@ french_abstract: |
 # with `csas_table()` that cross page boundaries. If `false`, these will
 # both be absent from all tables. If it is missing or any other value than
 # `false`, it will be assumed to be `true`
-citation_french: ""
+citation_french: "Last, F.M. et Smith, A.B. 2022. Titre ici (Nom d'espèce latin). Rapp. tech. can. sci. halieut. aquat. nnn : v + 18 p. https://doi.org/##.####/xxxxx"
 show_continued_text: true
 output:
  csasdown::techreport_pdf:
