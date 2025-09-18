@@ -162,6 +162,14 @@
   </macro>
   <macro name="locators">
     <choose>
+      <if type="report">
+        <group delimiter=" ">
+          <text variable="collection-title"/>
+          <text variable="number"/>
+        </group>
+        <text value="."/>
+        <text variable="page" prefix=" "/>
+      </if>
       <if type="article-journal article-magazine article-newspaper" match="any">
         <text variable="container-title" form="short"/>
         <group prefix=" ">
@@ -170,7 +178,7 @@
         </group>
         <text variable="page" prefix=": "/>
       </if>
-      <else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
+      <else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference song" match="any">
         <group delimiter=". ">
           <group delimiter=" ">
             <text term="in" font-style="italic" text-case="capitalize-first"/>
@@ -218,7 +226,7 @@
       <key macro="author-count" names-min="3" names-use-first="3"/>
       <key macro="author" names-min="3" names-use-first="1"/>
       <key variable="issued"/>
-      <key macro="citation-locator"/>
+      <key variable="title"/>
     </sort>
     <layout suffix=".">
       <group delimiter=". ">
