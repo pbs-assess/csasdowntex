@@ -1,5 +1,10 @@
 # csasdown
 
+# csasdown 0.2.3
+
+* Fix DOI links below ISBN. Previously there was were `{}`
+  characters within the URL.
+
 # csasdown 0.2.2
 
 * Add new implementation of FSAR by @PaulRegular. #287
