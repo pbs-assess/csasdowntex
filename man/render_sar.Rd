@@ -3,7 +3,7 @@
 \name{render_sar}
 \alias{render_sar}
 \alias{render_fsar}
-\title{Render a SAR}
+\title{Render a SAR/FSAR}
 \usage{
 render_sar(config_file = "_bookdown.yml", ...)
 }
@@ -13,5 +13,5 @@ render_sar(config_file = "_bookdown.yml", ...)
 \item{...}{Arguments to pass to \code{\link[bookdown:render_book]{bookdown::render_book()}}.}
 }
 \description{
-Render a SAR
+Render a SAR/FSAR
 }

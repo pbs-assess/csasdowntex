@@ -35,6 +35,19 @@ test_that("render generates the .docx of the manureport", {
                                     "manureport-english.docx")))
 })
 
+# ----------------------------------------------------
+# Render the PDF manureport in French
+test_that("render generates the PDF of the manureport in French", {
+  set_french(val = TRUE)
+  set_render_type(doc_type = "pdf")
+  suppressWarnings(
+    render(suppress_warnings = TRUE)
+  )
+  expect_true(file.exists(file.path(testing_path, "_book",
+    "manureport-french.pdf")))
+})
+
+
 # -----------------------------------------------------------------------------
 # Render the PDF manureport, with `NULL` highlight
 # test_that("render generates monochrome code PDF of the manureport",
