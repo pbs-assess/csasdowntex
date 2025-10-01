@@ -11,7 +11,7 @@
 \RequirePackage{booktabs}  % Nicer table formatting
 \RequirePackage{textcomp}  % Prevents two warnings in gensymb
 \RequirePackage{gensymb}  % Symbols for math and text
-% \RequirePackage[running]{lineno}  % Number lines (editing)
+\RequirePackage[running]{lineno}  % Number lines (editing)
 \RequirePackage{longtable}  % Long tables (multi-page)
 \RequirePackage{amsmath}  % Math facilities
 \RequirePackage{microtype}  % Better type handling
@@ -121,23 +121,23 @@
 \renewcommand{\dblfloatpagefraction}{0.7}  % Require fuller float pages
 
 % % Line numbers (e.g., for drafts) don't like equations: this is a fix
-% \newcommand*\patchAmsMathEnvironmentForLineno[1]{%
-%   \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
-%   \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
-%   \renewenvironment{#1}%
-%      {\linenomath\csname old#1\endcsname}%
-%      {\csname oldend#1\endcsname\endlinenomath}}%
-% \newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
-%   \patchAmsMathEnvironmentForLineno{#1}%
-%   \patchAmsMathEnvironmentForLineno{#1*}}%
-% \AtBeginDocument{%
-% \patchBothAmsMathEnvironmentsForLineno{equation}%
-% \patchBothAmsMathEnvironmentsForLineno{align}%
-% \patchBothAmsMathEnvironmentsForLineno{flalign}%
-% \patchBothAmsMathEnvironmentsForLineno{alignat}%
-% \patchBothAmsMathEnvironmentsForLineno{gather}%
-% \patchBothAmsMathEnvironmentsForLineno{multline}%
-% }
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}%
+     {\linenomath\csname old#1\endcsname}%
+     {\csname oldend#1\endcsname\endlinenomath}}%
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+  \patchAmsMathEnvironmentForLineno{#1}%
+  \patchAmsMathEnvironmentForLineno{#1*}}%
+\AtBeginDocument{%
+\patchBothAmsMathEnvironmentsForLineno{equation}%
+\patchBothAmsMathEnvironmentsForLineno{align}%
+\patchBothAmsMathEnvironmentsForLineno{flalign}%
+\patchBothAmsMathEnvironmentsForLineno{alignat}%
+\patchBothAmsMathEnvironmentsForLineno{gather}%
+\patchBothAmsMathEnvironmentsForLineno{multline}%
+}
 
 % Section formatting (in titles only, not x-refs or toc)
 %\makeatletter
@@ -257,6 +257,7 @@
 \newcommand{\trCitation}{
 \begin{hangparas}{1em}{1}
 \trAuthsBack{} \trYear{}. \trTitle{}. Rapp. manu. can. sci. halieut. aquat. \trReportNum{}: \pageref{TRlastRoman}{}\,+\,\pageref{LastPage}{}\,p.
+\link{https://doi.org/\trDOI}{https://doi.org/\trDOI}
 \end{hangparas}}
 
 %%%%% Frontmatter %%%%%
@@ -307,6 +308,7 @@ par
 \begin{center}
 \copyright{} Sa Majest\'{e} la Roi du chef du Canada, repr\'{e}sent\'{e} par le ministre\\ du minist\`{e}re des P\^{e}ches et des Oc\'{e}ans, \trYear{}\\
 N° de cat. Fs97-4/\trReportNum{}F-PDF \quad ISBN \trISBN{} \quad ISSN 1488-5468
+\link{https://doi.org/\trDOI}{https://doi.org/\trDOI}
 \end{center}
 \par
 \bigskip
@@ -337,7 +339,7 @@ On doit citer la publication comme suit:
 \trResume{}
 \clearpage
 \section*{ABSTRACT}\addcontentsline{toc}{section}{ABSTRACT}
-\trCitation{}
+\trCitationFrench{} \newline
 \bigskip
 \trAbstract{}
 \label{TRlastRoman}
@@ -407,3 +409,16 @@ On doit citer la publication comme suit:
 %   \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
 %   {\par}
 % % END-PANDOC-BEFORE-3.1.7
+
+%% ------------------------------------------------------------------------------
+%% Allows a box to be drawn around paragraphs with verbatim text (listing)
+%% Used for tagging paragraphs that need translation
+\usepackage{listings}
+\lstset{
+basicstyle=\small\ttfamily,
+columns=flexible,
+breaklines=true
+}
+
+\newsavebox{\userinput}
+%% ------------------------------------------------------------------------------
