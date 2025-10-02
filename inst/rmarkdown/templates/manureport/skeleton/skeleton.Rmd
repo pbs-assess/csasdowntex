@@ -1,7 +1,8 @@
 ---
 title: |
   "Title Here (*Latin Species Name*)"
-french_title: Titre ici (*Nom latin de l'espèce*)
+french_title: |
+  "Titre ici (*Nom latin de l'espèce*)"
 year: 2022
 report_number: nnn
 author: |
@@ -11,6 +12,7 @@ author_list: "Last, F.M. and Smith, A.B."
 region: Pacific Region
 french_region: Région du Pacifique
 isbn: ""
+report_DOI: "##.####/xxxxx" # do not include https://doi.org/
 address: |
   ^1^Pacific Biological Station\
      Fisheries and Oceans Canada, 3190 Hammond Bay Road\
@@ -36,8 +38,8 @@ french_abstract: |
 # with `csas_table()` that cross page boundaries. If `false`, these will
 # both be absent from all tables. If it is missing or any other value than
 # `false`, it will be assumed to be `true`
+citation_french: "Last, F.M. et Smith, A.B. 2022. Titre ici (Nom d'espèce latin). Rapp. tech. can. sci. halieut. aquat. nnn : v + 18 p. https://doi.org/##.####/xxxxx"
 show_continued_text: true
-citation_french: ""
 output:
  csasdown::manureport_pdf:
    french: false
