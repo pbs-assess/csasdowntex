@@ -75,6 +75,7 @@ gotest <- function(doc_dir = getwd(),
   # find out which type of doc this is, beamer or main doc, and to get the
   # name of the index file
   bookdown_lst <- read_bookdown_file(config_fn)
+
   index_fn <- file.path(pre_path, bookdown_lst$rmd_fns[1])
   if(!file.exists(index_fn)){
     bail("The `bookdown` index file `", index_fn, "` does not exist")
@@ -122,11 +123,11 @@ gotest <- function(doc_dir = getwd(),
   bd_lines <- c(
     'book_filename: "test"',
     'rmd_files: ["index.Rmd",',
-    '            "00-test.Rmd"]',
+    '            "001-test.Rmd"]',
     '',
     'delete_merged_file: false')
   writeLines(bd_lines, file.path(basename(config_fn)))
-  writeLines(c("# Test Section", ""), "00-test.Rmd")
+  writeLines(c("# Test Section", ""), "001-test.Rmd")
 
   message("\nAll necessary items copied into a temporary directory.",
           "\n\nTo build the document, run render().\nWhen finished, ",
