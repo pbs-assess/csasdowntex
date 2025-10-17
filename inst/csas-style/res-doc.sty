@@ -8,6 +8,47 @@
 % the TEX file
 \usepackage[usegeometry]{typearea}
 
+% Math packages
+\usepackage{mathptmx}
+\usepackage{nccmath}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% For bold math symbols in equations
+\usepackage{bm}
+
+\usepackage{iftex}
+\ifPDFTeX
+  % PDFlatex requirements
+  \usepackage{lmodern}
+\else
+  % Lualatex requirements
+  % Command to find fonts (TexLive) - not case sensitive
+  % luaotfload-tool --find="IBM Plex Serif" --fuzzy
+  % luaotfload-tool --find="ibm plex serif" --fuzzy
+  \usepackage{fontspec}
+  %\setsansfont{CMU Sans Serif}
+  %\setmonofont{CMU Typewriter Text} % Consolas
+  %
+  % Do not change the following line, the font is changed in the YAML
+  % part of 000-launcher.rmd and the post processor looks for this line to
+  % replace with your selection
+  \setmainfont{IBM Plex Serif}
+
+  % Needed by lualatex to print unicode symbols
+  \PassOptionsToPackage{math-style=ISO,bold-style=ISO}{unicode-math}
+  % Create an alias for bm->symbf when using lualatex to avoid
+  % missing font errors
+  \let\bm\symbf
+\fi
+
+% These two commands make the table header cells set up by `linebreaker()`
+% have their text closer together vertically. They work in conjunction with
+% `\makecell`.
+\usepackage{array}
+%\newcommand\cellset{\renewcommand\arraystretch{0.5}
+%\setlength\extrarowheight{1pt}}
+
 %% Move the footer position flush to the left margin (default is indented a bit)
 \usepackage[flushmargin, bottom]{footmisc}
 
