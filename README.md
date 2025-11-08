@@ -9,13 +9,18 @@
 
 csasdown is an R package for generating Canadian Science Advisory Secretariat (CSAS) documents in PDF or Word format using R Markdown and bookdown.
 
+**If you use csasdown to write a report, please let us know** so we can add it to the [list of publications](https://github.com/pbs-assess/csasdown/wiki/Publications-prepared-using-csasdown) known to have used the package. This helps us justify spending our work time on its development. You can post to the [discussion board](https://github.com/pbs-assess/csasdown/discussions) or send us a quick email (contact details [here](https://github.com/pbs-assess/csasdown/blob/c76731e8580bb12da9324e56ff5e56a8d4901aeb/DESCRIPTION#L5-L8)).
+
+## Note as of November 2025
+
+**CSAS is no longer accepting PDF versions of Research Documents or Science Responses.** We are hoping that documents already finished as PDFs will be accepted, but we do not recommend starting a new report as a PDF. You can try Research Document .docx output with [csasdown2](https://github.com/pbs-assess/csasdown2). We aim for this to be fully compliant with CSAS formatting standards. Tech Reports can still be submitted as PDFs because they are not associated with CSAS.
+
+## Issues
+
+Have a problem? If it's a bug or feature request, please post it as a [GitHub Issue](https://github.com/pbs-assess/csasdown/issues). If it's a question on csasdown use, we encourage you to use the GitHub [discussion board](https://github.com/pbs-assess/csasdown/discussions). Check the [Wiki](https://github.com/pbs-assess/csasdown/wiki) for hints and FAQs.
+
 Check the [NEWS](https://github.com/pbs-assess/csasdown/blob/main/NEWS.md) file for information on what has changed recently.
 
-Check the [Wiki](https://github.com/pbs-assess/csasdown/wiki) for hints and FAQs.
-
-Have a problem? If it's a bug or feature request, please post it as a [GitHub Issue](https://github.com/pbs-assess/csasdown/issues). If it's a question on csasdown use, we encourage you to use the new GitHub [discussion board](https://github.com/pbs-assess/csasdown/discussions). Questions that are emailed or sent on MS Teams may be (anonymously and without data or screenshots) copied to the discussion board and answered there. Let us know if you don't want that to happen. For quick back-and-forth questions, you can catch us on [DFO MS Teams](https://teams.microsoft.com/l/channel/19%3ae15d7a8e776b418b8e4975a4c9c5f93f%40thread.skype/R%2520-%2520csasdown?groupId=50a32c0d-d5fe-4368-b95b-4beaaa1ba1a1&tenantId=1594fdae-a1d9-4405-915d-011467234338).
-
-**If you use csasdown to write a report, please let us know so we can add it to the [list of publications](https://github.com/pbs-assess/csasdown/wiki/Publications-prepared-using-csasdown) known to have used the package. This helps us justify spending our work time on its development. You can post to the [discussion board](https://github.com/pbs-assess/csasdown/discussions), send us a quick email (contact details [here](https://github.com/pbs-assess/csasdown/blob/c76731e8580bb12da9324e56ff5e56a8d4901aeb/DESCRIPTION#L5-L8)), or find us on [DFO MS Teams](https://teams.microsoft.com/l/channel/19%3ae15d7a8e776b418b8e4975a4c9c5f93f%40thread.skype/R%2520-%2520csasdown?groupId=50a32c0d-d5fe-4368-b95b-4beaaa1ba1a1&tenantId=1594fdae-a1d9-4405-915d-011467234338).**
 
 ## Initial setup
 
