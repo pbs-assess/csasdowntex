@@ -72,6 +72,10 @@ draft <- function(type = c("resdoc", "resdoc-b", "sr", "techreport", "manureport
 
   if(verbose){
     notify("Drafting a new ", csas_color(type), " project ...")
+    # Show PDF warning for resdoc and sr types
+    if(type %in% c("resdoc", "resdoc-b", "sr")){
+      message("\n", csas_pdf_message, "\n")
+    }
   }
 
   # Get files and directories present in the directory ------------------------

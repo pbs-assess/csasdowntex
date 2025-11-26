@@ -118,6 +118,11 @@ render <- function(yaml_fn = "_bookdown.yml",
          csas_color(pdf_or_word), " document in ",
          csas_color(`if`(fr(), "French", "English")), " ...\n\n")
 
+  # Show PDF warning for resdoc_pdf and sr_pdf render types
+  if(render_type %in% c("resdoc_pdf", "sr_pdf")){
+    message(csas_pdf_message, "\n")
+  }
+
   # Process all Rmd files except for the `index_fn` (tmp-index.Rmd)
   fn_process <- tmp_rmd_fns[tmp_rmd_fns != index_fn]
 

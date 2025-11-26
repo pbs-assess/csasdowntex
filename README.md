@@ -11,9 +11,9 @@ csasdown is an R package for generating Canadian Science Advisory Secretariat (C
 
 **If you use csasdown to write a report, please let us know** so we can add it to the [list of publications](https://github.com/pbs-assess/csasdown/wiki/Publications-prepared-using-csasdown) known to have used the package. This helps us justify spending our work time on its development. You can post to the [discussion board](https://github.com/pbs-assess/csasdown/discussions) or send us a quick email (contact details [here](https://github.com/pbs-assess/csasdown/blob/c76731e8580bb12da9324e56ff5e56a8d4901aeb/DESCRIPTION#L5-L8)).
 
-## Note as of November 2025
+## ⚠️ Note as of November 2025
 
-**CSAS is no longer accepting PDF versions of Research Documents or Science Responses.** We are hoping that documents already finished as PDFs will be accepted, but we do not recommend starting a new report as a PDF. You can try Research Document .docx output with [csasdown2](https://github.com/pbs-assess/csasdown2). We aim for this to be fully compliant with CSAS formatting standards. Tech Reports can still be submitted as PDFs because they are not associated with CSAS.
+**CSAS is no longer accepting PDF versions of Research Documents or Science Responses.** We are hoping that documents already finished as PDFs will be accepted, but we do not recommend starting a new report as a PDF. You can try Research Document .docx output with [csasdown2](https://github.com/pbs-assess/csasdown2). We aim for that version to be fully compliant with current CSAS formatting standards. Tech Reports can still be submitted as PDFs because they are not associated with CSAS.
 
 ## Issues
 
