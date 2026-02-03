@@ -7,7 +7,7 @@
 #' so that rendering in one language doesn't overwrite the other document
 #'
 #' @param index_fn The working copy of this file:
-#' `csasdown/inst/rmarkdown/templates/resdoc-b/skeleton/skeleton.Rmd`
+#' `csasdowntex/inst/rmarkdown/templates/resdoc-b/skeleton/skeleton.Rmd`
 #' which is `index.Rmd` by default
 #'
 #' @importFrom purrr map2_lgl

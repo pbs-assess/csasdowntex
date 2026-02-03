@@ -1,10 +1,10 @@
-# Docker compilation for csasdown
+# Docker compilation for csasdowntex
 
 Open a command line and navigate to the docker directories where the `Dockerfile` resides.
 
-Compile a `<docker_name>/csasdown` image and push to `<docker_name>/csasdown`:
- - `docker build . --no-cache -t <docker_name>/csasdown`
- - `docker push <docker_name>/csasdown`
+Compile a `<docker_name>/csasdowntex` image and push to `<docker_name>/csasdowntex`:
+ - `docker build . --no-cache -t <docker_name>/csasdowntex`
+ - `docker push <docker_name>/csasdowntex`
 
 where `<docker_name>` is your Dockerhub username (without angle brackets)
 

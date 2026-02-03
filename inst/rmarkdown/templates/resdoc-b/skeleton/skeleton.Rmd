@@ -50,9 +50,9 @@ header: "Draft working paper --- Do not cite or circulate" # or "" to omit
 # `false`, it will be assumed to be `true`
 show_continued_text: true
 output:
- csasdown::resdoc_pdf:
+ csasdowntex::resdoc_pdf:
    french: false
-   # copy_sty is a toggle to copy the style file from the csasdown package every time you compile
+   # copy_sty is a toggle to copy the style file from the csasdowntex package every time you compile
    # the document. If false, any changes you have made to the style file in your project
    # will remain between compilations. If true, your changes will be lost when you compile
    copy_sty: true
@@ -73,8 +73,8 @@ output:
    # which are:
    # pygments, tango, espresso, zenburn, kate, monochrome, breezedark, haddock
    # or the name of a custom *.latex file which is most easily made by copying one from 
-   # the csasdown library 'themes' directory, this directory on your machine:
-   # file.path(.libPaths(), "csasdown", "themes")
+   # the csasdowntex library 'themes' directory, this directory on your machine:
+   # file.path(.libPaths(), "csasdowntex", "themes")
    # to your working directory (the one containing index.Rmd)
    # To change the foreground text color, change the RGB value in the line containing
    # 'DefineVerbatimEnvironment'
@@ -82,7 +82,7 @@ output:
    highlight: tango
 # ------------
 # End of options to set
-knit: (function(input, ...) csasdown::render())
+knit: (function(input, ...) csasdowntex::render())
 link-citations: true
 bibliography: bib/refs.bib
 # Any extra LaTeX code for the header:
@@ -133,5 +133,5 @@ opts_chunk$set(
 library(dplyr)
 library(ggplot2)
 library(rosettafish)
-library(csasdown)
+library(csasdowntex)
 ```

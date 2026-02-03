@@ -6,7 +6,7 @@ flights <- read.csv("data/flights.csv")
 
 ## TABLES
 
-By far the easiest way to present tables in your report is to store the contents of the table in a CSV or Excel file, then read that file in to your R Markdown document as a data frame. Then you can style the table with the `kable` function, or functions in the [kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html) pacakge. We recommend using `csasdown::csas_table()`, which simply passes some necessary arguments to `knitr::kable()` so that the tables will render correctly for CSAS.
+By far the easiest way to present tables in your report is to store the contents of the table in a CSV or Excel file, then read that file in to your R Markdown document as a data frame. Then you can style the table with the `kable` function, or functions in the [kableExtra](https://cran.r-project.org/web/packages/kableExtra/index.html) pacakge. We recommend using `csasdowntex::csas_table()`, which simply passes some necessary arguments to `knitr::kable()` so that the tables will render correctly for CSAS.
 
 In addition to the tables that can be automatically generated from a data frame in R that you saw in [R Markdown Basics] using the `kable` function, you can also create tables using pandoc. (More information is available at <http://pandoc.org/README.html#tables>.)  This might be useful if you don't have values specifically stored in R, but you'd like to display them in table form.  Below is an example.  Pay careful attention to the alignment in the table and hyphens to create the rows and columns. Generally we don't recommend this approach of typing the table directly into your R Markdown document.
 
@@ -31,7 +31,7 @@ We can also create a link to the table by doing the following: Table \@ref(tab:i
 ```{r tableexample, results = "asis"}
 set.seed(1)
 df <- data.frame(year = 1:10, biomass = round(rlnorm(10), 2))
-csasdown::csas_table(
+csasdowntex::csas_table(
   df,
   col.names = c("Year", "Biomass"),
   caption = "A table"
@@ -84,7 +84,7 @@ See the next file `04-references.Rmd` which will make the bibliography appear wh
 
 **Tests for appendix section referencing**
 
-Here are some references to a complex set of appendices. The appendices have sections and subsections which are used to test a special routine in csasdown. Appendices are not numbered chapters and as such special code was needed to allow for referencing of sections and subsections in them. This resdoc document is built during automated testing and these are placed here to ensure a complex testing case passes for the appendix referencing routine.
+Here are some references to a complex set of appendices. The appendices have sections and subsections which are used to test a special routine in csasdowntex. Appendices are not numbered chapters and as such special code was needed to allow for referencing of sections and subsections in them. This resdoc document is built during automated testing and these are placed here to ensure a complex testing case passes for the appendix referencing routine.
 
 APP A:
 

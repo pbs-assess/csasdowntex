@@ -1,4 +1,4 @@
-# Source this script to build and install all csasdown vignettes on your machine
+# Source this script to build and install all csasdowntex vignettes on your machine
 
 root_dir <- here::here()
 doc_dir <- file.path(root_dir, "doc")
@@ -20,7 +20,7 @@ fs <- file.copy(files,
 # Press Enter if prompted to update packages during this install
 devtools::install(root_dir)
 
-# Go to the csasdown/doc directory and the vignette PDFs are there or
+# Go to the csasdowntex/doc directory and the vignette PDFs are there or
 # browse vignettes with the following command (it doesn't run automatically
 # like it should when you source this script):
-browseVignettes("csasdown")
+browseVignettes("csasdowntex")

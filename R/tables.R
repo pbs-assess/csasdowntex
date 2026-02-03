@@ -1,4 +1,4 @@
-#' Custom table for csasdown
+#' Custom table for csasdowntex
 #'
 #' This is a custom wrapper for [knitr::kable()] with some arguments set so that
 #' the tables work with CSAS formatting in both LaTeX and Word documents.
@@ -54,7 +54,7 @@
 #' @importFrom purrr map map2 map_chr map_lgl map_df
 #' @importFrom rlang `%||%`
 #' @examples
-#' csasdown::csas_table(head(iris))
+#' csasdowntex::csas_table(head(iris))
 #' @export
 csas_table <- function(x,
                        format = "pandoc",

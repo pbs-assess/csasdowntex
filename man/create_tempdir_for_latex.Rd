@@ -3,7 +3,7 @@
 \name{create_tempdir_for_latex}
 \alias{create_tempdir_for_latex}
 \title{Creates a temporary directory for compiling the latex file with latex
-commands for a csasdown type}
+commands for a csasdowntex type}
 \usage{
 create_tempdir_for_latex(
   type = c("resdoc", "sr", "techreport", "manureport"),
@@ -13,7 +13,7 @@ create_tempdir_for_latex(
 )
 }
 \arguments{
-\item{type}{The csasdown document type. See \code{\link[=draft]{draft()}}}
+\item{type}{The csasdowntex document type. See \code{\link[=draft]{draft()}}}
 
 \item{where}{Where to look for the \code{.tex} file. If 'r', look in root
 directory, if 'b', look in the \verb{_book} subdirectory. Any other value will
@@ -29,7 +29,7 @@ The temporary directory's full path
 }
 \description{
 Creates a temporary directory for compiling the latex file with latex
-commands for a csasdown type
+commands for a csasdowntex type
 }
 \details{
 The compiled tex file will be copied from either the root directory or

@@ -5,7 +5,7 @@ test_that("create_tempdir_for_latex() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -48,7 +48,7 @@ test_that("create_tempdir_for_latex() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -86,7 +86,7 @@ test_that("create_tempdir_for_latex() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))

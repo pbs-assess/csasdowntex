@@ -2,7 +2,7 @@
 #'
 #' @description
 #' Inject verbatim text from Rmd files into Rmd code wrapped in
-#' [cat()] so that the bilingual features of csasdown can be used properly
+#' [cat()] so that the bilingual features of csasdowntex can be used properly
 #' but the author can write paragraphs or sections in pure Rmarkdown.
 #' Uses [read_rmd_file()] to read in the file and place `cat()` around
 #' the contents before injecting it

@@ -7,7 +7,7 @@ language based on the value of \code{fr()}}
 \usage{
 set_citations(
   fn = get_index_filename(system.file("rmarkdown", "templates", "resdoc", "skeleton",
-    "_bookdown.yml", package = "csasdown")),
+    "_bookdown.yml", package = "csasdowntex")),
   render_type = NULL,
   verbose = FALSE
 )

@@ -7,7 +7,7 @@ the index file}
 \usage{
 set_render_type(
   fn = get_index_filename(system.file("rmarkdown", "templates", "resdoc", "skeleton",
-    "_bookdown.yml", package = "csasdown")),
+    "_bookdown.yml", package = "csasdowntex")),
   doc_type = c("pdf", "word", "asis")
 )
 }

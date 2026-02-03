@@ -2,7 +2,7 @@
 % Please edit documentation in R/tables.R
 \name{csas_table}
 \alias{csas_table}
-\title{Custom table for csasdown}
+\title{Custom table for csasdowntex}
 \usage{
 csas_table(
   x,
@@ -118,5 +118,5 @@ This is a custom wrapper for \code{\link[knitr:kable]{knitr::kable()}} with some
 the tables work with CSAS formatting in both LaTeX and Word documents.
 }
 \examples{
-csasdown::csas_table(head(iris))
+csasdowntex::csas_table(head(iris))
 }

@@ -24,7 +24,7 @@ Nothing
 }
 \description{
 Inject verbatim text from Rmd files into Rmd code wrapped in
-\code{\link[=cat]{cat()}} so that the bilingual features of csasdown can be used properly
+\code{\link[=cat]{cat()}} so that the bilingual features of csasdowntex can be used properly
 but the author can write paragraphs or sections in pure Rmarkdown.
 Uses \code{\link[=read_rmd_file]{read_rmd_file()}} to read in the file and place \code{cat()} around
 the contents before injecting it

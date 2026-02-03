@@ -1,45 +1,45 @@
-# csasdown <img src='man/figures/csasdown-logo.png' align="right" height="139" />
+# csasdowntex <img src='man/figures/csasdowntex-logo.png' align="right" height="139" />
 
 > Reproducible CSAS Reports with R Markdown
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/pbs-assess/csasdown/workflows/R-CMD-check/badge.svg)](https://github.com/pbs-assess/csasdown/actions)
-[![Coverage status](https://codecov.io/gh/pbs-assess/csasdown/branch/main/graph/badge.svg)](https://codecov.io/github/pbs-assess/csasdown?branch=main)
+[![R-CMD-check](https://github.com/pbs-assess/csasdowntex/workflows/R-CMD-check/badge.svg)](https://github.com/pbs-assess/csasdowntex/actions)
+[![Coverage status](https://codecov.io/gh/pbs-assess/csasdowntex/branch/main/graph/badge.svg)](https://codecov.io/github/pbs-assess/csasdowntex?branch=main)
 <!-- badges: end -->
 
-csasdown is an R package for generating Canadian Science Advisory Secretariat (CSAS) documents in PDF or Word format using R Markdown and bookdown.
+csasdowntex is an R package for generating Canadian Science Advisory Secretariat (CSAS) documents in PDF or Word format using R Markdown and bookdown.
 
-**If you use csasdown to write a report, please let us know** so we can add it to the [list of publications](https://github.com/pbs-assess/csasdown/wiki/Publications-prepared-using-csasdown) known to have used the package. This helps us justify spending our work time on its development. You can post to the [discussion board](https://github.com/pbs-assess/csasdown/discussions) or send us a quick email (contact details [here](https://github.com/pbs-assess/csasdown/blob/c76731e8580bb12da9324e56ff5e56a8d4901aeb/DESCRIPTION#L5-L8)).
+**If you use csasdowntex to write a report, please let us know** so we can add it to the [list of publications](https://github.com/pbs-assess/csasdowntex/wiki/Publications-prepared-using-csasdowntex) known to have used the package. This helps us justify spending our work time on its development. You can post to the [discussion board](https://github.com/pbs-assess/csasdowntex/discussions) or send us a quick email (contact details [here](https://github.com/pbs-assess/csasdowntex/blob/c76731e8580bb12da9324e56ff5e56a8d4901aeb/DESCRIPTION#L5-L8)).
 
 ## ⚠️ Note as of November 2025
 
-**CSAS is no longer accepting PDF versions of Research Documents or Science Responses.** We are hoping that documents already finished as PDFs will be accepted, but we do not recommend starting a new report as a PDF. You can try Research Document .docx output with [csasdown2](https://github.com/pbs-assess/csasdown2). We aim for that version to be fully compliant with current CSAS formatting standards. Tech Reports can still be submitted as PDFs because they are not associated with CSAS.
+**CSAS is no longer accepting PDF versions of Research Documents or Science Responses.** We are hoping that documents already finished as PDFs will be accepted, but we do not recommend starting a new report as a PDF. You can try .docx output with [csasdown](https://github.com/pbs-assess/csasdown). We aim for that version to be fully compliant with current CSAS formatting standards. Tech Reports can still be submitted as PDFs because they are not associated with CSAS.
 
 ## Issues
 
-Have a problem? If it's a bug or feature request, please post it as a [GitHub Issue](https://github.com/pbs-assess/csasdown/issues). If it's a question on csasdown use, we encourage you to use the GitHub [discussion board](https://github.com/pbs-assess/csasdown/discussions). Check the [Wiki](https://github.com/pbs-assess/csasdown/wiki) for hints and FAQs.
+Have a problem? If it's a bug or feature request, please post it as a [GitHub Issue](https://github.com/pbs-assess/csasdowntex/issues). If it's a question on csasdowntex use, we encourage you to use the GitHub [discussion board](https://github.com/pbs-assess/csasdowntex/discussions). Check the [Wiki](https://github.com/pbs-assess/csasdowntex/wiki) for hints and FAQs.
 
-Check the [NEWS](https://github.com/pbs-assess/csasdown/blob/main/NEWS.md) file for information on what has changed recently.
+Check the [NEWS](https://github.com/pbs-assess/csasdowntex/blob/main/NEWS.md) file for information on what has changed recently.
 
 
 ## Initial setup
 
 To compile PDF documents using R, you need to have Pandoc, LaTeX, and several related packages installed. If you have a recent version of  [RStudio](http://www.rstudio.com/products/rstudio/download/), then you already have Pandoc.
 
-1. You will need to install LaTeX if you do not have it already. Read [this Wiki page](https://github.com/pbs-assess/csasdown/wiki/Latex-Installation-for-csasdown) for a detailed description of this procedure. Most likely you will want to use the R package tinytex.
+1. You will need to install LaTeX if you do not have it already. Read [this Wiki page](https://github.com/pbs-assess/csasdowntex/wiki/Latex-Installation-for-csasdowntex) for a detailed description of this procedure. Most likely you will want to use the R package tinytex.
 
-2. If using tinytex, some tinytex versions [will require you to install these packages manually](https://github.com/pbs-assess/csasdown/issues/257):
+2. If using tinytex, some tinytex versions [will require you to install these packages manually](https://github.com/pbs-assess/csasdowntex/issues/257):
 
 ```r
 tinytex::tlmgr_install('babel-french')
 tinytex::tlmgr_install('babel-english')
 ```
 
-3. Install the csasdown package:
+3. Install the csasdowntex package:
 
 ```r
 install.packages("remotes")
-remotes::install_github("pbs-assess/csasdown", dependencies = TRUE)
+remotes::install_github("pbs-assess/csasdowntex", dependencies = TRUE)
 ```
 
 4. If you already have a folder (or subfolder) you'd like your report to be kept in, `setwd()` to your folder in R and continue on. Add the argument `create_rstudio_file = FALSE` to the below `draft()` calls (or manually delete the RStudio project file that gets auto created). If you are starting a new project and want all the files to be in the root folder, create that new folder, `setwd()` to that folder in R, and then continue the steps below.
@@ -47,54 +47,54 @@ remotes::install_github("pbs-assess/csasdown", dependencies = TRUE)
 5. Run this line in your R console to create a new Research Document from the built-in template in whatever your working directory is:
 
 ```r
-csasdown::draft("resdoc")
+csasdowntex::draft("resdoc")
 ```
 
 or for an advanced Research Document with bilingual features (in development, you likely want to use the main `"resdoc"` above for now):
 
 ```r
-csasdown::draft("resdoc-b")
+csasdowntex::draft("resdoc-b")
 ```
 
 You can do the same for a Technical Report:
 
 ```r
-csasdown::draft("techreport")
+csasdowntex::draft("techreport")
 ```
 
 a Manuscript Report:
 
 ```r
-csasdown::draft("manureport")
+csasdowntex::draft("manureport")
 ```
 
 or for a Science Response:
 
 ```r
-csasdown::draft("sr")
+csasdowntex::draft("sr")
 ```
 
 or a Fisheries Science Advisory Report (FSAR):
 
 ```r
-csasdown::draft("fsar")
+csasdowntex::draft("fsar")
 ```
 
-Note that the `techreport` and `manureport` examples contain a lot of information on getting started with R Markdown and should be the first one you render if you are new to `csasdown`. The `resdoc` example contains other examples.
+Note that the `techreport` and `manureport` examples contain a lot of information on getting started with R Markdown and should be the first one you render if you are new to `csasdowntex`. The `resdoc` example contains other examples.
 
-The `resdoc-b` contains examples and guidance on setting up chunks to hold both English and French Rmarkdown, and explanations of the features introduced in version 0.1.0 (see the [NEWS](https://github.com/pbs-assess/csasdown/blob/main/NEWS.md) file).
+The `resdoc-b` contains examples and guidance on setting up chunks to hold both English and French Rmarkdown, and explanations of the features introduced in version 0.1.0 (see the [NEWS](https://github.com/pbs-assess/csasdowntex/blob/main/NEWS.md) file).
 
-6. Render the document right away to make sure everything works by opening the file **index.Rmd** and clicking the **knit** button in RStudio. Once completed, a preview pane showing the PDF document will appear. The location of the PDF is in the **_book** directory. See the *Rendering* section below for more information. You can also render on the command line by `setwd()` to the folder that contains `index.Rmd` and `_bookdown.yml` and running `csasdown::render()`. See the *Rendering* section below.
+6. Render the document right away to make sure everything works by opening the file **index.Rmd** and clicking the **knit** button in RStudio. Once completed, a preview pane showing the PDF document will appear. The location of the PDF is in the **_book** directory. See the *Rendering* section below for more information. You can also render on the command line by `setwd()` to the folder that contains `index.Rmd` and `_bookdown.yml` and running `csasdowntex::render()`. See the *Rendering* section below.
 
 7. Read the output PDF carefully and compare with what is written in the .Rmd files. This will help you understand more quickly how the document is put together and how you might want to structure your document.
 
 8. *(Optional but recommended)* Create a blank repository on GitHub, commit your changes, and push to GitHub. New to Git? Start with <https://happygitwithr.com/>.
 
-9. Need to make an English *and* French version? csasdown has support for both. Also see csasdown's sibling package [rosettafish](https://github.com/pbs-assess/rosettafish), which can help with translating text in figures.
+9. Need to make an English *and* French version? csasdowntex has support for both. Also see csasdowntex's sibling package [rosettafish](https://github.com/pbs-assess/rosettafish), which can help with translating text in figures.
 
-## Publications prepared using csasdown
+## Publications prepared using csasdowntex
 
-A list of the publications can be found on this [wiki page](https://github.com/pbs-assess/csasdown/wiki/Publications-prepared-using-csasdown).
+A list of the publications can be found on this [wiki page](https://github.com/pbs-assess/csasdowntex/wiki/Publications-prepared-using-csasdowntex).
 
 ## Day-to-day writing
 
@@ -122,7 +122,7 @@ Like this:
 
 ```
 output:
- csasdown::resdoc_pdf:
+ csasdowntex::resdoc_pdf:
    french: false
 ```
 
@@ -130,7 +130,7 @@ or this:
 
 ```
 output:
- csasdown::resdoc_word:
+ csasdowntex::resdoc_word:
    french: false
 ```
 
@@ -142,13 +142,13 @@ You can also render from the console if you're not using RStudio or to allow deb
 To do this, you must have your working directory (see `getwd()`) be the one with the `index.Rmd` file and `_bookdown.yml` files in it. Use `setwd()`. Then run:
 
 ```r
-csasdown::render()
+csasdowntex::render()
 ```
 
 or, for a detailed explanation of each step in the rendering process:
 
 ```r
-csasdown::render(verbose = TRUE)
+csasdowntex::render(verbose = TRUE)
 ```
 
 This method of rendering allows you to debug your code by inserting `browser()` calls which stops compilation at specific places.
@@ -167,7 +167,7 @@ The rendered PDF or Word file of your report will be deposited in the `_book/` d
 If you want to add a CSAS-formatted .docx title page to a Res Doc, edit the file `templates/RES2016-eng-titlepage.docx` as desired and run the command:
 
 ```r
-csasdown::add_resdoc_docx_titlepage()
+csasdowntex::add_resdoc_docx_titlepage()
 ```
 
 This will attach the title page to the beginning of the Word document.
@@ -223,7 +223,7 @@ This project has drawn directly on code and ideas from the following:
 - <https://github.com/benmarwick/huskydown>
 - <https://github.com/ismayc/thesisdown>
 
-[NAFOdown](https://github.com/nafc-assess/NAFOdown) is a derivative of csasdown for rendering NAFO (Northwest Atlantic Fisheries Organization) reports.
+[NAFOdown](https://github.com/nafc-assess/NAFOdown) is a derivative of csasdowntex for rendering NAFO (Northwest Atlantic Fisheries Organization) reports.
 
 ## Contributing
 

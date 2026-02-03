@@ -24,7 +24,7 @@ rest of the Rmd.
 }
 \examples{
 \dontrun{
-library(csasdown)
+library(csasdowntex)
 chunk <- c("#Main", "##Introduction", "", "Some text..", "More Rmd text")
 tmp <- conv_header_lines(chunk)
 header_line_chunk <- tmp[[1]]

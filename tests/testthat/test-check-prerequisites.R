@@ -19,9 +19,9 @@
 # }
 #
 # template_files <- list.files(system.file("rmarkdown",
-#                                          package = "csasdown"),
+#                                          package = "csasdowntex"),
 #                              recursive = TRUE)
 #
-# test_that("csasdown template files are present", {
+# test_that("csasdowntex template files are present", {
 #   expect_true(length(template_files) > 10)
 # })

@@ -1,6 +1,6 @@
-Package: csasdown
+Package: csasdowntex
 Title: Reproducible CSAS Reports with Bookdown
-Version: 0.2.2
+Version: 0.3.0
 Authors@R: 
     c(person(given = c("Sean", "C."),
              family = "Anderson",
@@ -69,7 +69,6 @@ Imports:
     purrr,
     rlang,
     rmarkdown,
-    scales,
     stringr,
     tibble,
     tinytex (>= 0.39),
@@ -83,6 +82,7 @@ Suggests:
     pandoc,
     readr,
     rosettafish,
+    scales,
     testthat,
     tidyr,
     flextable

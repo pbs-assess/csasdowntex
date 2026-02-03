@@ -25,7 +25,7 @@ test_that("draft() works", {
                                verbose = TRUE,
                                testing = TRUE,
                                testing_affirm = FALSE),
-    paste0("does not exist so the csasdown project cannot be created there"))
+    paste0("does not exist so the csasdowntex project cannot be created there"))
 
 
   expect_error(create_rstudio_project_file(directory = "baddir",

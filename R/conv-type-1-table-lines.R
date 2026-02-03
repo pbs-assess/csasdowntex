@@ -51,7 +51,7 @@
 #' chunk <- c("---------- -----------", "  Parameter   Value",
 #'            "---------- -----------", "     x          1.0",
 #'            "     y          2.2", "---------- -----------")
-#' tmp <- csasdown:::conv_type_1_table_lines(chunk)
+#' tmp <- csasdowntex:::conv_type_1_table_lines(chunk)
 #' the_rest <- tmp[[2]]
 #' }
 conv_type_1_table_lines <- function(chunk){

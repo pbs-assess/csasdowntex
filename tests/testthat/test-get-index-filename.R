@@ -4,7 +4,7 @@ test_that("get_index_filename() works for the resdoc", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -41,7 +41,7 @@ test_that("get_index_filename() works for the SR", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -71,7 +71,7 @@ test_that("get_index_filename() works for the techreport", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))

@@ -2,14 +2,14 @@
 (if you have one)
 After that, all subsequent sections will be turned into appendices. -->
 
-`r if(knitr:::is_latex_output()) '% begin csasdown appendix'`
+`r if(knitr:::is_latex_output()) '% begin csasdowntex appendix'`
 `r if(!knitr:::is_latex_output()) '# (APPENDIX) Appendix {-}'`
 
 \clearpage
 
 # THE FIRST APPENDIX {#app:first-appendix}
 
-Appendices can be in one file, or if they are larger than a couple of pages you should add a new file for each new appendix. In the first appendix, you **must** include two special lines of code at the top to tell `csasdown` that you are now numbering sections as appendices. Look in `05_appendices.Rmd` to see these. The last line of your last appendix **must** be another special line of code which tells `csasdown` to end the appendices sections. In this document it can be found at the end of `05_appendices.Rmd`.
+Appendices can be in one file, or if they are larger than a couple of pages you should add a new file for each new appendix. In the first appendix, you **must** include two special lines of code at the top to tell `csasdowntex` that you are now numbering sections as appendices. Look in `05_appendices.Rmd` to see these. The last line of your last appendix **must** be another special line of code which tells `csasdowntex` to end the appendices sections. In this document it can be found at the end of `05_appendices.Rmd`.
 
 Figures and tables will now be prepended with the appendix letter:
 
@@ -22,7 +22,7 @@ plot(1)
 ```
 
 ```{r test2, results='asis'}
-csasdown::csas_table(data.frame(x = c("a", "a", "b"),
+csasdowntex::csas_table(data.frame(x = c("a", "a", "b"),
                                 y = c(1, 2, 3)),
                      caption = ifelse(fr(),
                                       "French goes here",
@@ -46,7 +46,7 @@ See Table \@ref(tab:test2) for the example appendix table.
 
 # THE SECOND APPENDIX, FOR FUN {#app:second-appendix}
 
-The label `#app:` in the appendix section headers tell `csasdown` to start a new appendix, and the next letter in the alphabet will be used for the appendix, and prepended to figure and table names. For example, this appendix's whole section header looks like:
+The label `#app:` in the appendix section headers tell `csasdowntex` to start a new appendix, and the next letter in the alphabet will be used for the appendix, and prepended to figure and table names. For example, this appendix's whole section header looks like:
 
 `# THE SECOND APPENDIX, FOR FUN {#app:second-appendix}`
 
@@ -61,7 +61,7 @@ plot(1)
 ```
 
 ```{r test2b, results='asis'}
-csasdown::csas_table(data.frame(x = c("a", "a", "b"),
+csasdowntex::csas_table(data.frame(x = c("a", "a", "b"),
                                 y = c(1, 2, 3)),
                      caption = ifelse(fr(),
                                       "French goes here",
@@ -76,4 +76,4 @@ See Table \@ref(tab:test2b) for the example appendix table.
 
 
 <!-- At the end of your appendices add: -->
-`r if(knitr:::is_latex_output()) '% end csasdown appendix'`
+`r if(knitr:::is_latex_output()) '% end csasdowntex appendix'`

@@ -20,7 +20,7 @@ fsar_plot_ggplot <- function(df, language = c("English","French")) {
     geom_line(aes(y = `TAC-MT`), linetype = "dashed", colour = "grey45") +
     scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
     labs(x = "Year", y = "Catch (t)") +
-    csasdown::theme_csas()
+    csasdowntex::theme_csas()
 
   # SSB = Spawning stock biomass
   g2 <- ggplot(data = df, aes(x = year)) +
@@ -30,7 +30,7 @@ fsar_plot_ggplot <- function(df, language = c("English","French")) {
     geom_line(aes(y = `SSBusr-MT`), linetype = "dashed", colour = "grey45") +
     scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
     labs(x = "Year", y = "SSB (t)") +
-    csasdown::theme_csas()
+    csasdowntex::theme_csas()
 
   # Instantaneous fishing mortality
   g3 <- ggplot(data = df, aes(x = year)) +
@@ -39,7 +39,7 @@ fsar_plot_ggplot <- function(df, language = c("English","French")) {
     geom_line(aes(y = `Flim-1/yr`), linetype = "dashed", colour = "grey45") +
     scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
     labs(x = "Year", y = "Fishing mortality (yr<sup>-1</sup>)") +
-    csasdown::theme_csas() +
+    csasdowntex::theme_csas() +
     theme(axis.title.y = ggtext::element_markdown())
 
   g4 <- ggplot(data = df, aes(x = year)) +
@@ -47,7 +47,7 @@ fsar_plot_ggplot <- function(df, language = c("English","French")) {
     geom_ribbon(aes(ymin = `Rlow-E06`, ymax = `Rhigh-E06`), alpha = 0.3) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.02)), limits = c(0, NA)) +
     labs(x = "Year", y = "Recruitment (10<sup>6</sup>)") +
-    csasdown::theme_csas() +
+    csasdowntex::theme_csas() +
     theme(axis.title.y = ggtext::element_markdown())
 
   cowplot::plot_grid(g1, g2, g3, g4, ncol = 2, labels = "AUTO", align = "hv")

@@ -90,9 +90,9 @@ pages of the output document}
 "tango", "pygments", "kate", "monochrome", "espresso",
 "zenburn", and "haddock". If not in this list of styles, the directory in
 which the build process was called will be searched for the given theme
-file. You can copy one from the csasdown library install on your machine
+file. You can copy one from the csasdowntex library install on your machine
 and modify as necessary. Find them by looking here:
-file.path(.libPaths(), "csasdown", "themes")
+file.path(.libPaths(), "csasdowntex", "themes")
 Pass \code{NULL} to prevent syntax highlighting (uses 'monochrome' theme) for
 slightly different text format but no highlighting}
 

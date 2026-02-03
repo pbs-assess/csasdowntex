@@ -547,7 +547,7 @@ fn_color <- color_factory(message, "skyblue")
 #' color function
 tag_color <- color_factory(message, "limegreen")
 
-#' csasdown items (render type, format, chunk names, etc) color
+#' csasdowntex items (render type, format, chunk names, etc) color
 #' for messages throughout the project
 #'
 #' @rdname color_factory

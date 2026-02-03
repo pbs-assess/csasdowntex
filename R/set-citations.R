@@ -14,7 +14,7 @@ set_citations <- function(fn = get_index_filename(
               "resdoc", # All types have the same index filename
               "skeleton",
               "_bookdown.yml",
-              package = "csasdown")),
+              package = "csasdowntex")),
   render_type = NULL,
   verbose = FALSE){
 

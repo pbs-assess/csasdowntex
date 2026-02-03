@@ -21,8 +21,8 @@ cause an error}
 \item{verbose}{Logical. If \code{TRUE}, print messages}
 }
 \description{
-As the csasdown package is updated, sometimes new mandatory YAML options are added
+As the csasdowntex package is updated, sometimes new mandatory YAML options are added
 to the \code{index.Rmd} file. Running this function will compare your file to the
-version built into the currently installed version of csasdown and issue
+version built into the currently installed version of csasdowntex and issue
 am error message telling you what doesn't match if needed.
 }

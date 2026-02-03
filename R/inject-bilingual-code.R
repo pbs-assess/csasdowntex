@@ -1,7 +1,7 @@
-#' Inject code that make bilingual features in a csasdown document possible
+#' Inject code that make bilingual features in a csasdowntex document possible
 #'
 #' @description
-#' Inject code that make bilingual features in a csasdown document possible.
+#' Inject code that make bilingual features in a csasdowntex document possible.
 #' The main goal here is to hide this from authors as it is complex knitr
 #' hook code combined with some of the YAML variable extraction code and if
 #' modified, will crash the resdoc build process.
@@ -22,7 +22,7 @@ inject_bilingual_code <- function(fn = get_index_filename(
                             "resdoc", # All types have the same index filename
                             "skeleton",
                             "_bookdown.yml",
-                            package = "csasdown")),
+                            package = "csasdowntex")),
                 doc_type,
                 verbose = FALSE){
 
@@ -45,7 +45,7 @@ inject_bilingual_code <- function(fn = get_index_filename(
     'options(',
     '  # Prevent xtable from adding a timestamp comment to the table code it produces',
     '  xtable.comment = FALSE,',
-    '  # Do not allow kableExtra to load packages, we add them manually in csasdown',
+    '  # Do not allow kableExtra to load packages, we add them manually in csasdowntex',
     '  kableExtra.latex.load_packages = FALSE,',
     '  # Stop chunk output (echo) running into the margins',
     '  width = 80,',
@@ -81,7 +81,7 @@ inject_bilingual_code <- function(fn = get_index_filename(
     '#  chunk options to your English paragraph chunks instead of the French ones.',
     '#  ',
     '#  IMPORTANT NOTES',
-    '#  - Use `csasdown::render()` to render the document. This runs a',
+    '#  - Use `csasdowntex::render()` to render the document. This runs a',
     '#    pre-processing step which ensures any inline R chunks',
     '#    `r print("Like this one")` are taken care of correctly and that all',
     '#    backslash variables (eg. \\pi, \\alpha, \\@ref, \\cite) are all processed',
@@ -124,23 +124,23 @@ inject_bilingual_code <- function(fn = get_index_filename(
   if(doc_type %in% c("techreport","manureport")){
     yaml_code <- c(
       '---',
-      'title: `r ifelse(csasdown::fr(), meta$french_title, meta$title)`',
-      'region: `r ifelse(csasdown::fr(), meta$french_region, meta$region)`',
+      'title: `r ifelse(csasdowntex::fr(), meta$french_title, meta$title)`',
+      'region: `r ifelse(csasdowntex::fr(), meta$french_region, meta$region)`',
       'csl: `r csl`',
       '---')
   } else if (doc_type == "sr") { # no title language flipping
     yaml_code <- c(
       '---',
-      'month: `r ifelse(csasdown::fr(), meta$french_month, meta$month)`',
-      'region: `r ifelse(csasdown::fr(), meta$french_region, meta$region)`',
+      'month: `r ifelse(csasdowntex::fr(), meta$french_month, meta$month)`',
+      'region: `r ifelse(csasdowntex::fr(), meta$french_region, meta$region)`',
       'csl: `r csl`',
       '---')
   } else {
     yaml_code <- c(
       '---',
-      'title: `r ifelse(csasdown::fr(), meta$french_title, meta$title)`',
-      'month: `r ifelse(csasdown::fr(), meta$french_month, meta$month)`',
-      'region: `r ifelse(csasdown::fr(), meta$french_region, meta$region)`',
+      'title: `r ifelse(csasdowntex::fr(), meta$french_title, meta$title)`',
+      'month: `r ifelse(csasdowntex::fr(), meta$french_month, meta$month)`',
+      'region: `r ifelse(csasdowntex::fr(), meta$french_region, meta$region)`',
       'csl: `r csl`',
       '---')
   }

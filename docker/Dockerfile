@@ -1,4 +1,4 @@
-# Docker script for csasdown containers
+# Docker script for csasdowntex containers
 #
 # This script was based loosely on this Dockerfile:
 # https://github.com/rocker-org/rocker-versioned/blob/master/verse/3.6.3.Dockerfile
@@ -48,6 +48,6 @@ ENV USER=rstudio PASSWORD=qwerty
 # To run the container, go into the directory your document is in/will be in and run
 # this (set project_name in --name=project_name to unique for each project):
 #
-# docker run -d -p 8787:8787 --name=project_name --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/csasdown
+# docker run -d -p 8787:8787 --name=project_name --mount type=bind,source="$(pwd)",target=/home/rstudio cgrandin/csasdowntex
 #
 # If prompted for the username and password, they are rstudio and qwerty

@@ -3,18 +3,18 @@
 <!-- An example of how to include text based on the language. The two chunks below shows how switching the toggle in the YAML header for french allows inclusion/rejection of a paragraph. -->
 
 ```{r para-chap01-1-en, eval=!fr(), results = 'asis'}
-cat("Welcome to report generation using `csasdown`. Included in this example document are many useful bits of information on how to write a reproducible report document using  the `csasdown` package, which is based on [Rmarkdown](https://rmarkdown.rstudio.com/) and [Bookdown](https://bookdown.org/). The information given in this example document should be used with all three `csasdown` document types: Research Document (`resdoc`), Science Response (`sr`), and Technical Report (`techreport`).")
+cat("Welcome to report generation using `csasdowntex`. Included in this example document are many useful bits of information on how to write a reproducible report document using  the `csasdowntex` package, which is based on [Rmarkdown](https://rmarkdown.rstudio.com/) and [Bookdown](https://bookdown.org/). The information given in this example document should be used with all three `csasdowntex` document types: Research Document (`resdoc`), Science Response (`sr`), and Technical Report (`techreport`).")
 ```
 
 ```{r para-chap01-1-fr, eval=fr(), results = 'asis', needs_trans = FALSE}
-cat("(This is where you would place the French translation of the paragraph. Once you do, set needs_trans to FALSE in the chunk header) Bienvenue dans la génération de rapports à l'aide de `csasdown`. Ce document d'exemple contient de nombreuses informations utiles sur la façon d'écrire un rapport reproductible à l'aide du paquetage `csasdown`, qui est basé sur [Rmarkdown] (https://rmarkdown.rstudio.com/) et [Bookdown] (https://bookdown.org/). Les informations données dans cet exemple doivent être utilisées avec les trois types de documents `csasdown` : Document de recherche (`resdoc`), Réponse scientifique (`sr`), et Rapport technique (`techreport`).
+cat("(This is where you would place the French translation of the paragraph. Once you do, set needs_trans to FALSE in the chunk header) Bienvenue dans la génération de rapports à l'aide de `csasdowntex`. Ce document d'exemple contient de nombreuses informations utiles sur la façon d'écrire un rapport reproductible à l'aide du paquetage `csasdowntex`, qui est basé sur [Rmarkdown] (https://rmarkdown.rstudio.com/) et [Bookdown] (https://bookdown.org/). Les informations données dans cet exemple doivent être utilisées avec les trois types de documents `csasdowntex` : Document de recherche (`resdoc`), Réponse scientifique (`sr`), et Rapport technique (`techreport`).
 
 Traduit avec www.DeepL.com/Translator (version gratuite)")
 ```
 
 ```{r para-chap02-1-en, eval=!fr(), results = 'asis'}
 cat("
-If you get stuck on anything, read the `csasdown` [README](https://github.com/pbs-assess/csasdown/blob/master/README.md) carefully and all the [Wiki pages](https://github.com/pbs-assess/csasdown/wiki). There are many tips and tricks located in those pages. 
+If you get stuck on anything, read the `csasdowntex` [README](https://github.com/pbs-assess/csasdowntex/blob/master/README.md) carefully and all the [Wiki pages](https://github.com/pbs-assess/csasdowntex/wiki). There are many tips and tricks located in those pages. 
 
 Inserting a hyperlink in Rmarkdown is easy, just look at the code for the paragraph above. It is located in **01_introduction.Rmd**
 
@@ -28,7 +28,7 @@ Some references: [@francis2011, @edwards2013, @swainbenoit2015].
 
 Note that the year part of the citation is clickable and will take you directly to the reference in the References section.
 
-Here is an example equation with the code used to generate it. Note that `csasdown` automatically numbers it on the right-hand side of the page. It does this consecutively throughout the document sections, but appendices are each numbered on their own, e.g. A.1, A.2, ... for Appendix A, and B.1, B.2, ... for Appendix B.")
+Here is an example equation with the code used to generate it. Note that `csasdowntex` automatically numbers it on the right-hand side of the page. It does this consecutively throughout the document sections, but appendices are each numbered on their own, e.g. A.1, A.2, ... for Appendix A, and B.1, B.2, ... for Appendix B.")
 ```
 
 ```{r para-chap02-1-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
@@ -73,7 +73,7 @@ refs_tab <- tribble(
               "Figure",         "`\\@ref(fig:figure-label)`",
                "Table",          "`\\@ref(tab:table-label)`")
 
-csasdown::csas_table(refs_tab,
+csasdowntex::csas_table(refs_tab,
   align = c("r", "r"),
   caption = ifelse(fr(),
                    "French goes here",

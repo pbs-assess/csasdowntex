@@ -6,7 +6,7 @@ test_that("run_pdflatex() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))

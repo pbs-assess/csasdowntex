@@ -78,16 +78,16 @@ fix_envs <- function(x,
       ), x = x
     )
   } # End if region exists (SRs)
-  ## Change csas-style to use the sty file found in csasdown repo
+  ## Change csas-style to use the sty file found in csasdowntex repo
   g <- grep("csas-style", x)
 
   ## Find beginning and end of the abstract text if it is not a Science Response document
   if (include_abstract) {
-    abs_beg <- grep("begin_abstract_csasdown", x)
-    abs_end <- grep("end_abstract_csasdown", x)
+    abs_beg <- grep("begin_abstract_csasdowntex", x)
+    abs_end <- grep("end_abstract_csasdowntex", x)
     if (length(abs_beg) == 0L || length(abs_end) == 0L) {
-      alert(tag_color("% begin_abstract_csasdown"), " or ",
-            tag_color("% end_abstract_csasdown"), " not found ",
+      alert(tag_color("% begin_abstract_csasdowntex"), " or ",
+            tag_color("% end_abstract_csasdowntex"), " not found ",
             "in ", fn_color("templates/csas.tex"))
     } else {
       abs_vec <- x[seq(abs_beg + 1, abs_end - 1)]
@@ -259,7 +259,7 @@ fix_envs <- function(x,
 
   # Tech Report Appendices:
   x <- gsub(
-    "\\% begin csasdown appendix",
+    "\\% begin csasdowntex appendix",
     paste0(
       "\\begin{appendices}\n",
       "\\\\counterwithin{figure}{section}\n",
@@ -268,7 +268,7 @@ fix_envs <- function(x,
     ),
     x
   )
-  x <- gsub("\\% end csasdown appendix", "\\end{appendices}", x)
+  x <- gsub("\\% end csasdowntex appendix", "\\end{appendices}", x)
 
   label_app <- grep("^\\\\label\\{app:", x)
   for (i in seq_along(label_app)) {
@@ -375,7 +375,7 @@ fix_envs <- function(x,
   }
   # Enable reference linking to subsections of appendices
   # if (!pandoc_curr_ver_is_before()) {
-  #   stop("csasdown currently only works with pandoc < 3.1.7. Please revert to an older pandoc version.", call. = FALSE)
+  #   stop("csasdowntex currently only works with pandoc < 3.1.7. Please revert to an older pandoc version.", call. = FALSE)
   # }
   x <- add_appendix_subsection_refs(x)
 
@@ -401,7 +401,7 @@ fix_envs <- function(x,
     pre_theme <- x[1:(theme_ind - 1)]
     post_theme <- x[(theme_ind + 1):length(x)]
     if(highlight %in% themes){
-      theme_latex <- readLines(system.file("themes", paste0(highlight, ".latex"), package = "csasdown"))
+      theme_latex <- readLines(system.file("themes", paste0(highlight, ".latex"), package = "csasdowntex"))
     }else{
       theme_latex <- readLines(here(highlight)) # nocov
     }
@@ -411,7 +411,7 @@ fix_envs <- function(x,
   # Patch weird error that occurred in October 2024 for SOLV-CODE user on GitHub
   # The midrule latex command added by kableExtra::row_spec() was added as
   # midrule\\ which has two backslashes when it shouldn't have.
-  # See https://github.com/pbs-assess/csasdown/issues/266
+  # See https://github.com/pbs-assess/csasdowntex/issues/266
   # Since there is never any other occasion when midrule will be followed by
   # backslashes, we just remove them here without understanding why they were
   # added. This should not affect other parts of the build as it is a simple

@@ -24,7 +24,7 @@ manureport_pdf <- function(latex_engine = "pdflatex",
   fr <- function() if (french) TRUE else FALSE
 
   if((!highlight %in% themes) && !file.exists(here(highlight))){
-    bail("in YAML, ", tag_color("csasdown:manureport_pdf: highlight"),
+    bail("in YAML, ", tag_color("csasdowntex:manureport_pdf: highlight"),
          "must be one of ",
          csas_color(paste(themes, collapse = ", ")),
          "\nor a filename for a custom latex theme file.",
@@ -32,9 +32,9 @@ manureport_pdf <- function(latex_engine = "pdflatex",
   }
 
   if (fr()) {
-    file <- system.file("csas-tex", "manu-report-french.tex", package = "csasdown") # nocov
+    file <- system.file("csas-tex", "manu-report-french.tex", package = "csasdowntex") # nocov
   } else {
-    file <- system.file("csas-tex", "manu-report.tex", package = "csasdown")
+    file <- system.file("csas-tex", "manu-report.tex", package = "csasdowntex")
   }
 
   base <- pdf_book(
@@ -50,8 +50,8 @@ manureport_pdf <- function(latex_engine = "pdflatex",
   cover_file_pdf <- if (fr()) "manu-report-cover-french.pdf" else "manu-report-cover.pdf"
   cover_file_docx <- if (fr()) "manu-report-cover-french.docx" else "manu-report-cover.docx"
   if (!file.exists(cover_file_pdf)) {
-    cover_docx <- system.file("rmarkdown", "templates", "manureport", "skeleton", cover_file_docx, package = "csasdown")
-    cover_pdf <- system.file("rmarkdown", "templates", "manureport", "skeleton", cover_file_pdf, package = "csasdown")
+    cover_docx <- system.file("rmarkdown", "templates", "manureport", "skeleton", cover_file_docx, package = "csasdowntex")
+    cover_pdf <- system.file("rmarkdown", "templates", "manureport", "skeleton", cover_file_pdf, package = "csasdowntex")
     alert("Missing the Manuscript Report cover page. Copying in the files...")
     file.copy(cover_docx, ".", overwrite = FALSE)
     file.copy(cover_pdf, ".", overwrite = FALSE)

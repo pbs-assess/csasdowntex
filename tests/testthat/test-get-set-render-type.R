@@ -4,7 +4,7 @@ test_that("get_render_type() and set_render_type() throw errors", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -43,7 +43,7 @@ test_that("get_render_type() and set_render_type() works for resdoc", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -70,7 +70,7 @@ test_that("get_render_type() and set_render_type() works for SR", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -97,7 +97,7 @@ test_that("get_render_type() and set_render_type() works for techreport", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "techreport", package = "csasdown"),
+    system.file("rmarkdown", "templates", "techreport", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))

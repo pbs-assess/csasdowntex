@@ -5,7 +5,7 @@ test_that("rename_output_files() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))

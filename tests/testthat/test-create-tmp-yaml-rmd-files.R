@@ -4,7 +4,7 @@ test_that("create_tmp_yaml_rmd_files() throws errors", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -68,7 +68,7 @@ test_that("create_tmp_yaml_rmd_files() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -90,7 +90,7 @@ test_that("create_tmp_yaml_rmd_files() properly deletes tmp files", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE))
 

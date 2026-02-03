@@ -1,14 +1,14 @@
 ```{r chap01-para-1-en, eval = !fr(), results = 'asis'}
 cat("# INTRODUCTION
-Welcome to the R Markdown **bilingual** research document template. This example can be loaded into your working directory with `csasdown::draft('resdoc-b')` and rendered into a PDF with `csasdown::render_resdoc()`. This document assumes you have gone through the **resdoc** example document, and leaves out some of the introductory text found there.
+Welcome to the R Markdown **bilingual** research document template. This example can be loaded into your working directory with `csasdowntex::draft('resdoc-b')` and rendered into a PDF with `csasdowntex::render_resdoc()`. This document assumes you have gone through the **resdoc** example document, and leaves out some of the introductory text found there.
 
-The difference between this document and the one produced with the `csasdown::draft('resdoc')` example is that this one makes use of a new preprocessor and a knitr hook to more easily produce a bilingual document. The preprocessor includes an enhanced custom version of Rmarkdown which produces PDF output exactly as written in the Rmarkdown code. Standard Rmarkdown has multiple methods of including newlines, with less than ideal results in most cases. This enhanced version provides *What You See Is What You Get*, known as *WYSIWYG* in computing lexicon. This means that newlines will appear in the output document *exactly* as you wrote them in the Rmarkdown code. This reduces a lot of trial-and-error or writing-and-compiling when trying to organize your text.")
+The difference between this document and the one produced with the `csasdowntex::draft('resdoc')` example is that this one makes use of a new preprocessor and a knitr hook to more easily produce a bilingual document. The preprocessor includes an enhanced custom version of Rmarkdown which produces PDF output exactly as written in the Rmarkdown code. Standard Rmarkdown has multiple methods of including newlines, with less than ideal results in most cases. This enhanced version provides *What You See Is What You Get*, known as *WYSIWYG* in computing lexicon. This means that newlines will appear in the output document *exactly* as you wrote them in the Rmarkdown code. This reduces a lot of trial-and-error or writing-and-compiling when trying to organize your text.")
 ```
 ```{r chap01-para-1-fr, eval = fr(), results = 'asis', needs_trans = FALSE}
 cat("# INTRODUCTION
-Bienvenue au modèle de document de recherche R Markdown **bilingue**. Cet exemple peut être chargé dans votre répertoire de travail avec `csasdown::draft('resdoc-b')` et rendu en PDF avec `csasdown::render_resdoc()`. Ce document suppose que vous avez parcouru le document d'exemple **resdoc**, et laisse de côté une partie du texte d'introduction qui s'y trouve.
+Bienvenue au modèle de document de recherche R Markdown **bilingue**. Cet exemple peut être chargé dans votre répertoire de travail avec `csasdowntex::draft('resdoc-b')` et rendu en PDF avec `csasdowntex::render_resdoc()`. Ce document suppose que vous avez parcouru le document d'exemple **resdoc**, et laisse de côté une partie du texte d'introduction qui s'y trouve.
 
-La différence entre ce document et celui produit avec l'exemple `csasdown::draft('resdoc')` est que celui-ci utilise un nouveau préprocesseur et un hook knitr pour produire plus facilement un document bilingue. Le préprocesseur comprend une version personnalisée améliorée de Rmarkdown qui produit une sortie PDF exactement comme écrit dans le code Rmarkdown. La version standard de Rmarkdown dispose de plusieurs méthodes pour inclure les nouvelles lignes, avec des résultats moins qu'idéaux dans la plupart des cas. Cette version améliorée fournit *What You See Is What You Get*, connu sous le nom de *WYSIWYG* dans le lexique informatique. Cela signifie que les nouvelles lignes apparaîtront dans le document de sortie *exactement* comme vous les avez écrites dans le code Rmarkdown. Cela réduit les essais et les erreurs ou l'écriture et la compilation lorsque vous essayez d'organiser votre texte.")
+La différence entre ce document et celui produit avec l'exemple `csasdowntex::draft('resdoc')` est que celui-ci utilise un nouveau préprocesseur et un hook knitr pour produire plus facilement un document bilingue. Le préprocesseur comprend une version personnalisée améliorée de Rmarkdown qui produit une sortie PDF exactement comme écrit dans le code Rmarkdown. La version standard de Rmarkdown dispose de plusieurs méthodes pour inclure les nouvelles lignes, avec des résultats moins qu'idéaux dans la plupart des cas. Cette version améliorée fournit *What You See Is What You Get*, connu sous le nom de *WYSIWYG* dans le lexique informatique. Cela signifie que les nouvelles lignes apparaîtront dans le document de sortie *exactement* comme vous les avez écrites dans le code Rmarkdown. Cela réduit les essais et les erreurs ou l'écriture et la compilation lorsque vous essayez d'organiser votre texte.")
 ```
 ```{r chap01-para-2-en, eval = !fr(), results = 'asis'}
 cat("# Compilation details {#compilation}
@@ -26,7 +26,7 @@ Mirror code is just a single line of code that looks like this: `<<chap01-para-2
 ```
 ```{r chap01-para-3-en, eval = !fr(), results = 'asis'}
 cat("## Rendering the document {#rendering}
-To render this document, run this code: `csasdown::render()`. This will produce a PDF. To see what the output of the preprocessor looks like (what bookdown actually uses to create the document) compile the document like this: `csasdown::render(keep_files = TRUE)`. This will leave modified files behind, all of which start with *tmp-* and correspond to the files you have included in your project.
+To render this document, run this code: `csasdowntex::render()`. This will produce a PDF. To see what the output of the preprocessor looks like (what bookdown actually uses to create the document) compile the document like this: `csasdowntex::render(keep_files = TRUE)`. This will leave modified files behind, all of which start with *tmp-* and correspond to the files you have included in your project.
 
 Some details of the code that are complex and likely not important to you are located in these files. For example the French knitr hook code is located near the end of *tmp-index.Rmd*.
 
@@ -98,7 +98,7 @@ or get the date and time this document was built:
 `r format(Sys.time(), '%A, %B %d, %Y %H:%M:%S')`.
 
 If you want to see exactly how this is done, use the `keep_files` argument when rendering:
-`csasdown::render(keep_files = TRUE)`. If you look at *tmp-01-chap1.Rmd* you'll see that in this chunk (*chap01-para-7-en*) the text inside `cat()` has been modified to insert the R code into the string to hold the output as seen above. For further explanation, see Section \@ref(rendering).")
+`csasdowntex::render(keep_files = TRUE)`. If you look at *tmp-01-chap1.Rmd* you'll see that in this chunk (*chap01-para-7-en*) the text inside `cat()` has been modified to insert the R code into the string to hold the output as seen above. For further explanation, see Section \@ref(rendering).")
 ```
 ```{r chap01-para-7-fr, eval = fr(), results = 'asis', needs_trans = TRUE}
 <<chap01-para-7-en>>
@@ -114,7 +114,7 @@ The example documents have several new YAML entries for French items. Look in th
 - french_title
 - french_abstract
 
-To check if you are missing any YAML entries, run `csasdown::check_yaml()`. It will also be run automatically when you run `csasdown::render()` and you will get an error message if you are missing any.
+To check if you are missing any YAML entries, run `csasdowntex::check_yaml()`. It will also be run automatically when you run `csasdowntex::render()` and you will get an error message if you are missing any.
 ")
 ```
 ```{r chap01-para-8-fr, eval = fr(), results = 'asis', needs_trans = TRUE}

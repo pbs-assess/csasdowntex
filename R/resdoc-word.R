@@ -21,7 +21,7 @@ resdoc_word <- function(...) {
   base <- word_document2(...,
     reference_docx = system.file("csas-docx",
       file,
-      package = "csasdown"
+      package = "csasdowntex"
     )
   )
 
@@ -77,7 +77,7 @@ resdoc_word2 <- function(...) {
     ),
     reference_docx = system.file("csas-docx",
       file,
-      package = "csasdown"
+      package = "csasdowntex"
     )
   )
 
@@ -107,7 +107,7 @@ add_resdoc_word_frontmatter <- function(index_fn, yaml_fn = "_bookdown.yml", ver
 
   ## This reference docx only includes styles; headers and footers were removed since
   ## they are included in the frontmatter docx.
-  reference_fn <- system.file("csas-docx", "resdoc-blank-content.docx", package = "csasdown")
+  reference_fn <- system.file("csas-docx", "resdoc-blank-content.docx", package = "csasdowntex")
 
   ## Extract yaml front matter and construct md files, then use pandoc_convert to
   ## export content to word. The officer package is latter used to add said content
@@ -160,7 +160,7 @@ add_resdoc_word_frontmatter <- function(index_fn, yaml_fn = "_bookdown.yml", ver
     officer::body_remove()
   print(content, target = "tmp-content.docx")
 
-  frontmatter <- officer::read_docx(system.file("csas-docx", "resdoc-frontmatter.docx", package = "csasdown")) |>
+  frontmatter <- officer::read_docx(system.file("csas-docx", "resdoc-frontmatter.docx", package = "csasdowntex")) |>
     officer::headers_replace_text_at_bkm("region", x$region) |>
     officer::headers_replace_text_at_bkm("year", as.character(x$year)) |>
     officer::headers_replace_text_at_bkm("report_number", as.character(x$report_number)) |>

@@ -110,7 +110,7 @@ create_tmp_yaml_rmd_files <- function(yaml_fn = "_bookdown.yml",
   if(interactive() && any(grepl("^tmp-tmp", rmd_fns))){
     repeat{
       ques <- readline(
-        question("csasdown detected that some of the Rmd ",
+        question("csasdowntex detected that some of the Rmd ",
                  "files listed in ", fn_color(yaml_fn),
                  " begin with two or more ", csas_color("tmp-") ,
                  " prefixes.\nContinuing will result in temporary ",

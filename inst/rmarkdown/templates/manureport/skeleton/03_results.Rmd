@@ -1,6 +1,6 @@
 # Results
 
-You can add new knitr code chunks with figure and tables in any section. csasdown links all these `.Rmd` files together into one large file. Keep track of your file order insertion follow the order in `_bookdown.yml`.
+You can add new knitr code chunks with figure and tables in any section. csasdowntex links all these `.Rmd` files together into one large file. Keep track of your file order insertion follow the order in `_bookdown.yml`.
 
 Here's another plot for fun:
 
@@ -67,6 +67,6 @@ batman <- function(){
 batman()
 ```
 
-Note that this figure is numbered consecutively even though the first figure appears in a different file and section. The figures, tables, and equations are numbered **after** all the files are stitched together by `csasdown`.
+Note that this figure is numbered consecutively even though the first figure appears in a different file and section. The figures, tables, and equations are numbered **after** all the files are stitched together by `csasdowntex`.
 
 

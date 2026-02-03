@@ -40,10 +40,10 @@ set_yaml_tag <- function(tag = NULL, val = NULL, fn = "index.Rmd"){
   }
   #rmd <- c(rmd, "---", "approver:", "", "kfeujbvk:  kmneec", "---")
 
-  if(length(grep("csasdown::", tag)) || length(grep("output", tag))){
-    bail("The ", tag_color("output:"), " and ", tag_color("csasdown::<doc_type>"),
+  if(length(grep("csasdowntex::", tag)) || length(grep("output", tag))){
+    bail("The ", tag_color("output:"), " and ", tag_color("csasdowntex::<doc_type>"),
          " tags cannot be changed with this function.\n",
-         "Use ", csas_color("csasdown:::set_render_type()"), " instead")
+         "Use ", csas_color("csasdowntex:::set_render_type()"), " instead")
   }
 
   if(length(grep("knit", tag))){

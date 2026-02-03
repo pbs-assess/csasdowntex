@@ -25,12 +25,12 @@ test_that("remove_html_comments() works", {
   expect_identical(ret, "Hello world!")
   # ---------------------------------------------------------------------------
 
-  j <- c("Hello <!-- Anything  -->world!<!-- csasdown is great       -->!")
+  j <- c("Hello <!-- Anything  -->world!<!-- csasdowntex is great       -->!")
   ret <- remove_html_comments(j)
   expect_identical(ret, "Hello world!!")
   # ---------------------------------------------------------------------------
 
-  j <- c("Hi <!--ello--><!-- Anything  -->world!<!-- csasdown is great   -->!")
+  j <- c("Hi <!--ello--><!-- Anything  -->world!<!-- csasdowntex is great   -->!")
   ret <- remove_html_comments(j)
   expect_identical(ret, "Hi world!!")
   # ---------------------------------------------------------------------------

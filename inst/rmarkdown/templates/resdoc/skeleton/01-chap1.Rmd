@@ -52,7 +52,7 @@ This should be a new paragraph.
 
 ## R CHUNKS
 
-When you click the **Knit** button above a document in RStudio (or run `csasdown::render()` in the R console within the working directory that has your `index.Rmd` file) output will be generated that includes both content as well as the output of any embedded **R** code chunks within the document. You can embed an **R** code chunk like this (`cars` is a built-in **R** dataset):
+When you click the **Knit** button above a document in RStudio (or run `csasdowntex::render()` in the R console within the working directory that has your `index.Rmd` file) output will be generated that includes both content as well as the output of any embedded **R** code chunks within the document. You can embed an **R** code chunk like this (`cars` is a built-in **R** dataset):
 
 ```{r cars}
 summary(cars)
@@ -134,7 +134,7 @@ max_delays <- flights2 |>
 
 A useful function in the `knitr` package for making nice tables in _R Markdown_ is called `kable`. It is much easier to use than manually entering values into a table by copying and pasting values into Excel or LaTeX. This again goes to show how nice reproducible documents can be! (Note the use of `results="asis"`, which will produce the table instead of the code to create the table.) The `caption.short` argument is used to include a shorter title to appear in the List of Tables.
 
-Within CSAS you should use the function `csasdown::csas_table()` instead. It just calls the function `kable()`, but it adds some default argument values that will make the tables render correctly in both LaTeX and in Word documents.
+Within CSAS you should use the function `csasdowntex::csas_table()` instead. It just calls the function `kable()`, but it adds some default argument values that will make the tables render correctly in both LaTeX and in Word documents.
 
 ```{r maxdelays, results="asis"}
 library(knitr)

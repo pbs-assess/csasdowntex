@@ -32,10 +32,10 @@ update_csasstyle <- function(copy = TRUE,
                              which_sty = "res-doc.sty") {
 
   if (pandoc_version == '3.1.7') {
-    bail("csasdown does not work with pandoc 3.1.7. Either update pandoc or revert to an older version.")
+    bail("csasdowntex does not work with pandoc 3.1.7. Either update pandoc or revert to an older version.")
   }
 
-  fn <- system.file("csas-style", package = "csasdown")
+  fn <- system.file("csas-style", package = "csasdowntex")
   if(!copy && line_nums){
     bail("You have set ", csas_color("copy"), " to ", csas_color("FALSE"),
          " and ", csas_color("line_nums"), " to ", csas_color("TRUE"),

@@ -4,13 +4,13 @@ To render the document in French, simply open `index.Rmd` and change this:
 
 ````
 output:
- csasdown::techreport_pdf:
+ csasdowntex::techreport_pdf:
    french: false
 ````
 to this:
 ````
 output:
- csasdown::techreport_pdf:
+ csasdowntex::techreport_pdf:
    french: true
 ````
 and render as usual. You can switch back and forth at any time to see the changes in the examples. If you develop your document with this in mind you will save yourself a lot of work when you receive the translations and it's time to publish the French version. Try it now, and once in awhile when you are developing your document.
@@ -38,7 +38,7 @@ d <- structure(list(
   names(d) <- c(en2fr("Year"),
                  paste0(en2fr("Value"), 1),
                  paste0(en2fr("Value"), 2))
-csasdown::csas_table(d,
+csasdowntex::csas_table(d,
   align = c("c", "r", "r"),
   caption = ifelse(fr(),
                    "French goes here",
@@ -54,7 +54,7 @@ d1 <- tribble(
 names(d1) <- c(en2fr("Year"),
                paste0(en2fr("Value"), 1),
                paste0(en2fr("Value"), 2))
-csasdown::csas_table(d1,
+csasdowntex::csas_table(d1,
   align = c("c", "r", "r"),
   caption = ifelse(fr(),
                    "French goes here",
@@ -142,7 +142,7 @@ widelong <- matrix(round(rnorm(length(yrs) * length(ages), 20), 4),
   dimnames = list(year = yrs, age = ages))
 widelong_df <- data.frame(cbind(yrs, widelong))
 
-csasdown::csas_table(widelong_df,
+csasdowntex::csas_table(widelong_df,
   col.names = c("Year", as.character(ages)),
   caption = "A long and wide table",
   format = "latex",

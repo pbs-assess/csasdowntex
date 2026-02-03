@@ -17,14 +17,14 @@ context: |
   \
   [See Guidance Document for examples of additional information to provide in the Context section.]
 output:
-  csasdown::fsar_word
+  csasdowntex::fsar_word
 link-citations: false
 bibliography: bib/refs.bib
 csl: csl/csas.csl
 # End of options to set
 title: ""
 knit: (function(input, ...) {
-       csasdown::render_sar()
+       csasdowntex::render_sar()
       })
 ---
 
@@ -49,7 +49,7 @@ library(dplyr)
 library(ggplot2)
 
 library(rosettafish)
-library(csasdown)
+library(csasdowntex)
 library(flextable) # recommended package for adding tables
 ```
 

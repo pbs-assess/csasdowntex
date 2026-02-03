@@ -14,7 +14,7 @@ set_french <- function(fn = get_index_filename(
                      "resdoc", # All types have the same index filename
                      "skeleton",
                      "_bookdown.yml",
-                     package = "csasdown")),
+                     package = "csasdowntex")),
          val = TRUE){
 
   set_yaml_tag("french:", val = ifelse(val, "true", "false"), fn = fn)

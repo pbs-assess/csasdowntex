@@ -26,12 +26,12 @@
 #' @family drafting
 #' @examples
 #' \dontrun{
-#' csasdown::draft("resdoc")
-#' csasdown::draft("resdoc-b")
-#' csasdown::draft("sr")
-#' csasdown::draft("techreport")
-#' csasdown::draft("manureport")
-#' csasdown::draft("fsar")
+#' csasdowntex::draft("resdoc")
+#' csasdowntex::draft("resdoc-b")
+#' csasdowntex::draft("sr")
+#' csasdowntex::draft("techreport")
+#' csasdowntex::draft("manureport")
+#' csasdowntex::draft("fsar")
 #' }
 #' @export
 draft <- function(type = c("resdoc", "resdoc-b", "sr", "techreport", "manureport", "fsar"),
@@ -55,7 +55,7 @@ draft <- function(type = c("resdoc", "resdoc-b", "sr", "techreport", "manureport
             csas_color("techreport"), ", ",
             csas_color("manureport"), ", or", csas_color("fsar"))
     }
-    package <- "csasdown"
+    package <- "csasdowntex"
   }else{
     package <- NULL
   }
@@ -64,7 +64,7 @@ draft <- function(type = c("resdoc", "resdoc-b", "sr", "techreport", "manureport
 
   if(!dir.exists(directory)){
     bail("The directory ", fn_color(directory), " does not exist so ",
-         "the csasdown project cannot be created there")
+         "the csasdowntex project cannot be created there")
   }
   wd <- getwd()
   on.exit(setwd(wd))
@@ -135,7 +135,7 @@ draft <- function(type = c("resdoc", "resdoc-b", "sr", "techreport", "manureport
     check_notify("Successfully drafted a new ", csas_color(type),
                  " project in ", fn_color(directory), "\n")
     notify("To render it into a document, run ",
-           csas_color("csasdown::render()"))
+           csas_color("csasdowntex::render()"))
     notify("Change render options in the file ",
            fn_color(fn))
   }

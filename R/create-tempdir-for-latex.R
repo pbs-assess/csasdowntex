@@ -1,5 +1,5 @@
 #' Creates a temporary directory for compiling the latex file with latex
-#' commands for a csasdown type
+#' commands for a csasdowntex type
 #'
 #' @details
 #' The compiled tex file will be copied from either the root directory or
@@ -8,7 +8,7 @@
 #' `knitr-cache-word` will be copied recursively into the temporary directory,
 #' preserving the directory structure necessary for the build.
 #'
-#' @param type The csasdown document type. See [draft()]
+#' @param type The csasdowntex document type. See [draft()]
 #' @param where Where to look for the `.tex` file. If 'r', look in root
 #' directory, if 'b', look in the `_book` subdirectory. Any other value will
 #' cause an error

@@ -5,7 +5,7 @@ unlink(testing_path, recursive = TRUE, force = TRUE)
 dir.create(testing_path, showWarnings = FALSE)
 setwd(testing_path)
 suppressMessages(draft(
-  system.file("rmarkdown", "templates", "techreport", package = "csasdown"),
+  system.file("rmarkdown", "templates", "techreport", package = "csasdowntex"),
   create_dir = FALSE,
   edit = FALSE
 ))

@@ -2,11 +2,11 @@
 % Please edit documentation in R/inject-bilingual-code.R
 \name{inject_bilingual_code}
 \alias{inject_bilingual_code}
-\title{Inject code that make bilingual features in a csasdown document possible}
+\title{Inject code that make bilingual features in a csasdowntex document possible}
 \usage{
 inject_bilingual_code(
   fn = get_index_filename(system.file("rmarkdown", "templates", "resdoc", "skeleton",
-    "_bookdown.yml", package = "csasdown")),
+    "_bookdown.yml", package = "csasdowntex")),
   doc_type,
   verbose = FALSE
 )
@@ -25,7 +25,7 @@ Lines for the file \code{fn}, but with the code injected in the right
 place
 }
 \description{
-Inject code that make bilingual features in a csasdown document possible.
+Inject code that make bilingual features in a csasdowntex document possible.
 The main goal here is to hide this from authors as it is complex knitr
 hook code combined with some of the YAML variable extraction code and if
 modified, will crash the resdoc build process.

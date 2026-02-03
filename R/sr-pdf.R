@@ -24,7 +24,7 @@ sr_pdf <- function(latex_engine = "pdflatex",
   }
 
   if((!highlight %in% themes) && !file.exists(here(highlight))){
-    bail("in YAML, ", tag_color("csasdown:sr_pdf: highlight"),
+    bail("in YAML, ", tag_color("csasdowntex:sr_pdf: highlight"),
          " must be one of ",
          csas_color(paste(themes, collapse = ", ")),
          "\nor a filename for a custom latex theme file.",
@@ -33,9 +33,9 @@ sr_pdf <- function(latex_engine = "pdflatex",
   }
 
   if (fr()) {
-    file <- system.file("csas-tex", "sr-french.tex", package = "csasdown")
+    file <- system.file("csas-tex", "sr-french.tex", package = "csasdowntex")
   } else {
-    file <- system.file("csas-tex", "sr.tex", package = "csasdown")
+    file <- system.file("csas-tex", "sr.tex", package = "csasdowntex")
   }
 
   base <- pdf_book(

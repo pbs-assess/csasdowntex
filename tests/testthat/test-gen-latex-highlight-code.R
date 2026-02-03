@@ -8,11 +8,11 @@ test_that("gen_latex_highlight_code() works", {
   all_themes = c("pygments", "tango", "espresso", "zenburn",
                  "kate", "monochrome", "breezedark", "haddock")
   json_fns <- system.file(file.path("themes", paste0(all_themes, ".json")),
-                                    package = "csasdown",
+                                    package = "csasdowntex",
                           mustWork = TRUE)
 
   latex_fns <- system.file(file.path("themes", paste0(all_themes, ".latex")),
-                           package = "csasdown",
+                           package = "csasdowntex",
                            mustWork = TRUE)
 
   json_lst <- purrr::map(json_fns, ~{readLines(.x)})

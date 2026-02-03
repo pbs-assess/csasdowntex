@@ -9,6 +9,6 @@ remotes::install_github("yihui/knitr")
 remotes::install_github("yihui/xaringan")
 remotes::install_github("gadenbuie/xaringanthemer")
 
-# Install csasdown and dependencies
-remotes::install_github("pbs-assess/csasdown")
+# Install csasdowntex and dependencies
+remotes::install_github("pbs-assess/csasdowntex")
 remotes::install_github("pbs-assess/rosettafish")

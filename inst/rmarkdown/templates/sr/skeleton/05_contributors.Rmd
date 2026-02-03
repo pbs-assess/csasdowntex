@@ -13,7 +13,7 @@ contributors <- tibble::tribble(
 ```
 
 ```{r, results='asis'}
-csasdown::csas_table(contributors)
+csasdowntex::csas_table(contributors)
 ```
 
 <!-- Decrease the table index by one to account for the contributors table: -->

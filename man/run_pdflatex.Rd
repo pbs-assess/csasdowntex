@@ -2,7 +2,7 @@
 % Please edit documentation in R/run-pdflatex.R
 \name{run_pdflatex}
 \alias{run_pdflatex}
-\title{Run latexmk/pdflatex on a csasdown report}
+\title{Run latexmk/pdflatex on a csasdowntex report}
 \usage{
 run_pdflatex(extra_pdflatex = 1, ...)
 }
@@ -15,12 +15,12 @@ run_pdflatex(extra_pdflatex = 1, ...)
 The PDF in the \verb{_book} folder should be updated.
 }
 \description{
-Run latexmk/pdflatex on a csasdown report with extra pdflatex runs.
+Run latexmk/pdflatex on a csasdowntex report with extra pdflatex runs.
 }
 \details{
 This can be useful in edge cases where \code{\link[tinytex:latexmk]{tinytex::latexmk()}} doesn't
 run enough times on its own.
-For example \url{https://github.com/pbs-assess/csasdown/issues/151}.
+For example \url{https://github.com/pbs-assess/csasdowntex/issues/151}.
 }
 \examples{
 \dontrun{

@@ -18,7 +18,7 @@ set_language_option <- function(fn = get_index_filename(
                      "resdoc", # All types have the same index filename
                      "skeleton",
                      "_bookdown.yml",
-                     package = "csasdown")),
+                     package = "csasdowntex")),
          verbose = FALSE){
 
   if(verbose){

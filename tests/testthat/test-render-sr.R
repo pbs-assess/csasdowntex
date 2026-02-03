@@ -3,7 +3,7 @@ unlink(testing_path, recursive = TRUE, force = TRUE)
 dir.create(testing_path, showWarnings = FALSE)
 setwd(testing_path)
 suppressMessages(draft(
-  system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+  system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
   create_dir = FALSE,
   edit = FALSE
 ))
@@ -104,7 +104,7 @@ test_that("render with no Rmd input", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))

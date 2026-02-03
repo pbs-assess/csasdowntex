@@ -8,7 +8,7 @@ test_that("fix_envs() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -34,7 +34,7 @@ test_that("fix_envs() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -51,8 +51,8 @@ test_that("fix_envs() works", {
   expect_true(file.exists("_book/resdoc-english.tex"))
 
   tex <- readLines("_book/resdoc-english.tex")
-  abs_beg <- grep("begin_abstract_csasdown", tex)
-  abs_end <- grep("end_abstract_csasdown", tex)
+  abs_beg <- grep("begin_abstract_csasdowntex", tex)
+  abs_end <- grep("end_abstract_csasdowntex", tex)
   expect_identical(abs_beg, integer(0))
   expect_identical(abs_end, integer(0))
 
@@ -63,7 +63,7 @@ test_that("fix_envs() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+    system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -83,7 +83,7 @@ test_that("fix_envs() works", {
   # dir.create(testing_path, showWarnings = FALSE)
   # setwd(testing_path)
   # suppressMessages(draft(
-  #   system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+  #   system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
   #   create_dir = FALSE,
   #   edit = FALSE
   # ))
@@ -106,7 +106,7 @@ test_that("fix_envs() works", {
   dir.create(testing_path, showWarnings = FALSE)
   setwd(testing_path)
   suppressMessages(draft(
-    system.file("rmarkdown", "templates", "resdoc", package = "csasdown"),
+    system.file("rmarkdown", "templates", "resdoc", package = "csasdowntex"),
     create_dir = FALSE,
     edit = FALSE
   ))
@@ -126,7 +126,7 @@ test_that("fix_envs() works", {
   # dir.create(testing_path, showWarnings = FALSE)
   # setwd(testing_path)
   # suppressMessages(draft(
-  #   system.file("rmarkdown", "templates", "sr", package = "csasdown"),
+  #   system.file("rmarkdown", "templates", "sr", package = "csasdowntex"),
   #   create_dir = FALSE,
   #   edit = FALSE
   # ))

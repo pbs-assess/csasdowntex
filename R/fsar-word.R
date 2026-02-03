@@ -54,7 +54,7 @@ fsar_word <- function(...) {
                                      pandoc_args = "--no-highlight",
                                      reference_docx = system.file("csas-docx",
                                                                   file,
-                                                                  package = "csasdown")
+                                                                  package = "csasdowntex")
 
   )
 
@@ -213,7 +213,7 @@ render_sar <- function(config_file = "_bookdown.yml", ...) {
   doc <- officer::cursor_reach(doc, keyword = "MOBIUS") |>
     officer::body_remove() |>
     officer::cursor_backward() |>
-    officer::body_add_docx(src = system.file("graphics", "mobius_loop.docx", package = "csasdown"))
+    officer::body_add_docx(src = system.file("graphics", "mobius_loop.docx", package = "csasdowntex"))
 
   print(doc, target = "_book/fsar.docx")
 

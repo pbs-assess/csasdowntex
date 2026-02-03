@@ -45,7 +45,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(csasdown)
+#' library(csasdowntex)
 #' chunk <- c("  Parameter   Value", "---------- -----------",
 #'            "     x          1.0", "     y          2.2")
 #' tmp <- conv_type_2_table_lines(chunk)

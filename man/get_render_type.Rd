@@ -7,7 +7,7 @@ the index file}
 \usage{
 get_render_type(
   fn = get_index_filename(system.file("rmarkdown", "templates", "resdoc", "skeleton",
-    "_bookdown.yml", package = "csasdown")),
+    "_bookdown.yml", package = "csasdowntex")),
   verbose = FALSE
 )
 }
@@ -27,8 +27,8 @@ the index file
 }
 \details{
 Will overwrite the line in the file \code{fn} that contains
-\code{csasdown::render_type} or \code{csasdown:::render_type} with
-\code{csasdown:::render_type}. This is for backwards compatibility with versions
+\code{csasdowntex::render_type} or \code{csasdowntex:::render_type} with
+\code{csasdowntex:::render_type}. This is for backwards compatibility with versions
 where those functions were exported.
 }
 \keyword{internal}

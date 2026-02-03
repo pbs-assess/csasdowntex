@@ -8,7 +8,7 @@ rename_output_files(index_fn, verbose = FALSE)
 }
 \arguments{
 \item{index_fn}{The working copy of this file:
-\code{csasdown/inst/rmarkdown/templates/resdoc-b/skeleton/skeleton.Rmd}
+\code{csasdowntex/inst/rmarkdown/templates/resdoc-b/skeleton/skeleton.Rmd}
 which is \code{index.Rmd} by default}
 }
 \value{

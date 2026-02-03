@@ -86,7 +86,7 @@ Filename color for messages throughout the project
 
 YAML tag color for messages throughout the project
 
-csasdown items (render type, format, chunk names, etc) color
+csasdowntex items (render type, format, chunk names, etc) color
 for messages throughout the project
 
 modified tag color for messages throughout the project

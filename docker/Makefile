@@ -1,4 +1,4 @@
-NAME   := cgrandin/csasdown
+NAME   := cgrandin/csasdowntex
 TAG    := $$(git log -1 --pretty=%h)
 IMG    := ${NAME}:${TAG}
 LATEST := ${NAME}:latest

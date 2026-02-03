@@ -1,11 +1,11 @@
-#' Run latexmk/pdflatex on a csasdown report
+#' Run latexmk/pdflatex on a csasdowntex report
 #'
-#' Run latexmk/pdflatex on a csasdown report with extra pdflatex runs.
+#' Run latexmk/pdflatex on a csasdowntex report with extra pdflatex runs.
 #'
 #' @details
 #' This can be useful in edge cases where [tinytex::latexmk()] doesn't
 #' run enough times on its own.
-#' For example <https://github.com/pbs-assess/csasdown/issues/151>.
+#' For example <https://github.com/pbs-assess/csasdowntex/issues/151>.
 #'
 #' @param extra_pdflatex Extra number of times to run [tinytex::pdflatex()].
 #' @param ... Arguments to pass to [tinytex::latexmk()].

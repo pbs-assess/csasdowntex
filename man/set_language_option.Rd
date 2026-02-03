@@ -7,7 +7,7 @@ accordingly in the current workspace}
 \usage{
 set_language_option(
   fn = get_index_filename(system.file("rmarkdown", "templates", "resdoc", "skeleton",
-    "_bookdown.yml", package = "csasdown")),
+    "_bookdown.yml", package = "csasdowntex")),
   verbose = FALSE
 )
 }

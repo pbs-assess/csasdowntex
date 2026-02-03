@@ -11,9 +11,9 @@
 #'  "tango", "pygments", "kate", "monochrome", "espresso",
 #'  "zenburn", and "haddock". If not in this list of styles, the directory in
 #'  which the build process was called will be searched for the given theme
-#'  file. You can copy one from the csasdown library install on your machine
+#'  file. You can copy one from the csasdowntex library install on your machine
 #'  and modify as necessary. Find them by looking here:
-#'  file.path(.libPaths(), "csasdown", "themes")
+#'  file.path(.libPaths(), "csasdowntex", "themes")
 #'  Pass `NULL` to prevent syntax highlighting (uses 'monochrome' theme) for
 #'  slightly different text format but no highlighting
 #' @param latex_engine LaTeX engine to render with. 'pdflatex' or 'xelatex'
@@ -69,7 +69,7 @@ resdoc_pdf <- function(toc = TRUE,
   }
 
   if((!highlight %in% themes) && !file.exists(here(highlight))){
-    bail("in YAML, ", tag_color("csasdown:resdoc_pdf: highlight:"),
+    bail("in YAML, ", tag_color("csasdowntex:resdoc_pdf: highlight:"),
          " must be one of ",
          csas_color(paste(themes, collapse = ", ")),
          "\nor a filename for a custom latex theme file.",
@@ -78,9 +78,9 @@ resdoc_pdf <- function(toc = TRUE,
   }
 
   if (fr()) {
-    file <- system.file("csas-tex", "res-doc-french.tex", package = "csasdown")
+    file <- system.file("csas-tex", "res-doc-french.tex", package = "csasdowntex")
   } else {
-    file <- system.file("csas-tex", "res-doc.tex", package = "csasdown")
+    file <- system.file("csas-tex", "res-doc.tex", package = "csasdowntex")
   }
 
   base <- pdf_book(
