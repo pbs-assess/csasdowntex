@@ -93,7 +93,7 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
     legend.text <- c("Capture-tonne", "TAC-tonne")
   }
 
-  plot(ts.value ~ year, data = tl.df, type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl)
+  plot(ts.value ~ year, data = tl.df, type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl, yaxs="i")
   ## Catch
   lines(ts.value ~ year, data = tl.df[which(tl.df$ts.name == "Catch-MT"), ], type = "l", lwd = 2)
   ## TAC
@@ -130,7 +130,7 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
     legend.text <- c("BSR-tonne", "confiance à 95%", "NRS-tonne", "NRL-tonne")
   }
 
-  plot(ts.value ~ year, data = tr.df, type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl)
+  plot(ts.value ~ year, data = tr.df, type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl, yaxs="i")
   ## SSB
   ## lower and upper
   tr.df.low <- tr.df[which(tr.df$ts.name == "SSBlow-MT"), ]
@@ -177,7 +177,7 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
   }
 
   idx <- which(in.df$panel.category == "Fishing" & in.df$ts.name == "F-1/yr")
-  plot(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "F-1/yr"), ], type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl)
+  plot(ts.value ~ year, data = bl.df[which(bl.df$ts.name == "F-1/yr"), ], type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl, yaxs="i")
 
   bl.df.low <- bl.df[which(bl.df$ts.name == "Flow-1/yr"), ]
   bl.df.high <- bl.df[which(bl.df$ts.name == "Fhigh-1/yr"), ]
@@ -224,7 +224,7 @@ fsar_plot_base <- function(in.df, language = c("English","French")) {
     y.lab <- "Recrutement"
     legend.text <- c("R-E06", "confiance à 95%")
   }
-  plot(ts.value ~ year, data = br.df[which(br.df$ts.name == "R-E06"), ], type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl)
+  plot(ts.value ~ year, data = br.df[which(br.df$ts.name == "R-E06"), ], type = "n", axes = FALSE, xlab = "", ylab = "", ylim = yl, yaxs="i")
   # lines(ts.value ~ year, data = br.df[which(br.df$ts.name == "Rlow-E06"), ], type = "l", lty = 2)
   # lines(ts.value ~ year, data = br.df[which(br.df$ts.name == "Rhigh-E06"), ], type = "l", lty = 2)
 
