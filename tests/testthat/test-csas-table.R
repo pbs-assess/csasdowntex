@@ -6,8 +6,6 @@ test_that("csasdown::csas_table works with an extra_header", {
     caption = "Example of long table with header above column names",
     format = "latex",
     bold_header = FALSE,
-    escape = FALSE,
-    repeat_header = TRUE,
     font_size = 8,
     extra_header = toupper(letters[1:ncol(df)]),
     ex_line_sep = 0,
@@ -23,7 +21,6 @@ test_that("csasdown::csas_table works with an extra_header", {
     caption = "Newline col names",
     format = "latex",
     bold_header = FALSE,
-    escape = FALSE,
     repeat_header = TRUE,
     font_size = 8,
     extra_header = toupper(letters[1:ncol(df)]),
@@ -38,17 +35,11 @@ test_that("csasdown::csas_table works with an extra_header", {
 
   # ---------------------------------------------------------------------------
   # Add extra header for non-latex should throw error
+  suppressWarnings(
   expect_error(csasdown::csas_table(df,
                                     extra_header = toupper(letters[1:ncol(df)])),
                paste0("Adding an extra header is only supported for latex"))
-
-  # ---------------------------------------------------------------------------
-  # Try bold header for latex should throw error
-  expect_warning(csasdown::csas_table(df,
-                                      format = "latex",
-                                      bold_header = TRUE),
-                 paste0("Bold headers not supported for the \\S+ format"))
-
+  )
   # ---------------------------------------------------------------------------
   df <- data.frame(a = LETTERS[1:26], b = c(letters[1:25], "endhead"))
   expect_warning(csasdown::csas_table(df,

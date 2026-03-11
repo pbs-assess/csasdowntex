@@ -6,11 +6,11 @@ test_that("check_yaml() works", {
   csasdown::draft("sr", testing = TRUE, testing_affirm_ovr = TRUE)
 
   # ---------------------------------------------------------------------------
-  expect_message(csasdown::check_yaml("sr", verbose = TRUE),
+  expect_message(csasdown::check_yaml(type = "sr", verbose = TRUE),
                  "Your \\S+ file contains all necessary YAML options")
 
   # ---------------------------------------------------------------------------
-  expect_error(csasdown::check_yaml("badtype", verbose = TRUE),
+  expect_error(csasdown::check_yaml(type = "badtype", verbose = TRUE),
                "must be one of")
 
   # ---------------------------------------------------------------------------
@@ -20,20 +20,20 @@ test_that("check_yaml() works", {
   rmd <- rmd[-ind]
   writeLines(rmd, "index.Rmd")
   suppressMessages(
-    expect_error(csasdown::check_yaml("sr"),
+    expect_error(csasdown::check_yaml(type = "sr"),
                  "Your \\S+ file is missing the YAML tag")
   )
 
   # ---------------------------------------------------------------------------
   file.copy("x.Rmd", "index.Rmd", overwrite = TRUE)
   suppressMessages(
-    expect_error(csasdown::check_yaml("resdoc"),
+    expect_error(csasdown::check_yaml(type = "resdoc"),
                  paste0("Your \\S+ file is missing the YAML tag\\(s\\)"))
   )
 
   # ---------------------------------------------------------------------------
   suppressMessages(
-    expect_error(csasdown::check_yaml("techreport"),
+    expect_error(csasdown::check_yaml(type = "techreport"),
                  paste0("Your \\S+ file is missing the YAML tag\\(s\\):"))
   )
 
