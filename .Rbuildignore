@@ -18,3 +18,5 @@
 ^doc$
 ^Meta$
 ^CLAUDE.md$
+^\.positai$
+^\.claude$
