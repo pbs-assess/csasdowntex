@@ -1,7 +1,7 @@
 ---
 report_title: "[Publication Title]"
 report_title_short: "[Short Publication Title]"
-report_year: "2025"
+report_year: "2026"
 release_month: "May"
 report_number: "XXX"
 meeting_date: "May 9, 2025"

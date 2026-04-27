@@ -4,7 +4,7 @@ title: |
 french_title: |
   Insérez le titre ici ; le titre doit être exactement comme il apparaît sur la page de couverture, mais en majuscule (*Nom latin de l'espèce*).
 title_short: "Short title"
-year: 2025
+year: 2026
 month: Month
 french_month: Mois
 report_number: 999 # This *must* be numeric! E.g., not `nnn`.
