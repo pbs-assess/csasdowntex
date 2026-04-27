@@ -45,8 +45,7 @@ sr_pdf <- function(latex_engine = "pdflatex",
     latex_engine = latex_engine,
     ...
   )
-  tmp_hl <- grep("--highlight-style", base$pandoc$args)
-  base$pandoc$args <- base$pandoc$args[-c(tmp_hl[1], tmp_hl[1] + 1)]
+  base$pandoc$args <- remove_pandoc_highlight_arg(base$pandoc$args)
 
   if (!class(line_nums_mod) %in% c("integer", "numeric")) {
     bail(csas_color("line_nums_mod"), " must be a numeric or integer value.")

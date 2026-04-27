@@ -1,5 +1,9 @@
 # csasdowntex
 
+# 0.3.1
+
+Fix bug in PDF rendering with a new version of Pandoc. #312
+
 # 0.3.0
 
 * The original csasdown was renamed csasdowntex and a new package that focuses

@@ -250,6 +250,37 @@ is_rmd_table_line <- function(lines_lst){
   })
 }
 
+#' Remove Pandoc's syntax highlighting argument from an argument vector
+#'
+#' @keywords internal
+#'
+#' @param args A character vector of Pandoc arguments
+#'
+#' @return A character vector of Pandoc arguments with the syntax highlighting
+#' argument removed
+remove_pandoc_highlight_arg <- function(args) {
+  tmp_hl <- grep(
+    "^(--highlight-style|--syntax-highlighting)(=|$)",
+    args
+  )
+
+  if (!length(tmp_hl)) {
+    return(args)
+  }
+
+  rm <- tmp_hl[1]
+  next_arg <- rm + 1
+  has_value_arg <- !grepl("=", args[rm]) &&
+    next_arg <= length(args) &&
+    !grepl("^--", args[next_arg])
+
+  if (has_value_arg) {
+    rm <- c(rm, next_arg)
+  }
+
+  args[-rm]
+}
+
 #' Detect which columns are year columns based on the range and type
 #'
 #' @keywords internal
@@ -629,4 +660,3 @@ question <- function(...){
   message(question_color(paste(symbol$fancy_question_mark, msg)))
 }
 # nocov end
-
