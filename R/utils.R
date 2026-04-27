@@ -1,6 +1,7 @@
 #' Convert a hex string into a vector of three decimal values (RGB)
 #'
 #' @keywords internal
+#' @noRd
 #'
 #' @param hex The hex string of 6 or 8 digits (if alpha included). May of may
 #' not begin with  #
@@ -253,6 +254,7 @@ is_rmd_table_line <- function(lines_lst){
 #' Remove Pandoc's syntax highlighting argument from an argument vector
 #'
 #' @keywords internal
+#' @noRd
 #'
 #' @param args A character vector of Pandoc arguments
 #'
