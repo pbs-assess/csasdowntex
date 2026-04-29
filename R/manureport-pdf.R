@@ -44,8 +44,7 @@ manureport_pdf <- function(latex_engine = "pdflatex",
     latex_engine = latex_engine,
     ...
   )
-  tmp_hl <- grep("--highlight-style", base$pandoc$args)
-  base$pandoc$args <- base$pandoc$args[-c(tmp_hl[1], tmp_hl[1] + 1)]
+  base$pandoc$args <- remove_pandoc_highlight_arg(base$pandoc$args)
 
   cover_file_pdf <- if (fr()) "manu-report-cover-french.pdf" else "manu-report-cover.pdf"
   cover_file_docx <- if (fr()) "manu-report-cover-french.docx" else "manu-report-cover.docx"
@@ -81,4 +80,3 @@ manureport_pdf <- function(latex_engine = "pdflatex",
   on.exit(options(bookdown.post.late = old_opt))
   base
 }
-
