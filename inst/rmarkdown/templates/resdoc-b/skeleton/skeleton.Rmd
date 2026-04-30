@@ -3,47 +3,23 @@ title: |
   "Title Here (*Latin Species Name*)"
 french_title: "Titre ici (*Nom latin de l'espèce*)"
 author: |
-  First M. Last^1^,
-  Alex B. Smith^2^,
-  Suzanne A. Tremblay^3^, and
-  Jean C. Deschoses^4^
-author_list: "Last, F.M., Smith, A.B., Tremblay, S.A., and Deschoses, J.C."
+  First. M. Last^1^ and
+  Alex B. Smith^2^
+author_list: "Last, F.M. and Smith, A.B."
 address: |
   ^1^Pacific Biological Station\
-     Fisheries and Oceans Canada\
-     3190 Hammond Bay Road\
+     Fisheries and Oceans Canada, 3190 Hammond Bay Road\
      Nanaimo, British Columbia, V9T 6N7, Canada\
-  \
-  ^2^Gulf Fisheries Centre\
-     Fisheries and Oceans Canada\
-     343 Université Avenue\
-     Moncton, New Brunswick, E1C 9B6, Canada\
-  \
-  ^3^Northwest Atlantic Fisheries Centre\
-     Fisheries and Oceans Canada\
-     80 E. White Hills Rd., P.O. Box 5667\
-     St. John's, Newfoundland and Labrador, A1C 5X1\
-  \
-  ^4^Far, far away\
+  \smallskip
+  ^2^Far, far away\
      Another Galaxy
 # Must have french_address: if producing a French document or no address will appear
 french_address: |
   ^1^Station biologique du Pacifique\
-     Pêches et Océans Canada\
-     3190 Hammond Bay Road\
+     Pêches et Océans Canada, 3190 Hammond Bay Road\
      Nanaimo, Colombie-Britannique, V9T 6N7, Canada\
-  \
-  ^2^Centre des Pêches du Golfe\
-     Pêches et Océans Canada\
-     343 avenue Université\
-     Moncton, Nouveau Brunswick, E1C 9B6, Canada\
-  \
-  ^3^Centre des pêches de l'Atlantique nord-ouest\
-     Pêches et Océans Canada\
-     80 rue E. White Hills, Case postale 5667\
-     St. John's, Terre-Neuve et Labrador, A1C 5X1\
-  \
-  ^4^Loin, très loin\
+  \smallskip
+  ^2^Loin, très loin\
      Une autre galaxie
 month: "Month"
 french_month: "Mois"
