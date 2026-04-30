@@ -23,7 +23,7 @@ french_address: |
      Une autre galaxie
 month: "Month"
 french_month: "Mois"
-year: 2022
+year: 2026
 report_number: nnn
 region: "Pacific Region"
 french_region: "Région du Pacifique"

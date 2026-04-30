@@ -37,7 +37,7 @@ Redefinition of \code{\link[=cat]{cat()}} with separator set to empty string
 \code{cat} is useful for producing output in user-defined functions.
   It converts its arguments to character vectors, concatenates
   them to a single character vector, appends the given \code{sep = }
-  string(s) to each element and then outputs them.
+  string(s) to each element, except the last, and then outputs them.
 
   No line feeds (aka \dQuote{newline}s) are output unless explicitly
   requested by \samp{"\\n"}
@@ -66,9 +66,9 @@ Redefinition of \code{\link[=cat]{cat()}} with separator set to empty string
   same field width for all elements.
 }
 \note{
-If any element of \code{sep} contains a newline character, it is
-  treated as a vector of terminators rather than separators, an element
-  being output after every vector element \emph{and} a newline after the
+If any element of \code{sep} contains a newline character,
+  an element is
+  output after every vector element, and only a newline after the
   last.  Entries are recycled as needed.
 }
 \examples{
@@ -80,9 +80,10 @@ cat("iteration = ", iter <- iter + 1, "\n")
 cat(paste(letters, 100* 1:26), fill = TRUE, labels = paste0("{", 1:10, "}:"))
 }
 \references{
-Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-  \emph{The New S Language}.
-  Wadsworth & Brooks/Cole.
+{\if{html}{\out{<span id="reference+cat.Rd+R+3ABecker+2BChambers+2BWilks+3A1988"></span>}}Becker RA, Chambers JM, Wilks AR (1988).
+\emph{The New S Language}.
+Chapman and Hall/CRC, London.
+ISBN 053409192X.}
 }
 \seealso{
 \code{\link[base]{print}}, \code{\link[base]{format}}, and \code{\link[base]{paste}}
