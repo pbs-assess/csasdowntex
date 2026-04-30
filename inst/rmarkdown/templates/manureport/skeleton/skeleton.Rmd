@@ -57,7 +57,7 @@ french_abstract: |
 # with `csas_table()` that cross page boundaries. If `false`, these will
 # both be absent from all tables. If it is missing or any other value than
 # `false`, it will be assumed to be `true`
-citation_french: "Last, F.M., Smith, A.B., Tremblay, S.A., et Deschoses, J.C. 2022. Titre ici (Nom d'espèce latin). Rapp. tech. can. sci. halieut. aquat. nnn : v + 18 p. https://doi.org/##.####/xxxxx"
+citation_french: "Last, F.M., Smith, A.B., Tremblay, S.A., et Deschoses, J.C. 2026. Titre ici (Nom d'espèce latin). Rapp. tech. can. sci. halieut. aquat. nnn : v + 18 p. https://doi.org/##.####/xxxxx"
 show_continued_text: true
 output:
  csasdowntex::manureport_pdf:
