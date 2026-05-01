@@ -18,7 +18,7 @@ test_that("get_render_type() and set_render_type() throw errors", {
   writeLines(rmd, "index.Rmd")
   rmd <- readLines("index.Rmd")
   ind <- grep("resdoc_pdf:", rmd)
-  expect_identical(ind, 50L)
+  expect_identical(ind, 68L)
   # set_render_type("index.Rmd", "asis")
   # rmd <- readLines("index.Rmd")
   # ind <- grep("resdoc_pdf:", rmd)
