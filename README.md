@@ -13,7 +13,7 @@ csasdowntex is an R package for generating Canadian Science Advisory Secretariat
 
 ## ⚠️ Note as of November 2025
 
-**CSAS is no longer accepting PDF versions of Research Documents or Science Responses.** We are hoping that documents already finished as PDFs will be accepted, but we do not recommend starting a new report as a PDF. You can try .docx output with [csasdown](https://github.com/pbs-assess/csasdown). We aim for that version to be fully compliant with current CSAS formatting standards. Tech Reports can still be submitted as PDFs because they are not associated with CSAS.
+**CSAS is no longer accepting PDF versions of Research Documents or Science Responses.** We are hoping that documents already finished as PDFs will be accepted, but we do not recommend starting a new report as a PDF. You can try .docx output with [csasdown](https://github.com/pbs-assess/csasdown). We aim for that version to be fully compliant with current CSAS formatting standards. Technical Reports and Manuscript Reports can still be submitted as PDFs because they are not associated with CSAS.
 
 ## Issues
 
