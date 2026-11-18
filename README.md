@@ -7,13 +7,15 @@
 [![Coverage status](https://codecov.io/gh/pbs-assess/csasdowntex/branch/main/graph/badge.svg)](https://codecov.io/github/pbs-assess/csasdowntex?branch=main)
 <!-- badges: end -->
 
-csasdowntex is an R package for generating Canadian Science Advisory Secretariat (CSAS) documents in PDF or Word format using R Markdown and bookdown.
+csasdowntex ~is~was an R package for generating Canadian Science Advisory Secretariat (CSAS) documents in PDF or Word format using R Markdown and bookdown.
 
 **If you use csasdowntex to write a report, please let us know** so we can add it to the [list of publications](https://github.com/pbs-assess/csasdowntex/wiki/Publications-prepared-using-csasdowntex) known to have used the package. This helps us justify spending our work time on its development. You can post to the [discussion board](https://github.com/pbs-assess/csasdowntex/discussions) or send us a quick email (contact details [here](https://github.com/pbs-assess/csasdowntex/blob/c76731e8580bb12da9324e56ff5e56a8d4901aeb/DESCRIPTION#L5-L8)).
 
-## ⚠️ Note as of November 2025
+## ⚠️ Note as of November 2026 ⚠️ 
 
-**CSAS is no longer accepting PDF versions of Research Documents or Science Responses.** We are hoping that documents already finished as PDFs will be accepted, but we do not recommend starting a new report as a PDF. You can try .docx output with [csasdown](https://github.com/pbs-assess/csasdown). We aim for that version to be fully compliant with current CSAS formatting standards. Technical Reports and Manuscript Reports can still be submitted as PDFs because they are not associated with CSAS.
+As of November 2025, **CSAS has no longer accepted PDF versions of Research Documents or Science Responses.** You can try .docx output with [csasdown](https://github.com/pbs-assess/csasdown). We aim for that version to be fully compliant with current CSAS formatting standards.
+
+As of November 2026, the **DFO National Policy for Science Publications no longer permits submission of PDFs for Technical Reports** either. Again, instead use [csasdown](https://github.com/pbs-assess/csasdown) for .docx output.
 
 ## Issues
 
