@@ -1,5 +1,13 @@
 # csasdowntex
 
+# 0.3.3
+
+* Fix `resdoc_word2()` error with recent versions of officer: the plot
+  paragraph style referenced a `"Figure"` style that does not exist in the
+  reference .docx; now uses `"Normal"`.
+* Add missing trailing newlines to template .Rmd files, which caused
+  "incomplete final line" warnings when reading `index.Rmd`.
+
 # 0.3.2
 
 * URLs in Tech Reports and Manuscript Reports (e.g., DOI links) are now set in

@@ -60,7 +60,7 @@ resdoc_word2 <- function(...) {
       )
     ),
     plots = list(
-      style = "Figure",
+      style = "Normal",
       align = "center",
       caption = list(
         style = "Caption - Figure",
