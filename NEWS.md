@@ -1,5 +1,10 @@
 # csasdowntex
 
+# 0.3.2
+
+* URLs in Tech Reports and Manuscript Reports (e.g., DOI links) are now set in
+  the surrounding text font rather than a typewriter font.
+
 # 0.3.1
 
 Fix bug in PDF rendering with a new version of Pandoc. #312
