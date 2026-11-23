@@ -16,6 +16,7 @@ package and Ben Marwick's huskydown package.
 
 Authors:
 \itemize{
+  \item Sean C. Anderson \email{sean.anderson@dfo-mpo.gc.ca}
   \item Chris Grandin
   \item Andrew M. Edwards
   \item Matthew H. Grinnell

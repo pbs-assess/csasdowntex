@@ -30,13 +30,13 @@ lines. The other functions (\code{\link[=conv_list_lines]{conv_list_lines()}}, \
 pieces of rmarkdown code.
 }
 \seealso{
-Other rmd_conversion_functions: 
-\code{\link{conv_header_lines}()},
-\code{\link{conv_list_lines}()},
-\code{\link{conv_paragraph_lines}()},
-\code{\link{conv_type_1_table_lines}()},
-\code{\link{conv_type_2_table_lines}()},
-\code{\link{convert_newlines_rmd}()}
+Other rmd_conversion_functions:
+\code{\link[=conv_header_lines]{conv_header_lines()}},
+\code{\link[=conv_list_lines]{conv_list_lines()}},
+\code{\link[=conv_paragraph_lines]{conv_paragraph_lines()}},
+\code{\link[=conv_type_1_table_lines]{conv_type_1_table_lines()}},
+\code{\link[=conv_type_2_table_lines]{conv_type_2_table_lines()}},
+\code{\link[=convert_newlines_rmd]{convert_newlines_rmd()}}
 }
 \concept{rmd_conversion_functions}
 \keyword{internal}

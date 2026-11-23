@@ -17,8 +17,8 @@ Creates a blank Rstudio project file in the current directory with the
 same name as the current directory.
 }
 \seealso{
-Other drafting: 
-\code{\link{draft}()}
+Other drafting:
+\code{\link[=draft]{draft()}}
 }
 \concept{drafting}
 \keyword{internal}

@@ -18,9 +18,9 @@ The modified knitr chunk header string
 Remove an option and its value from a knitr chunk header
 }
 \seealso{
-Other knitr-chunk-header: 
-\code{\link{chunk_header_add}()},
-\code{\link{chunk_header_contains}()}
+Other knitr-chunk-header:
+\code{\link[=chunk_header_add]{chunk_header_add()}},
+\code{\link[=chunk_header_contains]{chunk_header_contains()}}
 }
 \concept{knitr-chunk-header}
 \keyword{internal}

@@ -204,7 +204,7 @@
 % \tikzstyle{line} = [draw, -{Latex[length=2mm, width=1.5mm]}, thick]
 
 % Ensure auto-generated sections are uppercase
-\addto\captionsenglish{\renewcommand{\contentsname}{CONTENTS}}
+\addto\captionsenglish{\renewcommand{\contentsname}{TABLE OF CONTENTS}}
 \addto\captionsenglish{\renewcommand{\refname}{REFERENCES}}
 \addto\captionsenglish{\renewcommand{\indexname}{INDEX}}
 \addto\captionsenglish{\renewcommand{\appendixname}{APPENDIX}}
@@ -365,7 +365,7 @@ Fisheries and Aquatic Sciences \trReportNum{}
 \vfill
 \trYear{}
 \vfill
-\textnormal{\MakeTextUppercase{\trTitle{}}}
+\textnormal{\trTitle{}}
 \vfill
 by
 \vfill
@@ -379,7 +379,8 @@ by
 \vspace*{\fill}
 \begin{center}
 \copyright{} His Majesty the King in Right of Canada, as represented by the Minister \\of the Department of Fisheries and Oceans, \trYear{}\\
-Cat. No. Fs97-6/\trReportNum{}E-PDF \quad ISBN \trISBN{} \quad ISSN 1488-5379\\
+This work is licensed under the \link{https://open.canada.ca/en/open-government-licence-canada}{Open Government Licence}\\
+Cat. No. Fs 97-6/\trReportNum{}E-PDF \quad ISBN \trISBN{} \quad ISSN 1488-5379\\
 \link{https://doi.org/\trDOI}{https://doi.org/\trDOI}
 \end{center}
 \par
@@ -395,6 +396,7 @@ Correct citation for this publication:
 \pdfbookmark[1]{\contentsname}{toc}
 
 % Table of contents page
+\addcontentsline{toc}{section}{TABLE OF CONTENTS}
 \tableofcontents\clearpage
 
 % Lists of figures and tables (optional)

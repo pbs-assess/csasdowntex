@@ -27,9 +27,9 @@ allow for any amount. User can provide any amount or none in \code{option}
 and it will match any amount or none in the \code{header}.
 }
 \seealso{
-Other knitr-chunk-header: 
-\code{\link{chunk_header_add}()},
-\code{\link{chunk_header_remove}()}
+Other knitr-chunk-header:
+\code{\link[=chunk_header_add]{chunk_header_add()}},
+\code{\link[=chunk_header_remove]{chunk_header_remove()}}
 }
 \concept{knitr-chunk-header}
 \keyword{internal}

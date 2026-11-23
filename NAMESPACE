@@ -30,53 +30,71 @@ export(theme_csas)
 export(tr)
 import(bookdown)
 importFrom(cli,symbol)
-importFrom(crayon,combine_styles)
-importFrom(crayon,cyan)
-importFrom(crayon,make_style)
-importFrom(crayon,red)
-importFrom(dplyr,group_by)
-importFrom(dplyr,mutate)
-importFrom(dplyr,summarize)
-importFrom(ggplot2,element_blank)
-importFrom(ggplot2,element_rect)
-importFrom(ggplot2,element_text)
-importFrom(ggplot2,rel)
-importFrom(ggplot2,theme)
-importFrom(ggplot2,theme_light)
+importFrom(crayon,
+  combine_styles,
+  cyan,
+  make_style,
+  red
+)
+importFrom(dplyr,
+  group_by,
+  mutate,
+  summarize
+)
+importFrom(ggplot2,
+  element_blank,
+  element_rect,
+  element_text,
+  rel,
+  theme,
+  theme_light
+)
 importFrom(glue,glue)
 importFrom(grDevices,col2rgb)
 importFrom(grid,unit)
 importFrom(here,here)
-importFrom(kableExtra,kable_styling)
-importFrom(kableExtra,landscape)
-importFrom(kableExtra,linebreak)
-importFrom(kableExtra,magic_mirror)
-importFrom(kableExtra,row_spec)
-importFrom(knitr,all_patterns)
-importFrom(knitr,kable)
-importFrom(officer,body_add_docx)
-importFrom(officer,body_add_toc)
-importFrom(officer,cursor_reach)
-importFrom(officer,read_docx)
-importFrom(purrr,imap)
-importFrom(purrr,imap_chr)
-importFrom(purrr,map)
-importFrom(purrr,map2)
-importFrom(purrr,map2_chr)
-importFrom(purrr,map2_lgl)
-importFrom(purrr,map_chr)
-importFrom(purrr,map_dbl)
-importFrom(purrr,map_df)
-importFrom(purrr,map_lgl)
-importFrom(purrr,prepend)
-importFrom(purrr,pwalk)
-importFrom(purrr,walk2)
-importFrom(rlang,`%||%`)
+importFrom(kableExtra,
+  kable_styling,
+  landscape,
+  linebreak,
+  magic_mirror,
+  row_spec
+)
+importFrom(knitr,
+  all_patterns,
+  kable
+)
+importFrom(officer,
+  body_add_docx,
+  body_add_toc,
+  cursor_reach,
+  read_docx
+)
+importFrom(purrr,
+  imap,
+  imap_chr,
+  map,
+  map2,
+  map2_chr,
+  map2_lgl,
+  map_chr,
+  map_dbl,
+  map_df,
+  map_lgl,
+  prepend,
+  pwalk,
+  walk2
+)
+importFrom(rlang,"%||%")
 importFrom(rmarkdown,yaml_front_matter)
-importFrom(stringr,str_count)
-importFrom(stringr,str_extract_all)
-importFrom(stringr,str_split)
+importFrom(stringr,
+  str_count,
+  str_extract_all,
+  str_split
+)
 importFrom(tibble,tibble)
-importFrom(tinytex,latexmk)
-importFrom(tinytex,pdflatex)
+importFrom(tinytex,
+  latexmk,
+  pdflatex
+)
 importFrom(utils,tail)

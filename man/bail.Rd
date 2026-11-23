@@ -13,6 +13,6 @@ bail(...)
 Abort code execution
 }
 \details{
-Uses \link[cli:symbol]{cli::symbol} and \code{\link[crayon:crayon]{crayon::red()}}
+Uses \link[cli:symbol]{cli::symbol} and \code{\link[crayon:red]{crayon::red()}}
 }
 \keyword{internal}

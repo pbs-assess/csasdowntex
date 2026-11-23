@@ -13,6 +13,6 @@ check_notify(...)
 Issue a check-mark notification
 }
 \details{
-Uses \link[cli:symbol]{cli::symbol} and \code{\link[crayon:crayon]{crayon::green()}}
+Uses \link[cli:symbol]{cli::symbol} and \code{\link[crayon:green]{crayon::green()}}
 }
 \keyword{internal}

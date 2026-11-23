@@ -41,9 +41,9 @@ If \code{option} already exists in \code{header} and \code{ovr} is \code{TRUE}, 
 overwritten with the new \code{option} value
 }
 \seealso{
-Other knitr-chunk-header: 
-\code{\link{chunk_header_contains}()},
-\code{\link{chunk_header_remove}()}
+Other knitr-chunk-header:
+\code{\link[=chunk_header_contains]{chunk_header_contains()}},
+\code{\link[=chunk_header_remove]{chunk_header_remove()}}
 }
 \concept{knitr-chunk-header}
 \keyword{internal}

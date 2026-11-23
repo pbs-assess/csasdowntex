@@ -13,6 +13,6 @@ alert(...)
 Issue a warning
 }
 \details{
-Uses \link[cli:symbol]{cli::symbol} and \code{\link[crayon:crayon]{crayon::yellow()}}
+Uses \link[cli:symbol]{cli::symbol} and \code{\link[crayon:yellow]{crayon::yellow()}}
 }
 \keyword{internal}

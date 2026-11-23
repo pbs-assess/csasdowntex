@@ -4,6 +4,17 @@
 
 Fix bug in PDF rendering with a new version of Pandoc. #312
 
+Tech Report and Manuscript Report formatting updates from DFO publications:
+
+* Title page title is no longer forced to uppercase so it matches the cover
+  page exactly.
+* Add Open Government Licence statement to the colophon.
+* Add space in catalogue number (`Fs 97-...`).
+* Rename "CONTENTS" to "TABLE OF CONTENTS" and list it in the table of
+  contents.
+* Fix "Sa Majesté la Roi" -> "le Roi" in French colophons.
+* Skeleton `author_list` examples no longer use "and" between authors.
+
 # 0.3.0
 
 * The original csasdown was renamed csasdowntex and a new package that focuses

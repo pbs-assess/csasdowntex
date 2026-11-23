@@ -9,7 +9,7 @@ tr(x, ...)
 \arguments{
 \item{x}{A character vector to translate}
 
-\item{...}{Arguments to pass to \code{\link[rosettafish:trans]{rosettafish::en2fr()}}}
+\item{...}{Arguments to pass to \code{\link[rosettafish:en2fr]{rosettafish::en2fr()}}}
 }
 \value{
 The possibly translated character vector

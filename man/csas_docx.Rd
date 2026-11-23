@@ -23,7 +23,7 @@ sr_word(...)
 techreport_word(...)
 }
 \arguments{
-\item{...}{Other arguments to \code{\link[bookdown:html_document2]{bookdown::word_document2()}} or, in the case of \code{resdoc_word2}, \code{\link[officedown:rdocx_document]{officedown::rdocx_document()}}}
+\item{...}{Other arguments to \code{\link[bookdown:word_document2]{bookdown::word_document2()}} or, in the case of \code{resdoc_word2}, \code{\link[officedown:rdocx_document]{officedown::rdocx_document()}}}
 }
 \value{
 A Word Document in the \code{.docx} format based on the FSAR template.

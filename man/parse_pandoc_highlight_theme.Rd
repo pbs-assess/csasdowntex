@@ -60,9 +60,9 @@ Grammar:
 }\if{html}{\out{</div>}}
 }
 \seealso{
-Other highlight-theme: 
-\code{\link{create_pandoc_theme_files}()},
-\code{\link{gen_latex_highlight_code}()}
+Other highlight-theme:
+\code{\link[=create_pandoc_theme_files]{create_pandoc_theme_files()}},
+\code{\link[=gen_latex_highlight_code]{gen_latex_highlight_code()}}
 }
 \concept{highlight-theme}
 \keyword{internal}

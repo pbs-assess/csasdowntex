@@ -7,7 +7,7 @@
 run_pdflatex(extra_pdflatex = 1, ...)
 }
 \arguments{
-\item{extra_pdflatex}{Extra number of times to run \code{\link[tinytex:latexmk]{tinytex::pdflatex()}}.}
+\item{extra_pdflatex}{Extra number of times to run \code{\link[tinytex:pdflatex]{tinytex::pdflatex()}}.}
 
 \item{...}{Arguments to pass to \code{\link[tinytex:latexmk]{tinytex::latexmk()}}.}
 }

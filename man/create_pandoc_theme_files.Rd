@@ -20,9 +20,9 @@ This is not testable on GitHub actions, so do not write tests for this
 function
 }
 \seealso{
-Other highlight-theme: 
-\code{\link{gen_latex_highlight_code}()},
-\code{\link{parse_pandoc_highlight_theme}()}
+Other highlight-theme:
+\code{\link[=gen_latex_highlight_code]{gen_latex_highlight_code()}},
+\code{\link[=parse_pandoc_highlight_theme]{parse_pandoc_highlight_theme()}}
 }
 \concept{highlight-theme}
 \keyword{internal}

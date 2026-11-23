@@ -13,6 +13,6 @@ notify(...)
 Issue a notification
 }
 \details{
-Uses \link[cli:symbol]{cli::symbol} and \code{\link[crayon:crayon]{crayon::green()}}
+Uses \link[cli:symbol]{cli::symbol} and \code{\link[crayon:green]{crayon::green()}}
 }
 \keyword{internal}

@@ -18,9 +18,9 @@ for each theme type
 Generate LaTeX code for pandoc highlight-style list
 }
 \seealso{
-Other highlight-theme: 
-\code{\link{create_pandoc_theme_files}()},
-\code{\link{parse_pandoc_highlight_theme}()}
+Other highlight-theme:
+\code{\link[=create_pandoc_theme_files]{create_pandoc_theme_files()}},
+\code{\link[=parse_pandoc_highlight_theme]{parse_pandoc_highlight_theme()}}
 }
 \concept{highlight-theme}
 \keyword{internal}

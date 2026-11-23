@@ -61,7 +61,7 @@ csasdowntex::draft("fsar")
 }
 }
 \seealso{
-Other drafting: 
-\code{\link{create_rstudio_project_file}()}
+Other drafting:
+\code{\link[=create_rstudio_project_file]{create_rstudio_project_file()}}
 }
 \concept{drafting}
