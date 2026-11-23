@@ -24,7 +24,7 @@ test_that("render generates the PDF of the resdoc", {
 })
 
 # -----------------------------------------------------------------------------
-# Render the PDF resdoc with verbose = TRUE (Add codecov coverage)
+# Render the PDF resdoc with verbose = TRUE
 test_that("render generates the PDF of the resdoc", {
   unlink(file.path(testing_path, "_book", "resdoc-english.pdf"), force = TRUE)
   set_french(val = FALSE)

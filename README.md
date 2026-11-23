@@ -3,8 +3,7 @@
 > Reproducible CSAS Reports with R Markdown
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/pbs-assess/csasdowntex/workflows/R-CMD-check/badge.svg)](https://github.com/pbs-assess/csasdowntex/actions)
-[![Coverage status](https://codecov.io/gh/pbs-assess/csasdowntex/branch/main/graph/badge.svg)](https://codecov.io/github/pbs-assess/csasdowntex?branch=main)
+[![R-CMD-check](https://github.com/pbs-assess/csasdowntex/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pbs-assess/csasdowntex/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 csasdowntex ~is~was an R package for generating Canadian Science Advisory Secretariat (CSAS) documents in PDF or Word format using R Markdown and bookdown.
